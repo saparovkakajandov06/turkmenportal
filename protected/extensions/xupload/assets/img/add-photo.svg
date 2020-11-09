@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="25px" viewBox="0 0 32 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Pro.VAS Active</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="PAGE-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-623.000000, -1547.000000)">
+            <g id="photo-+-plus" sketch:type="MSLayerGroup" transform="translate(623.000000, 1547.000000)">
+                <path d="M2.00174332,5 C0.89621101,5 0,5.89821238 0,6.99079514 L0,23.0092049 C0,24.1086907 0.889261723,25 2.00174332,25 L29.9982567,25 C31.103789,25 32,24.1017876 32,23.0092049 L32,6.99079514 C32,5.89130934 31.1107383,5 29.9982567,5 L2.00174332,5 Z M10,0 L8,5 L24,5 L22,0 L10,0 Z M22,7 L25,10 L30,10 L30,7 L22,7 Z M16,23 C20.4182782,23 24,19.4182782 24,15 C24,10.5817218 20.4182782,7 16,7 C11.5817218,7 8,10.5817218 8,15 C8,19.4182782 11.5817218,23 16,23 Z M16,21 C19.3137087,21 22,18.3137087 22,15 C22,11.6862913 19.3137087,9 16,9 C12.6862913,9 10,11.6862913 10,15 C10,18.3137087 12.6862913,21 16,21 Z" id="photo" opacity="0.3" fill="#28B26F" sketch:type="MSShapeGroup"></path>
+                <g id="plus" transform="translate(10.000000, 9.000000)" sketch:type="MSShapeGroup">
+                    <circle id="Oval-31" fill="#28B26F" cx="6" cy="6" r="6"></circle>
+                    <rect id="Rectangle-166" fill="#FFFFFF" x="2" y="5" width="8" height="2"></rect>
+                    <rect id="Rectangle-166" fill="#FFFFFF" x="5" y="2" width="2" height="8"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

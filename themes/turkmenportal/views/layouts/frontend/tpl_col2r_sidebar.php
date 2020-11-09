@@ -1,0 +1,109 @@
+<?php if (!$this->isMobile()) { ?>
+
+
+    <?php
+    if (Yii::app()->controller->id == 'search') {
+        ?>
+        <div class="col-xl-12">
+            <?php
+            //                    $this->widget('BannersWidget', array(
+            //                        'type' => 'bannerSearch1',
+            //                        'outer_css_class' => 'colheight-sm-2 hidden-xs',
+            //                        'outer_css_id' => 'banner2',
+            //                    ));
+            ?>
+            <?php
+            //                    $this->widget('BannersWidget', array(
+            //                        'type' => 'bannerSearch2',
+            //                        'outer_css_class' => 'colheight-sm-2 hidden-xs',
+            //                        'outer_css_id' => 'banner2',
+            //                    ));
+            ?>
+        </div>
+    <?php } else { ?>
+        <div class="col-xl-12">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'bannerC',
+                'outer_css_class' => 'hidden-xs',
+                'outer_css_id' => 'banner2',
+                'ajax' => true,
+            ));
+            ?>
+
+            <div style="margin-top:10px">
+                <?php
+                $this->widget('application.widgets.banners.BannersWidget', array(
+                    'type' => 'bannerD',
+                    'outer_css_id' => 'bannerD',
+                ));
+                ?>
+            </div>
+        </div>
+
+        <div class="style-media"></div>
+
+        <div class="">
+            <h4 class="block-title"><?php echo Yii::t('app', 'afisha'); ?></h4>
+
+            <?php
+            $this->widget('application.widgets.afishas.AfishaWidget', array(
+                'category_code' => 'billboard',
+            ));
+            ?>
+        </div>
+
+        <div class="style-media">
+            <h4 class="block-title"><?php echo Yii::t('app', 'photoreport'); ?></h4>
+            <?php
+            $this->widget('application.widgets.photoreport.PhotoreportWidget', array(
+                'item_count' => 1,
+                'settings' => array(
+                    array(
+                        "thumbWidth" => 384,
+                        "thumbHeight" => 435,
+                        'cssClass' => "col-xs-12 colheight-sm-1 vertical-photoreport"
+                    ),
+                    array(
+                        "thumbWidth" => 385,
+                        "thumbHeight" => 435,
+                        'cssClass' => "col-xs-12 colheight-sm-1 vertical-photoreport"
+                    ), array(
+                        "thumbWidth" => 385,
+                        "thumbHeight" => 435,
+                        'cssClass' => "col-xs-12 colheight-sm-1 vertical-photoreport"
+                    ), array(
+                        "thumbWidth" => 385,
+                        "thumbHeight" => 435,
+                        'cssClass' => "col-xs-12 colheight-sm-1 vertical-photoreport"
+                    ),
+                ),
+                //                'item_class' => 'col-sm-6 col-md-6',
+            ));
+            ?>
+        </div>
+
+
+        <div class="style-media"></div>
+
+        <div style="text-align: right">
+            <?php
+            $this->widget('BannersWidget', array(
+                'type' => 'bannerRightView',
+                'outer_css_class' => 'hidden-xs',
+            ));
+            ?>
+        </div>
+
+
+        <div style="text-align: right">
+            <?php
+            $this->widget('BannersWidget', array(
+                'type' => 'bannerYandex',
+                'outer_css_class' => 'hidden-xs',
+                'outer_css_id' => 'bannerYandex',
+            ));
+            ?>
+        </div>
+    <?php } ?>
+<?php } ?>

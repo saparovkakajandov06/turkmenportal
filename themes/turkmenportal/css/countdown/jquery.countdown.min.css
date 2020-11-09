@@ -1,0 +1,16 @@
+.is-countdown{}
+.countdown-rtl{direction:rtl;}
+.countdown-holding span{color:#888;}
+.countdown-row{padding:0px 0px;text-align:center;padding-left:17px;}
+.countdown-show1 .countdown-section{width:98%;}
+.countdown-show2 .countdown-section{width:48%;}
+.countdown-show3 .countdown-section{width:30.5%;}
+.countdown-show4 .countdown-section{width:23%;}
+.countdown-show5 .countdown-section{width:19.5%;}
+.countdown-show6 .countdown-section{width:16.25%;}
+.countdown-show7 .countdown-section{width:14%;}
+.countdown-section{display:inline-block;font-size:75%;text-align:center;text-align:center;}
+.countdown-amount{font-size:30px;line-height:30px;font-weight:bold;border-right:2px solid #888;width:100%;display:inline-block;}
+.countdown-period{display:block;text-transform:uppercase;line-height:22px;}
+.countdown-descr{display:block;width:100%;}
+.countdown-section:last-child .countdown-amount{border-right:none;}

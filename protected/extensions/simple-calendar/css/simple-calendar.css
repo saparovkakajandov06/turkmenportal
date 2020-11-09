@@ -1,0 +1,58 @@
+table#calendar {
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
+#calendar th, #calendar td{
+    text-align: center;
+    border-right: 1px solid transparent;
+}
+
+#calendar .month-year-row th{
+    border: none;
+}
+
+
+
+#calendar .weekdays-row th {
+    color: #989292;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#calendar .weekdays-row th.weekday {
+    color: #FF615E;
+}
+
+#calendar .calendar-selected-day {
+    font-weight: bold;
+}
+
+
+#calendar td.calendar-selected-day a{
+    color: #FF615E;
+}
+
+
+#calendar th a, #calendar td a {
+    padding: 4px 5px;
+    color: #313131;
+    display: block;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+tr.month-year-row {
+    font-size: 12px;
+    background-color: #EBF1F1;
+    color: #8e8e8e;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 4px solid #fff;
+    line-height: 2.8;
+    /* font-family: "Open Sans Condensed", sans-serif; */
+    /* font-weight: 300; */
+}

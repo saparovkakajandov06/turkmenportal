@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /index.php
+Disallow: /admin
+Disallow: /cgi-sys
+Disallow: /search
+Disallow: /calendar
+Disallow: /comments
+Disallow: /*_sort
+Sitemap: https://turkmenportal.com/sitemap.xml
+Host: turkmenportal.com

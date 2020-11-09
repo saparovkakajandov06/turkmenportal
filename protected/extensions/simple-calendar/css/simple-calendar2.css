@@ -1,0 +1,46 @@
+#calendar th, #calendar td{
+    text-align: center;
+    border: 1px solid #c9c9c9;
+}
+
+#calendar .month-year-row th{
+    border: none;
+}
+
+
+
+#calendar .weekdays-row th {
+    background-color: #929292;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: normal;
+    border: 1px solid #c4c4c4;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#calendar .calendar-selected-day {
+    font-weight: bold;
+    /* background: #E2E2E2; */
+    border: 2px solid #a71f1f;
+}
+#calendar td.calendar-selected-day a{
+    color: #f00;
+}
+
+
+
+#calendar th a, #calendar td a {
+    padding: 4px 6px;
+    /* font-weight: bolder; */
+    color: #464646;
+    display: block;
+    font-size: 11px;
+    /* width: 125%; */
+}
+
+tr.month-year-row {
+    font-size: 12px;
+    text-transform: uppercase;
+    /* background: #8CD82F; */
+}

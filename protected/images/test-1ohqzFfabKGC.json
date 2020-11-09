@@ -1,0 +1,144 @@
+{
+    "video": {
+        "format": {
+            "filename": "\/home\/admin\/web\/turkmenportal.com\/public_html\/images\/videouploads\/test.mp4",
+            "nb_streams": 2,
+            "nb_programs": 0,
+            "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+            "format_long_name": "QuickTime \/ MOV",
+            "start_time": "0.000000",
+            "duration": "250.056000",
+            "size": "29330720",
+            "bit_rate": "938372",
+            "probe_score": 100,
+            "tags": {
+                "major_brand": "isom",
+                "minor_version": "512",
+                "compatible_brands": "isomiso2avc1mp41",
+                "encoder": "Lavf56.40.101"
+            }
+        },
+        "streams": [
+            {
+                "index": 0,
+                "codec_name": "h264",
+                "codec_long_name": "H.264 \/ AVC \/ MPEG-4 AVC \/ MPEG-4 part 10",
+                "profile": "Constrained Baseline",
+                "codec_type": "video",
+                "codec_time_base": "1\/50",
+                "codec_tag_string": "avc1",
+                "codec_tag": "0x31637661",
+                "width": 640,
+                "height": 344,
+                "coded_width": 640,
+                "coded_height": 352,
+                "has_b_frames": 0,
+                "sample_aspect_ratio": "9589:9600",
+                "display_aspect_ratio": "223:120",
+                "pix_fmt": "yuv420p",
+                "level": 30,
+                "chroma_location": "left",
+                "refs": 1,
+                "is_avc": "true",
+                "nal_length_size": "4",
+                "r_frame_rate": "25\/1",
+                "avg_frame_rate": "25\/1",
+                "time_base": "1\/12800",
+                "start_pts": 0,
+                "start_time": "0.000000",
+                "duration_ts": 3200000,
+                "duration": "250.000000",
+                "bit_rate": "800394",
+                "bits_per_raw_sample": "8",
+                "nb_frames": "6250",
+                "disposition": {
+                    "default": 1,
+                    "dub": 0,
+                    "original": 0,
+                    "comment": 0,
+                    "lyrics": 0,
+                    "karaoke": 0,
+                    "forced": 0,
+                    "hearing_impaired": 0,
+                    "visual_impaired": 0,
+                    "clean_effects": 0,
+                    "attached_pic": 0,
+                    "timed_thumbnails": 0
+                },
+                "tags": {
+                    "language": "und",
+                    "handler_name": "VideoHandler"
+                }
+            },
+            {
+                "index": 1,
+                "codec_name": "aac",
+                "codec_long_name": "AAC (Advanced Audio Coding)",
+                "profile": "LC",
+                "codec_type": "audio",
+                "codec_time_base": "1\/44100",
+                "codec_tag_string": "mp4a",
+                "codec_tag": "0x6134706d",
+                "sample_fmt": "fltp",
+                "sample_rate": "44100",
+                "channels": 2,
+                "channel_layout": "stereo",
+                "bits_per_sample": 0,
+                "r_frame_rate": "0\/0",
+                "avg_frame_rate": "0\/0",
+                "time_base": "1\/44100",
+                "start_pts": 0,
+                "start_time": "0.000000",
+                "duration_ts": 11026411,
+                "duration": "250.031995",
+                "bit_rate": "133003",
+                "max_bit_rate": "133003",
+                "nb_frames": "10769",
+                "disposition": {
+                    "default": 1,
+                    "dub": 0,
+                    "original": 0,
+                    "comment": 0,
+                    "lyrics": 0,
+                    "karaoke": 0,
+                    "forced": 0,
+                    "hearing_impaired": 0,
+                    "visual_impaired": 0,
+                    "clean_effects": 0,
+                    "attached_pic": 0,
+                    "timed_thumbnails": 0
+                },
+                "tags": {
+                    "language": "und",
+                    "handler_name": "SoundHandler"
+                }
+            }
+        ]
+    },
+    "streams": {
+        "filename": "images\/test.m3u8",
+        "size_of_stream_dir": 47308219,
+        "created_at": "2019-10-01 00:08:23",
+        "qualities": [
+            {
+                "dimensions": "446X240",
+                "video_bitrate": 399360
+            },
+            {
+                "dimensions": "792X426",
+                "video_bitrate": 532480
+            },
+            {
+                "dimensions": "640X344",
+                "video_bitrate": 799744
+            }
+        ],
+        "format": "X264",
+        "streaming_technique": "HLS",
+        "hls_time": "10",
+        "hls_cache": true,
+        "encrypted_hls": false,
+        "ts_sub_directory": "ts_files2",
+        "base_url": ""
+    }
+}

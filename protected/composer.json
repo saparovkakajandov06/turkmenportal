@@ -1,0 +1,11 @@
+{
+   
+    "description": "Turkmenportal",
+    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "homepage": "https://turkmenportal.com/",
+	"name": "takykcheshme/turkmenportal",
+	"require": {
+		"php": ">=7.2.0",
+		"yiisoft/yii": "1.1.*"
+	}
+}

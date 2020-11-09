@@ -1,0 +1,272 @@
+@charset 'UTF-8';
+/*
+ * jQuery File Upload UI Plugin CSS 6.3
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+}
+
+.fileinput-button .i-add-photo{
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 32px;
+    height: 41px;
+    background: url(../img/add-photo.svg) no-repeat 0 0px;
+    background-size: 100%;
+}
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border: solid transparent;
+  border-width: 0 0 100px 200px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-transform: translate(-300px, 0) scale(4);
+  direction: ltr;
+  cursor: pointer;
+  position: absolute;    top: 0;    left: 0;    z-index: 1;    margin: 0;    padding: 0;    
+  width: 100%;    height: 100%;    opacity: 0;    cursor: pointer;
+}
+
+
+.form-uploader-item {
+    text-align: center;
+    vertical-align: top;
+    line-height: 73px;
+    position: relative;
+    margin: 5px 9px 6px 0px;
+    width: 100px;
+    height: 75px !important;
+    border: 1px solid #ddd;
+    display: block;
+    float: left;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.form-uploader-item.editable {
+    margin: 5px 16px 6px 0px;
+    width: 160px;
+    height: 160px !important;
+    border: 1px solid #E8D990;
+    background: transparent;
+    line-height: 1.3;
+    color: #444;
+    font-size: 12px;
+    padding: 13px;
+    padding-top: 30px;
+    /* box-shadow: 0px 0px 6px #eee; */
+}
+
+.form-uploader-item.main {
+    border-width: 3px;
+    box-shadow: 0px 0px 10px #F9EEB7;
+    background: #FFFEFA;
+}
+
+.form-uploader-item.editable .name a{
+    color: #444;
+    font-size: 10px;
+    word-wrap: break-word;
+}
+
+.form-uploader-item .progress{
+    background-color: rgba(0,140,195,.3);
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    margin: -3px 0 0 -1px;
+    width: 80%;
+    height: 5px;
+    border-radius: 3px;
+    display: block;
+    -webkit-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+  /* opacity: 0; */
+}
+
+.form-uploader-item .progress-animated{
+    width: 80% !important;
+}
+
+.form-uploader-item .cancel,
+.form-uploader-item .delete{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    display: inline-block;
+}
+
+.form-uploader-item .cancel .btn.btn-cancel,
+.form-uploader-item .delete .btn.btn-delete{
+    /* border-radius: 21px; */
+    width: 19px;
+    height: 19px;
+    line-height: 17px;
+    box-shadow: 0px 0px 6px rgba(171, 171, 171, 0.87);
+    /* border: 1px solid #A5A5A5; */
+    background: rgb(217, 83, 79);
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 0px;
+    outline: none;
+}
+
+
+/*.form-uploader-item.editable .delete .btn.btn-delete{
+    width: 19px;
+    height: 19px;
+    line-height: 17px;
+     box-shadow: 0px 0px 6px rgba(171, 171, 171, 0.61); 
+     border: 1px solid #A5A5A5; 
+    background: transparent;
+    color: #D9534F;
+    font-size: 13px;
+    padding: 0px;
+    outline: none;
+}*/
+
+
+
+
+
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  text-align: center;    
+  vertical-align: top;    
+  line-height: 73px;    position: relative;        width: 100px;    height: 75px;        display: inline-block;    -webkit-transition: all .2s ease-out;    transition: all .2s ease-out;    overflow: hidden;    z-index: 0;
+  background: transparent;
+  color: #777;
+  border-radius: 0px;
+}
+
+
+
+
+.btn.fileinput-button:active, .btn.fileinput-button.active{
+    box-shadow: none;
+}
+
+
+
+
+.file-upload-input{
+    margin-left: 170px;
+}
+
+
+.file-upload-input.backend{
+    margin-left: 0px;
+}
+
+.file-upload-input .files{
+    display: inline;
+}
+
+.files .progress {
+  width: 200px;
+}
+.progress-animated .bar {
+  background: url(../img/progressbar.gif) !important;
+  filter: none;
+  height: 100%;
+}
+
+
+.fileupload-loading {
+  position: absolute;
+  left: 50%;
+  width: 128px;
+  height: 128px;
+  background: url(../img/loading.gif) center no-repeat;
+  display: none;
+}
+.fileupload-processing .fileupload-loading {
+  display: block;
+}
+
+/* Fix for IE 6: */
+*html .fileinput-button {
+  line-height: 22px;
+  margin: 1px -3px 0 0;
+}
+
+/* Fix for IE 7: */
+*+html .fileinput-button {
+  margin: 1px 0 0 0;
+}
+
+
+@media (max-width: 480px) {
+  .files .btn span {
+    display: none;
+  }
+  .files .preview * {
+    width: 40px;
+  }
+  .files .name * {
+    width: 80px;
+    display: inline-block;
+    word-wrap: break-word;
+  }
+  .files .progress {
+    width: 20px;
+  }
+  .files .delete {
+    width: 60px;
+  }
+}
+
+
+.edit a {
+    /* line-height: 15px; */
+    color: #252525;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    padding-top: 3px;
+    display: block;
+    /* background: #FFFAE3; */
+}
+
+.edit {
+    /* padding: 4px; */
+    background: rgb(243, 237, 160);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 1px;
+    border: 1px solid #D6B622;
+    box-shadow: 0px 0px 11px rgba(224, 224, 224, 0.39);
+    position: absolute;
+    top: 2px;
+    right: 30px;
+}
+
+
+.name {
+    margin-top: 5px;
+    word-wrap: break-word;
+    font-size: 10px;
+}
+
+.fileinput-button.disabled {
+    display: none;
+}

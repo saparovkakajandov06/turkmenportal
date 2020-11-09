@@ -1,0 +1,57 @@
+
+.video-js.vjs-controls-disabled .vjs-big-play-button, .video-js.vjs-has-started .vjs-big-play-button,
+.video-js.vjs-using-native-controls .vjs-big-play-button, .video-js.vjs-error .vjs-big-play-button {
+    display: none;
+}
+
+.video-js:hover .vjs-big-play-button, .video-js .vjs-big-play-button:focus {
+    outline: 0;
+    border: none;
+    background-color: #a71f1f;
+    background-color: rgb(167, 31, 31);
+    -webkit-transition: all 0s;
+    -moz-transition: all 0s;
+    -o-transition: all 0s;
+    transition: all 0s;
+}
+
+.video-js .vjs-big-play-button {
+    font-size: 68px;
+    line-height: 75px;
+    height: 75px;
+    width: 75px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -37px;
+    margin-left: -37px;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color: #a71f1f;
+    background-color: rgba(167, 31, 31, 0.52);
+    -webkit-border-radius: 12.3em;
+    -moz-border-radius: 12.3em;
+    border-radius: 12.3em;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.video-js .vjs-resolution-button{
+    font-family: VideoJS;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.video-js .vjs-resolution-button:before{
+    content: "\f110";
+}
+
+
+span.vjs-resolution-button-label {
+    position: relative;
+    top: -3px;
+}

@@ -1,0 +1,25 @@
+
+.weather-wrapper {
+	float: left;
+	color: white;
+	position: absolute;
+	top: 19px;
+	right: 96px;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: normal;
+	display: none;
+}
+
+img.weather-icon {
+    max-width: 34px;
+}
+
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.hide {
+	display: none;
+}
