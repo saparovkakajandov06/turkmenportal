@@ -65,7 +65,7 @@
 
 
 <?php
-if (isset($index) && ($index == Yii::app()->controller->adsense_listview_index)) {
+if (isset($index) && (($index+1) % 6 === 0 )) {
     $this->widget('application.widgets.banners.BannersWidget', array(
         'type' => 'desktopBannerLevel2',
         'outer_css_class' => 'entry style-media media type-post',
@@ -86,7 +86,7 @@ if (isset($index) && ($index == Yii::app()->controller->adsense_listview_index2)
 <?php } ?>
 
 <?php
-if (isset($index) && ($index == Yii::app()->controller->mobileBaner_listview_index)) { ?>
+if (isset($index) && (($index+1) % 6 === 0 )) { ?>
     <?php
     $this->widget('application.widgets.banners.BannersWidget', array(
         'type' => 'mobileBannerLevel2',

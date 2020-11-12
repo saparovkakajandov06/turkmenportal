@@ -75,7 +75,25 @@ class BannersWidget extends CWidget
                                 }
                                 break;
                             case BannerType::TYPE_IMAGE_RANDOM:
-                                $bannerModel = $banners[array_rand($banners)];
+                                if (!isset(Yii::app()->params[$this->type])){
+                                    $countBanner = count($banners);
+                                    for ($i = 0; $i < $countBanner; $i++){
+                                        $arr[] = $i;
+                                    }
+                                    shuffle($arr);
+                                    Yii::app()->params[$this->type] = $arr;
+                                    Yii::app()->params[$this->type.'Order'] = 0;
+                                }
+
+                                if (Yii::app()->params[$this->type.'Order'] >= count(Yii::app()->params[$this->type])){
+                                    Yii::app()->params[$this->type.'Order'] = 0;
+                                }
+                                if (isset(Yii::app()->params[$this->type][Yii::app()->params[$this->type.'Order']])){
+                                    $order = Yii::app()->params[$this->type][Yii::app()->params[$this->type.'Order']];
+                                    $bannerModel = $banners[$order];
+                                    Yii::app()->params[$this->type.'Order'] = Yii::app()->params[$this->type.'Order'] + 1;
+                                } else
+                                    $bannerModel = $banners[array_rand($banners)];
                                 break;
                         }
                     }

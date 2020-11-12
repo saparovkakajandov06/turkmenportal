@@ -106,9 +106,9 @@ $this->enable_mobile_banner_vtop2 = true;
                 <div class="col-md-12 ">
                     <?php
                     $this->widget('application.widgets.banners.BannersWidget', array(
-                        'type' => 'mobileBannerLevel3',
+                        'type' => 'mobileBannerLevel2',
                         'outer_css_class' => 'mobile-responsive visible-xs',
-                        'outer_css_id' => 'mobileBannerLevel3',
+                        'outer_css_id' => 'mobileBannerLevel2',
                     ));
                     ?>
                 </div>

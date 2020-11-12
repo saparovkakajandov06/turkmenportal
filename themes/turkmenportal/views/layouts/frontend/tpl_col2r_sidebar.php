@@ -86,10 +86,18 @@
 
         <div class="style-media"></div>
 
+        <div style="text-align: center">
+            <?php
+            $this->widget('BannersWidget', array(
+                'type' => 'bannerLeftView',
+                'outer_css_class' => 'hidden-xs',
+            ));
+            ?>
+        </div>
         <div style="text-align: right">
             <?php
             $this->widget('BannersWidget', array(
-                'type' => 'bannerRightView',
+                'type' => 'bannerRightViewAdsense',
                 'outer_css_class' => 'hidden-xs',
             ));
             ?>

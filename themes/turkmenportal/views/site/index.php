@@ -457,6 +457,14 @@
         //            'sortableAttributes' => array()
         //        ));
         ?>
+        <div class="mobile-responsive visible-xs">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'mobileBannerH',
+                'outer_css_id' => 'mobileBannerH',
+            ));
+            ?>
+        </div>
     </div>
 
     <div class="col-md-4" style="border-right: 0px solid #eee;">
@@ -487,6 +495,17 @@
             'sortableAttributes' => array()
         ));
         ?>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'bannerL',
+                'inner_css_style' => 'max-width:100%',
+            ));
+            ?>
+        </div>
     </div>
 </div>
 

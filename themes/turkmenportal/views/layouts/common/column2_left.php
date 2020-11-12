@@ -8,7 +8,6 @@
         //                'ajax'=>true
     ));
     ?>
-
     <div class="style-media">
         <div class="calendar_title">
             <h4><?php echo Yii::t('app', 'Archive news') ?></h4>
@@ -29,3 +28,9 @@ $this->widget('application.widgets.banners.BannersWidget', array(
     'type' => 'bannerLeftView',
 ));
 ?>
+<?php
+$this->widget('application.widgets.banners.BannersWidget', array(
+    'type' => 'bannerLeftViewAdsense',
+));
+?>
+
