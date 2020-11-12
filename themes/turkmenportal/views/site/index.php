@@ -497,7 +497,7 @@
         ?>
     </div>
 
-    <div class="row">
+    <div class="row hidden-xs">
         <div class="col-md-12">
             <?php
             $this->widget('application.widgets.banners.BannersWidget', array(
