@@ -2,10 +2,6 @@
 
 class BlogsController extends Controller
 {
-    public function filters()
-    {
-        return array('rights',);
-    }
 
     public function actionIndex()
     {
