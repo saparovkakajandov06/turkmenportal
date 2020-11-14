@@ -25,6 +25,8 @@ return array(
         'application.extensions.easyimage.*',
         'application.extensions.easyimage.drivers.Image',
         'application.models.*',
+        'application.models.wrappers.*',
+        'application.controllers.api*',
         'application.components.*',
         'application.extensions.bootstrap.widgets.*',
         'application.extensions.activerecord-relation.*',
@@ -178,6 +180,8 @@ return array(
                 'm/<module:\w+>/<controller:\w+>/<id:\d+>' => '<module>/<controller>/view',
                 'm/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 'm/<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
+
+                'api/<controller:\w+>/<action:\w+>' => 'api/<controller>/<action>',
 
                 '<controller:\w+>/<id:\d+>/<alias:[\w-]+>' => '<controller>/view',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
