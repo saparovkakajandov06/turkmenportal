@@ -28,6 +28,8 @@ return array(
         'application.models.wrappers.*',
         'application.controllers.api*',
         'application.components.*',
+        'application.components.json.*',
+        'application.controllers.api*',
         'application.extensions.bootstrap.widgets.*',
         'application.extensions.activerecord-relation.*',
         'application.modules.user.UserModule',

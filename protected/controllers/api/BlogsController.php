@@ -12,7 +12,7 @@ class BlogsController extends Controller
         if (isset($_GET['per_page']))
             $per_page = (int)$_GET['per_page'];
         if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' && $_GET['hl'] == 'ru' && $_GET['hl'] == 'en')
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
         } else {
             $hl = 'ru';
@@ -48,7 +48,55 @@ class BlogsController extends Controller
             );
         }
         header('Content-Type: application/json; charset=UTF-8');
-        echo CJSON::encode($data);die;
+        echo Json::encode($data);die;
+    }
+
+    public function actionView()
+    {
+
+        if (isset($_GET['id']))
+            $id = (int)$_GET['id'];
+        if (isset($_GET['hl'])){
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+                $hl = $_GET['hl'];
+        } else {
+            $hl = 'ru';
+        }
+        yii::app()->language = $hl;
+        $model = $this->loadModel($id);
+        $now = new DateTime();
+        $now->modify('-3 day');
+        $date_added = new DateTime($model->date_added);
+        if ($date_added > $now) {
+            $model->saveCounters(array('visited_count' => rand(1, 3)));
+        } else {
+            $model->saveCounters(array('visited_count' => 1));
+        }
+
+            $data['models'][] = array(
+                'id' => $model->id,
+                'title' => $model->getTitle(),
+                'description' => $model->getDescription(),
+                'content' => $model->getText(),
+                'thumb_url' => $model->getThumbPath(512, 288, 'w'),
+                'image_url' => $model->getThumbPath(256, 144, 'w'),
+                'date' => $model->date_added,
+                'cat_name' => $model->category->name,
+                'cat_id' => $model->category->id,
+                'par_cat_name' => $model->category->parent->name,
+                'par_cat_id' => $model->category->parent->id,
+                'view_count' => $model->visited_count,
+                'url' => $model->createAbsoluteUrl(),
+            );
+        header('Content-Type: application/json; charset=UTF-8');
+        echo Json::encode($data);die;
+    }
+
+
+    public function loadModel($id)
+    {
+        $model = Blog::model()->findByPk($id);
+        return $model;
     }
 
 }
