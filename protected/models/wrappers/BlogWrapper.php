@@ -2,10 +2,11 @@
 
 class BlogWrapper extends Blog
 {
-    
+
+    public $default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc');
 
 
-    public function apiSearchForCategory($per_page = 5, $page = 0)
+    public function apiSearchForCategory($per_page = 10, $page = 0)
     {
         $criteria = new CDbCriteria;
 

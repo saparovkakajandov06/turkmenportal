@@ -5,14 +5,20 @@ class BlogsController extends Controller
 
     public function actionIndex()
     {
-        if (isset($_GET['cat_id']))
-            $cat_id = (int)$_GET['cat_id'];
+        if (isset($_GET['cat_id'])){
+            if ($_GET['cat_id'] == 0){
+                $cat_id = 282;
+            } else
+                $cat_id = (int)$_GET['cat_id'];
+        } else{
+            $cat_id = 282;
+        }
         if (isset($_GET['page']))
             $page = (int)$_GET['page'];
         if (isset($_GET['per_page']))
             $per_page = (int)$_GET['per_page'];
         if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+            if ($_GET['hl'] == 'tm' && $_GET['hl'] == 'ru' && $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
         } else {
             $hl = 'ru';
@@ -78,8 +84,8 @@ class BlogsController extends Controller
                 'title' => $model->getTitle(),
                 'description' => $model->getDescription(),
                 'content' => $model->getText(),
-                'thumb_url' => $model->getThumbPath(512, 288, 'w'),
-                'image_url' => $model->getThumbPath(256, 144, 'w'),
+                'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
+                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => $model->category->id,
