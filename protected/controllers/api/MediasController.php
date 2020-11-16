@@ -57,6 +57,9 @@ class MediasController extends Controller
                 ];
             } else {
                 $mainDoc = $model->getDocument();
+                unset($image_url);
+                unset($thumb_url);
+                unset($images);
                 if (isset($mainDoc)){
                     $image_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(512, 288, 'crop', false, false));
                     $thumb_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(256, 144, 'crop', false, false));
@@ -90,10 +93,10 @@ class MediasController extends Controller
                 'view_count' => $model->visited_count,
                 'url' => $model->createAbsoluteUrl(),
             );
-            $data =array_merge($data,$extra);
+            $result[] =array_merge($data,$extra);
         }
         header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($data);die;
+        echo Json::encode($result);die;
     }
 
 }

@@ -37,6 +37,10 @@ class CatalogWrapper extends Catalog
 
 
     public function apiSearchForCategory($per_page = 10, $page = 0) {
+        if (!isset($per_page))
+            $per_page = 10;
+        if (!isset($page))
+            $page = 0;
         $criteria = new CDbCriteria;
 
         if (isset($this->parent_category_id)) {

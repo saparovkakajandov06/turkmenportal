@@ -37,6 +37,10 @@ class CompositionsWrapper extends Compositions
 
 
     public function apiSearchForCategory($per_page = 10, $page = 0) {
+        if (!isset($per_page))
+            $per_page = 10;
+        if (!isset($page))
+            $page = 0;
         $criteria = new CDbCriteria;
         $criteria->with = array("category", "category.parent");
 
