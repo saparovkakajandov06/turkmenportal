@@ -57,29 +57,16 @@ class BlogsController extends Controller
         echo Json::encode($data);die;
     }
 
-    public function actionView()
+    public function actionTop()
     {
-
-        if (isset($_GET['id']))
-            $id = (int)$_GET['id'];
-        if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
-                $hl = $_GET['hl'];
-        } else {
-            $hl = 'ru';
-        }
-        yii::app()->language = $hl;
-        $model = $this->loadModel($id);
-        $now = new DateTime();
-        $now->modify('-3 day');
-        $date_added = new DateTime($model->date_added);
-        if ($date_added > $now) {
-            $model->saveCounters(array('visited_count' => rand(1, 3)));
-        } else {
-            $model->saveCounters(array('visited_count' => 1));
-        }
-
-            $data['models'][] = array(
+        $blogModel = new Blog();
+        $blogModel->unsetAttributes();
+        $blogModel->default_scope = array('enabled', 'not_photoreport','sort_trend_asc');
+        $blogModel->reset_related_sort = true;
+        $popularDataProvider = $blogModel->searchForCategory($this->count);
+        $models = $popularDataProvider->getData();
+        foreach ($models as $key => $model){
+            $data[] = array(
                 'id' => $model->id,
                 'title' => $model->getTitle(),
                 'description' => $model->getDescription(),
@@ -94,6 +81,7 @@ class BlogsController extends Controller
                 'view_count' => $model->visited_count,
                 'url' => $model->createAbsoluteUrl(),
             );
+        }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;
     }

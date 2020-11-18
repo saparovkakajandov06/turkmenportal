@@ -9,8 +9,14 @@ class CompositionsController extends Controller
 
     public function actionIndex()
     {
-        if (isset($_GET['cat_id']))
-            $cat_id = (int)$_GET['cat_id'];
+        if (isset($_GET['cat_id'])){
+            if ($_GET['cat_id'] == 0){
+                $cat_id = 355;
+            } else
+                $cat_id = (int)$_GET['cat_id'];
+        } else{
+            $cat_id = 355;
+        }
         if (isset($_GET['page']))
             $page = (int)$_GET['page'];
         if (isset($_GET['per_page']))
