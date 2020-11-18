@@ -63,7 +63,7 @@ class BlogsController extends Controller
         $blogModel->unsetAttributes();
         $blogModel->default_scope = array('enabled', 'not_photoreport','sort_trend_asc');
         $blogModel->reset_related_sort = true;
-        $popularDataProvider = $blogModel->searchForCategory($this->count);
+        $popularDataProvider = $blogModel->searchForCategory(6);
         $models = $popularDataProvider->getData();
         foreach ($models as $key => $model){
             $data[] = array(
