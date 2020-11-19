@@ -42,20 +42,20 @@ class CompositionsController extends Controller
 
         foreach ($models as $key => $model){
             $data['models'][] = array(
-                'id' => $model->id,
+                'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'description' => $model->getDescription(),
                 'content' => $model->getContent(),
-                'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
-                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
+                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
+                'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
-                'cat_id' => $model->category->id,
-                'par_cat_name' => $model->category->parent->name,
-                'par_cat_id' => $model->category->parent->id,
-                'view_count' => $model->views,
+                'cat_id' => (int)$model->category->id,
+                'view_count' => (int)$model->views,
                 'url' => $model->getUrl(),
             );
+        }
+        if (!isset($data)){
+            $data['models'] = [];
         }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;

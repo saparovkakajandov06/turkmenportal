@@ -50,9 +50,9 @@ class MediasController extends Controller
                 $type = 'video/mp4';
                 $extra = [
                     'type' => $type,
-                    'thumb_url' => $thumb_url,
-                    'image_url' => $image_url,
-                    'video_url' => $videoPath,
+                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
+                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
+                    'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
 
                 ];
             } else {
@@ -73,24 +73,21 @@ class MediasController extends Controller
                 }
                 $extra = [
                     'type' => 'image',
-                    'thumb_url' => $thumb_url,
-                    'image_url' => $image_url,
-                    'image_urls' => $images,
+                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
+                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
+                    'image_urls' => Yii::app()->createAbsoluteUrl($images),
 
                 ];
             }
 
             $data = array(
-                'id' => $model->id,
+                'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'description' => $model->getDescription(),
                 'content' => $model->getText(),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
-                'cat_id' => $model->category->id,
-                'par_cat_name' => $model->category->parent->name,
-                'par_cat_id' => $model->category->parent->id,
-                'view_count' => $model->visited_count,
+                'cat_id' => (int)$model->category->id,
+                'view_count' => (int)$model->visited_count,
                 'url' => $model->createAbsoluteUrl(),
             );
             $result[] =array_merge($data,$extra);
