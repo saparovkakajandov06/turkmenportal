@@ -22,7 +22,7 @@ class PostsController extends Controller
         if (isset($_GET['per_page']))
             $per_page = (int)$_GET['per_page'];
         if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' && $_GET['hl'] == 'ru' && $_GET['hl'] == 'en')
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
         } else {
             $hl = 'ru';
@@ -44,20 +44,17 @@ class PostsController extends Controller
             $data['models'][] = array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'description' => $model->getDescription(),
-                'content' => $model->getContent(),
-                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
+//                'content' => $model->getContent(),
+//                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
                 'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
-                'date' => $model->date_added,
+//                'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-                'par_cat_name' => $model->category->parent->name,
-                'par_cat_id' => (int)$model->category->parent->id,
                 'view_count' => (int)$model->views,
                 'address' => $model->address,
                 'phone' => $model->phone,
                 'web_site' => $model->web,
-                'url' => $model->getUrl(),
+//                'url' => $model->getUrl(),
             );
         }
         if (!isset($data)){
@@ -65,5 +62,50 @@ class PostsController extends Controller
         }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;
+    }
+
+    public function actionView()
+    {
+        if (isset($_GET['id']))
+            $id = (int)$_GET['id'];
+        if (isset($_GET['hl'])){
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+                $hl = $_GET['hl'];
+        } else {
+            $hl = 'ru';
+        }
+        $model = $this->loadModel($id);
+
+
+        yii::app()->language = $hl;
+
+        $data['models'][] = array(
+            'id' => (int)$model->id,
+            'title' => $model->getTitle(),
+            'content' => $model->getContent(),
+            'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
+//            'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
+            'date' => $model->date_added,
+            'cat_name' => $model->category->name,
+            'cat_id' => (int)$model->category->id,
+            'view_count' => (int)$model->views,
+            'address' => $model->address,
+            'phone' => $model->phone,
+            'web_site' => $model->web,
+            'url' => $model->getUrl(),
+        );
+        if (!isset($data)){
+            $data['models'] = [];
+        }
+        header('Content-Type: application/json; charset=UTF-8');
+        echo Json::encode($data);die;
+    }
+
+    public function loadModel($id)
+    {
+        $model = Catalog::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+        return $model;
     }
 }

@@ -18,11 +18,12 @@ class BlogsController extends Controller
         if (isset($_GET['per_page']))
             $per_page = (int)$_GET['per_page'];
         if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' && $_GET['hl'] == 'ru' && $_GET['hl'] == 'en')
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
         } else {
             $hl = 'ru';
         }
+
         $modelBlog = new BlogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
 
@@ -57,8 +58,50 @@ class BlogsController extends Controller
         echo Json::encode($data);die;
     }
 
+
+    public function actionView()
+    {
+        if (isset($_GET['id']))
+            $id = (int)$_GET['id'];
+        if (isset($_GET['hl'])){
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+                $hl = $_GET['hl'];
+        } else {
+            $hl = 'ru';
+        }
+        $model = $this->loadModel($id);
+
+
+        yii::app()->language = $hl;
+
+            $data['models'][] = array(
+                'id' => (int)$model->id,
+                'title' => $model->getTitle(),
+                'content' => $model->getText(),
+                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
+//                'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
+                'date' => $model->date_added,
+                'cat_name' => $model->category->name,
+                'cat_id' => (int)$model->category->id,
+                'view_count' => (int)$model->visited_count,
+                'url' => $model->createAbsoluteUrl(),
+            );
+        if (!isset($data)){
+            $data['models'] = [];
+        }
+        header('Content-Type: application/json; charset=UTF-8');
+        echo Json::encode($data);die;
+    }
+
     public function actionTop()
     {
+        if (isset($_GET['hl'])){
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+                $hl = $_GET['hl'];
+        } else {
+            $hl = 'ru';
+        }
+        yii::app()->language = $hl;
         $blogModel = new Blog();
         $blogModel->unsetAttributes();
         $blogModel->default_scope = array('enabled', 'not_photoreport','sort_trend_asc');
