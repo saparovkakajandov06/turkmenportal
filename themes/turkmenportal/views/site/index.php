@@ -63,7 +63,6 @@
         </div>
     </div>
     <div class="more-wrapper visible-xs">
-        <i class="fa fa-chevron-right"></i>
         <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
@@ -84,31 +83,46 @@
 
 
 <div class="row mobile_block block">
-    <div class="col-md-12 bg-base col-lg-12 col-xl-12">
+    <div class="col-md-4">
         <?php
-        $this->widget('application.widgets.category.CategoryHeaderWidget', array(
-            'maxSubCatCount' => 5,
+        $limitNewsList  = 6;
+        if (Yii::app()->mobileDetect->isMobile()){
+            $limitNewsList = 4;
+        }
+        $this->widget('application.widgets.news.NewsListWidget', array(
+//            'item_class' => 'col-sm-12 col-md-12',
             'category_code' => 'news.sport',
-            'categoy_index_url' => '//blog',
-            'override_main_title' => Yii::t('app', 'Sport news')
-        ));
-        ?>
-    </div>
-
-    <div class="col-md-12 bg-base col-lg-12 col-xl-12">
-        <?php
-        $this->widget('application.widgets.news.NewsTilesWidget', array(
-            'item_class' => 'col-sm-2 col-md-2',
-            'category_code' => 'news.sport',
+            'itemView' => '/_views/_list_view_2',
+            'headerText' => Yii::t('app', 'Sport'),
 //            'show_description' => false,
-            'count' => 6,
+            'count' => $limitNewsList,
         ));
         ?>
     </div>
-
-    <div class="more-wrapper visible-xs">
-        <i class="fa fa-chevron-right"></i>
-        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+    <div class="col-md-4">
+        <?php
+        $this->widget('application.widgets.news.NewsListWidget', array(
+//            'item_class' => 'col-sm-12 col-md-12',
+            'category_code' => 'news.business',
+            'itemView' => '/_views/_list_view_2',
+            'headerText' => Yii::t('app', 'Business'),
+//            'show_description' => false,
+            'count' => $limitNewsList,
+        ));
+        ?>
+    </div>
+    <div class="col-md-4">
+        <?php
+        $this->widget('application.widgets.news.NewsListWidget', array(
+//            'item_class' => 'col-sm-12 col-md-12',
+            'category_code' => 'news.world',
+            'itemView' => '/_views/_list_view_2',
+            'headerCssClass' => 'header_news_by_category',
+            'headerText' => Yii::t('app', 'In the world'),
+//            'show_description' => false,
+            'count' => $limitNewsList,
+        ));
+        ?>
     </div>
 </div>
 
@@ -163,7 +177,6 @@
 
 
     <div class="more-wrapper visible-xs">
-        <i class="fa fa-chevron-right"></i>
         <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
@@ -250,7 +263,6 @@
         ?>
     </div>
     <div class="more-wrapper visible-xs">
-        <i class="fa fa-chevron-right"></i>
         <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
@@ -271,6 +283,12 @@
 
 
 <div class="row mobile_block block">
+    <?php
+    $this->widget('application.widgets.banners.BannersWidget', array(
+        'type' => 'bannerNesipetsin',
+        'outer_css_class' => 'mobile-responsive visible-xs',
+    ));
+    ?>
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
 
         <div class="row category_header ">
@@ -292,53 +310,128 @@
         ?>
     </div>
     <div class="col-md-9 bg-base col-lg-9 col-xl-9">
-        <?php
-        $this->widget('application.widgets.banners.BannersWidget', array(
-            'type' => 'bannerNesipetsin',
-            'outer_css_class' => 'mobile-responsive visible-xs',
-        ));
-        ?>
+
         <div class="row">
-            <div class="col-md-4 mixed-block">
+            <?php
+            if (!Yii::app()->mobileDetect->isMobile()){?>
+                <div class="col-md-4 mixed-block">
+                    <?php $this->widget('application.widgets.category.CategoryListWidget', array(
+                        'count' => 5,
+                        'parent_category_code' => 'advert',
+                        'item_class' => 'col-md-6 col-xs-6',
+                        'relatedActiveRecord' => 'Advert',
+                    ));?>
+                </div>
                 <?php
-                $this->widget('application.widgets.category.CategoryListWidget', array(
-                    'count' => 5,
+            } else {
+                $this->widget('application.widgets.advert.AdvertListWidget', array(
+//            'item_class' => 'col-sm-12 col-md-12',
                     'parent_category_code' => 'advert',
-                    'item_class' => 'col-md-6 col-xs-6',
-                    'relatedActiveRecord' => 'Advert',
+                    'itemView' => '_list_view_2',
+                    'headerCssClass' => 'header_news_by_category',
+                    'count' => 3,
                 ));
+            }
+            ?>
+            <?php
+            if(!Yii::app()->mobileDetect->isMobile()):
                 ?>
-            </div>
-            <div class="col-md-2 mixed-block">
+                <div class="col-md-2 mixed-block">
+                    <?php
+                    $this->widget('application.widgets.category.CategoryListWidget', array(
+                        'count' => 5,
+                        'parent_category_code' => 'estate',
+                        'item_class' => 'col-md-12 col-xs-6',
+                        'relatedActiveRecord' => 'Estates',
+                    ));
+                    ?>
+                </div>
+            <?php
+            endif;
+            ?>
+            <?php
+            if (!Yii::app()->mobileDetect->isMobile()){?>
+                <div class="col-md-4 mixed-block">
+                    <?php
+                    $this->widget('application.widgets.category.CategoryListWidget', array(
+                        'count' => 5,
+                        'parent_category_code' => 'service',
+                        'item_class' => 'col-md-6 col-xs-6',
+                        'relatedActiveRecord' => 'Catalog',
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->widget('application.widgets.category.CategoryListWidget', array(
-                    'count' => 5,
-                    'parent_category_code' => 'estate',
-                    'item_class' => 'col-md-12 col-xs-6',
-                    'relatedActiveRecord' => 'Estates',
-                ));
-                ?>
-            </div>
-            <div class="col-md-4 mixed-block">
+            } else {?>
+                <div class="col-md-12 bg-base col-lg-12 col-xl-12">
+                    <div class="row category_header ">
+                        <div class="box_header_index">
+                            <div class="subHeader">
+                                <span class="headerColor"><?php echo Yii::t('app', 'service_header'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <?php
-                $this->widget('application.widgets.category.CategoryListWidget', array(
-                    'count' => 5,
+                $this->widget('application.widgets.catalog.CatalogListWidget', array(
+//            'item_class' => 'col-sm-12 col-md-12',
                     'parent_category_code' => 'service',
-                    'item_class' => 'col-md-6 col-xs-6',
-                    'relatedActiveRecord' => 'Catalog',
+                    'itemView' => '_list_view_2',
+//                    'headerCssClass' => 'header_news_by_category',
+                    'count' => 3,
                 ));
+            }
+            ?>
+            <?php
+            if (!Yii::app()->mobileDetect->isMobile()) {
                 ?>
-            </div>
-            <div class="col-md-2 mixed-block">
+                <div class="col-md-2 mixed-block">
+                    <?php
+                    $this->widget('application.widgets.category.CategoryListWidget', array(
+                        'count' => 5,
+                        'parent_category_code' => 'work',
+                        'item_class' => 'col-md-12 col-xs-6',
+                        'relatedActiveRecord' => 'Work',
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->widget('application.widgets.category.CategoryListWidget', array(
-                    'count' => 5,
-                    'parent_category_code' => 'work',
-                    'item_class' => 'col-md-12 col-xs-6',
-                    'relatedActiveRecord' => 'Work',
-                ));
+            } else {
                 ?>
-            </div>
+                <div class="col-md-12 bg-base col-lg-12 col-xl-12">
+                    <div class="row category_header ">
+                        <div class="box_header_index">
+                            <div class="subHeader">
+                                <span class="headerColor"><?php echo Yii::t('app', 'work_header'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                $this->widget('application.widgets.work.WorkListviewWidget', array(
+                    'count' => 3,
+                    'view' => '_view',
+                ));
+            }
+            ?>
+            <?php
+            if(Yii::app()->mobileDetect->isMobile()):
+                ?>
+                <div class="col-md-2 mixed-block">
+                    <?php
+                    $this->widget('application.widgets.category.CategoryListWidget', array(
+                        'count' => 5,
+                        'parent_category_code' => 'estate',
+                        'item_class' => 'col-md-12 col-xs-6',
+                        'relatedActiveRecord' => 'Estates',
+                    ));
+                    ?>
+                </div>
+            <?php
+            endif;
+            ?>
+
         </div>
         <div class="row">
             <?php
@@ -423,7 +516,6 @@
 
     </div>
     <div class="more-wrapper visible-xs">
-        <i class="fa fa-chevron-right"></i>
         <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
@@ -457,14 +549,6 @@
         //            'sortableAttributes' => array()
         //        ));
         ?>
-        <div class="mobile-responsive visible-xs">
-            <?php
-            $this->widget('application.widgets.banners.BannersWidget', array(
-                'type' => 'mobileBannerH',
-                'outer_css_id' => 'mobileBannerH',
-            ));
-            ?>
-        </div>
     </div>
 
     <div class="col-md-4" style="border-right: 0px solid #eee;">
@@ -495,17 +579,6 @@
             'sortableAttributes' => array()
         ));
         ?>
-    </div>
-
-    <div class="row hidden-xs">
-        <div class="col-md-12">
-            <?php
-            $this->widget('application.widgets.banners.BannersWidget', array(
-                'type' => 'bannerL',
-                'inner_css_style' => 'max-width:100%',
-            ));
-            ?>
-        </div>
     </div>
 </div>
 

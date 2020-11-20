@@ -1,13 +1,14 @@
 <?php
 
-class CategoryHeaderWidget extends CWidget {
+class CategoryMoreWidget extends CWidget {
     public $maxSubCatCount;
     public $category_id;
     public $category_code;
     public $categoy_index_url;
     public $cssClass;
     public $override_main_title;
-    public $view  = 'CategoryHeaderWidget';
+    public $view  = 'CategoryMoreWidget';
+
 
     public function init() {
         parent::init();

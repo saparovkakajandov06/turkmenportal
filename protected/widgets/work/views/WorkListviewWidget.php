@@ -1,10 +1,10 @@
 <?php
     $this->widget('bootstrap.widgets.BootListView', array(
         'dataProvider' => $dataProvider,
-        'itemView' => '_listview',
+        'itemView' => $this->view,
         'summaryText' => '',
         'pagerCssClass' => "pagination",
-        'htmlOptions' => array('class' => 'row'),
+        'htmlOptions' => array('class' => ''),
         'pager' => array('header' => '',
             'maxButtonCount' => $this->count,
             'cssFile' => false,
@@ -16,3 +16,22 @@
         ),
     ));
 ?>
+
+<?php
+if ($this->view === '_view'):
+    ?>
+    <div class="more-wrapper" style="margin-bottom: 20px; ">
+        <?php
+        $this->widget('application.widgets.category.CategoryMoreWidget', array(
+//            'maxSubCatCount' => 5,
+            'category_code' => 'work',
+            'categoy_index_url' => '//blog',
+            'view' => 'CategoryMoreWidget',
+        ));
+        ?>
+    </div>
+
+<?php
+endif;
+?>
+

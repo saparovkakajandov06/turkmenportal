@@ -89,8 +89,8 @@ $themeUrl = Yii::app()->theme->baseUrl;
         <div class="row sub_header_middle_panel">
             <div class="col-md-4" style="padding:0px; padding-left: 0px;">
                 <div class="logoPanel hidden-xs">
-                    <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/index'); ?>"><img
-                            src="<?php echo $themeUrl; ?>/img/logo_<?php echo Yii::app()->language; ?>.png"></a>
+                    <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/index'); ?>"><img class="img-responsive"
+                                src="<?php echo $themeUrl; ?>/img/logo_tp.png"></a>
                 </div>
 
             </div>
