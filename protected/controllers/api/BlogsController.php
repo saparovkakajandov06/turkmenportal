@@ -75,7 +75,7 @@ class BlogsController extends Controller
 
 
         if (isset($model)){
-            $data = (object)array(
+            $data['model'] = (object)array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
                 'content' => $model->getText(),

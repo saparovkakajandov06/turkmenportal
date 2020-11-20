@@ -162,7 +162,7 @@ class MediasController extends Controller
                     'view_count' => (int)$model->visited_count,
                     'url' => $model->createAbsoluteUrl(),
                 );
-                $result =array_merge($data,$extra);
+                $result['model'] =array_merge($data,$extra);
             }
         }
         if (!isset($result)){
