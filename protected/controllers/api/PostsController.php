@@ -27,6 +27,7 @@ class PostsController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $modelCatalog = new CatalogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
         $modelCatalog->unsetAttributes();
@@ -38,7 +39,7 @@ class PostsController extends Controller
 
         $dataProvider = $modelCatalog->apiSearchForCategory($per_page, $page);
         $models = $dataProvider->getData();
-        yii::app()->language = $hl;
+
 
         foreach ($models as $key => $model){
             $data['models'][] = array(
@@ -74,10 +75,10 @@ class PostsController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
 
-        yii::app()->language = $hl;
 
         $data['models'][] = array(
             'id' => (int)$model->id,

@@ -27,6 +27,7 @@ class CompositionsController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $modelComposition = new CompositionsWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
         $modelComposition->unsetAttributes();
@@ -38,7 +39,7 @@ class CompositionsController extends Controller
 
         $dataProvider = $modelComposition->apiSearchForCategory($per_page, $page);
         $models = $dataProvider->getData();
-        yii::app()->language = $hl;
+
 
         foreach ($models as $key => $model){
             $data['models'][] = array(
@@ -71,10 +72,11 @@ class CompositionsController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
 
-        yii::app()->language = $hl;
+
 
         $data['models'][] = array(
             'id' => (int)$model->id,

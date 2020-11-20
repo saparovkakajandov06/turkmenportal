@@ -23,6 +23,7 @@ class BlogsController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
 
         $modelBlog = new BlogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
@@ -31,11 +32,10 @@ class BlogsController extends Controller
         if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
             $modelBlog->category_id = $modelCategory->id;
         }
-        elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
-            $modelBlog->parent_category_id = $modelCategory->id;
+    elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
+        $modelBlog->parent_category_id = $modelCategory->id;
         $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
         $models = $dataProvider->getData();
-        yii::app()->language = $hl;
 
         foreach ($models as $key => $model){
             $data['models'][] = array(
@@ -69,10 +69,10 @@ class BlogsController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
 
-        yii::app()->language = $hl;
 
             $data['models'][] = array(
                 'id' => (int)$model->id,

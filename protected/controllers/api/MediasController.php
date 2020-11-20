@@ -27,6 +27,7 @@ class MediasController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $modelBlog = new BlogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
 
@@ -38,7 +39,7 @@ class MediasController extends Controller
             $modelBlog->parent_category_id = $modelCategory->id;
         $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
         $models = $dataProvider->getData();
-        yii::app()->language = $hl;
+
         foreach ($models as $key => $model){
 
             $mainDoc = $model->getDocument();
@@ -90,7 +91,7 @@ class MediasController extends Controller
                 'view_count' => (int)$model->visited_count,
                 'url' => $model->createAbsoluteUrl(),
             );
-            $result['models'] =array_merge($data,$extra);
+            $result['models'][] =array_merge($data,$extra);
         }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($result);die;
@@ -107,10 +108,10 @@ class MediasController extends Controller
         } else {
             $hl = 'ru';
         }
+        yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
 
-        yii::app()->language = $hl;
 
         $mainDoc = $model->getDocument();
         if (isset($mainDoc) && $mainDoc->getVideoPath()) {
@@ -161,7 +162,7 @@ class MediasController extends Controller
             'view_count' => (int)$model->visited_count,
             'url' => $model->createAbsoluteUrl(),
         );
-        $result['models'] =array_merge($data,$extra);
+        $result['models'][] =array_merge($data,$extra);
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($result);die;
     }
