@@ -51,8 +51,8 @@ class MediasController extends Controller
                 $extra = [
                     'type' => $type,
                     'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-                    'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
+//                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
+//                    'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
 
                 ];
             } else {
@@ -74,8 +74,8 @@ class MediasController extends Controller
                 $extra = [
                     'type' => 'image',
                     'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-                    'image_urls' => Yii::app()->createAbsoluteUrl($images),
+//                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
+//                    'image_urls' => Yii::app()->createAbsoluteUrl($images),
 
                 ];
             }
@@ -83,7 +83,7 @@ class MediasController extends Controller
             $data = array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'content' => $model->getText(),
+//                'content' => $model->getText(),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,

@@ -44,7 +44,7 @@ class BlogsController extends Controller
 //                'content' => $model->getText(),
 //                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
                 'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
-//                'date' => $model->date_added,
+                'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
 //                'view_count' => (int)$model->visited_count,
