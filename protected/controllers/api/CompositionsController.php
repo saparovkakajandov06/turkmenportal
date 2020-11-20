@@ -78,20 +78,22 @@ class CompositionsController extends Controller
 
 
 
-        $data['models'][] = array(
-            'id' => (int)$model->id,
-            'title' => $model->getTitle(),
-            'content' => $model->getContent(),
-            'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
+        if (isset($model)) {
+            $data = (object)array(
+                'id' => (int)$model->id,
+                'title' => $model->getTitle(),
+                'content' => $model->getContent(),
+                'image_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(512, 288, 'w')),
 //            'thumb_url' => Yii::app()->createAbsoluteUrl($model->getThumbPath(256, 144, 'w')),
-            'date' => $model->date_added,
-            'cat_name' => $model->category->name,
-            'cat_id' => (int)$model->category->id,
-            'view_count' => (int)$model->views,
-            'url' => $model->getUrl(),
-        );
+                'date' => $model->date_added,
+                'cat_name' => $model->category->name,
+                'cat_id' => (int)$model->category->id,
+                'view_count' => (int)$model->views,
+                'url' => $model->getUrl(),
+            );
+        }
         if (!isset($data)){
-            $data['models'] = [];
+            $data =(object)$data;
         }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;
@@ -100,8 +102,7 @@ class CompositionsController extends Controller
     public function loadModel($id)
     {
         $model = Compositions::model()->findByPk($id);
-        if ($model === null)
-            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+
         return $model;
     }
 

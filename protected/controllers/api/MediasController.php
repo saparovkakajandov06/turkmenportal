@@ -112,57 +112,63 @@ class MediasController extends Controller
         $model = $this->loadModel($id);
 
 
-
-        $mainDoc = $model->getDocument();
-        if (isset($mainDoc) && $mainDoc->getVideoPath()) {
-            $extra = [];
-            $image_url = $mainDoc->resize(512, 288, 'crop', false, false);
-            $thumb_url = $mainDoc->resize(256, 144, 'crop', false, false);
-            $videoPath = $mainDoc->getVideoUrl();
-            $type = 'video/mp4';
-            $extra = [
-                'type' => $type,
-                'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-                'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-                'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
-
-            ];
-        } else {
+        if (isset($model)){
             $mainDoc = $model->getDocument();
-            unset($image_url);
-            unset($thumb_url);
-            unset($images);
-            if (isset($mainDoc)){
-                $image_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(512, 288, 'crop', false, false));
-                $thumb_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(256, 144, 'crop', false, false));
-            }
-            $mainDoc = $model->documents();
-            if (count($mainDoc) > 1){
-                $images = [];
-                foreach ($mainDoc as $doc){
-                    $images[] = Yii::app()->createAbsoluteUrl($doc->resize(512, 288, 'crop', false, false));
+            if (isset($mainDoc) && $mainDoc->getVideoPath()) {
+                $extra = [];
+                $image_url = $mainDoc->resize(512, 288, 'crop', false, false);
+                $thumb_url = $mainDoc->resize(256, 144, 'crop', false, false);
+                $videoPath = $mainDoc->getVideoUrl();
+                $type = 'video/mp4';
+                $extra = [
+                    'type' => $type,
+                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
+                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
+                    'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
+
+                ];
+            } else {
+                $mainDoc = $model->getDocument();
+                unset($image_url);
+                unset($thumb_url);
+                unset($images);
+                if (isset($mainDoc)){
+                    $image_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(512, 288, 'crop', false, false));
+                    $thumb_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(256, 144, 'crop', false, false));
                 }
+                $mainDoc = $model->documents();
+                if (count($mainDoc) > 1){
+                    $images = [];
+                    foreach ($mainDoc as $doc){
+                        $images[] = Yii::app()->createAbsoluteUrl($doc->resize(512, 288, 'crop', false, false));
+                    }
+                }
+                $extra = [
+                    'type' => 'image',
+                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
+                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
+                    'image_urls' => Yii::app()->createAbsoluteUrl($images),
+
+                ];
             }
-            $extra = [
-                'type' => 'image',
-                'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-                'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-                'image_urls' => Yii::app()->createAbsoluteUrl($images),
-
-            ];
+            if (isset($model)){
+                $data = array(
+                    'id' => (int)$model->id,
+                    'title' => $model->getTitle(),
+                    'content' => $model->getText(),
+                    'date' => $model->date_added,
+                    'cat_name' => $model->category->name,
+                    'cat_id' => (int)$model->category->id,
+                    'view_count' => (int)$model->visited_count,
+                    'url' => $model->createAbsoluteUrl(),
+                );
+                $result =array_merge($data,$extra);
+            }
         }
-
-        $data = array(
-            'id' => (int)$model->id,
-            'title' => $model->getTitle(),
-            'content' => $model->getText(),
-            'date' => $model->date_added,
-            'cat_name' => $model->category->name,
-            'cat_id' => (int)$model->category->id,
-            'view_count' => (int)$model->visited_count,
-            'url' => $model->createAbsoluteUrl(),
-        );
-        $result['models'][] =array_merge($data,$extra);
+        if (!isset($result)){
+            $result =(object)$result;
+        }
+        $result = (object)$result;
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($result);die;
     }

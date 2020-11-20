@@ -74,7 +74,8 @@ class BlogsController extends Controller
 
 
 
-            $data['models'][] = array(
+        if (isset($model)){
+            $data = (object)array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
                 'content' => $model->getText(),
@@ -86,8 +87,9 @@ class BlogsController extends Controller
                 'view_count' => (int)$model->visited_count,
                 'url' => $model->createAbsoluteUrl(),
             );
+        }
         if (!isset($data)){
-            $data['models'] = [];
+            $data =(object)$data;
         }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;
