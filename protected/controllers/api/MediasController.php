@@ -46,7 +46,7 @@ class MediasController extends Controller
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
                 $image_url = $mainDoc->resize(512, 288, 'crop', false, false);
-                $thumb_url = $mainDoc->resize(256, 144, 'crop', false, false);
+                $thumb_url = $mainDoc->resize(100, 100, 'crop', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $type = 'video/mp4';
                 $extra = [
@@ -63,7 +63,7 @@ class MediasController extends Controller
                 unset($images);
                 if (isset($mainDoc)){
                     $image_url = 'https://turkmenprtal.com'.$mainDoc->resize(512, 288, 'crop', false, false);
-                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(256, 144, 'crop', false, false);
+                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(100, 100, 'crop', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
@@ -117,7 +117,7 @@ class MediasController extends Controller
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
                 $image_url = $mainDoc->resize(512, 288, 'crop', false, false);
-                $thumb_url = $mainDoc->resize(256, 144, 'crop', false, false);
+                $thumb_url = $mainDoc->resize(100, 100, 'crop', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $type = 'video/mp4';
                 $extra = [
@@ -134,7 +134,7 @@ class MediasController extends Controller
                 unset($images);
                 if (isset($mainDoc)){
                     $image_url = 'https://turkmenportal.com'.$mainDoc->resize(512, 288, 'crop', false, false);
-                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(256, 144, 'crop', false, false);
+                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(100, 100, 'crop', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
