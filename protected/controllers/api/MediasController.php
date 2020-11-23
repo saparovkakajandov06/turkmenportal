@@ -51,9 +51,9 @@ class MediasController extends Controller
                 $type = 'video/mp4';
                 $extra = [
                     'type' => $type,
-                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-//                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-//                    'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
+                    'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
+//                    'image_url' => 'https://turkmenportal.com'.$image_url,
+//                    'video_url' => 'https://turkmenportal.com'.$videoPath,
 
                 ];
             } else {
@@ -62,21 +62,21 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(512, 288, 'crop', false, false));
-                    $thumb_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(256, 144, 'crop', false, false));
+                    $image_url = 'https://turkmenprtal.com'.$mainDoc->resize(512, 288, 'crop', false, false);
+                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(256, 144, 'crop', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
                     $images = [];
                     foreach ($mainDoc as $doc){
-                        $images[] = Yii::app()->createAbsoluteUrl($doc->resize(512, 288, 'crop', false, false));
+                        $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'crop', false, false);
                     }
                 }
                 $extra = [
                     'type' => 'image',
-                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-//                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-//                    'image_urls' => Yii::app()->createAbsoluteUrl($images),
+                    'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
+//                    'image_url' => 'https://turkmenportal.com'.$image_url,
+//                    'image_urls' =>'https://turkmenportal.com'.$images,
 
                 ];
             }
@@ -122,9 +122,9 @@ class MediasController extends Controller
                 $type = 'video/mp4';
                 $extra = [
                     'type' => $type,
-                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-                    'video_url' => Yii::app()->createAbsoluteUrl($videoPath),
+                    'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
+                    'image_url' => 'https://turkmenportal.com'.$image_url,
+                    'video_url' => 'https://turkmenportal.com'.$videoPath,
 
                 ];
             } else {
@@ -133,21 +133,21 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(512, 288, 'crop', false, false));
-                    $thumb_url = Yii::app()->createAbsoluteUrl($mainDoc->resize(256, 144, 'crop', false, false));
+                    $image_url = 'https://turkmenportal.com'.$mainDoc->resize(512, 288, 'crop', false, false);
+                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(256, 144, 'crop', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
                     $images = [];
                     foreach ($mainDoc as $doc){
-                        $images[] = Yii::app()->createAbsoluteUrl($doc->resize(512, 288, 'crop', false, false));
+                        $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'crop', false, false);
                     }
                 }
                 $extra = [
                     'type' => 'image',
-                    'thumb_url' => Yii::app()->createAbsoluteUrl($thumb_url),
-                    'image_url' => Yii::app()->createAbsoluteUrl($image_url),
-                    'image_urls' => Yii::app()->createAbsoluteUrl($images),
+                    'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
+                    'image_url' => 'https://turkmenportal.com'.$image_url,
+                    'image_urls' => 'https://turkmenportal.com'.$images,
 
                 ];
             }
