@@ -110,8 +110,9 @@ class BlogsController extends Controller
         $blogModel->reset_related_sort = true;
         $popularDataProvider = $blogModel->searchForCategory(6);
         $models = $popularDataProvider->getData();
+
         foreach ($models as $key => $model){
-            $data['models'] = array(
+            $data['models'][] = array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
@@ -120,8 +121,8 @@ class BlogsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-                'view_count' => (int)$model->visited_count,
-                'url' => $model->createAbsoluteUrl(),
+//                'view_count' => (int)$model->visited_count,
+//                'url' => $model->createAbsoluteUrl(),
             );
         }
         if (!isset($data)){
