@@ -116,7 +116,7 @@ class MediasController extends Controller
 
         $modelBlog = new BlogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
-        $modelBlog->default_scope = array('enabled','sort_trend_asc');
+        $modelBlog->default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc', 'sort_trend_asc');
 
         if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
             $modelBlog->category_id = $modelCategory->id;
@@ -160,11 +160,8 @@ class MediasController extends Controller
         }
 
 
-        if (!isset($data)){
-            $data['models'] = [];
-        }
         header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($data);die;
+        echo Json::encode($result);die;
     }
 
     public function actionView()
