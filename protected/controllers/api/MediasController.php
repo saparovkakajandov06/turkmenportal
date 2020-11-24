@@ -108,11 +108,10 @@ class MediasController extends Controller
         } else{
             $cat_id = 338;
         }
+        if (isset($_GET['page']))
+            $page = (int)$_GET['page'];
         if (isset($_GET['per_page']))
             $per_page = (int)$_GET['per_page'];
-        if (!isset($per_page)){
-            $per_page = 6;
-        }
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -129,13 +128,14 @@ class MediasController extends Controller
         }
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelBlog->parent_category_id = $modelCategory->id;
-        $dataProvider = $modelBlog->apiSearchForCategory(100, 0);
+        $modelBlog->video = true;
+        $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
         $models = $dataProvider->getData();
 
         foreach ($models as $key => $model){
 
             $mainDoc = $model->getDocument();
-            if (isset($mainDoc) && $mainDoc->getVideoPath() && $per_page > 0) {
+            if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $per_page --;
                 $extra = [];
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);

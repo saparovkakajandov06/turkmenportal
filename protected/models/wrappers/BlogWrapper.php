@@ -2,7 +2,7 @@
 
 class BlogWrapper extends Blog
 {
-
+    public $video = false;
     public $default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc');
 
 
@@ -26,7 +26,13 @@ class BlogWrapper extends Blog
         if (isset($this->categoryid_except) && count($this->categoryid_except) > 0) {
             $criteria->addNotInCondition('t.category_id', $this->categoryid_except);
         }
-        $criteria->addCondition('length(title_' . Yii::app()->language . ') > 0 ');
+        if ($this->video == true){
+            $criteria->join = 'LEFT JOIN tbl_blog_to_documents rel ON `t`.`id` = `rel`.`blog_id`'
+                .'LEFT JOIN tbl_documents doc ON `rel`.`documents_id` = `doc`.`id`';
+            $criteria->addCondition('length(doc.video_path) > 0 ');
+        }
+
+        $criteria->addCondition('length(t.title_' . Yii::app()->language . ') > 0 ');
 
         $criteria->scopes = $this->default_scope;
 
