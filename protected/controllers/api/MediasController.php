@@ -110,6 +110,9 @@ class MediasController extends Controller
         }
         if (isset($_GET['per_page']))
             $per_page = (int)$_GET['per_page'];
+        if (!isset($per_page)){
+            $per_page = 6;
+        }
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -126,7 +129,6 @@ class MediasController extends Controller
         }
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelBlog->parent_category_id = $modelCategory->id;
-        $modelBlog->default_scope = array('enabled', 'sort_newest', 'sort_trend_asc');
         $dataProvider = $modelBlog->apiSearchForCategory(100, 0);
         $models = $dataProvider->getData();
 
