@@ -114,17 +114,20 @@ class MediasController extends Controller
         }
         yii::app()->language = $hl;
 
-        $modelBlog = new BlogWrapper('search');
+        $blogModel = new Blog();
         $modelCategory = Category::model()->findByPk($cat_id);
-        $modelBlog->default_scope = array('enabled', 'sort_newest', 'sort_trend_asc');
+        $blogModel->unsetAttributes();
 
         if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
-            $modelBlog->category_id = $modelCategory->id;
+            $blogModel->category_id = $modelCategory->id;
         }
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
-            $modelBlog->parent_category_id = $modelCategory->id;
-        $dataProvider = $modelBlog->apiSearchForCategory(100, 0);
-        $models = $dataProvider->getData();
+            $blogModel->parent_category_id = $modelCategory->id;
+
+        $blogModel->default_scope = array('enabled', 'sort_newest', 'sort_trend_asc');
+        $blogModel->reset_related_sort = true;
+        $popularDataProvider = $blogModel->searchForCategory(100);
+        $models = $popularDataProvider->getData();
 
 
         foreach ($models as $key => $model){
