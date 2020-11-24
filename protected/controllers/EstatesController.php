@@ -68,6 +68,8 @@ class EstatesController extends Controller
             $this->renderPartial('//comments/listview', array('related_relation' => 'estates', 'related_relation_id' => $id));
         } else {
             $model = $this->loadModel($id);
+            if ($model->status != 1)
+                throw new CHttpException(404, 'Not found');
             $url = $model->getUrl();
             Yii::app()->clientScript->registerLinkTag('canonical', null, $url);
             if (strpos(Yii::app()->request->url, 'index.php') !== false)
