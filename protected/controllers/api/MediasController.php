@@ -76,7 +76,7 @@ class MediasController extends Controller
                     'type' => 'image',
                     'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
                     'image_url' => 'https://turkmenportal.com'.$image_url,
-                    'image_urls' =>'https://turkmenportal.com'.$images,
+                    'image_urls' =>$images,
 
                 ];
             }
@@ -100,35 +100,35 @@ class MediasController extends Controller
 
     public function actionTop()
     {
-        $cat_id = 338;
+        if (isset($_GET['cat_id'])){
+            if ($_GET['cat_id'] == 0){
+                $cat_id = 338;
+            } else
+                $cat_id = (int)$_GET['cat_id'];
+        } else{
+            $cat_id = 338;
+        }
+        if (isset($_GET['per_page']))
+            $per_page = (int)$_GET['per_page'];
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
         } else {
             $hl = 'ru';
         }
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
-        if (!isset($per_page)){
-            $per_page = 6;
-        }
         yii::app()->language = $hl;
-
-        $blogModel = new Blog();
+        $modelBlog = new BlogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
-        $blogModel->unsetAttributes();
+
 
         if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
-            $blogModel->category_id = $modelCategory->id;
+            $modelBlog->category_id = $modelCategory->id;
         }
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
-            $blogModel->parent_category_id = $modelCategory->id;
-
-        $blogModel->default_scope = array('enabled', 'sort_newest', 'sort_trend_asc');
-        $blogModel->reset_related_sort = true;
-        $popularDataProvider = $blogModel->searchForCategory(100);
-        $models = $popularDataProvider->getData();
-
+            $modelBlog->parent_category_id = $modelCategory->id;
+        $modelBlog->default_scope = array('enabled', 'sort_newest', 'sort_trend_asc');
+        $dataProvider = $modelBlog->apiSearchForCategory(100, 0);
+        $models = $dataProvider->getData();
 
         foreach ($models as $key => $model){
 
@@ -216,7 +216,7 @@ class MediasController extends Controller
                     'type' => 'image',
                     'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
                     'image_url' => 'https://turkmenportal.com'.$image_url,
-                    'image_urls' => 'https://turkmenportal.com'.$images,
+                    'image_urls' => $images,
 
                 ];
             }
