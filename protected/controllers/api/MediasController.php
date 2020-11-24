@@ -62,8 +62,8 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = 'https://turkmenprtal.com'.$mainDoc->resize(512, 288, 'w', false, false);
-                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(100, 100, 'w', false, false);
+                    $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                    $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
@@ -204,8 +204,8 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = 'https://turkmenportal.com'.$mainDoc->resize(512, 288, 'w', false, false);
-                    $thumb_url = 'https://turkmenportal.com'.$mainDoc->resize(100, 100, 'w', false, false);
+                    $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                    $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
