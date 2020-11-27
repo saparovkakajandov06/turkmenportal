@@ -154,11 +154,11 @@ $this->enable_mobile_banner_vtop2 = true;
 
             <!--            <div class="row">-->
             <?php
-            $this->widget('application.widgets.banners.BannersWidget', array(
-                'type' => 'lentaInform',
-                'outer_css_class' => 'row',
-                'outer_css_id' => 'lentaInform',
-            ));
+//            $this->widget('application.widgets.banners.BannersWidget', array(
+//                'type' => 'lentaInform',
+//                'outer_css_class' => 'row',
+//                'outer_css_id' => 'lentaInform',
+//            ));
             ?>
             <!--            </div>-->
 
