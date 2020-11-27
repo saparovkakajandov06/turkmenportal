@@ -46,7 +46,7 @@ class MediasController extends Controller
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);
-                $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
+                $thumb_url = $mainDoc->resize(144, 84, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $type = 'video/mp4';
                 $extra = [
@@ -63,7 +63,7 @@ class MediasController extends Controller
                 unset($images);
                 if (isset($mainDoc)){
                     $image_url = $mainDoc->resize(512, 288, 'w', false, false);
-                    $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
+                    $thumb_url = $mainDoc->resize(144, 84, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
@@ -139,7 +139,7 @@ class MediasController extends Controller
                 $per_page --;
                 $extra = [];
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);
-                $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
+                $thumb_url = $mainDoc->resize(144, 84, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $type = 'video/mp4';
                 $extra = [
@@ -188,7 +188,7 @@ class MediasController extends Controller
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);
-                $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
+                $thumb_url = $mainDoc->resize(144, 84, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $type = 'video/mp4';
                 $extra = [
@@ -205,7 +205,7 @@ class MediasController extends Controller
                 unset($images);
                 if (isset($mainDoc)){
                     $image_url = $mainDoc->resize(512, 288, 'w', false, false);
-                    $thumb_url = $mainDoc->resize(100, 100, 'w', false, false);
+                    $thumb_url = $mainDoc->resize(144, 84, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
