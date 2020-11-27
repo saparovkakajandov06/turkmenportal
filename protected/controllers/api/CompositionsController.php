@@ -51,7 +51,7 @@ class CompositionsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-//                'view_count' => (int)$model->views,
+                'view_count' => (int)$model->views,
 //                'url' => $model->getUrl(),
             );
         }

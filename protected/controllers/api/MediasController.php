@@ -48,12 +48,14 @@ class MediasController extends Controller
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
+                $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
                 $type = 'video/mp4';
                 $extra = [
                     'type' => $type,
                     'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
                     'image_url' => 'https://turkmenportal.com'.$image_url,
                     'video_url' => 'https://turkmenportal.com'.$videoPath,
+                    'videoHlsPath' => 'https://turkmenportal.com'.$videoHlsPath,
 
                 ];
             } else {
@@ -141,12 +143,14 @@ class MediasController extends Controller
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
+                $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
                 $type = 'video/mp4';
                 $extra = [
                     'type' => $type,
                     'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
                     'image_url' => 'https://turkmenportal.com'.$image_url,
                     'video_url' => 'https://turkmenportal.com'.$videoPath,
+                    'videoHlsPath' => 'https://turkmenportal.com'.$videoHlsPath,
 
                 ];
                 $data = array(
@@ -190,12 +194,14 @@ class MediasController extends Controller
                 $image_url = $mainDoc->resize(512, 288, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
+                $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
                 $type = 'video/mp4';
                 $extra = [
                     'type' => $type,
                     'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
                     'image_url' => 'https://turkmenportal.com'.$image_url,
                     'video_url' => 'https://turkmenportal.com'.$videoPath,
+                    'videoHlsPath' => 'https://turkmenportal.com'.$videoHlsPath,
 
                 ];
             } else {

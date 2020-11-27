@@ -47,7 +47,7 @@ class BlogsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-//                'view_count' => (int)$model->visited_count,
+                'view_count' => (int)$model->visited_count,
 //                'url' => $model->createAbsoluteUrl(),
             );
         }
@@ -125,7 +125,7 @@ class BlogsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-//                'view_count' => (int)$model->visited_count,
+                'view_count' => (int)$model->visited_count,
 //                'url' => $model->createAbsoluteUrl(),
             );
         }
