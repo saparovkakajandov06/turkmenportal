@@ -1,7 +1,22 @@
 <?php
 
-class BlogsController extends Controller
+class BannersController extends Controller
 {
+
+    public $bannerMap = [
+        'BannerA' => 'mobileBannerA',
+        'BannerB' => 'mobileBannerB',
+        'BannerC' => 'mobileBannerC',
+        'BannerD' => 'mobileBannerD',
+        'BannerE' => 'mobileBannerE',
+        'BannerF' => 'bannerNesipetsin',
+        'BannerG' => 'mobileBannerG',
+        'BannerH' => 'mobileBannerH',
+        'BannerJ' => 'mobileBannerVtop1',
+        'BannerI' => 'mobileBannerVtop2',
+    ];
+
+
 
     public function actionIndex()
     {
@@ -43,7 +58,7 @@ class BlogsController extends Controller
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
                 'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
+                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(144, 84, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
@@ -75,14 +90,10 @@ class BlogsController extends Controller
 
 
         if (isset($model)){
-            $content = $model->getText();
-            $pattern = '/src="/';
-            $replacements = 'src="https://turkmenportal.com';
-            $content = preg_replace($pattern,$replacements, $content);
             $data['model'] = (object)array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'content' => $content,
+                'content' => $model->getText(),
                 'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
 //                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(100, 100, 'w'),
                 'date' => $model->date_added,
@@ -121,7 +132,7 @@ class BlogsController extends Controller
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
                 'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
+                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(144, 84, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,

@@ -47,7 +47,7 @@ class CompositionsController extends Controller
                 'title' => $model->getTitle(),
 //                'content' => $model->getContent(),
                 'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(144, 84, 'w'),
+                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
@@ -79,12 +79,16 @@ class CompositionsController extends Controller
 
 
         if (isset($model)) {
+            $content = $model->getContent();
+            $pattern = '/src="/';
+            $replacements = 'src="https://turkmenportal.com';
+            $content = preg_replace($pattern,$replacements, $content);
             $data['model'] = (object)array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'content' => $model->getContent(),
+                'content' => $content,
                 'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-            'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(144, 84, 'w'),
+            'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
