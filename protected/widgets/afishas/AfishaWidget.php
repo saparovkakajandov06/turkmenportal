@@ -6,7 +6,7 @@ class AfishaWidget extends CWidget
     public $category_id;
     public $item_class;
     public $show_all=true;
-    
+    public $randomLast = false;
     
     
     public function init() {
@@ -33,10 +33,17 @@ class AfishaWidget extends CWidget
             $catalogModel->parent_category_id=$categoryModel->id;
         }
 
+        if ($this->randomLast){
+            $pagination_count= $this->randomLast;
+        }
 
             $afishaModels=$catalogModel->searchForCategory($pagination_count,true);
+            if (count($afishaModels)>0 && $this->randomLast){
+                $afishaModels[] = $afishaModels[rand(0,$this->randomLast-1)];
+            }
+//            var_dump(count($afishaModels));die;
             if(count($afishaModels)>0)
-                $this->render('AfishaWidget', array('afishas'=>$afishaModels));
+                $this->render('AfishaWidget', array('afishas'=>$afishaModels ));
 //            $afishaModels=Catalog::model()->searchForCategoryByCode($this->category_code, $this->count,true);
 //            if(count($afishaModels)>0)
 //                $this->render('AfishaIndexWidget', array('afishas'=>$afishaModels));

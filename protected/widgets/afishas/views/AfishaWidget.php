@@ -1,8 +1,8 @@
 <?php
-if (isset($afishas) && is_array($afishas) && count($afishas) > 5) { ?>
+//if (isset($afishas) && is_array($afishas) && count($afishas) > 5) { ?>
     
         <div class="row">
-            <?php foreach($afishas as $key=>$data ){ 
+            <?php foreach($afishas as $key=>$data ){
                 if($key<1){
                 ?>
                     <div class="col-sm-12 col-xs-12">
@@ -12,4 +12,4 @@ if (isset($afishas) && is_array($afishas) && count($afishas) > 5) { ?>
             <?php } ?>
         </div>
 
-<?php } ?>
+<?php //} ?>

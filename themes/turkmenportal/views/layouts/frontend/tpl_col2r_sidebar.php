@@ -49,6 +49,7 @@
             <?php
             $this->widget('application.widgets.afishas.AfishaWidget', array(
                 'category_code' => 'billboard',
+                'randomLast' => 3,
             ));
             ?>
         </div>
