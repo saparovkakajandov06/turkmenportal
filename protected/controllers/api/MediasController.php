@@ -216,14 +216,17 @@ class MediasController extends Controller
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
                     $images = [];
+                    $thumbs = [];
                     foreach ($mainDoc as $doc){
                         $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'w', false, false);
+                        $thumbs[] = 'https://turkmenportal.com'.$doc->resize(256, 144, 'w', false, false);
                     }
                 }
                 $extra = [
                     'type' => 'image',
                     'thumb_url' => 'https://turkmenportal.com'.$thumb_url,
                     'image_url' => 'https://turkmenportal.com'.$image_url,
+                    'thumb_urls' => $thumbs,
                     'image_urls' => $images,
 
                 ];
