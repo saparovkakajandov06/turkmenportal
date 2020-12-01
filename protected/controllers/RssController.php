@@ -55,6 +55,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
             $document = $blog->getDocument();
@@ -145,6 +146,7 @@ class RssController extends Controller
 //            $item->description = CHtml::image($blog->getThumbPath(530, 420, 'auto'), $blog->title_tm, array('align' => "left", 'hspace' => "5")) . Yii::app()->controller->truncate($blog->text_tm, 25, 300);
 
             $full_text = preg_replace('/<a href=\"(.*?)\">(.*?)<\/a>/', "\\2", $blog->text_tm);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
 
@@ -214,6 +216,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
 
@@ -293,6 +296,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
 
@@ -359,6 +363,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
             $document = $blog->getDocument();
@@ -423,6 +428,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
             $document = $composition->getDocument();
@@ -500,6 +506,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
             $document = $composition->getDocument();
@@ -554,6 +561,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
             $document = $photoreport->getDocument();
@@ -730,6 +738,7 @@ class RssController extends Controller
             $item->description = Yii::app()->controller->truncate(strip_tags($full_text), 25, 300);
 
             $full_text = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $full_text);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('content:encoded', $full_text);
 
             $document = $photoreport->getDocument();
@@ -795,6 +804,7 @@ class RssController extends Controller
 //                $item->description = CHtml::image($blog->getThumbPath(300,224,'auto'),$blog->title_ru,array('align'=>"left", 'hspace'=>"5")).Yii::app()->controller->truncate($blog->text_ru,25,300);
             $item->description = $blog->description_ru;
             $full_text = preg_replace('/<a href=\"(.*?)\">(.*?)<\/a>/', "\\2", $blog->text_ru);
+            $full_text = preg_replace('/<img[^>]*>/', '<figure>$0</figure>', $full_text);
             $item->addTag('yandex:full-text', strip_tags($full_text));
 
             $item->addTag('yandex:genre', "message");
