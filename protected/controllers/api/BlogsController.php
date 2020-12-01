@@ -25,7 +25,7 @@ class BlogsController extends Controller
         }
         yii::app()->language = $hl;
 
-        $modelBlog = new BlogWrapper('search');
+        $modelBlog = new Blog('search');
         $modelCategory = Category::model()->findByPk($cat_id);
 
 
