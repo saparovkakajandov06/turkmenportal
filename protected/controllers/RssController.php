@@ -6,6 +6,7 @@ class RssController extends Controller
 
     public function actionIndex()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         $uploadfolder = trim(Yii::app()->params['uploadfolder'], '/');
 
@@ -15,7 +16,7 @@ class RssController extends Controller
         $feed->description = 'Cамые последнии новости, столичные афиши, эксклюзивные фоторепортажи о последних событиях и много интересного о Туркменистане. Приглашайте друзей и знакомых... Мы всем вам будем рады!';
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
-
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'ru-ru');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', Yii::app()->getBaseUrl(true) . '/rss');
@@ -107,6 +108,7 @@ class RssController extends Controller
 
     public function actionTm()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
@@ -117,6 +119,7 @@ class RssController extends Controller
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
 
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'tk-TM');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', 'http://www.turkmenportal.com/rss/tm');
@@ -174,6 +177,7 @@ class RssController extends Controller
 
     public function actionEn()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
@@ -185,6 +189,7 @@ class RssController extends Controller
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
 
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'en');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', 'http://www.turkmenportal.com/rss/en');
@@ -258,6 +263,7 @@ class RssController extends Controller
 
     public function actionSport()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
@@ -268,6 +274,7 @@ class RssController extends Controller
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
 
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'ru-ru');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', 'http://www.turkmenportal.com/rss/sport');
@@ -325,6 +332,7 @@ class RssController extends Controller
 
     public function actionSporttm()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
@@ -335,6 +343,7 @@ class RssController extends Controller
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
 
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'tk-TM');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', 'http://www.turkmenportal.com/rss/sporttm');
@@ -390,6 +399,7 @@ class RssController extends Controller
 
     public function actionComposition()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
@@ -400,6 +410,7 @@ class RssController extends Controller
 
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'ru-ru');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', Yii::app()->getBaseUrl(true) . '/rss/composition');
@@ -469,6 +480,7 @@ class RssController extends Controller
 
     public function actionCompositionTm()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
@@ -478,6 +490,7 @@ class RssController extends Controller
 
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'tk-TM');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', Yii::app()->getBaseUrl(true) . '/rss/compositionTm');
@@ -533,11 +546,13 @@ class RssController extends Controller
 
     public function actionPhotoreport()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
         $feed->title = 'Фоторепортажи Туркменпортала - ' . Yii::app()->name;
         $feed->description = 'Cамые последнии новости, столичные афиши, эксклюзивные фоторепортажи о последних событиях и много интересного о Туркменистане. Приглашайте друзей и знакомых... Мы всем вам будем рады!';
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'ru-ru');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', Yii::app()->getBaseUrl(true) . '/rss/photoreport');
@@ -710,11 +725,13 @@ class RssController extends Controller
 
     public function actionPhotoreportTm()
     {
+        $themeUrl = Yii::app()->theme->baseUrl;
         Yii::import('ext.feed.*');
         // RSS 2.0 is the default type
         $feed = new EFeed();
         $feed->title = 'Fotoreportažlar - ' . Yii::app()->name;
         $feed->description = 'Türkmenistanda bolup geçýän iň soňky wakalar, täzelikler we habarlar';
+        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
         $feed->addChannelTag('language', 'tk-TM');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', Yii::app()->getBaseUrl(true) . '/rss/photoreportTm');
