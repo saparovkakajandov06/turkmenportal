@@ -16,7 +16,7 @@ class RssController extends Controller
         $feed->description = 'Cамые последнии новости, столичные афиши, эксклюзивные фоторепортажи о последних событиях и много интересного о Туркменистане. Приглашайте друзей и знакомых... Мы всем вам будем рады!';
 //            $feed->setImage('Testing RSS 2.0 EFeed class','http://www.ramirezcobos.com/rss',
 //            'http://www.yiiframework.com/forum/uploads/profile/photo-7106.jpg');
-        $feed->addChannelTag('image', '<url>'.Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png</url>');
+        $feed->setImage(Yii::app()->name, Yii::app()->getBaseUrl(true) . '/rss', Yii::app()->getBaseUrl(true).$themeUrl.'/img/tp_logo.png');
         $feed->addChannelTag('language', 'ru-ru');
         $feed->addChannelTag('pubDate', date(DATE_RSS, time()));
         $feed->addChannelTag('link', Yii::app()->getBaseUrl(true) . '/rss');
