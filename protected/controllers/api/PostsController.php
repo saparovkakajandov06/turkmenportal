@@ -79,7 +79,10 @@ class PostsController extends Controller
         $model = $this->loadModel($id);
 
 
-
+        $image = 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w');
+        $image_info = getimagesize($image);
+        $image_width = $image_info[0];
+        $image_height = $image_info[1];
         if (isset($model)){
             $content = $model->getContent();
             $pattern = '/src="/';
@@ -89,7 +92,9 @@ class PostsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
                 'content' => $content,
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => $image,
+                'img_width' => $image_width,
+                'img_height' => $image_height,
 //            'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(100, 100, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
@@ -103,6 +108,43 @@ class PostsController extends Controller
         }
         if (!isset($data)){
             $data =(object)$data;
+        }
+        header('Content-Type: application/json; charset=UTF-8');
+        echo Json::encode($data);die;
+    }
+
+    public function actionTop()
+    {
+        if (isset($_GET['hl'])){
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+                $hl = $_GET['hl'];
+        } else {
+            $hl = 'ru';
+        }
+        yii::app()->language = $hl;
+        $modelCatalog = new CatalogWrapper();
+        $modelCatalog->unsetAttributes();
+        $modelCatalog->default_scope = array('enabled','sort_trend_asc');
+//        $blogModel->reset_related_sort = true;
+        $popularDataProvider = $modelCatalog->apiSearchForCategory(6);
+        $models = $popularDataProvider->getData();
+
+        foreach ($models as $key => $model){
+            $data['models'][] = array(
+                'id' => (int)$model->id,
+                'title' => $model->getTitle(),
+//                'content' => $model->getText(),
+//                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
+                'date' => $model->date_added,
+                'cat_name' => $model->category->name,
+                'cat_id' => (int)$model->category->id,
+                'view_count' => (int)$model->views,
+//                'url' => $model->createAbsoluteUrl(),
+            );
+        }
+        if (!isset($data)){
+            $data['models'] = [];
         }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;

@@ -34,7 +34,7 @@
  */
 class CatalogWrapper extends Catalog
 {
-
+    public $default_scope = array('enabled', 'sort_date_modified');
 
     public function apiSearchForCategory($per_page = 10, $page = 0) {
         if (!isset($per_page))
@@ -71,8 +71,7 @@ class CatalogWrapper extends Catalog
             else
                 $criteria->addCondition('t.period >= "' . date('Y-m-d', strtotime('today')) . '"');
         }
-
-        $criteria->scopes = array('enabled', 'sort_date_modified');
+        $criteria->scopes = $this->default_scope;
 
         $dp = new CActiveDataProvider($this,
             array(

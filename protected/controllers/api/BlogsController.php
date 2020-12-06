@@ -72,8 +72,10 @@ class BlogsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
-
-
+        $image = 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w');
+        $image_info = getimagesize($image);
+        $image_width = $image_info[0];
+        $image_height = $image_info[1];
         if (isset($model)){
             $content = $model->getText();
             $pattern = '/src="/';
@@ -83,7 +85,9 @@ class BlogsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
                 'content' => $content,
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => $image,
+                'img_width' => $image_width,
+                'img_height' => $image_height,
 //                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(100, 100, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,

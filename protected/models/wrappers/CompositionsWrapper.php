@@ -35,6 +35,8 @@
 class CompositionsWrapper extends Compositions
 {
 
+    public $default_scope = array('enabled', 'sort_newest');
+
 
     public function apiSearchForCategory($per_page = 10, $page = 0) {
         if (!isset($per_page))
@@ -45,7 +47,7 @@ class CompositionsWrapper extends Compositions
         $criteria->with = array("category", "category.parent");
 
         $criteria->compare('category_id', $this->category_id);
-        $criteria->scopes = array('enabled', 'sort_newest');
+        $criteria->scopes = $this->default_scope;
 
         $criteria->addCondition('length(title_' . Yii::app()->language . ') > 0 ');
 
