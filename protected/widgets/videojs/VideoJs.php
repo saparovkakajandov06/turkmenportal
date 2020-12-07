@@ -36,11 +36,13 @@ class VideoJs extends CWidget
 
 
             Yii::app()->clientScript->registerCssFile($baseUrl . '/css/video-js.min.css?v=1.26');
+            Yii::app()->clientScript->registerCssFile($baseUrl . '/css/videojs-download-button.css');
 //            Yii::app()->clientScript->registerCssFile('https://m.horjun.tv/videohls/css/vsg-skin.css');
             Yii::app()->clientScript->registerCssFile($baseUrl . '/css/custom.css?v=1.37');
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/js/video.min.js?v=1.02', CClientScript::POS_END);
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/js/videojs-contrib-quality-levels.js?v=1.51', CClientScript::POS_END);
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/js/videojs-hls-quality-selector.min.js?v=1.02', CClientScript::POS_END);
+            Yii::app()->clientScript->registerScriptFile($baseUrl . '/js/videojs-download-button.min.js', CClientScript::POS_END);
             Yii::app()->clientScript->registerScriptFile($baseUrl . '/js/videojs.hotkeys.min.js?v=1.02', CClientScript::POS_END);
 
         } else {
