@@ -90,9 +90,9 @@ class Catalog extends ActiveRecord {
                 'select' => array('t.*', 'descriptions.title as title', 'descriptions.description as description', 'descriptions.text as text')
             ),
             'sort_trend_asc' => array(
-                'select' => "date_added, (TIMESTAMPDIFF(HOUR, date_added, NOW())*TIMESTAMPDIFF(HOUR, date_added, NOW()))/(views*views) as rating",
-                'order' => "rating asc, views desc",
-                'condition' => "date_added > DATE_ADD(NOW(), INTERVAL -30 DAY) AND date_added < DATE_ADD(NOW(), INTERVAL -5 HOUR) AND views>600",
+//                'select' => "date_added, (TIMESTAMPDIFF(HOUR, date_added, NOW())*TIMESTAMPDIFF(HOUR, date_added, NOW()))/(views*views) as rating",
+                'order' => "views desc",
+//                'condition' => "date_added > DATE_ADD(NOW(), INTERVAL -30 DAY) AND date_added < DATE_ADD(NOW(), INTERVAL -5 HOUR) AND views>600",
             ),
         );
     }
