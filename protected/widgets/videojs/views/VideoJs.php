@@ -52,7 +52,7 @@ Yii::app()->clientScript->registerScript($player_id, "
      });
      
    player.hlsQualitySelector();
-   player.downloadButton();
+//   player.downloadButton();
    player.ready(function() {
      this.hotkeys({
          volumeStep: 0.1,
