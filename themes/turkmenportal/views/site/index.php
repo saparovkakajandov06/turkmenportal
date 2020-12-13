@@ -16,11 +16,11 @@
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
         <?php
         $this->widget('application.widgets.category.CategoryHeaderWidget', array(
-            'maxSubCatCount' => 5,
+            'maxSubCatCount' => 7,
             'category_code' => 'news',
             'categoy_index_url' => '//blog',
             'cssClass' => 'first',
-            'override_main_title' => Yii::t('app', 'tm_news')
+//            'override_main_title' => Yii::t('app', 'tm_news')
         ));
         ?>
     </div>

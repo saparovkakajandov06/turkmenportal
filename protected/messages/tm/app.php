@@ -550,8 +550,8 @@ return array(
     'cookie_link_more' => 'Ginişleýin',
     'Archive news' => 'Arhiw',
     'In the world' => 'Dünýäde',
-    'Sport' => 'Türkmenistanyň sporty',
-    'Business' => 'Biznes Türkmenistan',
+    'Sport' => 'Sport',
+    'Business' => 'Biznes',
 );
 ?>
 

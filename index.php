@@ -2,8 +2,8 @@
 //@ini_set('display_errors', 'on');
 
 // change the following paths if necessary
-$yii = dirname(__FILE__) . '/yii/framework/yiilite.php';
-//$yii=dirname(__FILE__).'/protected/vendor/yiisoft/yii/framework/yii.php';
+//$yii = dirname(__FILE__) . '/yii/framework/yiilite.php';
+$yii=dirname(__FILE__).'/protected/vendor/yiisoft/yii/framework/yii.php';
 $main_config = dirname(__FILE__) . '/protected/config/main.php';
 $local_config = dirname(__FILE__) . '/protected/config/local-config-tp.php';
 

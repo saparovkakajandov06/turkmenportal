@@ -568,7 +568,7 @@ return array (
     'cookie_link_more' => 'More info',
 
     'In the world' => 'World',
-    'Sport' => 'Sports of Turkmenistan',
-    'Business' => 'Business of Turkmenistan',
+    'Sport' => 'Sport',
+    'Business' => 'Business',
 );
 ?>
