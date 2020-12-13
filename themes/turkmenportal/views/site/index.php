@@ -216,6 +216,28 @@
     <!--    </div>-->
 </div>
 
+<div class="row">
+    <div class="col-md-6">
+        <?php
+        $this->widget('application.widgets.banners.BannersWidget', array(
+            'type' => 'indexAdsense1',
+        ));
+        ?>
+    </div>
+    <?php
+     if(!Yii::app()->mobileDetect->isMobile()):
+    ?>
+    <div class="col-md-6">
+        <?php
+        $this->widget('application.widgets.banners.BannersWidget', array(
+            'type' => 'indexAdsense2',
+        ));
+        ?>
+    </div>
+    <?php
+        endif;
+    ?>
+</div>
 
 <div class="row mobile_block block">
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
@@ -579,6 +601,17 @@
             'sortableAttributes' => array()
         ));
         ?>
+    </div>
+
+    <div class="row hidden-xs">
+        <div class="col-md-12">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'bannerL',
+                'inner_css_style' => 'max-width:100%',
+            ));
+            ?>
+        </div>
     </div>
 </div>
 
