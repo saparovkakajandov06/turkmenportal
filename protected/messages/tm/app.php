@@ -306,7 +306,7 @@ return array(
     'search_query' => '"query" boýunça gözlegiň netijeleri',
     'search_query_advanced' => '<span class="term"> "query" </span>boýunça gözlegiň netijeleri',
     'advert' => 'Bildirişler',
-    'bankomat_lists' => 'bankomatlaryň ýerleşýän ýerleri',
+    'bankomat_lists' => 'Bankomatlaryň ýerleşýän ýerleri',
     'valyutas' => 'Merkezi Bankyň walýuta kursy',
     'select_language:' => 'Dil saýlaň:',
     'footer_copy_right' => '<span>TurkmenPortal.com </span> <span>Ähli hukuklary goralan. Eger websaýtdan material ulanylsa hökman TurkmenPortal.com bag goýmaly </span>',
@@ -535,6 +535,8 @@ return array(
     'Lenta News' => 'Täzeler',
     'Täzelikler Arhiwi' => 'Архив новостей',
     'ad_header' => 'Bildirişler',
+    'service_header' => 'Hyzmatlar',
+    'work_header' => 'Iş',
 
     'Thumb' => 'Suraty',
     'bannerType' => 'Banneriň görnüşi',
@@ -547,6 +549,9 @@ return array(
     'cookie_message' => 'Size web sahypasyny has amatly etmek maksady bilen browser-da \'cookie\' faýllary ulanýar.',
     'cookie_link_more' => 'Ginişleýin',
     'Archive news' => 'Arhiw',
+    'In the world' => 'Dünýäde',
+    'Sport' => 'Sport',
+    'Business' => 'Biznes',
 );
 ?>
 

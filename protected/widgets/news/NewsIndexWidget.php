@@ -55,7 +55,6 @@ class NewsIndexWidget extends CWidget {
     public function run() {
 
         $blogModels = $this->blogModel->searchForCategory($this->count, true);
-//        echo count($blogModels);
         $mainBlogModel = null;
 
         foreach ($blogModels as $key => $blog) {

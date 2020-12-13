@@ -779,7 +779,7 @@ input[type="text"], input[type="password"], select, textarea {
     color: #595959;
     display: inline-block;
     font-family: Arial, "Open Sans Condensed", Helvetica, sans-serif, Arial, Verdana;
-    font-size: 11px;
+    font-size: 12px;
     position: relative;
 }
 
@@ -1954,7 +1954,7 @@ h1.blog_header {
 .header_links {
     color: #7b7b7b;
     font-family: Arial, "Open Sans Condensed", Helvetica, sans-serif, Arial, Verdana;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
 }
 
@@ -3158,7 +3158,7 @@ body.mobilescreen #dynamicFormWrapper .form {
     /* border-bottom: 1px solid #e5e5e5; */
     /* border-top: 1px solid #e5e5e5; */
     margin-bottom: 10px;
-    padding: 12px 0 5px;
+    padding: 15px 0 8px;
 }
 
 .sub_header_middle_panel {
@@ -3951,31 +3951,23 @@ span.language a img {
 }
 
 .more-wrapper {
-    text-align: center;
-    margin: 0px auto;
-    display: block;
-    color: #a71f1f;
-    font-family: "Open Sans Condensed", Helvetica, sans-serif, Arial, Verdana;
-    font-size: 10px;
-    font-weight: normal;
-    line-height: 1.4;
-    text-transform: uppercase;
+    /*font-family: "Open Sans Condensed", Helvetica, sans-serif, Arial, Verdana;*/
+    text-transform: capitalize;
     padding: 6px;
-    background: #fbfbfb;
-    border: 1px solid #ececec;
-    box-shadow: 0px 0px 0px #bbbbbb;
-    width: 93%;
-    margin-top: 10px;
-    border-radius: 2px;
 }
 
-.more-link {
-    white-space: nowrap;
-    display: inline-block;
-    margin-left: 4px;
-    color: #a71f1f;
-    font-size: 15px;
-    margin-top: 0px;
+.more-link{
+    font-weight: normal;
+    color: #000;
+    padding: 13px 15px;
+    text-align: center;
+    transition: .6s ease;
+    border: 1px solid #cfcfcf;
+    font-size: 14px;
+}
+.more-link:hover{
+    border-color: #000;
+    color: #000;
 }
 
 body.mobilescreen .mobile_more_link {
@@ -4245,3 +4237,30 @@ div#reply_form {
 body.mobilescreen .dashboard_news_block {
     padding-bottom: initial;
 }
+
+/*style by ecmngnt */
+
+/*index page news by category*/
+.header_news_by_category{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.header_news_by_category h1, .header_news_by_category a{
+    margin: auto 0 5px 0;
+}
+.header_news_by_category a{
+    color: #505050;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.header_news_by_category a:hover{
+    color: #a71f1f;
+}
+.header_news_by_category{
+    border-bottom: 1px solid #8f8f8f;
+}
+/* end index page news by category*/
+
+
+/*style by ecmngnt */

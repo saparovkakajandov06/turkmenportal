@@ -552,6 +552,9 @@ return array (
     'Lenta News' => 'Timeline',
     'Archive news' => 'News Archive',
     'ad_header' => 'Ads',
+    'service_header' => 'Services',
+    'work_header' => 'Work',
+
 
     'Thumb' => 'Image',
     'bannerType' => 'Banner type',

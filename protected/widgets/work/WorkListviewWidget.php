@@ -14,12 +14,17 @@ class WorkListviewWidget extends CWidget
     public $is_tableview;
     public $is_only_listview;
     public $show_photo;
+    public $view;
 
     
     
     public function init() {
         $this->workModel=new Work();
         $this->workModel->unsetAttributes();
+        if (!isset($this->view)){
+            $this->view = '_listview';
+        }
+
 //        $this->autoModel->category_id=$this->category_id;
 //        $this->autoModel->category_code=$this->category_code;
 //        $this->autoModel->parent_category_code=$this->parent_category_code;
@@ -55,7 +60,7 @@ class WorkListviewWidget extends CWidget
                 $this->catalogModel->mini_search=$_GET['mini_search'];
             }
 
-            $dataProvider=$this->workModel->searchForIndex($pagination_count);
+            $dataProvider=$this->workModel->searchForCategory($pagination_count);
             if($dataProvider->totalItemCount>0 || isset($_GET['mini_search']))
                 $this->render('WorkListviewWidget', array('dataProvider'=>$dataProvider));
     }
