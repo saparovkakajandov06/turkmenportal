@@ -15,143 +15,119 @@ class BannersController extends Controller
         'BannerJ' => 'mobileBannerVtop1',
         'BannerI' => 'mobileBannerVtop2',
     ];
+    public $width;
+    public $height;
 
 
 
     public function actionIndex()
     {
-        if (isset($_GET['cat_id'])){
-            if ($_GET['cat_id'] == 0){
-                $cat_id = 282;
-            } else
-                $cat_id = (int)$_GET['cat_id'];
-        } else{
-            $cat_id = 282;
-        }
-        if (isset($_GET['page']))
-            $page = (int)$_GET['page'];
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
-        if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
-                $hl = $_GET['hl'];
-        } else {
-            $hl = 'ru';
-        }
-        yii::app()->language = $hl;
+        if (isset($_GET['bannerType'])){
+            $bannerType = $this->bannerMap[$_GET['bannerType']];
+            $banner = $this->getBanner($bannerType);
+            $bannerModel = $banner['bannerModel'];
 
-        $modelBlog = new BlogWrapper('search');
-        $modelCategory = Category::model()->findByPk($cat_id);
+            if (isset($bannerModel)) {
+                if (isset($bannerModel->url) && strlen(trim($bannerModel->url)) > 3) {
+                    $fullUrl = (strpos($bannerModel->url, 'http') === false) ? "http://" . $bannerModel->url : $bannerModel->url;
+                    $fullUrl = Yii::app()->createUrl("banner/leave", array("url" => $fullUrl, 'banner_id' => $bannerModel->id));
+                    $imgUrl = Documents::model()->getUploadedPath($bannerModel->getDocument()->path);
+                    $banner = array(
+                        'type' => $bannerType,
+                        'description' => $bannerModel->description,
+                        'img' => 'https://turkmenportal.com'.$imgUrl,
+                        'fullUrl' => 'https://turkmenportal.com'.$fullUrl,
+                    );
+                } else {
+                    $imgUrl = Documents::model()->getUploadedPath($bannerModel->getDocument()->path);
+                    $banner = array(
+                        'type' => $bannerType,
+                        'description' => $bannerModel->description,
+                        'img' => 'https://turkmenportal.com'.$imgUrl,
+                    );
+                }
 
-
-        if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
-            $modelBlog->category_id = $modelCategory->id;
+            }
         }
-    elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
-        $modelBlog->parent_category_id = $modelCategory->id;
-        $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
-        $models = $dataProvider->getData();
 
-        foreach ($models as $key => $model){
-            $data['models'][] = array(
-                'id' => (int)$model->id,
-                'title' => $model->getTitle(),
-//                'content' => $model->getText(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(144, 84, 'w'),
-                'date' => $model->date_added,
-                'cat_name' => $model->category->name,
-                'cat_id' => (int)$model->category->id,
-//                'view_count' => (int)$model->visited_count,
-//                'url' => $model->createAbsoluteUrl(),
-            );
-        }
-        if (!isset($data)){
-            $data['models'] = [];
+
+        if (!isset($banner)){
+            $banner = [];
         }
         header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($data);die;
+        echo Json::encode($banner);die;
     }
 
 
-    public function actionView()
-    {
-        if (isset($_GET['id']))
-            $id = (int)$_GET['id'];
-        if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
-                $hl = $_GET['hl'];
-        } else {
-            $hl = 'ru';
+
+    public function getBanner($type){
+        $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
+        $calculate_show = true;
+            if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
+                $calculate_show = true;
+            } else {
+                $calculate_show = false;
+            }
+
+
+        if ($calculate_show) {
+            if (isset($bannerTypeModel)) {
+                $bannerModel = null;
+                $banners = $bannerTypeModel->getEnabledBanners();
+                if (count($banners) > 0) {
+                        $this->width = $bannerTypeModel->width;
+                        $this->height = $bannerTypeModel->height;
+
+                    //detect exact banner to show
+                    switch ($bannerTypeModel->type) {
+                        case BannerType::TYPE_FLASH:
+                        case BannerType::TYPE_IMAGE:
+                        case BannerType::TYPE_IMAGE_SLIDER:
+                            $bannerModel = $banners[0];
+                            break;
+                        case BannerType::TYPE_ADSENSE:
+                            $is_mobile = Yii::app()->controller->isMobile();
+                            foreach ($banners as $banner) {
+                                if ($is_mobile == true && $banner->format_type == Banner::FORMAT_TYPE_MOBILE) {
+                                    $bannerModel = $banner;
+                                    break;
+                                } elseif ($is_mobile == false && $banner->format_type == Banner::FORMAT_TYPE_DESKTOP) {
+                                    $bannerModel = $banner;
+                                    break;
+                                }
+                            }
+                            break;
+                        case BannerType::TYPE_IMAGE_RANDOM:
+                            if (!isset(Yii::app()->params[$type])){
+                                $countBanner = count($banners);
+                                for ($i = 0; $i < $countBanner; $i++){
+                                    $arr[] = $i;
+                                }
+                                shuffle($arr);
+                                Yii::app()->params[$type] = $arr;
+                                Yii::app()->params[$type.'Order'] = 0;
+                            }
+
+                            if (Yii::app()->params[$type.'Order'] >= count(Yii::app()->params[$type])){
+                                Yii::app()->params[$type.'Order'] = 0;
+                            }
+                            if (isset(Yii::app()->params[$type][Yii::app()->params[$type.'Order']])){
+                                $order = Yii::app()->params[$type][Yii::app()->params[$type.'Order']];
+                                $bannerModel = $banners[$order];
+                                Yii::app()->params[$type.'Order'] = Yii::app()->params[$type.'Order'] + 1;
+                            } else
+                                $bannerModel = $banners[array_rand($banners)];
+                            break;
+                    }
+                }
+
+
+                $bannerActivityService = new BannerActivityService();
+                $bannerActivityService->registerActivity($bannerModel, BannerActivity::ACTIVITY_TYPE_VIEW);
+
+                return array('bannerTypeModel' => $bannerTypeModel, 'banners' => $banners, 'bannerModel' => $bannerModel);
+            }
         }
-        yii::app()->language = $hl;
-        $model = $this->loadModel($id);
-
-
-
-        if (isset($model)){
-            $data['model'] = (object)array(
-                'id' => (int)$model->id,
-                'title' => $model->getTitle(),
-                'content' => $model->getText(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-//                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(100, 100, 'w'),
-                'date' => $model->date_added,
-                'cat_name' => $model->category->name,
-                'cat_id' => (int)$model->category->id,
-                'view_count' => (int)$model->visited_count,
-                'url' => $model->createAbsoluteUrl(),
-            );
-        }
-        if (!isset($data)){
-            $data =(object)$data;
-        }
-        header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($data);die;
-    }
-
-    public function actionTop()
-    {
-        if (isset($_GET['hl'])){
-            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
-                $hl = $_GET['hl'];
-        } else {
-            $hl = 'ru';
-        }
-        yii::app()->language = $hl;
-        $blogModel = new Blog();
-        $blogModel->unsetAttributes();
-        $blogModel->default_scope = array('enabled', 'not_photoreport','sort_trend_asc');
-        $blogModel->reset_related_sort = true;
-        $popularDataProvider = $blogModel->searchForCategory(6);
-        $models = $popularDataProvider->getData();
-
-        foreach ($models as $key => $model){
-            $data['models'][] = array(
-                'id' => (int)$model->id,
-                'title' => $model->getTitle(),
-//                'content' => $model->getText(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
-                'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(144, 84, 'w'),
-                'date' => $model->date_added,
-                'cat_name' => $model->category->name,
-                'cat_id' => (int)$model->category->id,
-//                'view_count' => (int)$model->visited_count,
-//                'url' => $model->createAbsoluteUrl(),
-            );
-        }
-        if (!isset($data)){
-            $data['models'] = [];
-        }
-        header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($data);die;
-    }
-
-
-    public function loadModel($id)
-    {
-        $model = Blog::model()->findByPk($id);
-        return $model;
     }
 
 }
