@@ -217,7 +217,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <?php
         $this->widget('application.widgets.banners.BannersWidget', array(
             'type' => 'indexAdsense1',
@@ -225,17 +225,17 @@
         ?>
     </div>
     <?php
-     if(!Yii::app()->mobileDetect->isMobile()):
+//     if(!Yii::app()->mobileDetect->isMobile()):
     ?>
     <div class="col-md-6">
         <?php
-        $this->widget('application.widgets.banners.BannersWidget', array(
-            'type' => 'indexAdsense2',
-        ));
+//        $this->widget('application.widgets.banners.BannersWidget', array(
+//            'type' => 'indexAdsense2',
+//        ));
         ?>
     </div>
     <?php
-        endif;
+//        endif;
     ?>
 </div>
 

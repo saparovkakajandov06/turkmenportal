@@ -514,7 +514,7 @@ return array(
     'afisha' => 'Afisha',
 
     'filter' => 'Filtrlemek',
-    'more' => 'ählisini görkez',
+    'more' => 'Ählisini görkez',
     'show_more' => 'Ählisini görkez',
     'show_less' => 'Azyrak görkez',
 

@@ -3953,7 +3953,7 @@ span.language a img {
 
 .more-wrapper {
     /*font-family: "Open Sans Condensed", Helvetica, sans-serif, Arial, Verdana;*/
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     padding: 6px;
 }
 

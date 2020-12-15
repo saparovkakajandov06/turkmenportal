@@ -530,7 +530,7 @@ return array (
     'afisha' => 'Poster',
 
     'filter' => 'Filter',
-    'more' => 'more',
+    'more' => 'More',
     'show_more' => 'Show more',
     'show_less' => 'Show less',
 
