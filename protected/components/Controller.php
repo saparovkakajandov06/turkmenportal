@@ -430,4 +430,25 @@ class Controller extends RController
         $date = DateTime::createFromFormat($format, $dateStr);
         return $date && ($date->format($format) === $dateStr);
     }
+
+
+    function removePtagsOutImg($fullText)
+    {
+        preg_match_all('/<p[^>]*><img[^>]*><\/p>/',$fullText, $matches);
+
+        $matches= $matches[0];
+        foreach ($matches as $match){
+            preg_match_all('/<img[^>]*>/',$match,$items[]);
+            $pattern[] = '/<p[^>]*><img[^>]*><\/p>/';
+        }
+
+        foreach ($items as $item){
+            $images[] = $item[0][0];
+        }
+        if (isset($pattern)){
+            $fullText = preg_replace($pattern, $images, $fullText);
+        }
+        return $fullText;
+    }
+
 }

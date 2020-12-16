@@ -239,7 +239,7 @@ class MediasController extends Controller
                 $data = array(
                     'id' => (int)$model->id,
                     'title' => $model->getTitle(),
-                    'content' => $content,
+                    'content' => $this->removePtagsOutImg($content),
                     'date' => $model->date_added,
                     'cat_name' => $model->category->name,
                     'cat_id' => (int)$model->category->id,

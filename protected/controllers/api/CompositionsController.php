@@ -89,7 +89,7 @@ class CompositionsController extends Controller
             $data['model'] = (object)array(
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
-                'content' => $content,
+                'content' => $this->removePtagsOutImg($content),
                 'image_url' => $image,
                 'img_width' => $image_width,
                 'img_height' => $image_height,
