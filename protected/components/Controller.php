@@ -437,16 +437,18 @@ class Controller extends RController
         preg_match_all('/<p[^>]*><img[^>]*><\/p>/',$fullText, $matches);
 
         $matches= $matches[0];
+        $pattern = '/<p[^>]*><img[^>]*><\/p>/';
         foreach ($matches as $match){
             preg_match_all('/<img[^>]*>/',$match,$items[]);
-            $pattern[] = '/<p[^>]*><img[^>]*><\/p>/';
         }
 
         foreach ($items as $item){
             $images[] = $item[0][0];
         }
-        if (isset($pattern)){
-            $fullText = preg_replace($pattern, $images, $fullText);
+        if (isset($images)){
+            foreach ($images as $image){
+                $fullText = preg_replace($pattern, $image, $fullText, 1);
+            }
         }
         return $fullText;
     }
