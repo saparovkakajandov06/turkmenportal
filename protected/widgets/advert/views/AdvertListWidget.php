@@ -25,7 +25,7 @@
         
     ?>
 </div>
-<div class="more-wrapper" style="margin-bottom: 20px; ">
+<div class="more-wrapper visible-xs" style="margin-bottom: 20px; ">
     <?php
     $this->widget('application.widgets.category.CategoryMoreWidget', array(
         'maxSubCatCount' => 5,

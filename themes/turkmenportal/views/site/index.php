@@ -111,6 +111,19 @@
         ));
         ?>
     </div>
+
+    <div class="col-md-12 bg-base col-lg-12 col-xl-12 visible-xs">
+
+        <div class="mobile-responsive visible-xs">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'mobileBannerD',
+                'outer_css_id' => 'mobileBannerD',
+            ));
+            ?>
+        </div>
+    </div>
+
     <div class="col-md-4">
         <?php
         $this->widget('application.widgets.news.NewsListWidget', array(
@@ -124,6 +137,12 @@
         ));
         ?>
     </div>
+    <?php
+    $this->widget('application.widgets.banners.BannersWidget', array(
+        'type' => 'bannerNesipetsin',
+        'outer_css_class' => 'mobile-responsive visible-xs',
+    ));
+    ?>
 </div>
 
 <div class="row">
@@ -137,19 +156,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12 bg-base col-lg-12 col-xl-12">
 
-        <div class="mobile-responsive visible-xs">
-            <?php
-            $this->widget('application.widgets.banners.BannersWidget', array(
-                'type' => 'mobileBannerD',
-                'outer_css_id' => 'mobileBannerD',
-            ));
-            ?>
-        </div>
-    </div>
-</div>
 
 <div class="row mobile_block block">
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
@@ -305,14 +312,7 @@
 
 
 <div class="row mobile_block block">
-    <?php
-    $this->widget('application.widgets.banners.BannersWidget', array(
-        'type' => 'bannerNesipetsin',
-        'outer_css_class' => 'mobile-responsive visible-xs',
-    ));
-    ?>
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
-
         <div class="row category_header ">
             <div class="box_header_index">
                 <div class="subHeader">
@@ -475,6 +475,69 @@
 //    'widget_title'=>'Multimedia'
 //));
 ?>
+
+
+
+<div class="row mobile_block block">
+
+    <div class="col-md-4">
+        <?php
+        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+            'count' => 7,
+            'parent_category_code' => 'tenders',
+            'show_sub_header' => true,
+            'item_class' => 'col-sm-12 col-md-12',
+            'show_photo' => false,
+            'show_all' => true,
+            'itemView' => '_simpleview',
+            'sortableAttributes' => array(),
+            'view' => 'CatalogListviewWidget_2',
+        ));
+        ?>
+    </div>
+    <div class="col-md-8">
+        <?php
+        $this->widget('application.widgets.category.CategoryHeaderWidget', array(
+            'maxSubCatCount' => 3,
+            'category_code' => 'advert',
+            'categoy_index_url' => '//blog',
+            'override_main_title' => Yii::t('app', 'ОБЪЯВЛЕНИЯ'),
+            'view' => 'CategoryHeaderWidget_2',
+        ));
+        ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?php
+
+                $this->widget('application.widgets.advert.AdvertListWidget', array(
+                    'item_class' => ' ',
+                    'parent_category_code' => 'advert',
+                    'itemView' => '_list_view_2',
+                    'headerCssClass' => 'header_news_by_category',
+                    'count' => 6,
+                ));
+                ?>
+            </div>
+            <div class="col-md-6">
+                <?php
+                $this->widget('application.widgets.work.WorkListviewWidget', array(
+                     'item_class' => ' ',
+                    'count' => 3,
+                    'view' => '_view',
+                ));
+                $this->widget('application.widgets.catalog.CatalogListWidget', array(
+                    'item_class' => 'col-xs-12',
+                    'parent_category_code' => 'service',
+                    'itemView' => '_list_view_2',
+//                    'headerCssClass' => 'header_news_by_category',
+                    'count' => 3,
+                ));
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <div class="row mobile_block block">
