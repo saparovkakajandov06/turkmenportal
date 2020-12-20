@@ -27,12 +27,20 @@ class BannersController extends Controller
             $banner = $this->getBanner($bannerType);
             $bannerModel = $banner['bannerModel'];
 
+            if  (isset($_GET['id'])){
+                while ($bannerModel->id == $_GET['id']){
+                    $banner = $this->getBanner($bannerType);
+                    $bannerModel = $banner['bannerModel'];
+                }
+            }
+
             if (isset($bannerModel)) {
                 if (isset($bannerModel->url) && strlen(trim($bannerModel->url)) > 3) {
                     $fullUrl = (strpos($bannerModel->url, 'http') === false) ? "http://" . $bannerModel->url : $bannerModel->url;
                     $fullUrl = Yii::app()->createUrl("banner/leave", array("url" => $fullUrl, 'banner_id' => $bannerModel->id));
                     $imgUrl = Documents::model()->getUploadedPath($bannerModel->getDocument()->path);
                     $banner = array(
+                        'id' => $bannerModel->id,
                         'type' => $bannerType,
                         'description' => $bannerModel->description,
                         'img' => 'https://turkmenportal.com'.$imgUrl,
@@ -41,6 +49,7 @@ class BannersController extends Controller
                 } else {
                     $imgUrl = Documents::model()->getUploadedPath($bannerModel->getDocument()->path);
                     $banner = array(
+                        'id' => $bannerModel->id,
                         'type' => $bannerType,
                         'description' => $bannerModel->description,
                         'img' => 'https://turkmenportal.com'.$imgUrl,
