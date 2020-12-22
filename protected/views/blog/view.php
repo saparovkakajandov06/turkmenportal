@@ -75,7 +75,7 @@ $this->enable_mobile_banner_vtop2 = true;
             } elseif (isset($img_path) && strlen(trim($img_path)) > 0) { ?>
                 <div class="main_image media-object responsive">
                     <span class="thumb">
-                        <?php echo CHtml::link(CHtml::image($img_path, $title, array('title' => $title, 'itemprop' => 'associatedMedia', 'alt' => $altImage)), $imageBigPath, array('class' => 'fancybox', 'rel' => 'blog', 'data-fancybox' => 'blog', 'data-width' => $width_orig, 'data-height' => $height_orig,)); ?>
+                        <?php echo CHtml::link(CHtml::image($img_path, $title, array('title' => $title, 'itemprop' => 'associatedMedia')), $imageBigPath, array('class' => 'fancybox', 'rel' => 'blog', 'data-fancybox' => 'blog', 'data-width' => $width_orig, 'data-height' => $height_orig,)); ?>
                     </span>
                     <?php
                         if (strlen($sourceImage) > 0):
