@@ -4247,19 +4247,29 @@ body.mobilescreen .dashboard_news_block {
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
 .header_news_by_category h1, .header_news_by_category a{
     margin: auto 0 5px 0;
 }
+
 .header_news_by_category a{
     color: #505050;
     text-transform: uppercase;
     font-weight: 600;
 }
+
 .header_news_by_category a:hover{
     color: #a71f1f;
 }
+
 .header_news_by_category{
     border-bottom: 1px solid #8f8f8f;
+}
+
+.source_img{
+    color: #767676;
+    font-size: 12px;
+    line-height: 13px;
 }
 /* end index page news by category*/
 

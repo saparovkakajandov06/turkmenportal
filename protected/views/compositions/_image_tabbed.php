@@ -5,6 +5,7 @@
                 <?php
                     $this->widget('ext.xupload.widgets.RenderThumbsWidget', array(
                         'docs' => $model->docs,
+                        'view' => 'download_for_client_editable',
                     ));
                 ?>
 
@@ -25,7 +26,7 @@
                         'formView' => 'form_item_upload',
                         'showResultTable' => false,
                         'showGlobalProgressBar' => false,
-                        'downloadView' => 'download_for_client',
+                            'downloadView' => 'download_for_client_editable',
                         'uploadView' => 'upload_for_client',
         //                            'maxNumberOfFiles'=>10
                         )    
