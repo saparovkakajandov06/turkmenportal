@@ -11,6 +11,17 @@ $lang_code = Yii::app()->language;
 $modelCategory = $model->category;
 $this->subCategoryModel = $modelCategory;
 $imageBigPath = $img_path = $model->getThumbPath(300, 335, 'w');
+$document = $model->documents;
+//var_dump($document);die;
+if (isset($document)){
+    $document = $document[0];
+    $altImage = $document->alt;
+    $authorImage = $document->author;
+    if (strlen($altImage) == 0){
+        $altImage = $title;
+    }
+
+}
 $url = $model->getUrl();
 
 if (isset($model->related_document)) {
@@ -71,6 +82,12 @@ $this->enable_mobile_banner_vtop2 = true;
                     <span class="thumb">
             <?php echo CHtml::link(CHtml::image($img_path, $title, array('title' => $title, 'itemprop' => 'associatedMedia')), $imageBigPath, array('class' => 'fancybox', 'rel' => 'blog', 'data-fancybox' => 'blog', 'data-width' => $width_orig, 'data-height' => $height_orig,)); ?>
                     </span>
+                <?php
+                if (strlen($authorImage) > 0):
+                    ?>
+                    <br><span class="source_img"><?=$authorImage?></span>
+                <?php
+                endif; ?>
             </div>
         <?php } ?>
 
