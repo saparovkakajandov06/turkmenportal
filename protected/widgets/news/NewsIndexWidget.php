@@ -42,10 +42,24 @@ class NewsIndexWidget extends CWidget {
         }
 
 
+        $worldCategoryModel = Category::model()->findByAttributes(array ('code' => 'news.world'));
         $sportCategoryModel = Category::model()->findByAttributes(array ('code' => 'news.sport'));
+        $businessCategoryModel = Category::model()->findByAttributes(array ('code' => 'news.business'));
+
         if (isset($sportCategoryModel)) {
-            $this->blogModel->categoryid_except = array ($sportCategoryModel->id);
+           $categoryid_except[] = $sportCategoryModel->id;
         }
+        if (isset($worldCategoryModel)) {
+            $categoryid_except[] = $worldCategoryModel->id;
+        }
+        if (isset($businessCategoryModel)) {
+            $categoryid_except[] = $businessCategoryModel->id;
+        }
+        if (isset($categoryid_except)) {
+            $this->blogModel->categoryid_except = $categoryid_except;
+        }
+
+
 
 
         parent::init();
