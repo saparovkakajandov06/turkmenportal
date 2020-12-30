@@ -78,6 +78,9 @@ class BlogsController extends Controller
         $image_height = $image_info[1];
         if (isset($model)){
             $content = $model->getText();
+            $pattern = '/&nbsp;/';
+            $replacements = ' ';
+            $content = preg_replace($pattern,$replacements, $content);
             $pattern = '/src="/';
             $replacements = 'src="https://turkmenportal.com';
             $content = preg_replace($pattern,$replacements, $content);
