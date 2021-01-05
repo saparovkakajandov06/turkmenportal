@@ -62,8 +62,10 @@
             ?>
         </div>
     </div>
-    <div class="more-wrapper visible-xs">
-        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+    <div class="col-md-12">
+        <div class="more-wrapper visible-xs">
+            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+        </div>
     </div>
 </div>
 
@@ -183,8 +185,10 @@
     </div>
 
 
-    <div class="more-wrapper visible-xs">
-        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+    <div class="col-md-12">
+        <div class="more-wrapper visible-xs">
+            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+        </div>
     </div>
 </div>
 
@@ -291,8 +295,10 @@
         ));
         ?>
     </div>
-    <div class="more-wrapper visible-xs">
-        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+    <div class="col-md-12">
+        <div class="more-wrapper visible-xs">
+            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+        </div>
     </div>
 </div>
 
@@ -311,7 +317,7 @@
 </div>
 
 
-<div class="row mobile_block block">
+<div class="row mobile_block block visible-xs">
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
         <div class="row category_header ">
             <div class="box_header_index">
@@ -331,7 +337,7 @@
         ));
         ?>
     </div>
-    <div class="col-md-9 bg-base col-lg-9 col-xl-9">
+    <div class="col-md-9 bg-base col-lg-9 col-xl-9 ">
 
         <div class="row">
             <?php
@@ -495,7 +501,7 @@
         ));
         ?>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 hidden-xs">
         <?php
         $this->widget('application.widgets.category.CategoryHeaderWidget', array(
             'maxSubCatCount' => 3,
@@ -538,6 +544,16 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <?php
+        $this->widget('application.widgets.banners.BannersWidget', array(
+            'type' => 'bannerG',
+            'inner_css_style' => 'max-width:100%',
+        ));
+        ?>
+    </div>
+</div>
 
 
 <div class="row mobile_block block">
@@ -600,8 +616,10 @@
 
 
     </div>
-    <div class="more-wrapper visible-xs">
-        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+    <div class="col-md-12">
+        <div class="more-wrapper visible-xs">
+            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
+        </div>
     </div>
 </div>
 

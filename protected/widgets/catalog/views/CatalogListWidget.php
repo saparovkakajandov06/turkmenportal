@@ -25,18 +25,20 @@
         
     ?>
 </div>
-<div class="more-wrapper visible-xs" style="margin-bottom: 20px; ">
-    <?php
-    if (!isset($this->category_code)){
-        $code = $this->parent_category_code;
-    } else {
-        $code = $this->category_code;
-    }
-    $this->widget('application.widgets.category.CategoryMoreWidget', array(
-        'maxSubCatCount' => 5,
-        'category_code' => $code,
-        'categoy_index_url' => '//blog',
-        'view' => 'CategoryMoreWidget',
-    ));
-    ?>
+<div class="col-md-12">
+    <div class="more-wrapper visible-xs" style="margin-bottom: 20px; ">
+        <?php
+        if (!isset($this->category_code)){
+            $code = $this->parent_category_code;
+        } else {
+            $code = $this->category_code;
+        }
+        $this->widget('application.widgets.category.CategoryMoreWidget', array(
+            'maxSubCatCount' => 5,
+            'category_code' => $code,
+            'categoy_index_url' => '//blog',
+            'view' => 'CategoryMoreWidget',
+        ));
+        ?>
+    </div>
 </div>
