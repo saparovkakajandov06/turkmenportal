@@ -22,7 +22,13 @@ class BlogController extends Controller
         } else {
             $model = $this->loadModel($id);
             $lang_title = 'title_' . Yii::app()->language;
-            if ($model === null || !isset($model->{$lang_title}) || strlen(trim($model->{$lang_title})) < 5 || $model->status != 1)
+            $boll = true;
+            if (Yii::app()->user->id){
+                $boll =false;
+            } elseif ($model->status == 1) {
+                $boll = false;
+            }
+            if ($model === null || !isset($model->{$lang_title}) || strlen(trim($model->{$lang_title})) < 5 || $boll)
                 throw new CHttpException(404, 'Not found');
             $url = $model->getUrl(true);
 
