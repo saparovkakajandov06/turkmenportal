@@ -16,7 +16,6 @@ class CatalogListviewWidget extends CWidget
     public $is_only_listview=false;
     public $show_photo;
     public $itemView="_listview";
-    public $view = "CatalogListviewWidget";
 
     public $sortableAttributes=array(
                     'date_added',
@@ -75,7 +74,7 @@ class CatalogListviewWidget extends CWidget
 
         $dataProvider=$this->catalogModel->searchForCategory($pagination_count);
         if($dataProvider->totalItemCount>0 || isset($_GET['mini_search']))
-            $this->render($this->view, array('dataProvider'=>$dataProvider,'categoryModel'=>$this->categoryModel));
+            $this->render('CatalogListviewWidget', array('dataProvider'=>$dataProvider,'categoryModel'=>$this->categoryModel));
     }
 }
 ?>

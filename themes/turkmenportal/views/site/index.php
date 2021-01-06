@@ -62,10 +62,8 @@
             ?>
         </div>
     </div>
-    <div class="col-md-12">
-        <div class="more-wrapper visible-xs">
-            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
-        </div>
+    <div class="more-wrapper visible-xs">
+        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
 
@@ -113,19 +111,6 @@
         ));
         ?>
     </div>
-
-    <div class="col-md-12 bg-base col-lg-12 col-xl-12 visible-xs">
-
-        <div class="mobile-responsive visible-xs">
-            <?php
-            $this->widget('application.widgets.banners.BannersWidget', array(
-                'type' => 'mobileBannerD',
-                'outer_css_id' => 'mobileBannerD',
-            ));
-            ?>
-        </div>
-    </div>
-
     <div class="col-md-4">
         <?php
         $this->widget('application.widgets.news.NewsListWidget', array(
@@ -139,12 +124,6 @@
         ));
         ?>
     </div>
-    <?php
-    $this->widget('application.widgets.banners.BannersWidget', array(
-        'type' => 'bannerNesipetsin',
-        'outer_css_class' => 'mobile-responsive visible-xs',
-    ));
-    ?>
 </div>
 
 <div class="row">
@@ -158,7 +137,19 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12 bg-base col-lg-12 col-xl-12">
 
+        <div class="mobile-responsive visible-xs">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'mobileBannerD',
+                'outer_css_id' => 'mobileBannerD',
+            ));
+            ?>
+        </div>
+    </div>
+</div>
 
 <div class="row mobile_block block">
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
@@ -185,10 +176,8 @@
     </div>
 
 
-    <div class="col-md-12">
-        <div class="more-wrapper visible-xs">
-            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
-        </div>
+    <div class="more-wrapper visible-xs">
+        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
 
@@ -295,10 +284,8 @@
         ));
         ?>
     </div>
-    <div class="col-md-12">
-        <div class="more-wrapper visible-xs">
-            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
-        </div>
+    <div class="more-wrapper visible-xs">
+        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
 
@@ -317,8 +304,15 @@
 </div>
 
 
-<div class="row mobile_block block visible-xs">
+<div class="row mobile_block block">
+    <?php
+    $this->widget('application.widgets.banners.BannersWidget', array(
+        'type' => 'bannerNesipetsin',
+        'outer_css_class' => 'mobile-responsive visible-xs',
+    ));
+    ?>
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
+
         <div class="row category_header ">
             <div class="box_header_index">
                 <div class="subHeader">
@@ -328,7 +322,7 @@
         </div>
     </div>
 
-    <div class=" col-md-3 col-lg-3 col-xl-3 hidden">
+    <div class=" col-md-3 col-lg-3 col-xl-3">
         <?php
         $this->widget('BannersWidget', array(
             'type' => 'bannerJ',
@@ -337,7 +331,7 @@
         ));
         ?>
     </div>
-    <div class="col-md-9 bg-base col-lg-9 col-xl-9 ">
+    <div class="col-md-9 bg-base col-lg-9 col-xl-9">
 
         <div class="row">
             <?php
@@ -483,79 +477,6 @@
 ?>
 
 
-
-<div class="row mobile_block block">
-
-    <div class="col-md-4">
-        <?php
-        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-            'count' => 7,
-            'parent_category_code' => 'tenders',
-            'show_sub_header' => true,
-            'item_class' => 'col-sm-12 col-md-12',
-            'show_photo' => false,
-            'show_all' => true,
-            'itemView' => '_simpleview',
-            'sortableAttributes' => array(),
-            'view' => 'CatalogListviewWidget_2',
-        ));
-        ?>
-    </div>
-    <div class="col-md-8 hidden-xs">
-        <?php
-        $this->widget('application.widgets.category.CategoryHeaderWidget', array(
-            'maxSubCatCount' => 3,
-            'category_code' => 'advert',
-            'categoy_index_url' => '//blog',
-            'override_main_title' => Yii::t('app', 'ОБЪЯВЛЕНИЯ'),
-            'view' => 'CategoryHeaderWidget_3',
-        ));
-        ?>
-        <div class="row">
-            <div class="col-md-6">
-                <?php
-
-                $this->widget('application.widgets.advert.AdvertListWidget', array(
-                    'item_class' => ' ',
-                    'parent_category_code' => 'advert',
-                    'itemView' => '_list_view_2',
-                    'headerCssClass' => 'header_news_by_category',
-                    'count' => 6,
-                ));
-                ?>
-            </div>
-            <div class="col-md-6">
-                <?php
-                $this->widget('application.widgets.work.WorkListviewWidget', array(
-                     'item_class' => ' ',
-                    'count' => 3,
-                    'view' => '_view',
-                ));
-                $this->widget('application.widgets.catalog.CatalogListWidget', array(
-                    'item_class' => 'col-xs-12',
-                    'parent_category_code' => 'service',
-                    'itemView' => '_list_view_2',
-//                    'headerCssClass' => 'header_news_by_category',
-                    'count' => 3,
-                ));
-                ?>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <?php
-        $this->widget('application.widgets.banners.BannersWidget', array(
-            'type' => 'bannerL',
-            'inner_css_style' => 'max-width:100%',
-        ));
-        ?>
-    </div>
-</div>
-
-
 <div class="row mobile_block block">
     <div class="col-md-12 bg-base col-lg-12 col-xl-12">
         <?php
@@ -616,84 +537,82 @@
 
 
     </div>
-    <div class="col-md-12">
-        <div class="more-wrapper visible-xs">
-            <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
-        </div>
+    <div class="more-wrapper visible-xs">
+        <?php echo CHtml::link(Yii::t('app', 'more'), Yii::app()->controller->categoryUrl, array('class' => 'more-link')); ?>
     </div>
 </div>
 
-<!---->
-<!--<div class="row mobile_block block">-->
-<!--    <div class="col-md-12 bg-base col-lg-12 col-xl-12">-->
-<!--        --><?php
-//        $this->widget('CategoryHeaderWidget', array(
-//            'maxSubCatCount' => 5,
-//            'category_code' => 'guide',
-//        ));
-//        ?>
-<!--    </div>-->
-<!---->
-<!--    <div class="col-md-4" style="border-right: 0px solid #eee;">-->
-<!--        --><?php
-//        $this->widget('BannersWidget', array(
-//            'type' => 'bannerK',
-//            'outer_css_class' => 'hidden-sm',
-//            'outer_css_id' => 'banner2',
-//        ));
-//        //        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-//        //            'count' => 6,
-//        //            'parent_category_code' => 'business',
-//        //            'show_sub_header' => true,
-//        //            'item_class' => 'col-sm-12 col-md-12',
-//        //            'show_photo' => false,
-//        //            'show_all' => true,
-//        //            'itemView' => '_simpleview',
-//        //            'sortableAttributes' => array()
-//        //        ));
-//        ?>
-<!--    </div>-->
-<!---->
-<!--    <div class="col-md-4" style="border-right: 0px solid #eee;">-->
-<!--        --><?php
-//        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-//            'count' => 4,
-//            'parent_category_code' => 'tenders',
-//            'show_sub_header' => true,
-//            'item_class' => 'col-sm-12 col-md-12',
-//            'show_photo' => false,
-//            'show_all' => true,
-//            'itemView' => '_simpleview',
-//            'sortableAttributes' => array()
-//        ));
-//        ?>
-<!--    </div>-->
-<!---->
-<!--    <div class="col-md-4">-->
-<!--        --><?php
-//        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-//            'count' => 4,
-//            'parent_category_code' => 'guide',
-//            'show_sub_header' => true,
-//            'item_class' => 'col-sm-12 col-md-12',
-//            'show_photo' => false,
-//            'show_all' => true,
-//            'itemView' => '_simpleview',
-//            'sortableAttributes' => array()
-//        ));
-//        ?>
-<!--    </div>-->
-<!---->
-<!--    <div class="row hidden-xs">-->
-<!--        <div class="col-md-12">-->
-<!--            --><?php
-//            $this->widget('application.widgets.banners.BannersWidget', array(
-//                'type' => 'bannerL',
-//                'inner_css_style' => 'max-width:100%',
-//            ));
-//            ?>
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
+<div class="row mobile_block block">
+    <div class="col-md-12 bg-base col-lg-12 col-xl-12">
+        <?php
+        $this->widget('CategoryHeaderWidget', array(
+            'maxSubCatCount' => 5,
+            'category_code' => 'guide',
+        ));
+        ?>
+    </div>
+
+    <div class="col-md-4" style="border-right: 0px solid #eee;">
+        <?php
+        $this->widget('BannersWidget', array(
+            'type' => 'bannerK',
+            'outer_css_class' => 'hidden-sm',
+            'outer_css_id' => 'banner2',
+        ));
+        //        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+        //            'count' => 6,
+        //            'parent_category_code' => 'business',
+        //            'show_sub_header' => true,
+        //            'item_class' => 'col-sm-12 col-md-12',
+        //            'show_photo' => false,
+        //            'show_all' => true,
+        //            'itemView' => '_simpleview',
+        //            'sortableAttributes' => array()
+        //        ));
+        ?>
+    </div>
+
+    <div class="col-md-4" style="border-right: 0px solid #eee;">
+        <?php
+        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+            'count' => 4,
+            'parent_category_code' => 'tenders',
+            'show_sub_header' => true,
+            'item_class' => 'col-sm-12 col-md-12',
+            'show_photo' => false,
+            'show_all' => true,
+            'itemView' => '_simpleview',
+            'sortableAttributes' => array()
+        ));
+        ?>
+    </div>
+
+    <div class="col-md-4">
+        <?php
+        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+            'count' => 4,
+            'parent_category_code' => 'guide',
+            'show_sub_header' => true,
+            'item_class' => 'col-sm-12 col-md-12',
+            'show_photo' => false,
+            'show_all' => true,
+            'itemView' => '_simpleview',
+            'sortableAttributes' => array()
+        ));
+        ?>
+    </div>
+
+    <div class="row hidden-xs">
+        <div class="col-md-12">
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'bannerL',
+                'inner_css_style' => 'max-width:100%',
+            ));
+            ?>
+        </div>
+    </div>
+</div>
 
 
