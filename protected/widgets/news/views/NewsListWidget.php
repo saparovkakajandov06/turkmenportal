@@ -38,7 +38,7 @@ $this->widget('application.widgets.category.CategoryHeaderWidget', array(
     ?>
 
 </div>
-<div class="more-wrapper">
+<div class="more-wrapper visible-xs">
     <?php
     $this->widget('application.widgets.category.CategoryMoreWidget', array(
         'maxSubCatCount' => 5,
