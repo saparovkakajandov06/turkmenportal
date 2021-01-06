@@ -64,7 +64,13 @@ class CompositionsController extends Controller
         } else {
             $model = $this->loadModel($id);
             $lang_title = 'title_' . Yii::app()->language;
-            if ($model === null || !isset($model->{$lang_title}) || strlen(trim($model->{$lang_title})) < 5)
+            $boll = true;
+            if (Yii::app()->user->id){
+                $boll =false;
+            } elseif ($model->status == 1) {
+                $boll = false;
+            }
+            if ($model === null || !isset($model->{$lang_title}) || strlen(trim($model->{$lang_title})) < 5 || $boll)
                 throw new CHttpException(404, 'Not found');
 
             $url = $model->getUrl();
@@ -136,9 +142,6 @@ class CompositionsController extends Controller
             throw new CHttpException(403, Rights::t('core', 'You are not authorized to perform this action.'));
         }
 
-        $model->reloadTempList();
-        $model->reloadDocumentsList();
-
         $model->parent_category_id = Category::model()->findParentCategoryByCode('compositions');
         $model->category_code = 'compositions';
         if (isset($_POST['Compositions'])) {
@@ -149,7 +152,7 @@ class CompositionsController extends Controller
             $model->documents = Documents::model()->saveDocuments('compositions', $model->state_name, true);
 
             try {
-                if ($model->saveWithRelated(array('documents' => array('append' => true)))) {
+                if ($model->saveWithRelated(array('documents' => array('append' => false)))) {
                     $transaction->commit();
                     $committed = true;
                 }
@@ -163,6 +166,9 @@ class CompositionsController extends Controller
                 EUserFlash::setSuccessMessage('Statya doredildi');
                 $this->redirect(array('admin'));
             }
+        } else {
+            $model->reloadTempList(!isset($_SERVER['HTTP_X_REQUESTED_WITH']));
+            $model->reloadDocumentsList(true);
         }
 
 

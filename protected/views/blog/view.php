@@ -9,6 +9,12 @@ $lang_code = Yii::app()->language;
 
 $url = $model->getUrl();
 $imageBigPath = $img_path = $model->getThumbPath(300, 335, 'w');
+$document = $model->documents;
+
+if (isset($document)){
+        $document = $document[0];
+        $sourceImage = $document->{title_.Yii::app()->language};
+}
 //$shareImgPath = $model->getThumbPath(1200, 630, 'auto');
 
 if (isset($model->related_document)) {
@@ -71,6 +77,12 @@ $this->enable_mobile_banner_vtop2 = true;
                     <span class="thumb">
                         <?php echo CHtml::link(CHtml::image($img_path, $title, array('title' => $title, 'itemprop' => 'associatedMedia')), $imageBigPath, array('class' => 'fancybox', 'rel' => 'blog', 'data-fancybox' => 'blog', 'data-width' => $width_orig, 'data-height' => $height_orig,)); ?>
                     </span>
+                    <?php
+                        if (strlen($sourceImage) > 0):
+                    ?>
+                            <br><span class="source_img"><?=$sourceImage?></span>
+                        <?php
+                            endif; ?>
                 </div>
             <?php } ?>
 

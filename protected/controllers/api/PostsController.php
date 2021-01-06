@@ -86,6 +86,9 @@ class PostsController extends Controller
 
         if (isset($model)){
             $content = $model->getContent();
+            $pattern = '/&nbsp;/';
+            $replacements = ' ';
+            $content = preg_replace($pattern,$replacements, $content);
             $pattern = '/src="/';
             $replacements = 'src="https://turkmenportal.com';
             $content = preg_replace($pattern,$replacements, $content);

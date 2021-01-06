@@ -1,5 +1,5 @@
 <div class="control-group">
-    <?php echo $form->labelEx($model, 'title', array ('class' => 'control-label')); ?>
+    <?php echo $form->labelEx($model, 'Source image', array ('class' => 'control-label')); ?>
     <div class="controls">
         <?php echo $form->textField($model, 'title_' . $l); ?>
 
