@@ -24,10 +24,6 @@
             }
             ?>
         </div>
-        <div class="show_more_header">
-           <?php echo CHtml::link(yii::t('app', 'more'), $categoryModel->url, array ('class' => "")); ?>
-
-        </div>
     </div>
 </div>
 <?php $this->endWidget(); ?>
