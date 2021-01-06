@@ -1,6 +1,6 @@
 
 
-<div class="type-post style-media-list media <?php echo $this->item_class; ?> col-md-4 colheight-index">
+<div class="type-post style-media-list media <?php echo $this->item_class; ?> col-xs-12 colheight-index">
     <div class="inner_block">
         <?php
         $title = $data->getTitle();

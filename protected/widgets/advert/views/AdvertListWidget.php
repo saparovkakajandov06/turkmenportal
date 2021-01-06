@@ -25,13 +25,15 @@
         
     ?>
 </div>
-<div class="more-wrapper" style="margin-bottom: 20px; ">
-    <?php
-    $this->widget('application.widgets.category.CategoryMoreWidget', array(
-        'maxSubCatCount' => 5,
-        'category_code' => $this->category_code,
-        'categoy_index_url' => '//blog',
-        'view' => 'CategoryMoreWidget',
-    ));
-    ?>
+<div class="col-md-12">
+    <div class="more-wrapper visible-xs" style="margin-bottom: 20px; ">
+        <?php
+        $this->widget('application.widgets.category.CategoryMoreWidget', array(
+            'maxSubCatCount' => 5,
+            'category_code' => $this->category_code,
+            'categoy_index_url' => '//blog',
+            'view' => 'CategoryMoreWidget',
+        ));
+        ?>
+    </div>
 </div>
