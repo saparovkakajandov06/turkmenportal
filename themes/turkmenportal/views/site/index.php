@@ -328,7 +328,7 @@
         </div>
     </div>
 
-    <div class=" col-md-3 col-lg-3 col-xl-3">
+    <div class=" col-md-3 col-lg-3 col-xl-3 hidden">
         <?php
         $this->widget('BannersWidget', array(
             'type' => 'bannerJ',
@@ -508,7 +508,7 @@
             'category_code' => 'advert',
             'categoy_index_url' => '//blog',
             'override_main_title' => Yii::t('app', 'ОБЪЯВЛЕНИЯ'),
-            'view' => 'CategoryHeaderWidget_2',
+            'view' => 'CategoryHeaderWidget_3',
         ));
         ?>
         <div class="row">
@@ -548,7 +548,7 @@
     <div class="col-md-12">
         <?php
         $this->widget('application.widgets.banners.BannersWidget', array(
-            'type' => 'bannerG',
+            'type' => 'bannerL',
             'inner_css_style' => 'max-width:100%',
         ));
         ?>
@@ -623,77 +623,77 @@
     </div>
 </div>
 
-
-<div class="row mobile_block block">
-    <div class="col-md-12 bg-base col-lg-12 col-xl-12">
-        <?php
-        $this->widget('CategoryHeaderWidget', array(
-            'maxSubCatCount' => 5,
-            'category_code' => 'guide',
-        ));
-        ?>
-    </div>
-
-    <div class="col-md-4" style="border-right: 0px solid #eee;">
-        <?php
-        $this->widget('BannersWidget', array(
-            'type' => 'bannerK',
-            'outer_css_class' => 'hidden-sm',
-            'outer_css_id' => 'banner2',
-        ));
-        //        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-        //            'count' => 6,
-        //            'parent_category_code' => 'business',
-        //            'show_sub_header' => true,
-        //            'item_class' => 'col-sm-12 col-md-12',
-        //            'show_photo' => false,
-        //            'show_all' => true,
-        //            'itemView' => '_simpleview',
-        //            'sortableAttributes' => array()
-        //        ));
-        ?>
-    </div>
-
-    <div class="col-md-4" style="border-right: 0px solid #eee;">
-        <?php
-        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-            'count' => 4,
-            'parent_category_code' => 'tenders',
-            'show_sub_header' => true,
-            'item_class' => 'col-sm-12 col-md-12',
-            'show_photo' => false,
-            'show_all' => true,
-            'itemView' => '_simpleview',
-            'sortableAttributes' => array()
-        ));
-        ?>
-    </div>
-
-    <div class="col-md-4">
-        <?php
-        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-            'count' => 4,
-            'parent_category_code' => 'guide',
-            'show_sub_header' => true,
-            'item_class' => 'col-sm-12 col-md-12',
-            'show_photo' => false,
-            'show_all' => true,
-            'itemView' => '_simpleview',
-            'sortableAttributes' => array()
-        ));
-        ?>
-    </div>
-
-    <div class="row hidden-xs">
-        <div class="col-md-12">
-            <?php
-            $this->widget('application.widgets.banners.BannersWidget', array(
-                'type' => 'bannerL',
-                'inner_css_style' => 'max-width:100%',
-            ));
-            ?>
-        </div>
-    </div>
-</div>
+<!---->
+<!--<div class="row mobile_block block">-->
+<!--    <div class="col-md-12 bg-base col-lg-12 col-xl-12">-->
+<!--        --><?php
+//        $this->widget('CategoryHeaderWidget', array(
+//            'maxSubCatCount' => 5,
+//            'category_code' => 'guide',
+//        ));
+//        ?>
+<!--    </div>-->
+<!---->
+<!--    <div class="col-md-4" style="border-right: 0px solid #eee;">-->
+<!--        --><?php
+//        $this->widget('BannersWidget', array(
+//            'type' => 'bannerK',
+//            'outer_css_class' => 'hidden-sm',
+//            'outer_css_id' => 'banner2',
+//        ));
+//        //        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+//        //            'count' => 6,
+//        //            'parent_category_code' => 'business',
+//        //            'show_sub_header' => true,
+//        //            'item_class' => 'col-sm-12 col-md-12',
+//        //            'show_photo' => false,
+//        //            'show_all' => true,
+//        //            'itemView' => '_simpleview',
+//        //            'sortableAttributes' => array()
+//        //        ));
+//        ?>
+<!--    </div>-->
+<!---->
+<!--    <div class="col-md-4" style="border-right: 0px solid #eee;">-->
+<!--        --><?php
+//        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+//            'count' => 4,
+//            'parent_category_code' => 'tenders',
+//            'show_sub_header' => true,
+//            'item_class' => 'col-sm-12 col-md-12',
+//            'show_photo' => false,
+//            'show_all' => true,
+//            'itemView' => '_simpleview',
+//            'sortableAttributes' => array()
+//        ));
+//        ?>
+<!--    </div>-->
+<!---->
+<!--    <div class="col-md-4">-->
+<!--        --><?php
+//        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
+//            'count' => 4,
+//            'parent_category_code' => 'guide',
+//            'show_sub_header' => true,
+//            'item_class' => 'col-sm-12 col-md-12',
+//            'show_photo' => false,
+//            'show_all' => true,
+//            'itemView' => '_simpleview',
+//            'sortableAttributes' => array()
+//        ));
+//        ?>
+<!--    </div>-->
+<!---->
+<!--    <div class="row hidden-xs">-->
+<!--        <div class="col-md-12">-->
+<!--            --><?php
+//            $this->widget('application.widgets.banners.BannersWidget', array(
+//                'type' => 'bannerL',
+//                'inner_css_style' => 'max-width:100%',
+//            ));
+//            ?>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 

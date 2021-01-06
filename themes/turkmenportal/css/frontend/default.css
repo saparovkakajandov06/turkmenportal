@@ -4265,7 +4265,22 @@ body.mobilescreen .dashboard_news_block {
 .header_news_by_category{
     border-bottom: 1px solid #8f8f8f;
 }
-
+.header_news_by_category_2{
+    justify-content: normal;
+}
+.header_news_by_category_2 .sub_header{
+    display: flex;
+    margin-left: 25px;
+}
+.header_news_by_category_2 .sub_header a{
+    /*margin-top:auto;*/
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+.header_news_by_category_2 .more{
+    margin-right: 0;
+    margin-left: auto;
+}
 /* end index page news by category*/
 
 .show_more_header{
