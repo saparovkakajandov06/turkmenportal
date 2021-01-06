@@ -4265,7 +4265,6 @@ body.mobilescreen .dashboard_news_block {
 .header_news_by_category{
     border-bottom: 1px solid #8f8f8f;
 }
-
 .header_news_by_category_2{
     justify-content: normal;
 }
@@ -4274,20 +4273,14 @@ body.mobilescreen .dashboard_news_block {
     margin-left: 25px;
 }
 .header_news_by_category_2 .sub_header a{
-    /*margin-top:auto;*/
     margin-bottom: 5px;
-    margin-right: 10px;
+}
+.header_news_by_category_2 .sub_header a+a{
+    margin-left: 25px;
 }
 .header_news_by_category_2 .more{
     margin-right: 0;
     margin-left: auto;
-
-
-.source_img{
-    color: #767676;
-    font-size: 12px;
-    line-height: 13px;
-
 }
 /* end index page news by category*/
 
