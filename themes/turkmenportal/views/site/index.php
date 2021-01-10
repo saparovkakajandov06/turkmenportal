@@ -489,7 +489,7 @@
     <div class="col-md-4">
         <?php
         $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-            'count' => 7,
+            'count' => 6,
             'parent_category_code' => 'tenders',
             'show_sub_header' => true,
             'item_class' => 'col-sm-12 col-md-12',
