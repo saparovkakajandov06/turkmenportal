@@ -363,7 +363,7 @@ return array(
                     'levels' => 'error, warning',
                     'enabled' => true,
                     'categories' => 'system.*',
-                    'emails' => array('batya224@mail.ru'),
+                    'emails' => array('ecmngnt@gmail.com'),
                 ),
             ),
         ),
