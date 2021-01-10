@@ -30,7 +30,7 @@
                 <div class="article_stats">
                     <time class="article_header_date"
                           datetime="<?php echo Yii::app()->controller->dateToW3C($data->date_added); ?>"><?php echo Yii::app()->controller->renderDateTime($data->date_added); ?></time>
-                    <div class="post-item__views"><i class="icon-eye-open"></i><span><?php echo $data->views; ?></span>
+                    <div class="post-item__views"><i class="fa fa-eye"></i><span><?php echo $data->views; ?></span>
                     </div>
                 </div>
             </div>
