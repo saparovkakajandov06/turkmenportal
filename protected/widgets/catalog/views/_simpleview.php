@@ -11,10 +11,15 @@
             <?php } ?>
 
             <div class="media-body">
+                <div class="article_stats_2">
+                    <time class="article_header_date" itemprop="dateCreated" datetime="<?php echo Yii::app()->controller->dateToW3C($data->date_added); ?>"><?php echo Yii::app()->controller->renderDateTime($data->date_added); ?></time>
+                    <div class="post-item__views"><i class="icon-eye-open"></i><span><?php echo $data->views; ?></span></div>
+                </div>
                 <h3 class="entry-title">
                     <?php
                     echo CHtml::link(Yii::app()->controller->truncate($title, 15, 450), $data->url, array('rel' => 'bookmark','title' => $title, 'class' => 'link')); ?>
                 </h3>
+
             </div>
 
         </div>
