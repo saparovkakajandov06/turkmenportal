@@ -4374,6 +4374,9 @@ body.mobilescreen .dashboard_news_block {
     text-align: center;
     margin-top: 20px; ;
 }
+.footer-area .second li{
+    margin-top: 10px; ;
+}
 .footer-area ul li a{
     color: #d6d6d6;
     font-size: 16px;
@@ -4394,7 +4397,8 @@ body.mobilescreen .dashboard_news_block {
     border-top: 1px solid grey;
 }
 .app_download_img_wrapper{
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 35px;
 }
 .app_download_img_wrapper a{
     display: inline-block;
@@ -4409,14 +4413,17 @@ body.mobilescreen .dashboard_news_block {
         display: block;
     }
     .footer_tp_logo{
-        height: 35px;
+        height: 45px;
         margin-bottom: 20px;
     }
     .footer-area h3{
         font-family:  "Montserrat", sans-serif;
         margin-bottom: 20px;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 20px;
+    }
+    .app_download_img_wrapper{
+        margin-top: 35px;
     }
 }
 /*end footer*/

@@ -22,7 +22,7 @@
                         }
                         ?>
                     </ul>
-                    <ul class="">
+                    <ul class="second">
                         <?php
                         $i = 0;
                         foreach ($informations as $info) {
@@ -47,7 +47,7 @@
                     <div class="footer_text_cr">
                         <span >
                             <?php echo Yii::t('app', 'footer_copy_right'); ?><br>
-                            <?php echo 'Свидетельство о регистрации средства массовой информации <a href="http://www.rkn.gov.ru/mass-communications/reestr/media/?id=617836" style="text-decoration:underline; color:#428bca" rel="nofollow" target="_blank"> ЭЛ № ФС 77 - 68969 от 07.03.2017 г.,</a> ';
+                            <?php echo 'Свидетельство о регистрации средства массовой информации <a href="http://www.rkn.gov.ru/mass-communications/reestr/media/?id=617836" style="text-decoration:underline; color:#428bca" rel="nofollow" target="_blank"> ЭЛ № ФС 77 - 68969 от 07.03.2017 г.</a> ';
                             //                                    'выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор).'
                             ?>
                         </span>
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <div class=" " style="margin-bottom: 10px;">
+    <div class=" " style="margin-bottom: 20px;">
         <!-- Rating Mail.ru counter -->
         <script type="text/javascript">
             var _tmr = window._tmr || (window._tmr = []);
