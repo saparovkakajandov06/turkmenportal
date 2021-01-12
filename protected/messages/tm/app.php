@@ -552,6 +552,8 @@ return array(
     'In the world' => 'Dünýäde',
     'Sport' => 'Sport',
     'Business' => 'Biznes',
+    'Download our app' => 'Programmamy ýükläp alyň',
+
 );
 ?>
 
