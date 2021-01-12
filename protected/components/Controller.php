@@ -477,4 +477,52 @@ class Controller extends RController
         }
     }
 
+
+    public function partOfDay($time)
+    {
+        if ($time >= '5-0-0' && $time <= '11-59-59') return 'morn';
+        if ($time >= '12-0-0' && $time <= '16-59-59') return 'day';
+        if ($time >= '17-0-0' && $time <= '20-59-59') return 'eve';
+        if ($time >= '21-0-0' && $time <= '23-59-59') return 'night';
+        if ($time >= '0-0-0' && $time <= '4-59-59') return 'night';
+    }
+
+
+    public function forcastWithIcons($day, $info, $todayShowPartTimes)
+    {
+        $clockPartTime = ['night' => '00:00:00', 'morn' => '08:00:00', 'day' => '14:00:00', 'eve' => '19:00:00'];
+        unset($day->weather);
+//        echo "<pre>";
+        var_dump($todayShowPartTimes);die;
+        foreach ($todayShowPartTimes as $key => $partTime) {
+            if ($key < 5) {
+                $date = date('Y-m-d H-i-s', $day->dt);
+                var_dump($date);die;
+                $time = strtotime($date.' '.$clockPartTime[$partTime]);
+                foreach ($info as $i){
+                    if ($i->dt == $time){
+                        $day->weather->$partTime->id = $i->weather[0]->id;
+                        $day->weather->$partTime->main = $i->weather[0]->main;
+                        $day->weather->$partTime->description = $i->weather[0]->description;
+                        $day->weather->$partTime->icon = $i->weather[0]->icon;
+                    }
+                }
+            } else {
+                $date = date('Y-m-d', $day->dt);
+                $time = strtotime($date.' '.$clockPartTime[$partTime])+24*60*60;
+                foreach ($info as $i){
+                    if ($i->dt == $time){
+                        $day->weather->$partTime->id = $i->weather[0]->id;
+                        $day->weather->$partTime->main = $i->weather[0]->main;
+                        $day->weather->$partTime->description = $i->weather[0]->description;
+                        $day->weather->$partTime->icon = $i->weather[0]->icon;
+                    }
+                }
+            };
+        }
+        echo "<pre>";
+        var_dump($day);die;
+
+    }
+
 }

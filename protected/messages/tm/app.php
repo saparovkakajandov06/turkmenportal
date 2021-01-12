@@ -552,6 +552,11 @@ return array(
     'In the world' => 'Dünýäde',
     'Sport' => 'Sport',
     'Business' => 'Biznes',
+
+    'Weather Forecast' => 'Howa Maglumaty',
+    'Weather in' => 'Howa',
+    'Now' => 'Şu wagt',
+
 );
 ?>
 

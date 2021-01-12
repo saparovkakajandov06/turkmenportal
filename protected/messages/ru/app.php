@@ -588,6 +588,12 @@ return array(
     'In the world' => 'В мире',
     'Sport' => 'Спорт',
     'Business' => 'Бизнес',
+
+    'Weather Forecast' => 'Прогноз погоды',
+    'Weather in' => 'Погода в',
+    'Now' => 'Сейчас',
+
+
 );
 ?>
 
