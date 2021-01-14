@@ -4360,8 +4360,8 @@ body.mobilescreen .dashboard_news_block {
     margin-bottom: 0;
 }
 .footer_tp_logo{
-    height: 55px;
-    margin-bottom: 20px;
+    height: 45px;
+    margin-bottom: 0px;
 }
 .footer-area ul{
     text-align: center;
@@ -4375,11 +4375,11 @@ body.mobilescreen .dashboard_news_block {
     margin-top: 20px; ;
 }
 .footer-area .second li{
-    margin-top: 10px; ;
+    margin-top: 0px; ;
 }
 .footer-area ul li a{
     color: #d6d6d6;
-    font-size: 16px;
+    font-size: 14px;
     font-family:  "Montserrat", sans-serif;
     font-weight: normal;
 }
@@ -4388,9 +4388,9 @@ body.mobilescreen .dashboard_news_block {
 }
 .footer-area h3{
     font-family:  "Montserrat", sans-serif;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 16px;
 }
 .footer-area hr{
     /*margin-bottom: 10px;*/
@@ -4417,13 +4417,13 @@ body.mobilescreen .dashboard_news_block {
     }
     .footer_tp_logo{
         height: 45px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     .footer-area h3{
         font-family:  "Montserrat", sans-serif;
         margin-bottom: 20px;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 16px;
     }
     .app_download_img_wrapper{
         margin-top: 45px;
