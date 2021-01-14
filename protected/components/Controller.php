@@ -492,37 +492,54 @@ class Controller extends RController
     {
         $clockPartTime = ['night' => '00:00:00', 'morn' => '08:00:00', 'day' => '14:00:00', 'eve' => '19:00:00'];
         unset($day->weather);
-//        echo "<pre>";
-        var_dump($todayShowPartTimes);die;
+//        var_dump($todayShowPartTimes);die;
         foreach ($todayShowPartTimes as $key => $partTime) {
-            if ($key < 5) {
-                $date = date('Y-m-d H-i-s', $day->dt);
-                var_dump($date);die;
-                $time = strtotime($date.' '.$clockPartTime[$partTime]);
-                foreach ($info as $i){
-                    if ($i->dt == $time){
-                        $day->weather->$partTime->id = $i->weather[0]->id;
-                        $day->weather->$partTime->main = $i->weather[0]->main;
-                        $day->weather->$partTime->description = $i->weather[0]->description;
-                        $day->weather->$partTime->icon = $i->weather[0]->icon;
-                    }
+            $date = date('Y-m-d', $day->dt);
+            $time = strtotime($date.' '.$clockPartTime[$partTime]);
+            foreach ($info as $i){
+                if ($i->dt == $time){
+                    $day->weather->$partTime->id = $i->weather[0]->id;
+                    $day->weather->$partTime->main = $i->weather[0]->main;
+                    $day->weather->$partTime->description = $i->weather[0]->description;
+                    $day->weather->$partTime->icon = $i->weather[0]->icon;
                 }
-            } else {
-                $date = date('Y-m-d', $day->dt);
-                $time = strtotime($date.' '.$clockPartTime[$partTime])+24*60*60;
-                foreach ($info as $i){
-                    if ($i->dt == $time){
-                        $day->weather->$partTime->id = $i->weather[0]->id;
-                        $day->weather->$partTime->main = $i->weather[0]->main;
-                        $day->weather->$partTime->description = $i->weather[0]->description;
-                        $day->weather->$partTime->icon = $i->weather[0]->icon;
-                    }
-                }
-            };
+            }
         }
-        echo "<pre>";
-        var_dump($day);die;
-
+        return $day;
     }
+
+
+
+//    public function forcastWithIcons($day, $info, $todayShowPartTimes)
+//    {
+//        $clockPartTime = ['night' => '00:00:00', 'morn' => '08:00:00', 'day' => '14:00:00', 'eve' => '19:00:00'];
+//        unset($day->weather);
+//        foreach ($todayShowPartTimes as $key => $partTime) {
+//            if ($key < 5) {
+//                $date = date('Y-m-d', $day->dt);
+//                $time = strtotime($date.' '.$clockPartTime[$partTime]);
+//                foreach ($info as $i){
+//                    if ($i->dt == $time){
+//                        $day->weather->$partTime->id = $i->weather[0]->id;
+//                        $day->weather->$partTime->main = $i->weather[0]->main;
+//                        $day->weather->$partTime->description = $i->weather[0]->description;
+//                        $day->weather->$partTime->icon = $i->weather[0]->icon;
+//                    }
+//                }
+//            } else {
+//                $date = date('Y-m-d', $day->dt);
+//                $time = strtotime($date.' '.$clockPartTime[$partTime])+24*60*60;
+//                foreach ($info as $i){
+//                    if ($i->dt == $time){
+//                        $day->weather->$partTime->id = $i->weather[0]->id;
+//                        $day->weather->$partTime->main = $i->weather[0]->main;
+//                        $day->weather->$partTime->description = $i->weather[0]->description;
+//                        $day->weather->$partTime->icon = $i->weather[0]->icon;
+//                    }
+//                }
+//            };
+//        }
+//        return $day;
+//    }
 
 }
