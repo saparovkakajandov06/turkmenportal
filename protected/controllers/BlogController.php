@@ -255,6 +255,7 @@ class BlogController extends Controller
 
     public function actionIndex($path = null, $category_id = null, $region_id = null)
     {
+        Yii::app()->cache->flush();
         $this->layout = '//layouts/blog/column2';
         if (isset($category_id)) {
             $modelCategory = Category::model()->findByPk($category_id);
