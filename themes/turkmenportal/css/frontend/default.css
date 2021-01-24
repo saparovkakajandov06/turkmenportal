@@ -4430,4 +4430,52 @@ body.mobilescreen .dashboard_news_block {
     }
 }
 /*end footer*/
+
+/* begin download app window*/
+.modal_download_app{
+    position: fixed;
+    box-shadow: 0 0 7px -1px rgb(1 1 1 / 60%);
+    padding: 10px 0;
+    z-index: 999;
+    bottom: 0;
+    background-color: #fff;
+    display: none;
+}
+.d_b_main{
+    display: flex;
+    /*flex-direction: row;*/
+    flex-wrap: wrap;
+    flex-grow: 2;
+}
+.d_b_thumbs{
+    flex: 1;
+}
+.d_b_cation{
+    flex: 4;
+    padding: 0 10px;
+}
+.d_b_description{
+    margin-top: 15px;
+    width: 100%;
+    font-size: 16px;
+}
+.d_b_btn_block a{
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+.d_b_btn_block .download_btn{
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: yellow;
+    font-size: 18px;
+    font-weight: 600;
+}
+.d_b_btn_block .close_btn{
+    /*margin-top: 10px;*/
+    padding: 10px 15px;
+
+}
+/*end donwlaod app window*/
+
 /*style by ecmngnt */

@@ -477,4 +477,21 @@ class Controller extends RController
         }
     }
 
+
+    function isIosDevice(){
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $iosDevice = array('iphone', 'ipod', 'ipad');
+        $isIos = false;
+
+        foreach ($iosDevice as $val) {
+            if(stripos($userAgent, $val) !== false){
+                $isIos = true;
+                break;
+            }
+        }
+
+        return $isIos;
+    }
+
+
 }

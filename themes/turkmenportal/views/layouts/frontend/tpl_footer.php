@@ -1,5 +1,98 @@
 <!--noindex-->
 <?php $this->beginWidget('DNofollowWidget'); ?>
+
+<?php
+    if (empty(Yii::app()->request->cookies['downloadApp']->value)){
+        $cookie = Yii::app()->request->cookies['downloadApp'];
+
+        $cookie = new CHttpCookie('downloadApp', 'true');
+
+
+        $cookie->expire = time()+60*60*24*7;
+
+
+        Yii::app()->request->cookies['downloadApp'] = $cookie;
+    }
+    if(Yii::app()->controller->isIosDevice()){
+        $link = "https://apps.apple.com/us/app/turkmenportal/id1544019509";
+    } else {
+        $link = "https://play.google.com/store/apps/details?id=com.takykcheshme.turkmenportal&hl=en_US&gl=US";
+    }
+?>
+<div class="modal_download_app">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="download_app_block">
+                    <div class="d_b_main">
+                        <div class="d_b_thumbs">
+                            <img src="/themes/turkmenportal/img/tp_logo.png" alt="Turkmenportal logo" class="img-responsive">
+                        </div>
+                        <div class="d_b_cation">
+                            <h3>Turkmenportal App</h3>
+                        </div>
+                        <div class="d_b_description">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ut.</p>
+                        </div>
+                    </div>
+                    <div class="d_b_btn_block">
+                        <a href="<?=$link?>" class="download_btn" onclick="hideModal();" target="_blank">
+                            <?=Yii::t('app', 'Download App')?>
+                        </a>
+                        <a href="#" class="close_btn" onclick="hideModal();"><?=Yii::t('app', 'Close');?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+Yii::app()->clientScript->registerScript('scripts_ready','
+            
+            $(document).ready(function() {
+                function showModal(){
+                     $(".modal_download_app").delay(3000).show("slide", { direction: "down" },500);  
+                }
+                    var cookie = getCookie("downloadApp");
+                   if  (cookie === "true"){
+                        showModal();
+                   }            
+
+            });
+            
+            function hideModal(){
+                 setCookie("downloadApp","false");
+                 $(".modal_download_app").hide("slide", { direction: "down" },500);
+            
+            }
+            
+            function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(\';\');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == \' \') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+            
+            function setCookie(cname, cvalue) {
+              var d = new Date();
+              d.setTime(d.getTime() + (7*24*60*60*1000));
+              var expires = "expires="+ d.toUTCString();
+              document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+        
+        ',CClientScript::POS_END);
+
+?>
 <footer id="footer" class="footer-area row">
 
     <div class="footer-top footer-section">
