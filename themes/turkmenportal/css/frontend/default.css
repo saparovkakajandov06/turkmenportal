@@ -4435,7 +4435,7 @@ body.mobilescreen .dashboard_news_block {
 .modal_download_app{
     position: fixed;
     box-shadow: 0 0 7px -1px rgb(1 1 1 / 60%);
-    padding: 10px 0;
+    padding: 10px 5px;
     z-index: 999;
     bottom: 0;
     background-color: #fff;
@@ -4462,17 +4462,22 @@ body.mobilescreen .dashboard_news_block {
     width: 100%;
     font-size: 16px;
 }
+.d_b_btn_block{
+    display: flex;
+    flex-direction: column;
+}
 .d_b_btn_block a{
-    width: 100%;
-    display: block;
+    margin: auto;
+    width: 80%;
     text-align: center;
 }
 .d_b_btn_block .download_btn{
     padding: 10px 15px;
     border-radius: 10px;
-    background: yellow;
+    background: #9f2913;
     font-size: 18px;
     font-weight: 600;
+    color: #fff;
 }
 .d_b_btn_block .close_btn{
     /*margin-top: 10px;*/
