@@ -34,7 +34,7 @@
                             <h3><?=yii::t('app', 'Application Turkmenportal')?></h3>
                         </div>
                         <div class="d_b_description">
-                            <p><?=yii::t('app', 'Reading news has become more easier with the Turkmenportal application')?></p>
+                            <p><?=yii::t('app', 'Reading news has become more easier with the Turkmenportal application.')?></p>
                         </div>
                     </div>
                     <div class="d_b_btn_block">
@@ -56,7 +56,7 @@ if  (yii::app()->controller->isMobile()){
             
             $(document).ready(function() {
                 function showModal(){
-                     $(".modal_download_app").delay(3000).show("slide", { direction: "down" },500);  
+                     $(".modal_download_app").delay(5000).show("slide", { direction: "down" },500);  
                 }
                     var cookie = getCookie("downloadApp");
                    if  (cookie === "true"){

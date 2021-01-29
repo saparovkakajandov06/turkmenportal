@@ -590,7 +590,7 @@ return array(
     'Business' => 'Бизнес',
     'Download' => 'Скачать',
     'No, Thanks' => 'Спасибо, не надо',
-    'Reading news has become more easier with the Turkmenportal application' => 'Читать новости стало удобнее через приложение Туркменпортал',
+    'Reading news has become more easier with the Turkmenportal application.' => 'Читать новости стало удобнее через приложение Туркменпортал.',
     'Reading the news is much more easier' => 'Читать новости стало удобнее',
     'Application Turkmenportal' => 'Приложение Туркменпортал',
 
