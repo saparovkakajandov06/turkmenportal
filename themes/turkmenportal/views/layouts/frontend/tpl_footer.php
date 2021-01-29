@@ -2,7 +2,7 @@
 <?php $this->beginWidget('DNofollowWidget'); ?>
 
 <?php
-    if (empty(Yii::app()->request->cookies['downloadApp']->value)){
+    if (yii::app()->controller->isMobile() && empty(Yii::app()->request->cookies['downloadApp']->value)){
         $cookie = Yii::app()->request->cookies['downloadApp'];
 
         $cookie = new CHttpCookie('downloadApp', 'true');
@@ -14,9 +14,9 @@
         Yii::app()->request->cookies['downloadApp'] = $cookie;
     }
     if(Yii::app()->controller->isIosDevice()){
-        $link = "https://apps.apple.com/us/app/turkmenportal/id1544019509";
+        $link = "https://apps.apple.com/us/app/turkmenportal/id1544019509?utm_source=turkmenportal&utm_medium=application&utm_campaign=ios";
     } else {
-        $link = "https://play.google.com/store/apps/details?id=com.takykcheshme.turkmenportal&hl=en_US&gl=US";
+        $link = "https://play.google.com/store/apps/details?id=com.takykcheshme.turkmenportal&referrer=utm_source%3Dturkmenportal%26utm_medium%3Dapplication%26anid%3Dadmob";
     }
 ?>
 <div class="modal_download_app">
@@ -24,22 +24,24 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="download_app_block">
+                    <a href="#" class="close_btn" onclick="hideModal();" style="float: right;color: #000;font-size: 18px;">x</a>
+                    <br>
                     <div class="d_b_main">
                         <div class="d_b_thumbs">
                             <img src="/themes/turkmenportal/img/tp_logo.png" alt="Turkmenportal logo" class="img-responsive">
                         </div>
                         <div class="d_b_cation">
-                            <h3>Turkmenportal App</h3>
+                            <h3><?=yii::t('app', 'Application Turkmenportal')?></h3>
                         </div>
                         <div class="d_b_description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, ut.</p>
+                            <p><?=yii::t('app', 'Reading news has become more easier with the Turkmenportal application')?></p>
                         </div>
                     </div>
                     <div class="d_b_btn_block">
                         <a href="<?=$link?>" class="download_btn" onclick="hideModal();" target="_blank">
-                            <?=Yii::t('app', 'Download App')?>
+                            <?=Yii::t('app', 'Download')?>
                         </a>
-                        <a href="#" class="close_btn" onclick="hideModal();"><?=Yii::t('app', 'Close');?></a>
+                        <a href="#" class="close_btn" onclick="hideModal();"><?=Yii::t('app', 'No, Thanks');?></a>
                     </div>
                 </div>
             </div>
@@ -48,7 +50,9 @@
 </div>
 
 <?php
-Yii::app()->clientScript->registerScript('scripts_ready','
+
+if  (yii::app()->controller->isMobile()){
+    Yii::app()->clientScript->registerScript('scripts_ready','
             
             $(document).ready(function() {
                 function showModal(){
@@ -91,6 +95,8 @@ Yii::app()->clientScript->registerScript('scripts_ready','
             }
         
         ',CClientScript::POS_END);
+}
+
 
 ?>
 <footer id="footer" class="footer-area row">

@@ -4454,6 +4454,9 @@ body.mobilescreen .dashboard_news_block {
     flex: 4;
     padding: 0 10px;
 }
+.d_b_cation h3{
+    margin-top: 5px;
+}
 .d_b_description{
     margin-top: 15px;
     width: 100%;
