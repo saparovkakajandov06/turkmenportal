@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="download_app_block">
-                    <a href="#" class="close_btn" onclick="hideModal();" style="float: right;color: #000;font-size: 18px;">x</a>
+                    <a href="#" class="close_btn" onclick="hideModalX();" style="float: right;color: #000;font-size: 25px;">x</a>
                     <br>
                     <div class="d_b_main">
                         <div class="d_b_thumbs">
@@ -70,6 +70,10 @@ if  (yii::app()->controller->isMobile()){
                  $(".modal_download_app").hide("slide", { direction: "down" },500);
             
             }
+            function hideModalX(){
+                  setCookieX("downloadApp","false");
+                 $(".modal_download_app").hide("slide", { direction: "down" },500);
+            }
             
             function getCookie(cname) {
               var name = cname + "=";
@@ -90,6 +94,13 @@ if  (yii::app()->controller->isMobile()){
             function setCookie(cname, cvalue) {
               var d = new Date();
               d.setTime(d.getTime() + (7*24*60*60*1000));
+              var expires = "expires="+ d.toUTCString();
+              document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+            
+            function setCookieX(cname, cvalue) {
+              var d = new Date();
+              d.setTime(d.getTime() + (1*24*60*60*1000));
               var expires = "expires="+ d.toUTCString();
               document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
             }
