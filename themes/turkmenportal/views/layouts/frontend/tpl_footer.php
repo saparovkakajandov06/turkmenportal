@@ -34,7 +34,7 @@
                             <h3><?=yii::t('app', 'Application Turkmenportal')?></h3>
                         </div>
                         <div class="d_b_description">
-                            <p><?=yii::t('app', 'Reading news has become more easier with the Turkmenportal application.')?></p>
+                            <p><?=yii::t('app', 'Reading the news is much more easier.')?></p>
                         </div>
                     </div>
                     <div class="d_b_btn_block">
