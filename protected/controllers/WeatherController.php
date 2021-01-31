@@ -167,6 +167,74 @@ class WeatherController extends Controller
     }
 
 
+    public function actionDebug()
+    {
+        $this->layout = '//layouts/weather/weatherColumn';
+
+        if (Yii::app()->language !== 'tm'){
+            $this->lang = Yii::app()->language;
+        } else {
+            $this->lang = 'en';
+        }
+
+        $ip = yii::app()->controller->getUserIp();
+
+//        locally
+//        $ip = '185.69.185.239';
+        $location = yii::app()->controller->getUserLocation($ip);
+
+        $this->lat  = $location->latitude;
+        $this->lon  = $location->longitude;
+
+
+        $geoCodeInfo = $this->getGeoCode();
+
+
+        if (Yii::app()->language !== 'tm'){
+            $this->lang = Yii::app()->language;
+        } else {
+            $this->lang = 'en';
+        }
+
+        $weahter = $this->getWeather();
+
+        $this->data = json_decode($weahter);
+
+
+        if (isset($this->data->current)){
+            $current = $this->data->current;
+        }
+        if (isset($this->data->hourly)){
+            $hourly = $this->data->hourly;
+        }
+        if (isset($this->data->daily)){
+            $daily = $this->data->daily;
+        }
+        if (isset($this->data->alerts)){
+            $alerts = $this->data->alerts;
+        }
+        if (isset($this->data->minutely)){
+            $minutely = $this->data->minutely;
+        }
+        $night = false;
+        if ($current->dt < $current->sunrise || $current->dt > $current->sunset) {
+            $night = true;
+        };
+
+
+        $this->render('debug', array(
+            'ip' => $ip,
+            'location' => $location,
+            'geoCodeInfo' => $geoCodeInfo,
+            'data' => $this->data,
+            'current' => $current,
+            'hourly'=> $hourly,
+            'daily' => $daily,
+            'alerts' => $alerts,
+//            'minutely' => $minutely
+        ));
+    }
+
 
 
 }
