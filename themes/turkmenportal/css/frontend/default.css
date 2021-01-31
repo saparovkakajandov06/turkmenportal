@@ -4355,6 +4355,67 @@ body.mobilescreen .dashboard_news_block {
     margin-right: 4px;
 }
 
+
+/*weather page*/
+.forecast_top{
+    font-size: 13px;
+}
+.forecast_top__wrap{
+    display: flex;
+}
+.forecast_top__temp{
+    font-size: 70px;
+    line-height: 76px;
+    font-weight: 700;
+    padding-left: 15px;
+}
+.forecast_top__temp:after{
+    content: "°";
+}
+.forecast_more{
+    color: gray;
+    line-height: 18px;
+}
+.forecast_top_time{
+    margin-bottom: 20px;
+}
+.forecast_add{
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+.forecast_top__wrap_d{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.forecast_daily .forecast_top_d{
+    font-size: 13px;
+}
+.forecast_top_d{
+    padding-bottom: 20px;
+}
+.forecast_add_d::first-letter{
+    text-transform: uppercase;
+}
+
+.forecast_top__temp_d{
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 41px;
+    margin-bottom: 15px;
+}
+.forecast_top__temp_d:after{
+    content: '°';
+}
+.forecast_daily .col-md-4{
+    border-left: 1px solid #e6e6e6;
+}
+
+
+/*end weather page*/
+
+
+
+
 /*begin footer */
 .footer-area .footer-top{
     margin-bottom: 0;
@@ -4486,5 +4547,6 @@ body.mobilescreen .dashboard_news_block {
 
 }
 /*end donwlaod app window*/
+
 
 /*style by ecmngnt */

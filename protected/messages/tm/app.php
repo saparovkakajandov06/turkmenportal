@@ -552,12 +552,14 @@ return array(
     'In the world' => 'Dünýäde',
     'Sport' => 'Sport',
     'Business' => 'Biznes',
+
     'Download' => 'Ýüklemek',
     'No, Thanks' => 'Ýok, Sag boluň',
     'Reading news has become more easier with the Turkmenportal application.' => 'Turkmenportal programmasy arkaly täzelikleri okamak has aňsatlaşdy.',
     'Reading the news is much more easier.' => 'Indi täzelikleri okamak has ýeňilleşdi.',
     'Application Turkmenportal' => 'Turkmenportal ykjam programmasy',
     'Download our app' => 'Programmamyzy yükläp alyň',
+
 );
 ?>
 
