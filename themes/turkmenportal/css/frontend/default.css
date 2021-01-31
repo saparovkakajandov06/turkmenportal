@@ -4370,6 +4370,7 @@ body.mobilescreen .dashboard_news_block {
 }
 .forecast_add{
     margin-bottom: 10px;
+    text-transform: capitalize;
 }
 .forecast_top__wrap_d{
     display: flex;
@@ -4381,6 +4382,10 @@ body.mobilescreen .dashboard_news_block {
 .forecast_top_d{
     padding-bottom: 20px;
 }
+.forecast_add_d::first-letter{
+    text-transform: uppercase;
+}
+
 .forecast_top__temp_d{
     font-weight: 700;
     font-size: 35px;
@@ -4388,7 +4393,7 @@ body.mobilescreen .dashboard_news_block {
     margin-bottom: 15px;
 }
 .forecast_top__temp_d:after{
-    content: "°";
+    content: '°';
 }
 .forecast_daily .col-md-4{
     border-left: 1px solid #e6e6e6;

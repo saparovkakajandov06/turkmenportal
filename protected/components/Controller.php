@@ -480,11 +480,11 @@ class Controller extends RController
 
     public function partOfDay($time)
     {
-        if ($time >= '5-0-0' && $time <= '11-59-59') return 'morn';
-        if ($time >= '12-0-0' && $time <= '16-59-59') return 'day';
-        if ($time >= '17-0-0' && $time <= '20-59-59') return 'eve';
-        if ($time >= '21-0-0' && $time <= '23-59-59') return 'night';
-        if ($time >= '0-0-0' && $time <= '4-59-59') return 'night';
+        if ($time >= '03-00-00' && $time <= '11-59-59') return 'morn';
+        if ($time >= '12-00-00' && $time <= '16-59-59') return 'day';
+        if ($time >= '17-00-00' && $time <= '22-59-59') return 'eve';
+        if ($time >= '23-00-00' && $time <= '23-59-59') return 'night';
+        if ($time >= '00-00-00' && $time <= '02-59-59') return 'night';
     }
 
 
@@ -513,37 +513,126 @@ class Controller extends RController
     }
 
 
+    public function getUserIp()
+    {
+        return $_SERVER['REMOTE_ADDR'];
+    }
 
-//    public function forcastWithIcons($day, $info, $todayShowPartTimes)
-//    {
-//        $clockPartTime = ['night' => '00:00:00', 'morn' => '08:00:00', 'day' => '14:00:00', 'eve' => '19:00:00'];
-//        unset($day->weather);
-//        foreach ($todayShowPartTimes as $key => $partTime) {
-//            if ($key < 5) {
-//                $date = date('Y-m-d', $day->dt);
-//                $time = strtotime($date.' '.$clockPartTime[$partTime]);
-//                foreach ($info as $i){
-//                    if ($i->dt == $time){
-//                        $day->weather->$partTime->id = $i->weather[0]->id;
-//                        $day->weather->$partTime->main = $i->weather[0]->main;
-//                        $day->weather->$partTime->description = $i->weather[0]->description;
-//                        $day->weather->$partTime->icon = $i->weather[0]->icon;
-//                    }
-//                }
-//            } else {
-//                $date = date('Y-m-d', $day->dt);
-//                $time = strtotime($date.' '.$clockPartTime[$partTime])+24*60*60;
-//                foreach ($info as $i){
-//                    if ($i->dt == $time){
-//                        $day->weather->$partTime->id = $i->weather[0]->id;
-//                        $day->weather->$partTime->main = $i->weather[0]->main;
-//                        $day->weather->$partTime->description = $i->weather[0]->description;
-//                        $day->weather->$partTime->icon = $i->weather[0]->icon;
-//                    }
-//                }
-//            };
-//        }
-//        return $day;
-//    }
+    public function getUserLocation($ip)
+    {
+        $criteria = New CDbCriteria();
+        $criteria->addCondition(new CDbExpression('ip =:ip'));
+        $criteria->params=array('ip'=>$ip);
+        $model = UserLocations::model()->find($criteria);
+
+        if (!isset($model)){
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, [
+                CURLOPT_URL => "https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/".$ip,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+//                CURLOPT_PROXY => '104.236.82.228',
+//                CURLOPT_PROXYPORT => '4455',
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_HTTPHEADER => [
+                    "x-rapidapi-host: ip-geolocation-ipwhois-io.p.rapidapi.com",
+                    "x-rapidapi-key: 1649c3a1cfmshc85c50924650c9dp15d821jsn463a6545f164"
+                ],
+            ]);
+
+            $response = curl_exec($curl);
+
+            $err = curl_error($curl);
+
+            curl_close($curl);
+            $result = json_decode($response);
+
+            $model = new UserLocations();
+            $relation = new LocationsInfo();
+
+            foreach ($result as $key => $value){
+                if ($model->hasAttribute($key)){
+                    $model->$key = $value;
+                } elseif ($relation->hasAttribute($key)){
+                    $relation->$key = $value;
+                }
+            }
+
+            $content = file_get_contents($relation->country_flag);
+
+            $relation->country_flag = $relation->country_code.'.svg';
+
+            $uploadfolder = trim(Yii::app()->params['uploadfolder'], '/');
+
+            file_put_contents($uploadfolder.'/country_flags/'.$relation->country_code.'.svg', $content);
+
+            $model->locationInfo = $relation;
+
+            $model->saveWithRelated(array('locationInfo'));
+
+        }
+
+
+
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+            return $model;
+        }
+    }
+
+    public function  wDtoText($degree, $short = true){
+
+        $info = array(
+            0 => array(
+                'en' => array('North', 'North West', 'West', 'South West', 'South', 'South East', 'East', 'North East'),
+                'ru' => array('Север', 'Северо-запад', 'Запад', 'Юго-запад', 'Юг', 'Юго-восток', 'Восток', 'Северо-восток'),
+                'tk' => array('Demirgazyk', 'Demirgazyk-Günbatar', 'Günbatar', 'Günorta-Günbatar', 'Günorta', 'Günorta-Gündogar', 'Gündogar', 'Demirgazyk-Gündogar'),
+            ),
+            1 => array(
+                'en' => array('N', 'NW', 'W', 'SW', 'S', 'SE', 'E', 'NE'),
+                'ru' => array('С', 'СЗ', 'З', 'ЮЗ', 'Ю', 'ЮВ', 'В', 'СВ'),
+                'tk' => array('D', 'DG', 'G', 'GG', 'G', 'GG', 'G', 'DG'),
+            )
+        );
+        if ($short){
+            $select = 1;
+        } else {
+            $select = 0;
+        }
+        $lang = Yii::app()->language;
+        if ($degree>337.5){
+            return $info[$select][$lang][0];
+        }
+        if ($degree>292.5) {
+            return $info[$select][$lang][1];
+        }
+        if($degree>247.5) {
+            return $info[$select][$lang][2];
+        }
+        if($degree>202.5){
+            return $info[$select][$lang][3];
+        }
+        if($degree>157.5){
+            return $info[$select][$lang][4];
+        }
+        if($degree>122.5){
+            return $info[$select][$lang][5];
+        }
+        if($degree>67.5){
+            return $info[$select][$lang][6];
+        }
+        if($degree>22.5){
+            return $info[$select][$lang][7];
+        }
+        return $info[$select][$lang][0];
+
+    }
 
 }
