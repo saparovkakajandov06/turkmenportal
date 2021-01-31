@@ -349,7 +349,7 @@ return array (
     'search_query' => 'Search results for "query"',
     'search_query_advanced' => 'Search results for <span class = "term" > "query" </ span > ',
     'advert' => 'Adverts',
-    'footer_copy_right' => 'All rights reserved . </ br > When using materials from the site link to turkmenportal.com is required!',
+    'footer_copy_right' => 'All rights reserved .  When using materials from the site link to turkmenportal.com is required.',
     'obyawa_message1' => 'Dear Users, to add your ad select the appropriate category, then a section and fill in the required fields . ',
     'title' => 'Title',
     'Add' => ' +Add',

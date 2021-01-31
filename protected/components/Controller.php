@@ -478,6 +478,7 @@ class Controller extends RController
     }
 
 
+
     public function partOfDay($time)
     {
         if ($time >= '03-00-00' && $time <= '11-59-59') return 'morn';
@@ -634,5 +635,22 @@ class Controller extends RController
         return $info[$select][$lang][0];
 
     }
+
+    function isIosDevice(){
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $iosDevice = array('iphone', 'ipod', 'ipad');
+        $isIos = false;
+
+        foreach ($iosDevice as $val) {
+            if(stripos($userAgent, $val) !== false){
+                $isIos = true;
+                break;
+            }
+        }
+
+        return $isIos;
+    }
+
+
 
 }

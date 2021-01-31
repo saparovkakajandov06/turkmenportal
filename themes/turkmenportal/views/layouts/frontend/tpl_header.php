@@ -90,7 +90,7 @@ $themeUrl = Yii::app()->theme->baseUrl;
             <div class="col-md-4" style="padding:0px; padding-left: 0px;">
                 <div class="logoPanel hidden-xs">
                     <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/index'); ?>"><img class="img-responsive"
-                                src="<?php echo $themeUrl; ?>/img/taze-yyl-logo_2.png"></a>
+                                src="<?php echo $themeUrl; ?>/img/logo_tp.png?v=1"></a>
                 </div>
 
             </div>

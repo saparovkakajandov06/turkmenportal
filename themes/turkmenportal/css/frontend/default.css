@@ -11,9 +11,17 @@
     font-weight: normal;
     src: url("../../fonts/OpenSansCondensed/OpenSans-CondBold.ttf?") format("ttf"), url("../../fonts/OpenSansCondensed/OpenSans-CondBold.ttf");
 }
-
-.inline-block {
-    display: inline-block;
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../../fonts/Montserrat/Montserrat-Medium.ttf?") format("ttf"), url("../../fonts/Montserrat/Montserrat-Medium.ttf");
+}
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../../fonts/Montserrat/Montserrat-SemiBold.ttf?") format("ttf"), url("../../fonts/Montserrat/Montserrat-SemiBold.ttf");
 }
 
 .ellipsis {
@@ -518,7 +526,7 @@ ul.nav.navbar-nav > li a:hover {
 }
 
 .footer-area {
-    background: #2b2b2b none repeat scroll 0 0;
+    background: #111 none repeat scroll 0 0;
     border-top: 1px solid #616161;
     color: rgb(153, 153, 153);
     font: 13px/21px Arial, Helvetica, sans-serif;
@@ -1821,15 +1829,17 @@ span.footer_text_cr {
     display: block;
     margin: 0px;
     margin-bottom: 15px;
+    font-family: "Open Sans", sans-serif;
     /* text-align: center; */
     /* width: 70%; */
+
 }
 
 .footer_text_cr span {
     color: rgb(153, 153, 153);
     display: block;
-    font: 13px/21px Arial, Helvetica, sans-serif;
-    text-align: left;
+    font: 15px/21px Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 .loading {
@@ -4345,6 +4355,7 @@ body.mobilescreen .dashboard_news_block {
     margin-right: 4px;
 }
 
+
 /*weather page*/
 .forecast_top{
     font-size: 13px;
@@ -4403,6 +4414,139 @@ body.mobilescreen .dashboard_news_block {
 /*end weather page*/
 
 
+
+
+/*begin footer */
+.footer-area .footer-top{
+    margin-bottom: 0;
+}
+.footer_tp_logo{
+    height: 45px;
+    margin-bottom: 0px;
+}
+.footer-area ul{
+    text-align: center;
+    /*margin-top: 20px*/
+    padding: 0;
+}
+.footer-area ul li{
+    padding: 0 15px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px; ;
+}
+.footer-area .second li{
+    margin-top: 0px; ;
+}
+.footer-area ul li a{
+    color: #d6d6d6;
+    font-size: 14px;
+    font-family:  "Montserrat", sans-serif;
+    font-weight: normal;
+}
+.footer-area ul li + li{
+    border-left: 1px solid grey;
+}
+.footer-area h3{
+    font-family:  "Montserrat", sans-serif;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.footer-area hr{
+    /*margin-bottom: 10px;*/
+    border-top: 1px solid #454141;
+}
+.app_download_img_wrapper{
+    margin-top: 45px;
+    margin-bottom: 35px;
+}
+.app_download_img_wrapper a{
+    display: inline-block;
+    margin-bottom: 10px;
+
+}
+@media (max-width: 768px) {
+    .footer-area .second li{
+        margin-top: 20px; ;
+    }
+    .footer-area ul li + li{
+        border-left:none;
+    }
+    .footer-area ul li {
+        display: block;
+    }
+    .footer_tp_logo{
+        height: 45px;
+        margin-bottom: 10px;
+    }
+    .footer-area h3{
+        font-family:  "Montserrat", sans-serif;
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .app_download_img_wrapper{
+        margin-top: 45px;
+    }
+}
+/*end footer*/
+
+/* begin download app window*/
+.modal_download_app{
+    position: fixed;
+    box-shadow: 0 0 7px -1px rgb(1 1 1 / 60%);
+    padding: 10px 3px;
+    z-index: 999;
+    bottom: 0;
+    background-color: #fff;
+    display: none;
+}
+.d_b_main{
+    display: flex;
+    /*flex-direction: row;*/
+    flex-wrap: wrap;
+    flex-grow: 2;
+}
+.d_b_thumbs{
+    flex: 1;
+}
+.d_b_cation{
+    flex: 4;
+    padding: 0 10px;
+}
+.d_b_cation h3{
+    margin-top: 5px;
+}
+.d_b_description{
+    margin-top: 15px;
+    width: 100%;
+    font-size: 16px;
+}
+.d_b_btn_block{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.d_b_btn_block a{
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+.d_b_btn_block .download_btn{
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: #9f2913;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+.d_b_btn_block .close_btn{
+    /*margin-top: 10px;*/
+    padding: 10px 15px;
+
+}
+/*end donwlaod app window*/
 
 
 /*style by ecmngnt */
