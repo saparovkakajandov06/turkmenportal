@@ -32,9 +32,15 @@ class SearchController extends Controller
 
         foreach ($models as $key => $model){
             $data['models'][] = array(
+                'id' => $model->material->id,
                 'title' => $model->title,
                 'url' => 'https://turkmenportal.com'.$model->material->url,
-                'content' => $this->getFragment(strip_tags($model['text']), $query),
+                'image_url' => 'https://turkmenportal.com'.$model->material->getThumbPath(512, 288, 'w'),
+                'thumb_url' => 'https://turkmenportal.com'.$model->material->getThumbPath(256, 144, 'w'),
+                'date' => $model->material->date_added,
+                'cat_name' => $model->material->category->name,
+                'cat_id' => (int)$model->material->category->id,
+                'view_count' => (int)$model->material->visited_count,
             );
         }
         if (!isset($data)){
