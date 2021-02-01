@@ -514,11 +514,6 @@ class Controller extends RController
     }
 
 
-    public function getUserIp()
-    {
-        return $_SERVER['REMOTE_ADDR'];
-    }
-
     public function getUserLocation($ip)
     {
         $criteria = New CDbCriteria();
