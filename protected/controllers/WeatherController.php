@@ -45,7 +45,7 @@ class WeatherController extends Controller
             $this->lang = 'en';
         }
 
-        $ip = yii::app()->controller->getRealIp();
+        $ip = yii::app()->controller->getRealIp2();
 
 //        locally
 //        $ip = '185.69.185.239';
@@ -177,7 +177,7 @@ class WeatherController extends Controller
             $this->lang = 'en';
         }
 
-        $ip = yii::app()->controller->getRealIp();
+        $ip = yii::app()->controller->getRealIp2();
 
 //        locally
 //        $ip = '185.69.185.239';
