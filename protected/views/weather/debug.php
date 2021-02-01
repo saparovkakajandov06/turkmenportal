@@ -95,30 +95,29 @@ $tomorrow = YII::app()->controller->forcastWithIcons($daily[1],$hourly, $todaySh
         <?php
 
         echo "<br>HTTP_CLIENT_IP<br>";
-        echo $_SERVER['HTTP_CLIENT_IP'];
+        var_dump($_SERVER['HTTP_CLIENT_IP']);
 
 
 
         echo "<br>HTTP_X_FORWARDED_FOR<br>";
-        echo $_SERVER['HTTP_X_FORWARDED_FOR'];
+        var_dump($_SERVER['HTTP_X_FORWARDED_FOR']);
 
         echo "<br>HTTP_X_FORWARDED<br>";
-        echo $_SERVER['HTTP_X_FORWARDED'];
+        var_dump($_SERVER['HTTP_X_FORWARDED']);
 
 
         echo "HTTP_X_CLUSTER_CLIENT_IP<br>";
-        echo $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+        var_dump($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']);
 
         echo "<br>HTTP_FORWARDED_FOR<br>";
-        echo $_SERVER['HTTP_FORWARDED_FOR'];
+        var_dump($_SERVER['HTTP_FORWARDED_FOR']);
 
 
         echo "<br>HTTP_FORWARDED <br>";
-        echo $_SERVER['HTTP_FORWARDED'];
-
+        var_dump($_SERVER['HTTP_FORWARDED']);
 
         echo 'REMOTE_ADDR: <br>';
-        echo $_SERVER['REMOTE_ADDR'];
+        var_dump($_SERVER['REMOTE_ADDR']);
 
 
         ?>
