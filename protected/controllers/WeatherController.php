@@ -45,6 +45,27 @@ class WeatherController extends Controller
             $this->lang = 'en';
         }
 
+
+        $cities = New InfoCities();
+
+        if (!isset($_GET['city'])){
+            $model = clone $cities->findByPk(1290);
+        } else
+        $model = clone $cities->findByPk($_GET['city']);
+
+        if (isset($model)){
+            $this->lat = $model->lat;
+            $this->lon = $model->lon;
+        }
+
+        $topCities = $cities->selectVisibility();
+        $topCities = $topCities->getData();
+
+
+        $listCities = $cities->selectVisibility('list');
+        $listCities = $listCities->getData();
+
+
 //        $ip = yii::app()->controller->getRealIp2();
 
 //        locally
@@ -90,9 +111,7 @@ class WeatherController extends Controller
             $night = true;
         };
 
-//
-//        echo "<pre>";
-//        var_dump($current);die;
+
 
 
         $this->render('index', array(
@@ -102,6 +121,9 @@ class WeatherController extends Controller
             'hourly'=> $hourly,
             'daily' => $daily,
             'alerts' => $alerts,
+            'model' => $model,
+            'listCities' => $listCities,
+            'topCities' => $topCities,
 //            'minutely' => $minutely
         ));
 	}

@@ -4425,6 +4425,7 @@ body.mobilescreen .dashboard_news_block {
 .top_weather{
     display: flex;
     width: 100%;
+    align-items: center;
 }
 .current_weather{
     order: 2;
@@ -4479,6 +4480,11 @@ body.mobilescreen .dashboard_news_block {
 }
 .part_of_day{
     display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.weather_degree{
+    font-size: 16px;
 }
 .pod_w_caption{
     flex: 1;
@@ -4490,19 +4496,43 @@ body.mobilescreen .dashboard_news_block {
     margin: auto auto auto 0;
     text-align: left;
 }
+.pod_w_icon img{
+    width: 64px;
+}
 .daily_weather{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    margin-top: 40px;
 }
+.dw_item img{
+    width: 64px;
+}
+
 .dw_item{
     display: flex;
     flex-direction: column;
     align-items: left;
     padding: 10px;
+    color: #555;
+}
+.dw_item .day_of_week{
+    color: #000;
+}
+.dw_item .value{
+    /*font-size: 24px;*/
+    /*font-weight: 600;*/
+    color: #000;
+    margin-bottom: 0;
+}
+.dw_item span{
+    margin-top: 10px;
 }
 .date_day{
-    font-size: 12px;
+    color: #666;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 

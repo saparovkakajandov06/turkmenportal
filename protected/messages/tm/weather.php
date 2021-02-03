@@ -21,6 +21,7 @@ return array(
     '_pressure' => 'Gekto Paskal',
     'wind_speed_' => 'm/s',
     '_wind_speed' => 'Metr sekuntda',
+    'Other cities' => 'Başga şäherler',
 
 
 
