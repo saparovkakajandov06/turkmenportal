@@ -20,6 +20,7 @@ return array(
     '_pressure' => 'Гектопаскаль',
     'wind_speed_' => 'м/с',
     '_wind_speed' => 'Метр в секунду',
+    'Other cities' => 'Другие города',
 
 
 

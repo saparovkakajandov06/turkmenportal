@@ -4411,6 +4411,134 @@ body.mobilescreen .dashboard_news_block {
 }
 
 
+/*second option*/
+.weather_wrapper{
+    padding: 15px;
+}
+.deg:after{
+    content: "°";
+}
+.weather_wrapper{
+    /*display: flex;*/
+    /*width: 100%;*/
+}
+.top_weather{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.current_weather{
+    order: 2;
+    flex: 4;
+    margin-left: 40px;
+    position: relative;
+}
+.current_weather_info{
+    display: flex;
+    flex-direction: column;
+}
+.current_weather .dropdown{
+    position: static;
+}
+.cw_top{
+    display: flex;
+    align-items: flex-end;
+}
+.cw_top .dropdown{
+    margin: 20px 0 10px 0;
+}
+.other_cities_block a{
+    margin-left: 10px;
+}
+.other_cities_list{
+    padding: 15px;
+    width: 100%;
+    top: 75px;
+}
+.other_cities_list ul{
+    float: left;
+    width: 33.3333%;
+}
+.other_cities_list ul li a{
+    padding: 0 10px;
+}
+.current_weather_caption{
+    display: flex;
+}
+.current_weather_caption img{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.cwp_val{
+    font-size: 150px;
+}
+.part_of_day_weahter{
+    order: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.part_of_day{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.weather_degree{
+    font-size: 16px;
+}
+.pod_w_caption{
+    flex: 1;
+    margin: auto 0 auto auto;
+    text-align: center;
+}
+.pod_w_icon{
+    flex: 1;
+    margin: auto auto auto 0;
+    text-align: left;
+}
+.pod_w_icon img{
+    width: 64px;
+}
+.daily_weather{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.dw_item img{
+    width: 64px;
+}
+
+.dw_item{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 10px;
+    color: #555;
+}
+.dw_item .day_of_week{
+    color: #000;
+}
+.dw_item .value{
+    /*font-size: 24px;*/
+    /*font-weight: 600;*/
+    color: #000;
+    margin-bottom: 0;
+}
+.dw_item span{
+    margin-top: 10px;
+}
+.date_day{
+    color: #666;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+
+/*second option*/
+
+
 /*end weather page*/
 
 
