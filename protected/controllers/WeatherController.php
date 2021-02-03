@@ -113,7 +113,7 @@ class WeatherController extends Controller
 
 
 
-        if (isset($data)){
+        if (!isset($data)){
             $this->render('index', array(
 //            'geoCodeInfo' => $geoCodeInfo,
                 'data' => $this->data,
