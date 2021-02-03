@@ -391,6 +391,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        Yii::app()->cache->flush();
         $this->layout = '//layouts/column2_wrapper';
         $this->pageTitle = Yii::t('app', 'site_name');
         $modelBlog = new Blog('search');
