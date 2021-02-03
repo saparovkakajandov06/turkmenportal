@@ -646,25 +646,24 @@ class Controller extends RController
         return $isIos;
     }
 
-
-    public function getRealIp2()
+    public function renderDateWeekDay($date, $weekday = 'N')
     {
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        $weeks = array(
+            "tk" => array("", 'Duşenbe', 'Sişenbe', 'Çarşenbe', 'Perşenbe', 'Anna', 'Şenbe', 'Ýekşenbe'),
+            "ru" => array("", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"),
+            "en" => array("", 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
+        );
+
+        if (!is_int($date)) {
+            $date = strtotime($date);
         }
-        $client  = @$_SERVER['HTTP_CLIENT_IP'];
-        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote  = $_SERVER['REMOTE_ADDR'];
 
-        if(filter_var($client, FILTER_VALIDATE_IP)) { $ip = $client; }
-        elseif(filter_var($forward, FILTER_VALIDATE_IP)) { $ip = $forward; }
-        else { $ip = $remote; }
+        $str = "";
+        if (isset($weekday))
+            $str = $str . " " . $weeks[Yii::app()->language][ltrim(date($weekday, $date), "0")];
 
-        return $ip;
+        return $str;
     }
-
-
 
 
 }

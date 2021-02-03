@@ -45,17 +45,17 @@ class WeatherController extends Controller
             $this->lang = 'en';
         }
 
-        $ip = yii::app()->controller->getRealIp2();
+//        $ip = yii::app()->controller->getRealIp2();
 
 //        locally
 //        $ip = '185.69.185.239';
-        $location = yii::app()->controller->getUserLocation($ip);
+//        $location = yii::app()->controller->getUserLocation($ip);
+//
+//        $this->lat  = $location->latitude;
+//        $this->lon  = $location->longitude;
 
-        $this->lat  = $location->latitude;
-        $this->lon  = $location->longitude;
 
-
-        $geoCodeInfo = $this->getGeoCode();
+//        $geoCodeInfo = $this->getGeoCode();
 
 
         if (Yii::app()->language !== 'tm'){
@@ -63,8 +63,9 @@ class WeatherController extends Controller
         } else {
             $this->lang = 'en';
         }
-
         $weahter = $this->getWeather();
+
+//        var_dump($this->lat);die;
 
         $this->data = json_decode($weahter);
 
@@ -95,7 +96,7 @@ class WeatherController extends Controller
 
 
         $this->render('index', array(
-            'geoCodeInfo' => $geoCodeInfo,
+//            'geoCodeInfo' => $geoCodeInfo,
             'data' => $this->data,
             'current' => $current,
             'hourly'=> $hourly,
@@ -118,14 +119,14 @@ class WeatherController extends Controller
         bindtextdomain("openweather", Yii::getPathOfAlias('application.widgets.OpenWeather.i18n'));
         textdomain("openweather");
         $date = new DateTime();
-        if (!is_file(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json') || (time() - filemtime(Yii::getPathOfAlias('application.runtime.OpenWeather') .'/'. $this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json')) > 60) {
+        if (!is_file(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json') || (time() - filemtime(Yii::getPathOfAlias('application.runtime.OpenWeather') .'/'. $this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json')) > 3600) {
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $this->apiURL . 'lat='.$this->lat .'&lon='. $this->lon.'&units='.$this->units. '&appid=' . $this->apiKey. '&lang=' . $this->lang);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 //           locally
-//            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
-//            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
+            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
+            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
 
 
             $data = curl_exec($curl);
@@ -136,7 +137,6 @@ class WeatherController extends Controller
         } else {
             $data = file_get_contents(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json');
         }
-
         return $data;
     }
 
@@ -167,73 +167,73 @@ class WeatherController extends Controller
     }
 
 
-    public function actionDebug()
-    {
-        $this->layout = '//layouts/weather/weatherColumn';
-
-        if (Yii::app()->language !== 'tm'){
-            $this->lang = Yii::app()->language;
-        } else {
-            $this->lang = 'en';
-        }
-
-        $ip = yii::app()->controller->getRealIp2();
-
-//        locally
-//        $ip = '185.69.185.239';
-        $location = yii::app()->controller->getUserLocation($ip);
-
-        $this->lat  = $location->latitude;
-        $this->lon  = $location->longitude;
-
-
-        $geoCodeInfo = $this->getGeoCode();
-
-
-        if (Yii::app()->language !== 'tm'){
-            $this->lang = Yii::app()->language;
-        } else {
-            $this->lang = 'en';
-        }
-
-        $weahter = $this->getWeather();
-
-        $this->data = json_decode($weahter);
-
-
-        if (isset($this->data->current)){
-            $current = $this->data->current;
-        }
-        if (isset($this->data->hourly)){
-            $hourly = $this->data->hourly;
-        }
-        if (isset($this->data->daily)){
-            $daily = $this->data->daily;
-        }
-        if (isset($this->data->alerts)){
-            $alerts = $this->data->alerts;
-        }
-        if (isset($this->data->minutely)){
-            $minutely = $this->data->minutely;
-        }
-        $night = false;
-        if ($current->dt < $current->sunrise || $current->dt > $current->sunset) {
-            $night = true;
-        };
-
-
-        $this->render('debug', array(
-            'ip' => $ip,
-            'location' => $location,
-            'geoCodeInfo' => $geoCodeInfo,
-            'data' => $this->data,
-            'current' => $current,
-            'hourly'=> $hourly,
-            'daily' => $daily,
-            'alerts' => $alerts,
-//            'minutely' => $minutely
-        ));
-    }
+//    public function actionDebug()
+//    {
+//        $this->layout = '//layouts/weather/weatherColumn';
+//
+//        if (Yii::app()->language !== 'tm'){
+//            $this->lang = Yii::app()->language;
+//        } else {
+//            $this->lang = 'en';
+//        }
+//
+////        $ip = yii::app()->controller->getRealIp2();
+//
+////        locally
+////        $ip = '185.69.185.239';
+////        $location = yii::app()->controller->getUserLocation($ip);
+//
+//        $this->lat  = $location->latitude;
+//        $this->lon  = $location->longitude;
+//
+//
+//        $geoCodeInfo = $this->getGeoCode();
+//
+//
+//        if (Yii::app()->language !== 'tm'){
+//            $this->lang = Yii::app()->language;
+//        } else {
+//            $this->lang = 'en';
+//        }
+//
+//        $weahter = $this->getWeather();
+//
+//        $this->data = json_decode($weahter);
+//
+//
+//        if (isset($this->data->current)){
+//            $current = $this->data->current;
+//        }
+//        if (isset($this->data->hourly)){
+//            $hourly = $this->data->hourly;
+//        }
+//        if (isset($this->data->daily)){
+//            $daily = $this->data->daily;
+//        }
+//        if (isset($this->data->alerts)){
+//            $alerts = $this->data->alerts;
+//        }
+//        if (isset($this->data->minutely)){
+//            $minutely = $this->data->minutely;
+//        }
+//        $night = false;
+//        if ($current->dt < $current->sunrise || $current->dt > $current->sunset) {
+//            $night = true;
+//        };
+//
+//
+//        $this->render('debug', array(
+//            'ip' => $ip,
+//            'location' => $location,
+//            'geoCodeInfo' => $geoCodeInfo,
+//            'data' => $this->data,
+//            'current' => $current,
+//            'hourly'=> $hourly,
+//            'daily' => $daily,
+//            'alerts' => $alerts,
+////            'minutely' => $minutely
+//        ));
+//    }
 
 
 
