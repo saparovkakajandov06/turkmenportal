@@ -113,19 +113,25 @@ class WeatherController extends Controller
 
 
 
-
-        $this->render('index', array(
+        if (isset($data)){
+            $this->render('index', array(
 //            'geoCodeInfo' => $geoCodeInfo,
-            'data' => $this->data,
-            'current' => $current,
-            'hourly'=> $hourly,
-            'daily' => $daily,
-            'alerts' => $alerts,
-            'model' => $model,
-            'listCities' => $listCities,
-            'topCities' => $topCities,
+                'data' => $this->data,
+                'current' => $current,
+                'hourly'=> $hourly,
+                'daily' => $daily,
+                'alerts' => $alerts,
+                'model' => $model,
+                'listCities' => $listCities,
+                'topCities' => $topCities,
 //            'minutely' => $minutely
-        ));
+            ));
+        } else {
+            $this->render('error', array(
+//
+            ));
+        }
+
 	}
 
 
@@ -147,8 +153,8 @@ class WeatherController extends Controller
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 //           locally
-            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
-            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
+//            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
+//            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
 
 
             $data = curl_exec($curl);
