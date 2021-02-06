@@ -42,7 +42,7 @@ class BlogsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w'),
                 'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
@@ -72,7 +72,7 @@ class BlogsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
-        $image = 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w');
+        $image = 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w');
         $image_info = getimagesize($image);
         $image_width = $image_info[0];
         $image_height = $image_info[1];
@@ -127,7 +127,7 @@ class BlogsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w'),
                 'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,

@@ -45,7 +45,7 @@ class MediasController extends Controller
             $mainDoc = $model->getDocument();
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
-                $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
@@ -64,14 +64,14 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                    $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                     $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
                     $images = [];
                     foreach ($mainDoc as $doc){
-                        $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'w', false, false);
+                        $images[] = 'https://turkmenportal.com'.$doc->resize(720, 576, 'w', false, false);
                     }
                 }
                 $extra = [
@@ -140,7 +140,7 @@ class MediasController extends Controller
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $per_page --;
                 $extra = [];
-                $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
@@ -191,7 +191,7 @@ class MediasController extends Controller
             $mainDoc = $model->getDocument();
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
-                $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
@@ -210,7 +210,7 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                    $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                     $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
@@ -218,7 +218,7 @@ class MediasController extends Controller
                     $images = [];
                     $thumbs = [];
                     foreach ($mainDoc as $doc){
-                        $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'w', false, false);
+                        $images[] = 'https://turkmenportal.com'.$doc->resize(720, 576, 'w', false, false);
                         $thumbs[] = 'https://turkmenportal.com'.$doc->resize(256, 144, 'w', false, false);
                     }
                 }
