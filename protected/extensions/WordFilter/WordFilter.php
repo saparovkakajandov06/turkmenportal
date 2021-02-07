@@ -55,8 +55,8 @@ class WordFilter extends CApplicationComponent
         $value = explode(' ', $value);
 
         foreach ($data as $datum) {
-            if (in_array(ucfirst($datum), $value)) return false;
-            if (in_array(lcfirst($datum), $value)) return false;
+            if (in_array(ucfirst(trim($datum)), $value)) return false;
+            if (in_array(lcfirst(trim($datum)), $value)) return false;
 
         }
 
