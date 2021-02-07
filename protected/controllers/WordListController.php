@@ -72,7 +72,7 @@ class WordListController extends Controller
 		{
 			$model->attributes=$_POST['WordList'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
