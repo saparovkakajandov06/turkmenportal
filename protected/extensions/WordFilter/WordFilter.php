@@ -51,11 +51,16 @@ class WordFilter extends CApplicationComponent
 
         $data = json_decode($data, true);
 
+        $value = str_word_count($value, 1);
 
-        $value = explode(' ', $value);
+        unset($content);
+
+        foreach ($value as $val){
+            $content[] = strtoupper($val);
+        }
 
         foreach ($data as $datum) {
-            if (in_array(strtoupper(trim($datum)), strtoupper($value))) return false;
+            if (in_array(strtoupper(trim($datum)), $content)) return false;
         }
 
         return true;
