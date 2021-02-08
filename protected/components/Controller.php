@@ -280,7 +280,7 @@ class Controller extends RController
     }
 
 
-    public function renderDateToWord($date)
+    public function renderDateToWord($date, $year = true)
     {
         $date_str = '';
         $months = array(
@@ -292,9 +292,12 @@ class Controller extends RController
         if (!is_int($date)) {
             $date = strtotime($date);
         }
-
-        $str = date('d', $date) . " " . $months[Yii::app()->language][ltrim(date('m', $date), "0")] . " " . date('Y', $date);
+        $str = date('d', $date) . " " . $months[Yii::app()->language][ltrim(date('m', $date), "0")];
 //            echo $months[Yii::app()->language][date ('m',$date)];
+        if ($year)
+            $str = $str . " " . date('Y', $date);
+
+
         return $str;
     }
 

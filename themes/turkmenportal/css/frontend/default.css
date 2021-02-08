@@ -4416,7 +4416,7 @@ body.mobilescreen .dashboard_news_block {
     padding: 15px;
 }
 .deg:after{
-    content: "°";
+    /*content: '°';*/
 }
 .weather_wrapper{
     /*display: flex;*/
@@ -4425,7 +4425,8 @@ body.mobilescreen .dashboard_news_block {
 .top_weather{
     display: flex;
     width: 100%;
-    align-items: center;
+    /*align-items: center;*/
+    padding: 50px 0;
 }
 .current_weather{
     order: 2;
@@ -4436,6 +4437,7 @@ body.mobilescreen .dashboard_news_block {
 .current_weather_info{
     display: flex;
     flex-direction: column;
+    margin-left: 20px;
 }
 .current_weather .dropdown{
     position: static;
@@ -4466,8 +4468,9 @@ body.mobilescreen .dashboard_news_block {
     display: flex;
 }
 .current_weather_caption img{
-    margin-top: auto;
+    margin-top: 0;
     margin-bottom: auto;
+    width: 40%;
 }
 .cwp_val{
     font-size: 150px;
@@ -4484,7 +4487,7 @@ body.mobilescreen .dashboard_news_block {
     margin-bottom: 10px;
 }
 .weather_degree{
-    font-size: 16px;
+    font-size: 18px;
 }
 .pod_w_caption{
     flex: 1;
@@ -4503,7 +4506,10 @@ body.mobilescreen .dashboard_news_block {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-top: 40px;
+}
+.daily_weather_bg_color{
+    background-color: #f4faff;
+    padding: 30px 0;
 }
 .dw_item img{
     width: 64px;

@@ -153,8 +153,8 @@ class WeatherController extends Controller
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 //           locally
-//            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
-//            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
+            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
+            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
 
 
             $data = curl_exec($curl);
@@ -165,6 +165,7 @@ class WeatherController extends Controller
         } else {
             $data = file_get_contents(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json');
         }
+
         return $data;
     }
 

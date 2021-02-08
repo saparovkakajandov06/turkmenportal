@@ -141,15 +141,15 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                 <div class="current_weather_caption">
                     <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="" >
                     <div class="current_weather_info">
-                        <span class="cwp_val deg"><?=round($current->temp)?></span>
+                        <span class="cwp_val deg"><?=round($current->temp)?>&deg;</span>
                         <span><?=$current->weather[0]->description?></span>
-                        <span class="deg"><?=yii::t('weather','Feels Like')?> <?=round($current->feels_like)?></span>
-                        <span class="deg"><?=yii::t('weather','Humidity')?> <?=$current->humidity?> %</span>
-                        <span><?=yii::t('weather','Pressure')?> <?=$current->pressure?> <?=yii::t('weather','pressure_')?></span>
+                        <span class="deg"><?=yii::t('weather','Feels Like')?> <b><?=round($current->feels_like)?></b>&deg;</span>
+                        <span><?=yii::t('weather','Humidity')?> <b><?=$current->humidity?> %</b></span>
+                        <span><?=yii::t('weather','Pressure')?> <b><?=$current->pressure?></b> <?=yii::t('weather','pressure_')?></span>
                         <span>
                         <?=yii::t('weather','Wind')?>
                             <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($current->wind_deg)?>deg)"></i>
-                            <?=round($current->wind_speed)?>
+                            <b><?=round($current->wind_speed)?></b>
                             <?=Yii::t('weather', 'wind_speed_')?>
                             <?=Yii::app()->controller->wDtoText($current->wind_deg,1)?>
                     </span>
@@ -157,7 +157,10 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                 </div>
             </div>
             <div class="part_of_day_weahter">
-
+                <div class="text-center">
+                    <h4><?=Yii::t('app', 'today')?></h4>
+                    <h5><?=yii::app()->controller->renderDateToWord(time(), false)?></h5>
+                </div>
                 <?php
                 foreach ($todayShowPartTimes as $key => $partTime):
                     if ($key < 5){
@@ -177,9 +180,9 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     ?>
                     <div class="part_of_day">
                         <div class="pod_w_caption">
-                            <h3><?=yii::t('weather', $namePartTime) ?></h3>
+                            <h5><?=yii::t('weather', $namePartTime) ?></h5>
                             <span class="weather_degree deg">
-                            <?=round($weatherInfo->temp->$partTime)?>
+                            <b><?=round($weatherInfo->temp->$partTime)?></b>&deg;
                         </span>
                         </div>
                         <div class="pod_w_icon">
@@ -196,54 +199,58 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                 <?php $this->renderPartial('/layouts/weather/weatherColumnSidebar'); ?>
     </div>
 </div>
-<div class="weather_wrapper">
-    <div class="daily_weather">
 
-        <?php
-        $i = 0;
 
-        foreach ($daily as $item){
-            $i++;
-            if ($i == 8) break;
-            $dToday = date('Y:m:d');
-            if (date('Y:m:d',$item->dt) === $dToday) continue;
+<div class="row daily_weather_bg_color">
+    <div class="weather_wrapper">
+        <div class="daily_weather">
 
-            $id  = $item->weather[0]->id;
-            if (substr($item->weather[0]->icon,-1) === 'n'){
-                $icon = $iconsInfo[$id].'n';
-            } else {
-                $icon = $iconsInfo[$id].'d';
-            }
+            <?php
+            $i = 0;
 
-            $feels_likeMax = $item->feels_like->day;
-            $feels_likeMin = $item->feels_like->day;
+            foreach ($daily as $item){
+                $i++;
+                if ($i == 8) break;
+                $dToday = date('Y:m:d');
+                if (date('Y:m:d',$item->dt) === $dToday) continue;
 
-            foreach ($item->feels_like as $fl){
-                if ($feels_likeMax < $fl) $feels_likeMax = $fl;
-                if ($feels_likeMin > $fl) $feels_likeMin = $fl;
+                $id  = $item->weather[0]->id;
+                if (substr($item->weather[0]->icon,-1) === 'n'){
+                    $icon = $iconsInfo[$id].'n';
+                } else {
+                    $icon = $iconsInfo[$id].'d';
+                }
+
+                $feels_likeMax = $item->feels_like->day;
+                $feels_likeMin = $item->feels_like->day;
+
+                foreach ($item->feels_like as $fl){
+                    if ($feels_likeMax < $fl) $feels_likeMax = $fl;
+                    if ($feels_likeMin > $fl) $feels_likeMin = $fl;
+                }
+
+                ?>
+
+                <div class="dw_item">
+                    <h3 class="day_of_week"><?=Yii::app()->controller->renderDateWeekDay($item->dt)?> <br> <span class="date_day"><?=date('j.m',$item->dt)?></span></h3>
+                    <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
+                    <h1 class="value deg"><?=round($item->temp->min)?>...<?=round($item->temp->max)?>&deg;</h1>
+                    <h3 class="feels_like deg"><span style="font-size: 15px;font-weight: 100;"></span><?=round($feels_likeMin)?>...<?=round($feels_likeMax)?>&deg;</h3>
+                    <span class="w_wind">
+                        <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($item->wind_deg)?>deg)"></i>
+                    <b><?=round($item->wind_speed)?></b>
+                        <?=Yii::app()->controller->wDtoText($item->wind_deg,1)?>
+                        <?=Yii::t('weather', 'wind_speed_')?>
+                    </span>
+                    <span class="w_pressure"><?=yii::t('weather','Pressure')?> <b><?=$item->pressure?></b> <?=yii::t('weather','pressure_')?></span>
+                    <span class="w_humidity"><?=yii::t('weather', 'Humidity')?> <b><?=$item->humidity?></b> %</span>
+                </div>
+                <?php
+
             }
 
             ?>
 
-            <div class="dw_item">
-                <h3 class="day_of_week"><?=Yii::app()->controller->renderDateWeekDay($item->dt)?> <br> <span class="date_day"><?=date('j',$item->dt)?></span></h3>
-                <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
-                <h1 class="value deg"><?=round($item->temp->min)?>...<?=round($item->temp->max)?></h1>
-                <h3 class="feels_like deg"><?=round($feels_likeMin)?>...<?=round($feels_likeMax)?></h3>
-                <span class="w_wind">
-                        <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($item->wind_deg)?>deg)"></i>
-                    <?=round($item->wind_speed)?>
-                    <?=Yii::app()->controller->wDtoText($item->wind_deg,1)?>
-                    <?=Yii::t('weather', 'wind_speed_')?>
-                    </span>
-                <span class="w_pressure"><?=yii::t('weather','Pressure')?> <?=$item->pressure?> <?=yii::t('weather','pressure_')?></span>
-                <span class="w_humidity"><?=yii::t('weather', 'Humidity')?> <?=$item->humidity?> %</span>
-            </div>
-            <?php
-
-        }
-
-        ?>
-
+        </div>
     </div>
 </div>
