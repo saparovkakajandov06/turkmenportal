@@ -5,6 +5,7 @@ class BlogsController extends Controller
 
     public function actionIndex()
     {
+        $_GET['api'] = true;
         if (isset($_GET['cat_id'])){
             if ($_GET['cat_id'] == 0){
                 $cat_id = 282;
@@ -13,10 +14,7 @@ class BlogsController extends Controller
         } else{
             $cat_id = 282;
         }
-        if (isset($_GET['page']))
-            $page = (int)$_GET['page'];
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
+
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -26,6 +24,7 @@ class BlogsController extends Controller
         yii::app()->language = $hl;
 
         $modelBlog = new Blog('search');
+
         $modelCategory = Category::model()->findByPk($cat_id);
 
 
@@ -34,9 +33,9 @@ class BlogsController extends Controller
         }
     elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
         $modelBlog->parent_category_id = $modelCategory->id;
-        $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
-        $models = $dataProvider->getData();
 
+        $dataProvider = $modelBlog->searchForCategory(0);
+        $models = $dataProvider->getData();
         foreach ($models as $key => $model){
             $data['models'][] = array(
                 'id' => (int)$model->id,
@@ -72,10 +71,15 @@ class BlogsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
-        $image = 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w');
-        $image_info = getimagesize($image);
-        $image_width = $image_info[0];
-        $image_height = $image_info[1];
+        $image = $model->getThumbPath(720, 576, 'w');
+
+        if (strlen($image) > 5){
+            $image = 'https://turkmenportal.com'.$image;
+            $image_info = getimagesize($image);
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
+        }
+
         if (isset($model)){
             $content = $model->getText();
             $pattern = '/&nbsp;/';

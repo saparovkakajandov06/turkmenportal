@@ -38,6 +38,7 @@ class Catalog extends ActiveRecord {
     public $title, $description, $content, $name, $file, $image, $mini_search, $category_name;
     public $catalog_category_id, $parent_category_code, $category_code;
     public $except;
+    public $default_scope = array('enabled', 'sort_date_modified');
     /**
      * @return string the associated database table name
      */
@@ -297,6 +298,12 @@ class Catalog extends ActiveRecord {
 
 
     public function searchForCategory($limit = 50, $models = false, $beforeToday = null) {
+
+        if (isset($_GET['page']))
+            $page = (int)$_GET['page'];
+        if (isset($_GET['per_page']))
+            $per_page = (int)$_GET['per_page'];
+
         $criteria = new CDbCriteria;
 //            $criteria->with=array("category");
 
@@ -335,12 +342,19 @@ class Catalog extends ActiveRecord {
         }
 
 //            $criteria->select=array('id','category_id','title_'.Yii::app()->language,'content_'.Yii::app()->language);
-        $criteria->scopes = array('enabled', 'sort_date_modified');
+        $criteria->scopes = $this->default_scope;
 
         if ($limit > 0) {
             $criteria->limit = $limit;
             $criteria->offset = 0;
         }
+
+        if ($per_page === 0 && $_GET['api']){
+            $per_page = 10;
+        } else {
+            $per_page = $per_page ? $per_page : Yii::app()->params['pageSize'];
+        }
+        if (!$_GET['api']) $page--;
 
         if ($models == false) {
 //               $dp= new CActiveDataProvider(self::model()->cache(Yii::app()->params['cache_duration'],new CTagCacheDependency(get_class($this)), 2),
@@ -348,8 +362,9 @@ class Catalog extends ActiveRecord {
                 array(
                     'criteria' => $criteria,
                     'pagination' => ($limit > 0) ? false : array(
-                        'pageSize' => Yii::app()->params['pageSize'],
+                        'pageSize' => $per_page,
                         'pageVar' => 'page',
+                        'currentPage' => $page,
                     ),
                 ));
             return $dp;
