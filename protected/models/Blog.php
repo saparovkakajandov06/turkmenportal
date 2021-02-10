@@ -457,6 +457,12 @@ class Blog extends ActiveRecord
 
     public function searchForCategory($limit = 5, $models = false)
     {
+        if (isset($_GET['page']))
+            $page = (int)$_GET['page'];
+        if (isset($_GET['per_page']))
+            $per_page = (int)$_GET['per_page'];
+
+
         $criteria = new CDbCriteria;
 
         if (isset($this->parent_category_id)) {
@@ -497,6 +503,13 @@ class Blog extends ActiveRecord
             }
         }
 
+        if ($per_page === 0 && $_GET['api']){
+            $per_page = 10;
+        } else {
+            $per_page = $per_page ? $per_page : Yii::app()->params['pageSize'];
+        }
+        if (!$_GET['api']) $page--;
+
         $criteria->select = array('t.id', 't.title_' . Yii::app()->language, 't.text_' . Yii::app()->language, 't.alias_' . Yii::app()->language, 't.description_' . Yii::app()->language, 'visited_count', 'date_added', 'category_id', 'like_count', 'status', 'is_photoreport');
         if ($models == false) {
             $dp = new CActiveDataProvider($this->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency(get_class($this)), 2),
@@ -504,8 +517,9 @@ class Blog extends ActiveRecord
                 array(
                     'criteria' => $criteria,
                     'pagination' => ($limit > 0) ? false : array(
-                        'pageSize' => Yii::app()->params['pageSize'],
+                        'pageSize' => $per_page,
                         'pageVar' => 'page',
+                        'currentPage' => $page,
                     ),
                 ));
 //                $dp->setTotalItemCount(count($this->findAll($criteria)));
