@@ -67,7 +67,7 @@ $iconsInfo  = array(
 $this->breadcrumbs=array(
 	Yii::t('weather', 'Weather Forecast'),
 );
-
+//
 $today = clone $daily[0];
 $tomorrow = clone $daily[1];
 
@@ -103,163 +103,8 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 
 ?>
 
-<div class="row hidden-xs hidden-sm">
-    <div class="col-md-8">
-        <div class="top_weather">
-            <div class="current_weather">
-                <div class="cw_top">
-                    <h1><?=Yii::t('weather', 'Now')?>, <?=$model->getName()?></h1>
-                    <div class="dropdown other_cities_block">
-                        <a href="#" class="dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?=yii::t('weather', 'Other cities')?>
-                            <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu other_cities_list" aria-labelledby="dropdownMenu2">
-                            <?php
-                                $sum = 0;
-                                $delimiter = 5;
-                                $count = count($topCities);
-                                foreach ($topCities  as $key => $city):
-                                if ($key == 0 || $key === $sum){
-                                    $sum += $delimiter;
-                                    echo "<ul class='list-unstyled'>";
-                                }
 
-                            ?>
-                                <li><?=CHtml::link($city->getName(),'?city='.$city->id)?></li>
-
-                            <?php
-                                if ($key == $sum-1 || $key == $count-1){
-                                    echo "</ul>";
-                                }
-                                endforeach;
-                            ?>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="current_weather_caption">
-                    <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="" >
-                    <div class="current_weather_info">
-                        <span class="cwp_val deg"><?=round($current->temp)?>&deg;</span>
-                        <span><?=$current->weather[0]->description?></span>
-                        <span class="deg"><?=yii::t('weather','Feels Like')?> <b><?=round($current->feels_like)?></b>&deg;</span>
-                        <span><?=yii::t('weather','Humidity')?> <b><?=$current->humidity?> %</b></span>
-                        <span><?=yii::t('weather','Pressure')?> <b><?=$current->pressure?></b> <?=yii::t('weather','pressure_')?></span>
-                        <span>
-                        <?=yii::t('weather','Wind')?>
-                            <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($current->wind_deg)?>deg)"></i>
-                            <b><?=round($current->wind_speed)?></b>
-                            <?=Yii::t('weather', 'wind_speed_')?>
-                            <?=Yii::app()->controller->wDtoText($current->wind_deg,1)?>
-                    </span>
-                    </div>
-                </div>
-            </div>
-            <div class="part_of_day_weahter">
-                <div class="text-center">
-                    <h4><?=Yii::t('app', 'today')?></h4>
-                    <h5><?=yii::app()->controller->renderDateToWord(time(), false)?></h5>
-                </div>
-                <?php
-                foreach ($todayShowPartTimes as $key => $partTime):
-                    if ($key < 5){
-                        $weatherInfo = $today;
-                        $namePartTime = $partTime;
-                    } else {
-                        $weatherInfo = $tomorrow;
-                        $namePartTime = 't '.$partTime;
-                    }
-                    $id  = $weatherInfo->weather->$partTime->id;
-                    if (substr($weatherInfo->weather->$partTime->icon,-1) === 'n'){
-                        $icon = $iconsInfo[$id].'n';
-                    } else {
-                        $icon = $iconsInfo[$id].'d';
-                    }
-
-                    ?>
-                    <div class="part_of_day">
-                        <div class="pod_w_caption">
-                            <h5><?=yii::t('weather', $namePartTime) ?></h5>
-                            <span class="weather_degree deg">
-                            <b><?=round($weatherInfo->temp->$partTime)?></b>&deg;
-                        </span>
-                        </div>
-                        <div class="pod_w_icon">
-                            <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
-                        </div>
-                    </div>
-                <?php
-                endforeach;
-                ?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-                <?php $this->renderPartial('/layouts/weather/weatherColumnSidebar'); ?>
-    </div>
-</div>
-
-
-<div class="row daily_weather_bg_color hidden-xs hidden-sm">
-    <div class="weather_wrapper">
-        <div class="daily_weather">
-
-            <?php
-            $i = 0;
-
-            foreach ($daily as $item){
-                echo "<pre>";
-                var_dump($item);die;
-                $i++;
-                if ($i == 8) break;
-                $dToday = date('Y:m:d');
-                if (date('Y:m:d',$item->dt) === $dToday) continue;
-
-                $id  = $item->weather[0]->id;
-                if (substr($item->weather[0]->icon,-1) === 'n'){
-                    $icon = $iconsInfo[$id].'n';
-                } else {
-                    $icon = $iconsInfo[$id].'d';
-                }
-
-                $feels_likeMax = $item->feels_like->day;
-                $feels_likeMin = $item->feels_like->day;
-
-                foreach ($item->feels_like as $fl){
-                    if ($feels_likeMax < $fl) $feels_likeMax = $fl;
-                    if ($feels_likeMin > $fl) $feels_likeMin = $fl;
-                }
-
-                ?>
-
-                <div class="dw_item">
-                    <h3 class="day_of_week"><?=Yii::app()->controller->renderDateWeekDay($item->dt)?> <br> <span class="date_day"><?=date('j.m',$item->dt)?></span></h3>
-                    <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
-                    <h1 class="value deg"><?=round($item->temp->min)?>...<?=round($item->temp->max)?>&deg;</h1>
-                    <h3 class="feels_like deg"><span style="font-size: 15px;font-weight: 100;"></span><?=round($feels_likeMin)?>...<?=round($feels_likeMax)?>&deg;</h3>
-                    <span class="w_wind">
-                        <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($item->wind_deg)?>deg)"></i>
-                    <b><?=round($item->wind_speed)?></b>
-                        <?=Yii::app()->controller->wDtoText($item->wind_deg,1)?>
-                        <?=Yii::t('weather', 'wind_speed_')?>
-                    </span>
-                    <span class="w_pressure"><?=yii::t('weather','Pressure')?> <b><?=$item->pressure?></b> <?=yii::t('weather','pressure_')?></span>
-                    <span class="w_humidity"><?=yii::t('weather', 'Humidity')?> <b><?=$item->humidity?></b> %</span>
-                </div>
-                <?php
-
-            }
-
-            ?>
-
-        </div>
-    </div>
-</div>
-
-
-
-<div class="row hidden-md hidden-lg">
+<div class="row">
     <div class="col-md-12 py-10">
         <h3 class="mt-0 mb-5"><?=$model->getName()?></h3>
         <div class="dropdown other_cities_block">
@@ -380,7 +225,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 </div>
 
 
-<div class="row bg_color_grey py-10 hidden-md hidden-lg ">
+<div class="row bg_color_grey py-10 ">
     <?php
     $i = 0;
 
@@ -417,7 +262,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     </div>
                     <img src="/themes/turkmenportal/img/weatherIcon/A6d.png" alt="">
                     <div class="m_daily_temp">
-                        <?=round($item->temp->min)?>&deg; ... <?=round($item->temp->max)?>&deg;
+                        <?=round($item->temp->min)?>&deg;/<?=round($item->temp->max)?>&deg;
                     </div>
                 </div>
                 <div class="m_daily_w_p2">

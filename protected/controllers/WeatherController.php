@@ -35,7 +35,7 @@ class WeatherController extends Controller
     }
 
 
-	public function actionIndex()
+	public function actionView($id)
 	{
         $this->layout = '//layouts/weather/weatherColumn';
 
@@ -48,10 +48,14 @@ class WeatherController extends Controller
 
         $cities = New InfoCities();
 
-        if (!isset($_GET['city'])){
-            $model = clone $cities->findByPk(1290);
+        if (!isset($id)){
+            $model = InfoCities::model()->findByPk(1290);
         } else
-        $model = clone $cities->findByPk($_GET['city']);
+        $model = InfoCities::model()->findByPk($id);
+
+        if ($model === null ||  $model->visibility == 0 || $model->status == 0)
+            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+
 
         if (isset($model)){
             $this->lat = $model->lat;

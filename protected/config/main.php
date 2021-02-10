@@ -191,6 +191,9 @@ return array(
                 '<controller:\w+>/a/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/category/<category_id:\d+>' => '<controller>/index',
                 '<controller:\w+>/<path:[\w-\/]+>' => '<controller>/index',
+
+                '<controller:weather>/<id:\d+>/<alias:[\w-]+>' => '<controller>/index',
+
             ),
         ),
 

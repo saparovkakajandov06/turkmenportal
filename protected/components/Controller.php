@@ -668,5 +668,23 @@ class Controller extends RController
         return $str;
     }
 
+    public function renderDateWeekDay3l($date, $weekday = 'N')
+    {
+        $weeks = array(
+            "tk" => array("", 'Dş', 'Sş', 'Çş', 'Pş', 'An', 'Şn', 'Ýş'),
+            "ru" => array("", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"),
+            "en" => array("", 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'),
+        );
+
+        if (!is_int($date)) {
+            $date = strtotime($date);
+        }
+
+        $str = "";
+        if (isset($weekday))
+            $str = $str . " " . $weeks[Yii::app()->language][ltrim(date($weekday, $date), "0")];
+
+        return $str;
+    }
 
 }
