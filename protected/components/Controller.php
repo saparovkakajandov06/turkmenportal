@@ -494,22 +494,20 @@ class Controller extends RController
 
     public function forcastWithIcons($day, $info, $todayShowPartTimes, $timeZone)
     {
+
         $clockPartTime = ['night' => '01:00:00', 'morn' => '08:00:00', 'day' => '14:00:00', 'eve' => '19:00:00'];
         unset($day->weather);
-//        var_dump($todayShowPartTimes);die;
         foreach ($todayShowPartTimes as $key => $partTime) {
             $date = date('Y-m-d', $day->dt);
             $time = strtotime($date.' '.$clockPartTime[$partTime]);
             if ($partTime === 'night') $time = $time + 24*60*60;
-//            var_dump(date('Y-m-d H-i-s', $time));die;
             foreach ($info as $i){
-//                echo "<pre>";
-//                var_dump(date('Y-m-d H-i-s', $i->dt));
-                if ($i->dt-3600*5+$timeZone == $time){
+                if ($i->dt == $time){
                     $day->weather->$partTime->id = $i->weather[0]->id;
                     $day->weather->$partTime->main = $i->weather[0]->main;
                     $day->weather->$partTime->description = $i->weather[0]->description;
                     $day->weather->$partTime->icon = $i->weather[0]->icon;
+
                 }
             }
         }

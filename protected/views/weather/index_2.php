@@ -276,3 +276,60 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 
     ?>
 </div>
+
+
+
+
+<!--  test mobile version-->
+
+<div class="row bg_color_grey py-10 hidden-md hidden-lg ">
+    <?php
+    $i = 0;
+
+    foreach ($daily as $item){
+        $i++;
+        if ($i == 8) break;
+        $dToday = date('Y:m:d');
+        if (date('Y:m:d',$item->dt) === $dToday) continue;
+
+        $id  = $item->weather[0]->id;
+        if (substr($item->weather[0]->icon,-1) === 'n'){
+            $icon = $iconsInfo[$id].'n';
+        } else {
+            $icon = $iconsInfo[$id].'d';
+        }
+
+        $feels_likeMax = $item->feels_like->day;
+        $feels_likeMin = $item->feels_like->day;
+
+        foreach ($item->feels_like as $fl){
+            if ($feels_likeMax < $fl) $feels_likeMax = $fl;
+            if ($feels_likeMin > $fl) $feels_likeMin = $fl;
+        }
+
+        ?>
+
+
+        <div class="col-md-12 py-5 bg_color_white my-10">
+            <div class="m_daily_w">
+                <div class="m_daily_w_p1">
+                    <div class="m_daily_date">
+                        <span><?=Yii::app()->controller->renderDateWeekDay3l($item->dt)?></span>
+                        <span><?=date('n/j', $item->dt)?></span>
+                    </div>
+                    <img src="/themes/turkmenportal/img/weatherIcon/A6d.png" alt="">
+                    <div class="m_daily_temp">
+                        <?=round($item->temp->min)?>&deg; ... <?=round($item->temp->max)?>&deg;
+                    </div>
+                </div>
+                <div class="m_daily_w_p2">
+                    <i class="fa fa-tint" style="color: grey;padding-right: 4px"></i> <?=$item->humidity?>%
+                </div>
+            </div>
+        </div>
+        <?php
+
+    }
+
+    ?>
+</div>
