@@ -192,6 +192,9 @@ return array(
                 '<controller:\w+>/a/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/category/<category_id:\d+>' => '<controller>/index',
                 '<controller:\w+>/<path:[\w-\/]+>' => '<controller>/index',
+
+                '<controller:weather>/<id:\d+>/<alias:[\w-]+>' => '<controller>/index',
+
             ),
         ),
 
@@ -368,6 +371,9 @@ return array(
                 ),
             ),
         ),
+        'WeatherService' => array(
+          'class' => 'WeatherService'
+        ),
 
 
 //            'log' => array(
@@ -433,5 +439,11 @@ return array(
         'uploadfolder' => "/images/uploads",
         'videouploadfolder' => "/images/videouploads",
 //		'uploadfolder'=>"http://turkmenportal.com/images/uploads",
+        'weather' => array(
+            'apiUrl' => 'https://api.openweathermap.org/data/2.5/onecall?',
+            'apiKey' => '12bb3e427d6f3a29cd3b086cd5a221b8',
+            'lang' => 'en',
+            'units' => 'metric'
+        ),
     ),
 );

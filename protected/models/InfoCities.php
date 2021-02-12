@@ -14,13 +14,48 @@
  * @property integer $visibility
  * @property integer $status
  */
-class InfoCities extends CActiveRecord
+class InfoCities extends ActiveRecord
 {
 
 
     public $default_scope = array('enabled', 'visibility','sort_by_order_desc' );
 
 
+
+
+    public function getUrl($absolute = false)
+    {
+        $url = Yii::app()->createAbsoluteUrl('weather/view', array(
+            'id' => $this->id,
+            'alias' => strtolower($this->getCitiName()),
+        ));
+
+        $url = trim($url, '/');
+        return strlen(trim($url)) > 0 ? $url : "#";
+    }
+
+
+    public function getTmUrl()
+    {
+        $url = DMultilangHelper::addSpecificLangToUrl(
+            Yii::app()->createUrl('weather/view', array(
+                'id' => $this->id,
+                'alias' => strtolower($this->getCitiName()),
+            )), 'tm');
+        $url = Yii::app()->getBaseUrl(true) . $url;
+        return $url;
+    }
+
+    public function getEnUrl()
+    {
+        $url = DMultilangHelper::addSpecificLangToUrl(
+            Yii::app()->createUrl('weather/view', array(
+                'id' => $this->id,
+                'alias' => strtolower($this->getCitiName()),
+            )), 'en');
+        $url = Yii::app()->getBaseUrl(true) . $url;
+        return $url;
+    }
 
     /**
 	 * @return string the associated database table name
@@ -135,13 +170,13 @@ class InfoCities extends CActiveRecord
     {
         return array(
             'enabled' => array(
-                'condition' => 't.status=1',
+                'condition' => 'status=1',
             ),
             'visibility' => array(
-                'condition' => 't.visibility=1',
+                'condition' => 'visibility=1',
             ),
             'sort_by_order' => array(
-                'order' => 't.sort_order',
+                'order' => 'sort_order',
             ),
             'top' => array(
                 'condition' => 'top=1',
@@ -162,6 +197,8 @@ class InfoCities extends CActiveRecord
 
         $criteria->scopes = array('enabled', 'visibility','sort_by_order_desc', "$type");
 
+        $criteria->addCondition('id <>'.(int)$_GET['id']);
+
          $dp = new CActiveDataProvider($this->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency(get_class($this)), 2),
 //               $dp= new CActiveDataProvider($this,
                 array(
@@ -178,6 +215,11 @@ class InfoCities extends CActiveRecord
         $lang  = yii::app()->language;
 
             return $this->{name.'_'.$lang};
+    }
+
+    public function getCitiName()
+    {
+        return $this->citi_name;
     }
 
 }
