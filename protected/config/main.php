@@ -370,6 +370,9 @@ return array(
                 ),
             ),
         ),
+        'WeatherService' => array(
+          'class' => 'WeatherService'
+        ),
 
 
 //            'log' => array(
@@ -432,5 +435,11 @@ return array(
         'uploadfolder' => "/images/uploads",
         'videouploadfolder' => "/images/videouploads",
 //		'uploadfolder'=>"http://turkmenportal.com/images/uploads",
+        'weather' => array(
+            'apiUrl' => 'https://api.openweathermap.org/data/2.5/onecall?',
+            'apiKey' => '12bb3e427d6f3a29cd3b086cd5a221b8',
+            'lang' => 'en',
+            'units' => 'metric'
+        ),
     ),
 );

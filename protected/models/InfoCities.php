@@ -197,6 +197,8 @@ class InfoCities extends ActiveRecord
 
         $criteria->scopes = array('enabled', 'visibility','sort_by_order_desc', "$type");
 
+        $criteria->addCondition('id <>'.(int)$_GET['id']);
+
          $dp = new CActiveDataProvider($this->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency(get_class($this)), 2),
 //               $dp= new CActiveDataProvider($this,
                 array(

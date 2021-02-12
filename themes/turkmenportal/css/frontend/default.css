@@ -4685,6 +4685,9 @@ body.mobilescreen .dashboard_news_block {
 .m_c_d_more_decs_item +.m_c_d_more_decs_item{
     border-top: 1px solid #eee;
 }
+.fLU:first-letter{
+    text-transform: uppercase;
+}
 /*mobile version*/
 
 /*end weather page*/

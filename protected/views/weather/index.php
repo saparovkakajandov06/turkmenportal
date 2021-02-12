@@ -1,69 +1,5 @@
 <?php
 /* @var $this WeatherController */
-$iconsInfo  = array(
-
-    '200' => 'H6',
-    '201' => 'H6',
-    '202' => 'H8',
-    '210' => 'H4',
-    '211' => 'H4',
-    '212' => 'H8',
-    '221' => 'H8',
-    '230' => 'H6',
-    '231' => 'H6',
-    '232' => 'H8',
-
-    '300' => 'K4',
-    '301' => 'K1',
-    '302' => 'H6',
-    '310' => 'K8',
-    '311' => 'K8',
-    '312' => 'K8',
-    '313' => 'K8',
-    '314' => 'E8',
-    '321' => 'E6',
-
-    '500' => 'D4',
-    '501' => 'D6',
-    '502' => 'D8',
-    '503' => 'D8',
-    '504' => 'D8',
-    '511' => 'E8',
-    '520' => 'I6',
-    '521' => 'D6',
-    '522' => 'I8',
-    '531' => 'D8',
-
-    '600' => 'F4',
-    '601' => 'F1',
-    '602' => 'F8',
-    '611' => 'F1',
-    '612' => 'E6',
-    '613' => 'E4',
-    '615' => 'E6',
-    '616' => 'E8',
-    '620' => 'F6',
-    '621' => 'F1',
-    '622' => 'F8',
-
-    '701' => 'C1',
-    '711' => 'B1',
-    '721' => 'C1',
-    '731' => 'C1',
-    '741' => 'C1',
-    '751' => 'C1',
-    '761' => 'C1',
-    '762' => 'C1',
-    '771' => 'C1',
-    '781' => 'C1',
-
-    '800' => 'A2',
-    '801' => 'A4',
-    '802' => 'A6',
-    '803' => 'A8',
-    '804' => 'A10',
-
-);
 
 $this->breadcrumbs=array(
 	Yii::t('weather', 'Weather Forecast'),
@@ -74,7 +10,7 @@ $tomorrow = clone $daily[1];
 
 $current->dt =  $current->dt-3600*5+$data->timezone_offset;
 
-$partOfDay = yii::app()->controller->partOfDay(date('H-i-s', $current->dt));
+$partOfDay = $weather->partOfDay(date('H-i-s', $current->dt));
 
 $infoPartTime = [0 => 'night', 1 => 'morn', 2 => 'day', 3 => 'eve', 4 => 'night', 5 => 'morn', 6 => 'day', 7 => 'eve', 8 => 'night'];
 
@@ -89,15 +25,15 @@ foreach ($infoPartTime as $key => $info){
     if ($add) $todayShowPartTimes[$key] = $info;
 }
 
-$today = YII::app()->controller->forcastWithIcons($today, $hourly, $todayShowPartTimes, $timeZone);
-$tomorrow = YII::app()->controller->forcastWithIcons($tomorrow,$hourly, $todayShowPartTimes, $timeZone);
+$today = $weather->forcastWithIcons($today, $hourly, $todayShowPartTimes, $timeZone);
+$tomorrow = $weather->forcastWithIcons($tomorrow,$hourly, $todayShowPartTimes, $timeZone);
 
 
 $id  = $current->weather[0]->id;
 if (substr($current->weather[0]->icon,-1) === 'n'){
-    $icon = $iconsInfo[$id].'n';
+    $icon = $weather->iconsInfo[$id].'n';
 } else {
-    $icon = $iconsInfo[$id].'d';
+    $icon = $weather->iconsInfo[$id].'d';
 }
 
 ?>
@@ -124,10 +60,12 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                                     echo "<ul class='list-unstyled'>";
                                 }
                                 $url = $city->getUrl();
-                                ?>
+                                if ($_GET['id'] !== $city->id){
+                            ?>
                                 <li><?=CHtml::link($city->getName(),$url)?></li>
 
                                 <?php
+                                }
                                 if ($key == $sum-1 || $key == $count-1){
                                     echo "</ul>";
                                 }
@@ -141,7 +79,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="" >
                     <div class="current_weather_info">
                         <span class="cwp_val deg"><?=round($current->temp)?>&deg;</span>
-                        <span><?=$current->weather[0]->description?></span>
+                        <span class="fLU"><?=Yii::t('weather', $current->weather[0]->id)?></span>
                         <span class="deg"><?=yii::t('weather','Feels Like')?> <b><?=round($current->feels_like)?></b>&deg;</span>
                         <span><?=yii::t('weather','Humidity')?> <b><?=$current->humidity?> %</b></span>
                         <span><?=yii::t('weather','Pressure')?> <b><?=$current->pressure?></b> <?=yii::t('weather','pressure_')?></span>
@@ -150,7 +88,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                             <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($current->wind_deg)?>deg)"></i>
                             <b><?=round($current->wind_speed)?></b>
                             <?=Yii::t('weather', 'wind_speed_')?>
-                            <?=Yii::app()->controller->wDtoText($current->wind_deg,1)?>
+                            <?=$weather->wDtoText($current->wind_deg,1)?>
                     </span>
                     </div>
                 </div>
@@ -171,9 +109,9 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     }
                     $id  = $weatherInfo->weather->$partTime->id;
                     if (substr($weatherInfo->weather->$partTime->icon,-1) === 'n'){
-                        $icon = $iconsInfo[$id].'n';
+                        $icon = $weather->iconsInfo[$id].'n';
                     } else {
-                        $icon = $iconsInfo[$id].'d';
+                        $icon = $weather->iconsInfo[$id].'d';
                     }
 
                     ?>
@@ -217,9 +155,9 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 
                 $id  = $item->weather[0]->id;
                 if (substr($item->weather[0]->icon,-1) === 'n'){
-                    $icon = $iconsInfo[$id].'n';
+                    $icon = $weather->iconsInfo[$id].'n';
                 } else {
-                    $icon = $iconsInfo[$id].'d';
+                    $icon = $weather->iconsInfo[$id].'d';
                 }
 
                 $feels_likeMax = $item->feels_like->day;
@@ -238,9 +176,10 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     <h1 class="value deg"><?=round($item->temp->min)?>...<?=round($item->temp->max)?>&deg;</h1>
                     <h3 class="feels_like deg"><span style="font-size: 15px;font-weight: 100;"></span><?=round($feels_likeMin)?>...<?=round($feels_likeMax)?>&deg;</h3>
                     <span class="w_wind">
+                        <?=Yii::t('weather', 'Wind')?>
                         <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($item->wind_deg)?>deg)"></i>
                     <b><?=round($item->wind_speed)?></b>
-                        <?=Yii::app()->controller->wDtoText($item->wind_deg,1)?>
+                        <?=$weather->wDtoText($item->wind_deg,1)?>
                         <?=Yii::t('weather', 'wind_speed_')?>
                     </span>
                     <span class="w_pressure"><?=yii::t('weather','Pressure')?> <b><?=$item->pressure?></b> <?=yii::t('weather','pressure_')?></span>
@@ -301,7 +240,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                 <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="<?=$current->weather[0]->description?>">
             </span>
             <span class="m_w_c_des">
-                <?=$current->weather[0]->description?>
+                <?=yii::t('weather', $current->weather[0]->id)?>
             </span>
         </div>
     </div>
@@ -340,7 +279,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($current->wind_deg)?>deg)"></i>
                     <b><?=round($current->wind_speed)?></b>
                     <?=Yii::t('weather', 'wind_speed_')?>
-                    <?=Yii::app()->controller->wDtoText($current->wind_deg,1)?>
+                    <?=$weather->wDtoText($current->wind_deg,1)?>
                 </span>
             </div>
         </div>
@@ -359,9 +298,9 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                 }
                 $id  = $weatherInfo->weather->$partTime->id;
                 if (substr($weatherInfo->weather->$partTime->icon,-1) === 'n'){
-                    $icon = $iconsInfo[$id].'n';
+                    $icon = $weather->iconsInfo[$id].'n';
                 } else {
-                    $icon = $iconsInfo[$id].'d';
+                    $icon = $weather->iconsInfo[$id].'d';
                 }
 
                 ?>
@@ -392,9 +331,9 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 
                 $id  = $item->weather[0]->id;
                 if (substr($item->weather[0]->icon,-1) === 'n'){
-                    $icon = $iconsInfo[$id].'n';
+                    $icon = $weather->iconsInfo[$id].'n';
                 } else {
-                    $icon = $iconsInfo[$id].'d';
+                    $icon = $weather->iconsInfo[$id].'d';
                 }
 
                 $feels_likeMax = $item->feels_like->day;
@@ -453,7 +392,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                                     <i class="fa fa-location-arrow" style="transform:rotate(<?= -1 * ($current->wind_deg) ?>deg)"></i>
                                     <b><?= round($item->wind_speed) ?></b>
                                                     <?= Yii::t('weather', 'wind_speed_') ?>
-                                                    <?= Yii::app()->controller->wDtoText($item->wind_deg, 1) ?>
+                                                    <?= $weather->wDtoText($item->wind_deg, 1) ?>
                                 </span>
                             </div>
                         </div>
