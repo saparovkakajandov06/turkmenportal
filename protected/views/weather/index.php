@@ -29,11 +29,11 @@ $today = $weather->forcastWithIcons($today, $hourly, $todayShowPartTimes, $timeZ
 $tomorrow = $weather->forcastWithIcons($tomorrow,$hourly, $todayShowPartTimes, $timeZone);
 
 
-$id  = $current->weather[0]->id;
+$currentId  = $current->weather[0]->id;
 if (substr($current->weather[0]->icon,-1) === 'n'){
-    $icon = $weather->iconsInfo[$id].'n';
+    $icon = $weather->iconsInfo[$currentId].'n';
 } else {
-    $icon = $weather->iconsInfo[$id].'d';
+    $icon = $weather->iconsInfo[$currentId].'d';
 }
 
 ?>
@@ -133,8 +133,13 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
         </div>
     </div>
     <div class="col-md-4">
-
-
+        <?php if (!$this->isMobile()) { ?>
+            <?php
+            $this->widget('application.widgets.banners.BannersWidget', array(
+                'type' => 'bannerWeatherAdsense',
+            ));
+            ?>
+        <?php } ?>
     </div>
 </div>
 
@@ -198,6 +203,16 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 
 
 <div class="row hidden-md hidden-lg">
+    <?php if ($this->isMobile()) { ?>
+       <div class="col-xs-12">
+           <?php
+           $this->widget('application.widgets.banners.BannersWidget', array(
+               'type' => 'mobileBannerWeatherAdsense',
+           ));
+           ?>
+       </div>
+    <?php } ?>
+
     <div class="col-md-12 py-10">
         <h3 class="mt-0 mb-5"><?=$model->getName()?></h3>
         <div class="dropdown other_cities_block">
@@ -225,6 +240,12 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                         echo "</ul>";
                     }
                 endforeach;
+
+                if (substr($current->weather[0]->icon,-1) === 'n'){
+                    $icon = $weather->iconsInfo[$currentId].'n';
+                } else {
+                    $icon = $weather->iconsInfo[$currentId].'d';
+                }
                 ?>
             </div>
         </div>
