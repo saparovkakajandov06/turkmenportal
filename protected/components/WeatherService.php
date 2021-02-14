@@ -101,7 +101,7 @@ class WeatherService
         bindtextdomain("openweather", Yii::getPathOfAlias('application.widgets.OpenWeather.i18n'));
         textdomain("openweather");
         $date = new DateTime();
-        if (!is_file(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json') || (time() - filemtime(Yii::getPathOfAlias('application.runtime.OpenWeather') .'/'. $this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json')) > 3600) {
+        if (!is_file(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json') || (time() - filemtime(Yii::getPathOfAlias('application.runtime.OpenWeather') .'/'. $this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json')) > 300) {
 
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $this->apiURL . 'lat='.$this->lat .'&lon='. $this->lon.'&units='.$this->units. '&appid=' . $this->apiKey. '&lang=' . $this->lang);
