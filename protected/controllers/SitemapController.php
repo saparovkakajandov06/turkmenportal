@@ -43,18 +43,18 @@
                     $sitemap->addUrl($tmUrl, DSitemap::DAILY,'0.8',$blog->date_modified);
                 }
 
-//                $cities = InfoCities::model()->enabled()->visibility()->findAll(['limit'=>200]);
-//                foreach($cities as $city){
-//                    $url = $city->getUrl(true);
-//                    $tmUrl = $city->getTmUrl(true);
-//                    $enUrl = $city->getEnUrl(true);
-//                    $url=str_replace('http:',"https:",$url);
-//                    $tmUrl=str_replace('http:',"https:",$tmUrl);
-//                    $enUrl=str_replace('http:',"https:",$enUrl);
-//                    $sitemap->addUrl($url, DSitemap::HOURLY,'0.6');
-//                    $sitemap->addUrl($enUrl, DSitemap::HOURLY,'0.6');
-//                    $sitemap->addUrl($tmUrl, DSitemap::HOURLY,'0.6',date('Y-m-d H:i:s', time()));
-//                }
+                $cities = InfoCities::model()->enabled()->visibility()->findAll();
+                foreach($cities as $city){
+                    $url = $city->getUrl(true);
+                    $tmUrl = $city->getTmUrl(true);
+                    $enUrl = $city->getEnUrl(true);
+                    $url=str_replace('http:',"https:",$url);
+                    $tmUrl=str_replace('http:',"https:",$tmUrl);
+                    $enUrl=str_replace('http:',"https:",$enUrl);
+                    $sitemap->addUrl($url, DSitemap::HOURLY,'0.6');
+                    $sitemap->addUrl($enUrl, DSitemap::HOURLY,'0.6');
+                    $sitemap->addUrl($tmUrl, DSitemap::HOURLY,'0.6',date('Y-m-d H:i:s', time()));
+                }
 
                 $compositions=Compositions::model()->published()->sort_newest()->not_translated()->findAll(['limit'=>2000]);
                 foreach($compositions as $composition){

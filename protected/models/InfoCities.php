@@ -27,7 +27,7 @@ class InfoCities extends ActiveRecord
     {
         $url = Yii::app()->createAbsoluteUrl('weather/view', array(
             'id' => $this->id,
-            'alias' => strtolower($this->getCitiName()),
+            'alias' => $this->getAlias(),
         ));
 
         $url = trim($url, '/');
@@ -40,7 +40,7 @@ class InfoCities extends ActiveRecord
         $url = DMultilangHelper::addSpecificLangToUrl(
             Yii::app()->createUrl('weather/view', array(
                 'id' => $this->id,
-                'alias' => strtolower($this->getCitiName()),
+                'alias' => $this->getAlias(),
             )), 'tm');
         $url = Yii::app()->getBaseUrl(true) . $url;
         return $url;
@@ -51,7 +51,7 @@ class InfoCities extends ActiveRecord
         $url = DMultilangHelper::addSpecificLangToUrl(
             Yii::app()->createUrl('weather/view', array(
                 'id' => $this->id,
-                'alias' => strtolower($this->getCitiName()),
+                'alias' => $this->getAlias(),
             )), 'en');
         $url = Yii::app()->getBaseUrl(true) . $url;
         return $url;
@@ -234,6 +234,13 @@ class InfoCities extends ActiveRecord
     public function getCitiName()
     {
         return $this->citi_name;
+    }
+
+    private function getAlias()
+    {
+        $alias = explode(' ', $this->getCitiName());
+        $alias = implode($alias, '_');
+        return strtolower($alias);
     }
 
 }
