@@ -70,13 +70,13 @@ return array (
     '804' => 'overcast clouds',
 
 
-    'Weather Forecast' => 'Прогноз погоды',
-    'Weather in' => 'Погода в',
-    'Now' => 'Сейчас',
-    'Feels Like' => 'Ощущается',
-    'Humidity' => 'Влажность',
-    'Pressure' => 'Давление',
-    'Wind' => 'Ветер',
+    'Weather Forecast' => 'Weather Forecast',
+    'Weather in' => 'Weather in',
+    'Now' => 'Now',
+    'Feels Like' => 'Feels Like',
+    'Humidity' => 'Humidity',
+    'Pressure' => 'Pressure',
+    'Wind' => 'Wind',
     'morn' => 'Morning',
     'day' => 'Afternoon',
     'eve' => 'Evening',
@@ -85,10 +85,17 @@ return array (
     't day' => 'Tomorrow afternoon',
     't eve' => 'Tomorrow evening',
     't night' => 'Tomorrow night',
+    'Tonight' => 'Tonight',
+    'Tomorrow' => 'Tomorrow',
     'pressure_' => 'hP',
     '_pressure' => 'Hectopascal',
     'wind_speed_' => 'm/s',
     '_wind_speed' => 'Meter per second',
+    '_title' => 'Local daily weather forecast | Turkmenportal',
+    '_description' => 'Current weather and accurate forecast. Weather forecast for today, tomorrow, 3 days, weekend, week.',
+    '_keyword' => 'weather, weather forecast, weather in Turkmenistan, weather forecast in Turkmenistan, weather Turkmenistan, weather forecast Turkmenistan, Turkmenistan, weather for today, weather for tomorrow, weather for 3 days, weekend weather, weekly weather, Turkmenportal, Turkmenportal',
+    '_vdesc' => 'Get the forecast for today, tonight & tomorrow\'s weather for ',
+    '_vkeyword' => 'the weather for today, the weather for tomorrow, the weather for 3 days, weekend weather, weather for a week, Turkmenportal, Turkmenportal',
 
 
 );
