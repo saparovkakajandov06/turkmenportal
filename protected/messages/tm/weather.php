@@ -85,12 +85,18 @@ return array(
     't day' => 'Ertir gündiz',
     't eve' => 'Ertir agşam',
     't night' => 'Ertir gije',
+    'Tonight' => 'Şu gün agşam',
+    'Tomorrow' => 'Ertir',
     'pressure_' => 'hPa',
     '_pressure' => 'Gekto Paskal',
     'wind_speed_' => 'm/s',
     '_wind_speed' => 'Metr sekuntda',
     'Other cities' => 'Başga şäherler',
-
+    '_title' => 'Gündelik howa maglumaty | Turkmenportal',
+    '_description' => 'Şu wagtky howa maglumaty. Şu gün, ertir, 3 güne, dynç günleri, hepdäniň howa maglumaty',
+    '_keyword' => 'howa, howa maglumaty, Türkmenistanda howa, Türkmenistanda howa maglumaty, Türkmenistanda howa maglumaty, ertir üçin howa, 3 gün howa, dynç günleri howa, hepdäniň howasy, Turkmenportal, Туркменпортал',
+    '_vdesc' => 'Turkmenportal: Şu günki, ertirki, hepdäniň howa maglumatlary ',
+    '_vkeyword' => 'şu gün üçin howa, ertir howa, 3 gün howa, dynç günleri howa, bir hepde howa, Turkmenportal, Turkmenportal'
 
 
 

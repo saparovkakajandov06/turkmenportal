@@ -5,12 +5,21 @@ $this->breadcrumbs=array(
 	Yii::t('weather', 'Weather Forecast'),
 );
 
-$pageTitle = yii::t('weather', '_title');
+$pageTitle = $model->getName().', '.$model->getCountry().' '.Yii::t('app', 'today');
 
-$this->pageTitle = yii::t('weather', '_title');
-$this->meta_description = yii::t('weather', '_description');
-$this->meta_keyword = yii::t('weather', '_keyword');
+$pageTitle = $pageTitle.', '.YIi::t('weather', 'Tonight').' & '.Yii::t('weather', 'Tomorrow');
 
+$pageTitle = $pageTitle. ' '. Yii::t('weather', 'Weather Forecast');
+
+$pageTitle = $pageTitle. ' | Turkmenportal';
+
+$this->pageTitle = $pageTitle;
+$this->meta_description = Yii::t('weather', '_vdesc').$model->getName().', '.$model->getName().' '.$model->getCountry();
+$keyword = Yii::t('weather', 'Weather Forecast').', '.Yii::t('app', 'Weather in').' '.$model->getName();
+$keyword = $keyword.', '.Yii::t('app', 'Weather in').' '.$model->getCountry();
+$keyword = $keyword.', '.$model->getName();
+$keyword = $keyword.', '.$model->getCountry();
+$keyword = $keyword. ', '. Yii::t('weather', '_vkeyword');
 
 $today = clone $daily[0];
 $tomorrow = clone $daily[1];

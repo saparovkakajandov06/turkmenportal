@@ -75,12 +75,13 @@ class InfoCities extends ActiveRecord
 		return array(
 			array('citi_id, citi_name, lon, lat', 'required'),
 			array('citi_id, visibility, status, sort_order, top', 'numerical', 'integerOnly'=>true),
-			array('citi_name, name_ru, name_tm, name_en', 'length', 'max'=>150),
+            array('citi_name, name_ru, name_tm, name_en', 'length', 'max'=>150),
+            array('country_tm, country_ru, country_en', 'length', 'max'=>255),
 			array('state, country, lat', 'length', 'max'=>11),
 			array('lon', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, citi_id, name_ru, name_tm, name_en,  citi_name, state, country, lon, lat, visibility, status', 'safe', 'on'=>'search'),
+			array('id, citi_id, name_ru, name_tm, name_en,  citi_name, state, country, country_tm, country_ru, country_en, lon, lat, visibility, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -108,7 +109,10 @@ class InfoCities extends ActiveRecord
             'name_tm' => 'Name TM',
             'name_en' => 'Name EN',
 			'state' => 'State',
-			'country' => 'Country',
+            'country' => 'Country',
+            'country_tm' => 'Country TM',
+            'country_ru' => 'Country RU',
+            'country_en' => 'Country EN',
 			'lon' => 'Lon',
 			'lat' => 'Lat',
             'sort_order' => 'Sort Order',
@@ -142,7 +146,10 @@ class InfoCities extends ActiveRecord
         $criteria->compare('name_en',$this->name_en,true);
         $criteria->compare('name_tm',$this->name_tm,true);
 		$criteria->compare('state',$this->state,true);
-		$criteria->compare('country',$this->country,true);
+        $criteria->compare('country',$this->country,true);
+        $criteria->compare('country_tm',$this->country_tm, true);
+        $criteria->compare('country_ru',$this->country_ru, true);
+        $criteria->compare('country_en',$this->country_en, true);
 		$criteria->compare('lon',$this->lon,true);
 		$criteria->compare('lat',$this->lat,true);
         $criteria->compare('sort_order',$this->sort_order);
@@ -215,6 +222,13 @@ class InfoCities extends ActiveRecord
         $lang  = yii::app()->language;
 
             return $this->{name.'_'.$lang};
+    }
+
+    public function getCountry()
+    {
+        $lang  = yii::app()->language;
+
+        return $this->{country.'_'.$lang};
     }
 
     public function getCitiName()
