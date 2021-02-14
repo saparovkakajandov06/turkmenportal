@@ -14,6 +14,16 @@
           </div>
         </div>
       </div>
+
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'country',array('class'=>'control-label')) ; ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'country_'.$language->code,array('size'=>60,'maxlength'=>255)); ?>
+            <div class="help-inline">
+                <?php echo $form->error($model,'country_'.$language->code); ?>
+            </div>
+        </div>
+    </div>
      
     
 </div> <!-- form -->
