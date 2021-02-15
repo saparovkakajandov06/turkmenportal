@@ -270,7 +270,7 @@ class WeatherService
     public function partOfDay($time, $time_zone)
     {
         $time =  $time-3600*5+$time_zone;
-        $time = date('H:i:s', $time);
+        $time = date('H-i-s', $time);
         if ($time >= '03-00-00' && $time <= '11-59-59') return 'morn';
         if ($time >= '12-00-00' && $time <= '16-59-59') return 'day';
         if ($time >= '17-00-00' && $time <= '22-59-59') return 'eve';
