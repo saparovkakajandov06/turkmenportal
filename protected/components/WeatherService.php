@@ -267,8 +267,10 @@ class WeatherService
     }
 
 
-    public function partOfDay($time)
+    public function partOfDay($time, $time_zone)
     {
+        $time =  $time-3600*5+$time_zone;
+        $time = date('H:i:s', $time);
         if ($time >= '03-00-00' && $time <= '11-59-59') return 'morn';
         if ($time >= '12-00-00' && $time <= '16-59-59') return 'day';
         if ($time >= '17-00-00' && $time <= '22-59-59') return 'eve';
@@ -277,7 +279,27 @@ class WeatherService
     }
 
 
-    public function forcastWithIcons($day, $info, $todayShowPartTimes, $timeZone)
+    public function todayShowPartTimes($current, $time_zone)
+    {
+        $partOfDay = $this->partOfDay($current->dt, $time_zone);
+        $infoPartTime = [0 => 'night', 1 => 'morn', 2 => 'day', 3 => 'eve', 4 => 'night', 5 => 'morn', 6 => 'day', 7 => 'eve', 8 => 'night'];
+
+        $todayShowPartTimes = [];
+        $add = false;
+        if (date('H:i:s', $current->dt) > '23-59-59' && date('H:i:s', $current->dt) < '02-59-59') {$one = false;} else {$one = true;}
+        foreach ($infoPartTime as $key => $info){
+            if (date('H-i-s', $current->dt) > '23-00-00' && date('H-i-s', $current->dt) < '23-59-59' && $one) {$one = false; continue;}
+            if (count($todayShowPartTimes) == 3) break;
+            if ($info === $partOfDay) {$add = true; continue;}
+            if ($add) $todayShowPartTimes[$key] = $info;
+        }
+
+        return $todayShowPartTimes;
+
+    }
+
+
+    public function forcastWithIcons($day, $info, $todayShowPartTimes)
     {
 
         $clockPartTime = ['night' => '01:00:00', 'morn' => '08:00:00', 'day' => '14:00:00', 'eve' => '19:00:00'];
