@@ -554,7 +554,7 @@ h4.entry-title a:hover {
 .style-media-list .entry-title {
     font-size: 13px;
     line-height: 15px;
-    font-family: Helvetica, Arial;
+    font-family: Rubik, Arial;
     margin: 0
 }
 
@@ -748,7 +748,7 @@ h4.entry-title a:hover {
 
 .auto_sorter ul li a, .pagination2 ul li a {
     cursor: pointer;
-    font-family: 'PT Sans', sans-serif
+    font-family: 'Montserrat', sans-serif
 }
 
 .gallery .thumbnail {

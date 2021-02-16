@@ -27,7 +27,7 @@ html, body {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Rubik, Helvetica, sans-serif;
 }
 
 .aligncenter {
@@ -43,7 +43,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans Condensed", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     margin-bottom: 10px;
 }
@@ -274,7 +274,7 @@ body.scrolled .header-navbar {
 
 .nav.navbar-nav > li > a {
     color: #ffffff;
-    font-family: "Open Sans Condensed";
+    font-family: "Montserrat";
     font-weight: normal;
     line-height: 39px;
     padding: 0 15px;
@@ -289,7 +289,7 @@ body.scrolled .header-navbar {
 .nav.navbar-nav li .subnav-wrapper {
     border-top: 4px solid transparent;
     display: none;
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
     line-height: 18px;
     padding: 0;
     position: absolute;

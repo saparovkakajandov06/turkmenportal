@@ -7,7 +7,7 @@
 <?php 
 if(isset ($this->show_sub_header) && $this->show_sub_header==true) { ?>
     <div class="header_news_by_category header">
-            <?php echo CHtml::link($this->categoryModel->name, $this->categoryModel->url, array('class' => "headerColor")); ?>
+            <h1><?php echo CHtml::link($this->categoryModel->name, $this->categoryModel->url, array('class' => "headerColor")); ?></h1>
 <!--            --><?php //echo CHtml::link(Yii::t('app',"Add"), Yii::app()->createUrl('item/index', array('code' => 'catalog','category_id' => $this->categoryModel->id)), array('class' => 'tp-btn pull-right')); ?>
 <!--        <div class="">-->
 <!--                <hr>-->

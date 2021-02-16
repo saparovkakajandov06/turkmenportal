@@ -67,10 +67,10 @@
 //        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/countdown/jquery.countdown.min.css?v=0.1')
 //        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/fancybox/jquery.fancybox.min.css?v=0.1')
 //                ->registerCssFile(Yii::app()->theme->baseUrl . '/css/form.css')
-        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/base.css?v=3.26')
-        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/components.min.css?v=0.27')
+        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/base.css?v=3.29')
+        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/components.min.css?v=0.29')
 
-        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/default.css?v=5.8')
+        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/default.css?v=5.9')
 
 //                ->registerCssFile(Yii::app()->theme->baseUrl . '/css/prettyPhoto/prettyPhoto.css')
 //                ->registerCoreScript(Yii::app()->theme->baseUrl . '/js/jquery_1.8.3.js')
