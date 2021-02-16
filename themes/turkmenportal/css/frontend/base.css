@@ -27,7 +27,7 @@ html, body {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .aligncenter {
@@ -43,7 +43,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans Condensed", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     margin-bottom: 10px;
 }
@@ -79,7 +79,7 @@ js img[data-src] {
     background-clip: padding-box;
     border: medium none;
     border-radius: 0;
-    font-family: "Lato", sans-serif;
+    font-family: "Montserrat", sans-serif;
     height: 40px;
     line-height: 40px;
     min-height: inherit;
@@ -128,7 +128,7 @@ js img[data-src] {
 .header-navbar .search-wrapper .search-wrapper-inner input[type="text"] {
     border: 1px solid #c2c2c2;
     border-radius: 2px;
-    font-family: "Lato", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 200;
     height: 30px;
@@ -218,7 +218,7 @@ body.scrolled .header-navbar {
 }
 
 .header-navbar .nav-pages > li > a {
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
     padding: 0 6px;
 }
 
@@ -274,7 +274,7 @@ body.scrolled .header-navbar {
 
 .nav.navbar-nav > li > a {
     color: #ffffff;
-    font-family: "Open Sans Condensed";
+    font-family: "Montserrat", sans-serif;
     font-weight: normal;
     line-height: 39px;
     padding: 0 15px;
@@ -289,7 +289,7 @@ body.scrolled .header-navbar {
 .nav.navbar-nav li .subnav-wrapper {
     border-top: 4px solid transparent;
     display: none;
-    font-family: "Droid Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
     line-height: 18px;
     padding: 0;
     position: absolute;
