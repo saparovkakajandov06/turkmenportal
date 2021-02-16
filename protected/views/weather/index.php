@@ -71,6 +71,8 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     <div class="current_weather_info">
                         <span class="cwp_val deg"><?=round($current->temp)?>&deg;</span>
                         <span class="fLU"><?=Yii::t('weather', $current->weather[0]->id)?></span>
+                    </div>
+                    <div class="current_weather_info_2">
                         <span class="deg"><?=yii::t('weather','Feels Like')?> <b><?=round($current->feels_like)?></b>&deg;</span>
                         <span><?=yii::t('weather','Humidity')?> <b><?=$current->humidity?> %</b></span>
                         <span><?=yii::t('weather','Pressure')?> <b><?=$current->pressure?></b> <?=yii::t('weather','pressure_')?></span>
@@ -80,12 +82,13 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                             <b><?=round($current->wind_speed)?></b>
                             <?=Yii::t('weather', 'wind_speed_')?>
                             <?=$weather->wDtoText($current->wind_deg,1)?>
-                    </span>
+                        </span>
+
                     </div>
                 </div>
             </div>
             <div class="part_of_day_weahter">
-                <div class="text-center">
+                <div class="">
                     <h4><?=Yii::t('app', 'today')?></h4>
                     <h5><?=yii::app()->controller->renderDateToWord(time(), false)?></h5>
                 </div>
@@ -109,13 +112,15 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     <div class="part_of_day">
                         <div class="pod_w_caption">
                             <h5><?=yii::t('weather', $namePartTime) ?></h5>
-                            <span class="weather_degree deg">
+                            <div class="pod_w_icon">
+                               <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
+                                <span class="weather_degree deg">
                             <b><?=round($weatherInfo->temp->$partTime)?></b>&deg;
                         </span>
+                            </div>
+
                         </div>
-                        <div class="pod_w_icon">
-                            <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
-                        </div>
+
                     </div>
                 <?php
                 endforeach;
@@ -372,13 +377,14 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                         </div>
                         <div class="m_daily_w_p2">
                             <i class="fa fa-tint" style="color: grey;padding-right: 4px"></i> <?=$item->humidity?>%
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_<?=date('d', $item->dt)?>" aria-expanded="true" aria-controls="collapse_<?=date('d', $item->dt)?>">
-                                <i class="fa fa-arrow-down"></i>
+                            <a class="btn_collapse collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_<?=date('d', $item->dt)?>" aria-expanded="true" aria-controls="collapse_<?=date('d', $item->dt)?>">
+                                <img src="/themes/turkmenportal/img/downArrow.png" alt="icon" class="downIcon">
+
                             </a>
                         </div>
                     </div>
-                    <div id="collapse_<?=date('d', $item->dt)?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head_<?=date('d', $item->dt)?>">
-                        <div class="m_c_more_decs px-10 py-5 bg_color_white ">
+                    <div id="collapse_<?=date('d', $item->dt)?>" class="panel-collapse collapse bg_color_white" role="tabpanel" aria-labelledby="head_<?=date('d', $item->dt)?>">
+                        <div class="m_c_more_decs px-10 py-5  ">
                             <div class="m_c_d_more_decs_item">
                                 <span class="">
                                     <?= yii::t('weather', 'Pressure') ?>
