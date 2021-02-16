@@ -4409,7 +4409,7 @@ body.mobilescreen .dashboard_news_block {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 .weather_info_icon img{
     width: 25px;
@@ -4419,7 +4419,7 @@ body.mobilescreen .dashboard_news_block {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 14px auto  auto auto;
+    margin: 14px auto  auto 10px;
     font-size: 12px;
 }
 .weather_info_temp{
@@ -4527,7 +4527,7 @@ body.mobilescreen .dashboard_news_block {
     font-size: 45px;
 }
 .cw_top .dropdown{
-    margin: 20px 0 10px auto;
+    margin: 20px auto 10px 30px;
 }
 .other_cities_block a{
     margin-left: 10px;
@@ -4566,8 +4566,8 @@ body.mobilescreen .dashboard_news_block {
 }
 .part_of_day{
     display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    /*margin-top: 10px;*/
+    /*margin-bottom: 10px;*/
 }
 .weather_degree{
     font-size: 25px;
@@ -4575,7 +4575,7 @@ body.mobilescreen .dashboard_news_block {
 .pod_w_caption{
     /*flex: 1;*/
     /*margin: auto 0 auto auto;*/
-    text-align: center;
+    /*text-align: center;*/
 }
 .pod_w_icon{
     flex: 1.5;
@@ -4618,6 +4618,10 @@ body.mobilescreen .dashboard_news_block {
 }
 .dw_item span{
     margin-top: 10px;
+    color: #4f4949;
+}
+.dw_item span b{
+    color: #000;
 }
 .date_day{
     color: #666;

@@ -105,8 +105,8 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
             </div>
             <div class="part_of_day_weahter">
                 <div class="">
-                    <h4><?=Yii::t('app', 'today')?></h4>
-                    <h5><?=yii::app()->controller->renderDateToWord(time(), false)?></h5>
+<!--                    <h4>--><?php //echo Yii::t('app', 'today')?><!--</h4>-->
+<!--                    <h5>--><?php //echo yii::app()->controller->renderDateToWord(time(), false)?><!--</h5>-->
                 </div>
                 <?php
                 foreach ($todayShowPartTimes as $key => $partTime):
@@ -191,7 +191,7 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                     <h3 class="day_of_week"><?=Yii::app()->controller->renderDateWeekDay($item->dt)?> <br> <span class="date_day"><?=date('j.m',$item->dt)?></span></h3>
                     <img src="/themes/turkmenportal/img/weatherIcon/<?=$icon?>.png" alt="">
                     <h1 class="value deg"><?=round($item->temp->min)?>...<?=round($item->temp->max)?>&deg;</h1>
-                    <h3 class="feels_like deg"><span style="font-size: 15px;font-weight: 100;"></span><?=round($feels_likeMin)?>...<?=round($feels_likeMax)?>&deg;</h3>
+<!--                    <h3 class="feels_like deg"><span style="font-size: 15px;font-weight: 100;"></span>--><?//=round($feels_likeMin)?><!--...--><?//=round($feels_likeMax)?><!--&deg;</h3>-->
                     <span class="w_wind">
                         <?=Yii::t('weather', 'Wind')?>
                         <i class="fa fa-location-arrow" style="transform:rotate(<?=-1*($item->wind_deg)?>deg)"></i>
@@ -199,8 +199,8 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
                         <?=$weather->wDtoText($item->wind_deg,1)?>
                         <?=Yii::t('weather', 'wind_speed_')?>
                     </span>
-                    <span class="w_pressure"><?=yii::t('weather','Pressure')?> <b><?=$item->pressure?></b> <?=yii::t('weather','pressure_')?></span>
-                    <span class="w_humidity"><?=yii::t('weather', 'Humidity')?> <b><?=$item->humidity?></b> %</span>
+                    <span class="w_pressure"><?=yii::t('weather','Pressure')?>&nbsp;&nbsp;<b><?=$item->pressure?></b> <?=yii::t('weather','pressure_')?></span>
+                    <span class="w_humidity"><?=yii::t('weather', 'Humidity')?>&nbsp;&nbsp;<b><?=$item->humidity?></b> %</span>
                 </div>
                 <?php
 
