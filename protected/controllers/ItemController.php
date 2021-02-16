@@ -64,7 +64,9 @@ class ItemController extends Controller
                 $dynamicModel->parent_category_id = $categoryModel->parent_id;
                 $dynamicModel->title_ru = $dynamicModel->title_tm = $model->title;
                 $dynamicModel->description_ru = $dynamicModel->description_tm = $model->description;
-
+                if (!Yii::app()->WordFilter->sterling($dynamicModel->title_ru) || !Yii::app()->WordFilter->sterling($dynamicModel->description_ru)){
+                    $this->redirect(array('index'));
+                }
                 if (!$this->validateTabular(array($model, $dynamicModel))) {
                     $dynamic_content = $this->renderPartial('//catalog/_item_form', array('model' => $dynamicModel), true, false);
                 } else {
@@ -125,7 +127,9 @@ class ItemController extends Controller
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->other_options = serialize($dynamicModel->other_options);
-
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     try {
                         $committed = false;
                         $transaction = Yii::app()->db->beginTransaction();
@@ -178,7 +182,9 @@ class ItemController extends Controller
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->status = Estates::STATUS_ENABLED;
-
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     try {
                         $committed = false;
                         $transaction = Yii::app()->db->beginTransaction();
@@ -229,7 +235,9 @@ class ItemController extends Controller
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->status = Advert::STATUS_ENABLED;
-
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     if (isset($dynamicModel->catalog_category_id)) {
                         $dynamicModel->category_id = $dynamicModel->catalog_category_id;
                     }
@@ -289,6 +297,9 @@ class ItemController extends Controller
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->status = Work::STATUS_ENABLED;
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     try {
                         $committed = false;
                         $transaction = Yii::app()->db->beginTransaction();

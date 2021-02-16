@@ -9,6 +9,7 @@ class MediasController extends Controller
 
     public function actionIndex()
     {
+        $_GET['api'] = true;
         if (isset($_GET['cat_id'])){
             if ($_GET['cat_id'] == 0){
                 $cat_id = 338;
@@ -17,10 +18,8 @@ class MediasController extends Controller
         } else{
             $cat_id = 338;
         }
-        if (isset($_GET['page']))
-            $page = (int)$_GET['page'];
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
+
+
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -28,16 +27,16 @@ class MediasController extends Controller
             $hl = 'ru';
         }
         yii::app()->language = $hl;
-        $modelBlog = new BlogWrapper('search');
+        $modelBlog = new Photoreport('search');
         $modelCategory = Category::model()->findByPk($cat_id);
-
+        $modelBlog->default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc');
 
         if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
             $modelBlog->category_id = $modelCategory->id;
         }
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelBlog->parent_category_id = $modelCategory->id;
-        $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
+        $dataProvider = $modelBlog->searchForCategory(null);
         $models = $dataProvider->getData();
 
         foreach ($models as $key => $model){
@@ -45,7 +44,7 @@ class MediasController extends Controller
             $mainDoc = $model->getDocument();
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
-                $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
@@ -64,14 +63,14 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                    $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                     $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
                 if (count($mainDoc) > 1){
                     $images = [];
                     foreach ($mainDoc as $doc){
-                        $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'w', false, false);
+                        $images[] = 'https://turkmenportal.com'.$doc->resize(720, 576, 'w', false, false);
                     }
                 }
                 $extra = [
@@ -95,6 +94,9 @@ class MediasController extends Controller
             );
             $result['models'][] =array_merge($data,$extra);
         }
+        if (!isset($result)){
+            $result['models'] = [];
+        }
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($result);die;
     }
@@ -110,10 +112,7 @@ class MediasController extends Controller
         } else{
             $cat_id = 338;
         }
-        if (isset($_GET['page']))
-            $page = (int)$_GET['page'];
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
+
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -131,16 +130,15 @@ class MediasController extends Controller
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelBlog->parent_category_id = $modelCategory->id;
         $modelBlog->video = true;
-        $dataProvider = $modelBlog->apiSearchForCategory($per_page, $page);
+        $dataProvider = $modelBlog->searchForCategory(null);
         $models = $dataProvider->getData();
 
         foreach ($models as $key => $model){
 
             $mainDoc = $model->getDocument();
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
-                $per_page --;
                 $extra = [];
-                $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
@@ -168,6 +166,9 @@ class MediasController extends Controller
 
         }
 
+        if (!isset($result)){
+            $result['models'] = [];
+        }
 
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($result);die;
@@ -191,7 +192,7 @@ class MediasController extends Controller
             $mainDoc = $model->getDocument();
             if (isset($mainDoc) && $mainDoc->getVideoPath()) {
                 $extra = [];
-                $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                 $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 $videoPath = $mainDoc->getVideoUrl();
                 $videoHlsPath = $mainDoc->getVideoHlsPlaylistUrl();
@@ -210,7 +211,7 @@ class MediasController extends Controller
                 unset($thumb_url);
                 unset($images);
                 if (isset($mainDoc)){
-                    $image_url = $mainDoc->resize(512, 288, 'w', false, false);
+                    $image_url = $mainDoc->resize(720, 576, 'w', false, false);
                     $thumb_url = $mainDoc->resize(256, 144, 'w', false, false);
                 }
                 $mainDoc = $model->documents();
@@ -218,7 +219,7 @@ class MediasController extends Controller
                     $images = [];
                     $thumbs = [];
                     foreach ($mainDoc as $doc){
-                        $images[] = 'https://turkmenportal.com'.$doc->resize(512, 288, 'w', false, false);
+                        $images[] = 'https://turkmenportal.com'.$doc->resize(720, 576, 'w', false, false);
                         $thumbs[] = 'https://turkmenportal.com'.$doc->resize(256, 144, 'w', false, false);
                     }
                 }

@@ -31,6 +31,7 @@ class Compositions extends ActiveRecord {
     public $parent_category_code_list = array('compositions', 'compositions_tm', 'ashgabat2017');
 //        public $search_for_turkmenistan
 
+    public $default_scope = array('enabled');
 
     private $_url;
     private $_urlupdate;
@@ -346,6 +347,12 @@ class Compositions extends ActiveRecord {
 
 
     public function searchForIndex($limit = 50, $models = false, $except = array()) {
+
+        if (isset($_GET['page']))
+            $page = (int)$_GET['page'];
+        if (isset($_GET['per_page']))
+            $per_page = (int)$_GET['per_page'];
+
         $criteria = new CDbCriteria;
 
         if ($this->category_id)
@@ -372,7 +379,8 @@ class Compositions extends ActiveRecord {
 
 //            $criteria->with=array("category","category.parent");
 //            $criteria->compare('category_id', $this->category_id);
-        $criteria->scopes = array('enabled');
+        $criteria->scopes = $this->default_scope;
+
         if (!empty($this->pub_date)) {
             $criteria->addCondition("t.date_added  >= '$this->pub_date 00:00:00' and t.date_added <= '$this->pub_date 23:59:59'");
         }
@@ -382,6 +390,12 @@ class Compositions extends ActiveRecord {
             $criteria->offset = 0;
         }
 
+        if ($per_page === 0 && $_GET['api']){
+            $per_page = 10;
+        } else {
+            $per_page = $per_page ? $per_page : Yii::app()->params['pageSize'];
+        }
+        if (!$_GET['api']) $page--;
 
         if ($models == false) {
             $dp = new CActiveDataProvider($this->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency(get_class($this)), 2),
@@ -389,8 +403,9 @@ class Compositions extends ActiveRecord {
                 array(
                     'criteria' => $criteria,
                     'pagination' => ($limit > 0) ? false : array(
-                        'pageSize' => Yii::app()->params['pageSize'],
+                        'pageSize' => $per_page,
                         'pageVar' => 'page',
+                        'currentPage' => $page,
                     ),
                 ));
 //                $dp->setTotalItemCount(count($this->findAll($criteria)));

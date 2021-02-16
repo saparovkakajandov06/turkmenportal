@@ -9,6 +9,8 @@ class CompositionsController extends Controller
 
     public function actionIndex()
     {
+        $_GET['api'] = true;
+
         if (isset($_GET['cat_id'])){
             if ($_GET['cat_id'] == 0){
                 $cat_id = 355;
@@ -17,10 +19,7 @@ class CompositionsController extends Controller
         } else{
             $cat_id = 355;
         }
-        if (isset($_GET['page']))
-            $page = (int)$_GET['page'];
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
+
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -28,7 +27,11 @@ class CompositionsController extends Controller
             $hl = 'ru';
         }
         yii::app()->language = $hl;
-        $modelComposition = new CompositionsWrapper('search');
+
+        if (!isset($_GET['Compositions_sort']))
+            $_GET['Compositions_sort'] = 'date_added.desc';
+
+        $modelComposition = new Compositions('search');
         $modelCategory = Category::model()->findByPk($cat_id);
         $modelComposition->unsetAttributes();
 
@@ -37,7 +40,7 @@ class CompositionsController extends Controller
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelComposition->parent_category_id = $modelCategory->id;
 
-        $dataProvider = $modelComposition->apiSearchForCategory($per_page, $page);
+        $dataProvider = $modelComposition->searchForIndex(null, false);
         $models = $dataProvider->getData();
 
 
@@ -46,7 +49,7 @@ class CompositionsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getContent(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w'),
                 'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
@@ -76,11 +79,14 @@ class CompositionsController extends Controller
         $model = $this->loadModel($id);
 
 
+        $image = $model->getThumbPath(720, 576, 'w');
+        if (strlen($image) > 5){
+            $image = 'https://turkmenportal.com'.$image;
+            $image_info = getimagesize($image);
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
+        }
 
-        $image = 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w');
-        $image_info = getimagesize($image);
-        $image_width = $image_info[0];
-        $image_height = $image_info[1];
         if (isset($model)) {
             $content = $model->getContent();
             $pattern = '/&nbsp;/';
@@ -120,11 +126,12 @@ class CompositionsController extends Controller
             $hl = 'ru';
         }
         yii::app()->language = $hl;
-        $blogModel = new CompositionsWrapper();
+        $blogModel = new Compositions();
         $blogModel->unsetAttributes();
         $blogModel->default_scope = array('enabled','sort_trend_asc');
 //        $blogModel->reset_related_sort = true;
-        $popularDataProvider = $blogModel->apiSearchForCategory(6);
+        $_GET['per_page'] = 6;
+        $popularDataProvider = $blogModel->searchForIndex(null,false);
         $models = $popularDataProvider->getData();
 
         foreach ($models as $key => $model){
@@ -132,7 +139,7 @@ class CompositionsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w'),
                 'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,

@@ -51,6 +51,7 @@ return array(
         'ext.eoauth.lib.*',
         'ext.lightopenid.*',
         'ext.eauth.*',
+        'ext.WordFilter.*',
         'ext.eauth.services.*',
         'ext.spaces-api.SpacesConnect',
     ),
@@ -392,6 +393,9 @@ return array(
 //    //                            ),
 //                ),
 //            ),
+        'WordFilter' => array(
+            'class' => 'ext.WordFilter.WordFilter'
+        )
     ),
 
 
