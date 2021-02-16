@@ -67,13 +67,22 @@ $themeUrl = Yii::app()->theme->baseUrl;
         <div class="row sub_header_panel">
             <div class="col-md-9 hidden-xs header_links">
                 <span id="date_time">2014</span>
+                <?php
+                $this->widget('application.widgets.weather.WeatherWidget', array(
+                ));
+                ?>
                 <?php echo ' | ' . CHtml::link(Yii::t('app', 'valyutas'), "http://www.cbt.tm/kurs/kurs_today.html", array('target' => "_blank", 'rel' => 'nofollow')); ?>
                 <?php echo ' | ' . CHtml::link(Yii::t('app', 'bankomat_lists'), "http://www.cbt.tm/tm/payment/bankomat_as.html?Ashgabat", array('target' => "_blank", 'rel' => 'nofollow')); ?>
-                <?php echo ' | ' . CHtml::link(Yii::t('app', 'ashg_airport_schedule'), Yii::app()->createUrl('//catalog/view', array('id' => 12565))); ?>
+                <?php echo ' | ' . CHtml::link(Yii::t('app', 'ashg_airport_schedule'), Yii::app()->createUrl('//catalog/view', array('id' => 12565)), ['class' => 'none-link']); ?>
             </div>
             <div class="col-xs-6 visible-xs">
-                <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/index'); ?>"><img
-                        src="<?php echo $themeUrl; ?>/img/mobile_logo.png"></a>
+                <?php
+                $this->widget('application.widgets.weather.WeatherWidget', array(
+                        'view' => 'weatherMobile',
+                ));
+                ?>
+                <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/index'); ?>" class="mobile_logo"><img
+                        src="<?php echo $themeUrl; ?>/img/mobile_logo_2.png"></a>
             </div>
             <div class="col-md-3 col-xs-6 pull-right">
                 <div class="langPanel">
