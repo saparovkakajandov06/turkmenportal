@@ -17,6 +17,7 @@ class WeatherController extends Controller
 
         if (!isset($id)){
             $model = InfoCities::model()->findByPk(1290);
+            $_GET['id'] = 1290;
         } else
             $model = InfoCities::model()->findByPk($id);
 
@@ -66,7 +67,7 @@ class WeatherController extends Controller
             $night = true;
         };
 
-        if (!isset($data)){
+        if (isset($weatherData)){
             $this->render('index', array(
                 'data' => $weatherData,
                 'current' => $current,
@@ -145,8 +146,7 @@ class WeatherController extends Controller
         };
 
 
-
-        if (!isset($data)){
+        if (isset($weatherData)){
             $this->render('view', array(
                 'data' => $weatherData,
                 'current' => $current,

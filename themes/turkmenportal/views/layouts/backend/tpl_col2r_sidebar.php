@@ -188,7 +188,8 @@ $module_id = '';
                 Yii::app()->user->checkAccess('Language.Admin') ||
                 Yii::app()->user->checkAccess('Professions.Admin') ||
                 Yii::app()->user->checkAccess('Branches.Admin') ||
-                Yii::app()->user->checkAccess('InfoCities.Admin')
+                Yii::app()->user->checkAccess('InfoCities.Admin') ||
+                Yii::app()->user->checkAccess('WordList.Admin')
             ) {
                 $access = true;
             }
@@ -233,6 +234,12 @@ $module_id = '';
                                 echo 'class="active"';
                             } ?> href="<?php echo Yii::app()->createUrl("//infoCities/admin"); ?>">Info Cities</a>
                             </li><?php } ?>
+                        <?php if (Yii::app()->user->checkAccess('WordList.Admin')) { ?>
+                            <li><a <?php if ($controller_id == 'wordList') {
+                                echo 'class="active"';
+                            } ?> href="<?php echo Yii::app()->createUrl("//wordList/admin"); ?>">Word Filter</a>
+                            </li><?php } ?>
+
 
                     </ul>
                 </li>

@@ -15,25 +15,10 @@ $this->meta_keyword = yii::t('weather', '_keyword');
 $today = clone $daily[0];
 $tomorrow = clone $daily[1];
 
-$current->dt =  $current->dt-3600*5+$data->timezone_offset;
+$todayShowPartTimes = $weather->todayShowPartTimes($current, $data->timezone_offset);
 
-$partOfDay = $weather->partOfDay(date('H-i-s', $current->dt));
-
-$infoPartTime = [0 => 'night', 1 => 'morn', 2 => 'day', 3 => 'eve', 4 => 'night', 5 => 'morn', 6 => 'day', 7 => 'eve', 8 => 'night'];
-
-
-$todayShowPartTimes = [];
-$add = false;
-if (date('H:i:s', $current->dt) > '23-59-59' && date('H:i:s', $current->dt) < '02-59-59') {$one = false;} else {$one = true;}
-foreach ($infoPartTime as $key => $info){
-    if (date('H-i-s', $current->dt) > '23-00-00' && date('H-i-s', $current->dt) < '23-59-59' && $one) {$one = false; continue;}
-    if (count($todayShowPartTimes) == 3) break;
-    if ($info === $partOfDay) {$add = true; continue;}
-    if ($add) $todayShowPartTimes[$key] = $info;
-}
-
-$today = $weather->forcastWithIcons($today, $hourly, $todayShowPartTimes, $timeZone);
-$tomorrow = $weather->forcastWithIcons($tomorrow,$hourly, $todayShowPartTimes, $timeZone);
+$today = $weather->forcastWithIcons($today, $hourly, $todayShowPartTimes);
+$tomorrow = $weather->forcastWithIcons($tomorrow,$hourly, $todayShowPartTimes);
 
 
 $currentId  = $current->weather[0]->id;
@@ -42,7 +27,6 @@ if (substr($current->weather[0]->icon,-1) === 'n'){
 } else {
     $icon = $weather->iconsInfo[$currentId].'d';
 }
-
 ?>
 
 <div class="row hidden-xs hidden-sm">

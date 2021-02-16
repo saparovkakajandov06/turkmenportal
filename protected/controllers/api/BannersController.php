@@ -27,13 +27,6 @@ class BannersController extends Controller
             $banner = $this->getBanner($bannerType);
             $bannerModel = $banner['bannerModel'];
 
-            if  (isset($_GET['id'])){
-                while ($bannerModel->id == $_GET['id']){
-                    $banner = $this->getBanner($bannerType);
-                    $bannerModel = $banner['bannerModel'];
-                }
-            }
-
             if (isset($bannerModel)) {
                 if (isset($bannerModel->url) && strlen(trim($bannerModel->url)) > 3) {
                     $fullUrl = (strpos($bannerModel->url, 'http') === false) ? "http://" . $bannerModel->url : $bannerModel->url;
@@ -71,6 +64,7 @@ class BannersController extends Controller
 
     public function getBanner($type){
         $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
+
         $calculate_show = true;
             if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
                 $calculate_show = true;
@@ -107,25 +101,14 @@ class BannersController extends Controller
                             }
                             break;
                         case BannerType::TYPE_IMAGE_RANDOM:
-                            if (!isset(Yii::app()->params[$type])){
-                                $countBanner = count($banners);
-                                for ($i = 0; $i < $countBanner; $i++){
-                                    $arr[] = $i;
-                                }
-                                shuffle($arr);
-                                Yii::app()->params[$type] = $arr;
-                                Yii::app()->params[$type.'Order'] = 0;
-                            }
 
-                            if (Yii::app()->params[$type.'Order'] >= count(Yii::app()->params[$type])){
-                                Yii::app()->params[$type.'Order'] = 0;
+                            $bannerModel = $banners[array_rand($banners)];
+
+                            if  (isset($_GET['id'])){
+                                while ($bannerModel->id == $_GET['id']){
+                                    $bannerModel = $banners[array_rand($banners)];
+                                }
                             }
-                            if (isset(Yii::app()->params[$type][Yii::app()->params[$type.'Order']])){
-                                $order = Yii::app()->params[$type][Yii::app()->params[$type.'Order']];
-                                $bannerModel = $banners[$order];
-                                Yii::app()->params[$type.'Order'] = Yii::app()->params[$type.'Order'] + 1;
-                            } else
-                                $bannerModel = $banners[array_rand($banners)];
                             break;
                     }
                 }
