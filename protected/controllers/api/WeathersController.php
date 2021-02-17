@@ -54,6 +54,7 @@ class WeathersController extends Controller
         $data['tomorrow'] = $tomorrow;
         $data['todayShowPartTimes'] = $todayShowPartTimes;
         $data['daily'] = $daily;
+        $data['hourlu'] = $hourly;
 
 
         if (isset($weatherData)){
