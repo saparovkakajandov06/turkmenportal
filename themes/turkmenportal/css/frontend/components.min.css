@@ -175,7 +175,7 @@ blockquote p {
 }
 
 blockquote small {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Droid Sans', sans-serif;
     font-size: 13px
 }
 
@@ -289,14 +289,14 @@ ul.entries {
     font-weight: 400;
     font-size: 18px;
     line-height: 30px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Droid Serif', sans-serif
 }
 
 .ribbon {
     position: relative;
     margin: 0 -15px 0 -20px;
     z-index: 20;
-    font-family: "Montserrat", sans-serif;
+    font-family: Lato, sans-serif;
     text-transform: uppercase;
     line-height: 38px
 }
@@ -554,7 +554,7 @@ h4.entry-title a:hover {
 .style-media-list .entry-title {
     font-size: 13px;
     line-height: 15px;
-    font-family: "Montserrat", sans-serif;
+    font-family: Helvetica, Arial;
     margin: 0
 }
 
@@ -580,7 +580,7 @@ h4.entry-title a:hover {
     margin-bottom: 15px;
     min-height: 25px;
     color: #5F5F5F;
-    font-family: "Montserrat", sans-serif, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
     border-bottom: 1px dashed #ddd;
     padding-bottom: 5px
@@ -614,7 +614,7 @@ h4.entry-title a:hover {
     margin-bottom: 3px;
     overflow: hidden;
     font-weight: 400;
-    font-family: "Montserrat", sans-serif
+    font-family: Helvetica, Arial
 }
 
 .style-media-list .entry-meta {
@@ -658,7 +658,7 @@ h4.entry-title a:hover {
 
 .comments-area .author-vcard, .comments-area .comments-title {
     font-weight: 300;
-    font-family: "Montserrat", sans-serif
+    font-family: Lato, sans-serif
 }
 
 .comments-area .comments-title {
@@ -708,7 +708,7 @@ h4.entry-title a:hover {
 
 .comments-area .author-vcard .comment-meta {
     font-size: 12px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Droid sans', sans-serif;
     font-style: italic;
     -webkit-opacity: .7;
     -moz-opacity: .7;
@@ -718,7 +718,7 @@ h4.entry-title a:hover {
 
 .comments-area .comment-reply-title, .gallery .gallery-title {
     font-weight: 300;
-    font-family: "Montserrat", sans-serif
+    font-family: Lato, sans-serif
 }
 
 .comments-area .comment-reply-title {
@@ -748,7 +748,7 @@ h4.entry-title a:hover {
 
 .auto_sorter ul li a, .pagination2 ul li a {
     cursor: pointer;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'PT Sans', sans-serif
 }
 
 .gallery .thumbnail {
@@ -1064,7 +1064,7 @@ ul.coverageList {
 
 .panel > .panel-heading .panel-title {
     font-size: 14px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Droid Sans', sans-serif;
     font-weight: 700
 }
 
