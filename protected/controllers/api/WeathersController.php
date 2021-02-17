@@ -50,17 +50,12 @@ class WeathersController extends Controller
         $tomorrow = $weather->forcastWithIcons($tomorrow,$hourly, $todayShowPartTimes);
 
 
-        $data['today'] = $today;
-        $data['tomorrow'] = $tomorrow;
-        $data['todayShowPartTimes'] = $todayShowPartTimes;
-        $data['daily'] = $daily;
-        $data['hourlu'] = $hourly;
-
+        $data['weatherData'] = $weatherData;
 
         if (isset($weatherData)){
 
             if (!isset($data)){
-                $data['cities'] = [];
+                $data['weatherData'] = [];
             }
 
             header('Content-Type: application/json; charset=UTF-8');
