@@ -105,15 +105,18 @@ class WeathersController extends Controller
 
 
 
-        if (!isset($data)){
-            $this->render('view', array(
-                'data' => $weatherData,
-                'current' => $current,
-                'hourly'=> $hourly,
-                'daily' => $daily,
-                'model' => $model,
-                'weather' => $weahter,
-            ));
+        $data['weatherData'] = $weatherData;
+
+        if (isset($weatherData)){
+
+            if (!isset($data)){
+                $data['weatherData'] = [];
+            }
+
+            header('Content-Type: application/json; charset=UTF-8');
+            echo Json::encode($data);die;
+
+
         } else {
             $this->render('error', array(
             ));
