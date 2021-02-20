@@ -1,6 +1,6 @@
 <?php
 
-class ItemController extends Controller
+class ItemController2 extends Controller
 {
 
     public $layout = '//layouts/column2_admin';

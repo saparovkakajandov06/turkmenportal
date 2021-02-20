@@ -61,7 +61,7 @@ class CommentsController extends Controller
     }
 
 
-    public function actionCreate($related_relation = null, $related_relation_id = null, $parent_id = null)
+    public function actionCreatet($related_relation = null, $related_relation_id = null, $parent_id = null)
     {
         $model = new Comments;
         if (isset ($related_relation) && isset ($related_relation_id)) {
