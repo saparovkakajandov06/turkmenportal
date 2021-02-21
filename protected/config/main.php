@@ -406,6 +406,7 @@ return array(
         'title' => 'Turkmenportal.com',
         'adminEmail' => 'no-reply@turkmenportal.com',
         'adminAlertEmail' => array('ars_encoder@mail.ru', 'tm-rubin@mail.ru', 'manager@turkmenportal.com', 'resuldovletmuradov@yandex.ru', 'gulnara281114@gmail.com'),
+        'moderatorAlertEmail' => array('mailto:moderator@turkmenportal.com'),
         'reCaptcha' => array(
 //            'publicKey' => '6LcoSR4UAAAAACX5xpZha96sMqMEzwJBa7gOIku_',
             'publicKey' => '6Ldpl1EUAAAAAM-1y3CGee0GWnQKpDnAUOhr5_-S',

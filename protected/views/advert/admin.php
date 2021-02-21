@@ -114,6 +114,15 @@ return false;
                     'class' => 'crop'
                 ),
             ),
+            'update' => array(
+                'label' => Yii::t('app', 'update'),
+                'icon'=>'pencil',
+                'url' => 'Yii::app()->createUrl("//item/index",array("code" => "advert", "id"=>$data->id))',
+
+                'options' => array(
+                    'class' => 'update'
+                ),
+            ),
 //            'fileupload' => array(
 //                'label' => Yii::t('app', 'Additional files'),
 //                'icon'=>'upload',
