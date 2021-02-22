@@ -164,6 +164,23 @@ class WorkController extends Controller {
     }
 
 
+    public function actionToggle($id, $attribute, $model)
+    {
+        if (Yii::app()->request->isPostRequest) {
+            // we only allow deletion via POST request
+            $model = $this->loadModel($id, $model);
+            //loadModel($id, $model) from giix
+            ($model->$attribute == 1) ? $model->$attribute = 0 : $model->$attribute = 1;
+            $model->save();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if (!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        } else
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
+
+
     /**
      * Manages all models.
      */
