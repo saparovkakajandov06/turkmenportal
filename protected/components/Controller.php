@@ -346,7 +346,7 @@ class Controller extends RController
     }
 
 
-    protected function sendAlertEmail($model, $view, $destination = "")
+    protected function sendAlertEmail($model, $view, $destination = "", $emails = 'adminAlertEmail')
     {
         $documents = $model->documents;
         $attachments = array();
@@ -355,13 +355,15 @@ class Controller extends RController
             if (isset($path))
                 $attachments[$path] = $doc->name;
         }
-        $to = Yii::app()->params['adminAlertEmail'];
+
+        $to = Yii::app()->params[$emails];
         if (strlen($destination) == 0) {
             $destination = Yii::t('app', 'item_add_form');
         }
         $subject = Yii::app()->controller->truncate($model->getTitle(), 10, 50) . ' (' . $destination . ')';
         return Yii::app()->controller->sendTemplateEmail($to, $subject, $view, array('model' => $model), $attachments);
     }
+
 
 
     public function getCurl($url)

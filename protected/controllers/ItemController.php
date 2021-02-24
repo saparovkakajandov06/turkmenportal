@@ -75,7 +75,7 @@ class ItemController extends Controller
                     $dynamicModel->create_username = $model->username;
                     $dynamicModel->phone = $model->phone;
                     $dynamicModel->mail = $model->email;
-                    $dynamicModel->status = Catalog::STATUS_ENABLED;
+                    $dynamicModel->status = Catalog::STATUS_DISABLED;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
 
@@ -97,7 +97,7 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'catalog/view');
+                        $this->sendAlertEmail($dynamicModel, 'catalog/view', "", 'moderatorAlertEmail');
                         $this->redirect(array('user/announcement'));
                     }
                 }
@@ -123,7 +123,7 @@ class ItemController extends Controller
                     $dynamicModel->create_username = $model->username;
                     $dynamicModel->phone = $model->phone;
                     $dynamicModel->mail = $model->email;
-                    $dynamicModel->status = Auto::STATUS_ENABLED;
+                    $dynamicModel->status = Auto::STATUS_DISABLED;
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->other_options = serialize($dynamicModel->other_options);
@@ -148,7 +148,7 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'auto/view');
+                        $this->sendAlertEmail($dynamicModel, 'auto/view', "", 'moderatorAlertEmail');
                         $this->redirect(array('user/announcement'));
                     }
                 }
@@ -161,7 +161,7 @@ class ItemController extends Controller
                 }
                 if (!isset($dynamicModel)) {
                     $dynamicModel = new Estates();
-                    $dynamicModel->status = Estates::STATUS_ENABLED;
+                    $dynamicModel->status = Estates::STATUS_DISABLED;
                 }
 
 
@@ -181,7 +181,7 @@ class ItemController extends Controller
                     $dynamicModel->create_username = $model->username;
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->date_end = $model->getDateEnd();
-                    $dynamicModel->status = Estates::STATUS_ENABLED;
+                    $dynamicModel->status = Estates::STATUS_DISABLED;
                     if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
                         $this->redirect(array('index'));
                     }
@@ -203,7 +203,7 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'estates/view');
+                        $this->sendAlertEmail($dynamicModel, 'estates/view', "", 'moderatorAlertEmail');
                         $this->redirect(array('user/announcement'));
                     }
                 }
@@ -218,7 +218,7 @@ class ItemController extends Controller
                     $dynamicModel = new Advert();
 
                 $categoryModel = Category::model()->findByPk($model->category_id);
-                $dynamicModel->status = Advert::STATUS_ENABLED;
+                $dynamicModel->status = Advert::STATUS_DISABLED;
                 $dynamicModel->attributes = $_POST['Advert'];
                 $dynamicModel->parent_category_id = $categoryModel->parent_id;
 
@@ -234,7 +234,7 @@ class ItemController extends Controller
                     $dynamicModel->mail = $model->email;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
-                    $dynamicModel->status = Advert::STATUS_ENABLED;
+                    $dynamicModel->status = Advert::STATUS_DISABLED;
                     if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
                         $this->redirect(array('index'));
                     }
@@ -260,7 +260,7 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'advert/view');
+                        $this->sendAlertEmail($dynamicModel, 'advert/view', "", 'moderatorAlertEmail');
                         $this->redirect(array('user/announcement'));
                     }
                 }
@@ -273,12 +273,12 @@ class ItemController extends Controller
                 }
                 if (!isset($dynamicModel)) {
                     $dynamicModel = new Work();
-                    $dynamicModel->status = Work::STATUS_ENABLED;
+                    $dynamicModel->status = Work::STATUS_DISABLED;
                 }
 
 
                 $dynamicModel->attributes = $_POST['Work'];
-                $dynamicModel->status = Advert::STATUS_ENABLED;
+                $dynamicModel->status = Advert::STATUS_DISABLED;
                 $dynamicModel->category_id = $model->category_id;
 
                 if (!$this->validateTabular(array($model, $dynamicModel))) {
@@ -296,7 +296,7 @@ class ItemController extends Controller
                     $dynamicModel->mail = $model->email;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
-                    $dynamicModel->status = Work::STATUS_ENABLED;
+                    $dynamicModel->status = Work::STATUS_DISABLED;
                     if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
                         $this->redirect(array('index'));
                     }
@@ -318,7 +318,7 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'work/view');
+                        $this->sendAlertEmail($dynamicModel, 'work/view', "", 'moderatorAlertEmail');
                         $this->redirect(array('user/announcement'));
                     }
                 }
