@@ -27,6 +27,7 @@
             array('success'=>'js:function(data){
                     $(".comment_btn").removeAttr("disabled");
                     var data = $.parseJSON(data);
+                    var alertMsg = "'.yii::t('app', 'comment_success_alert').'";
                     if(data.status=="success"){
 //                          $.fn.yiiListView.update("comments_listview",{});   
                           var url=document.location.href;
@@ -34,8 +35,17 @@
                                 method:"GET",
                                 url:url,
                                 data:{"ajax":"comments_listview"},
-                                success: function (data, textStatus) { 
+                                success: function (data, textStatus, result) { 
                                     $("#comments_listview").html($(data).find("#comments_listview"));
+                                     swal({
+                                        title: "",
+                                        text: alertMsg,
+                                        type: textStatus,
+                                        showCloseButton: true,
+                                        showConfirmButton: false,
+                                        timer: 5000
+                                        //confirmButtonText: \'OK\'
+                                    });
                                 }     
                           });
                           $("#Comments_text").val("");
@@ -56,3 +66,12 @@
         ?>
     </div>
 </div> <!-- form -->
+
+<?php
+
+ Yii::app()->clientscript
+     ->registerCssFile(Yii::app()->theme->baseUrl . '/css/sweetalert2/sweetalert2.min.css')
+     ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/sweetalert2/sweetalert2.min.js', CClientScript::POS_END);
+
+
+?>

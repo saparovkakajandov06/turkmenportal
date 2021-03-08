@@ -559,6 +559,7 @@ return array(
     'Reading the news is much more easier.' => 'Indi täzelikleri okamak has ýeňilleşdi.',
     'Application Turkmenportal' => 'Turkmenportal ykjam programmasy',
     'Download our app' => 'Programmamyzy yükläp alyň',
+    'comment_success_alert' => 'Siziň teswiriňiz moderator tarapyndan barlanynandan soň görkeziler!',
 
 );
 ?>

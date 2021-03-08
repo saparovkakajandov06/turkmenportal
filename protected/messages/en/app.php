@@ -570,5 +570,7 @@ return array (
     'In the world' => 'World',
     'Sport' => 'Sport',
     'Business' => 'Business',
+    'comment_success_alert' => 'Your comment will be published after being checked by a moderator!',
+
 );
 ?>
