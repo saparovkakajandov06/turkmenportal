@@ -560,7 +560,8 @@ return array(
     'Application Turkmenportal' => 'Turkmenportal ykjam programmasy',
     'Download our app' => 'Programmamyzy yükläp alyň',
     'comment_success_alert' => 'Siziň teswiriňiz moderator tarapyndan barlanynandan soň görkeziler!',
-
+    'obyava_alert_msg' => 'Siziň bilidirişiňiz administrator tarapyndan barlananyndan soň görkeziler',
+    ''
 );
 ?>
 
