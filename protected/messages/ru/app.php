@@ -595,6 +595,7 @@ return array(
     'Reading the news is much more easier.' => 'Читать новости стало удобнее.',
     'Application Turkmenportal' => 'Приложение Туркменпортал',
     'Download our app' => 'Скачивайте наше приложение',
+    'comment_success_alert' => 'Ваш комментарий будет опубликован после проверки модератором!',
 
 
 
