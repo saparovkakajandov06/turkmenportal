@@ -98,7 +98,7 @@ class ItemController extends Controller
 
                     if ($committed == true) {
                         $this->sendAlertEmail($dynamicModel, 'catalog/view', "", 'moderatorAlertEmail');
-                        $this->redirect(array('user/announcement'));
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -149,7 +149,7 @@ class ItemController extends Controller
 
                     if ($committed == true) {
                         $this->sendAlertEmail($dynamicModel, 'auto/view', "", 'moderatorAlertEmail');
-                        $this->redirect(array('user/announcement'));
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -204,7 +204,7 @@ class ItemController extends Controller
 
                     if ($committed == true) {
                         $this->sendAlertEmail($dynamicModel, 'estates/view', "", 'moderatorAlertEmail');
-                        $this->redirect(array('user/announcement'));
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -261,7 +261,7 @@ class ItemController extends Controller
 
                     if ($committed == true) {
                         $this->sendAlertEmail($dynamicModel, 'advert/view', "", 'moderatorAlertEmail');
-                        $this->redirect(array('user/announcement'));
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -319,7 +319,7 @@ class ItemController extends Controller
 
                     if ($committed == true) {
                         $this->sendAlertEmail($dynamicModel, 'work/view', "", 'moderatorAlertEmail');
-                        $this->redirect(array('user/announcement'));
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
