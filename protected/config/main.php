@@ -441,7 +441,7 @@ return array(
 //		'uploadfolder'=>"http://turkmenportal.com/images/uploads",
         'weather' => array(
             'apiUrl' => 'https://api.openweathermap.org/data/2.5/onecall?',
-            'apiKey' => '5640f8d541e26ec69c732a6d0c1cb677',
+            'apiKey' => '8ddadb86347ddc9158aa98e8728a02f7',
             'lang' => 'en',
             'units' => 'metric'
         ),
