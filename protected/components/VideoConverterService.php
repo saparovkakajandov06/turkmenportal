@@ -107,7 +107,7 @@ class VideoConverterService
             $curl = curl_init();
             curl_setopt_array($curl, array(
 //                CURLOPT_URL => "https://nesipetsin.info/payment/backend/api/video/convert",
-                CURLOPT_URL => "http://turkmenportal.com:9797/payment/backend/api/video/convert",
+                CURLOPT_URL => "http://mygreenway.website/backend/tk/convertor/convertor",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
