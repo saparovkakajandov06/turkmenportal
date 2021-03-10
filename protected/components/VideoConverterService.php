@@ -108,7 +108,7 @@ class VideoConverterService
             curl_setopt_array($curl, array(
 //                CURLOPT_URL => "https://nesipetsin.info/payment/backend/api/video/convert",
                 CURLOPT_URL => "http://mygreenway.website/backend/tk/convertor/convertor",
-                CURLOPT_RETURNTRANSFER => false,
+                CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,
