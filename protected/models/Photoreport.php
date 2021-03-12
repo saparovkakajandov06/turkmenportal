@@ -33,7 +33,7 @@
  */
 class Photoreport extends Blog {
 
-    public $default_scope = array('enabled', 'sort_newest');
+    public $default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc');
     public $video = false;
 
     private $_url;
