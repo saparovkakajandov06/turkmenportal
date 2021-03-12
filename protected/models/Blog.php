@@ -196,6 +196,14 @@ class Blog extends ActiveRecord
                 'tagBindingTableTagId' => 'tag_id',
                 'cacheID' => 'cache',
                 'createTagsAutomatically' => true,
+            ),
+            'changeNoBreakingSpace' => array(
+                'class' => 'ext.nobreakingspace.NoBrakingSpace',
+                'attributes' => array(
+                    'title_ru', 'title_tm', 'title_en',
+                    'description_ru', 'description_tm', 'description_en',
+                    'text_ru', 'text_tm', 'text_en'
+                )
             )
         ));
     }
