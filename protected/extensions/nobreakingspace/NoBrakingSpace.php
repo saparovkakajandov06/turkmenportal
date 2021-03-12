@@ -14,7 +14,7 @@ class NoBrakingSpace extends CActiveRecordBehavior
         public function beforeSave($event){
 
             foreach ($this->attributes as $attribute){
-                $this->owner->{$attribute} = preg_replace('/\xc2\xa0/', ' ', $this->owner->{$attribute});
+                $this->owner->{$attribute} = preg_replace('/&nbsp;/', ' ', $this->owner->{$attribute});
             }
 
             parent::beforeSave($event);
