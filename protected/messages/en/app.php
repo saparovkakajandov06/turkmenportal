@@ -572,6 +572,7 @@ return array (
     'Business' => 'Business',
     'comment_success_alert' => 'Your comment will be published after being checked by a moderator!',
     'obyava_alert_msg' => 'Your ad will be published after verification by the administrator',
+    'media' => 'Media',
 
 );
 ?>

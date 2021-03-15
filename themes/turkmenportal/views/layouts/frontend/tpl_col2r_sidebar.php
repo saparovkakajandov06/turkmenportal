@@ -55,7 +55,7 @@
         </div>
 
         <div class="style-media">
-            <h4 class="block-title"><?php echo Yii::t('app', 'photoreport'); ?></h4>
+            <h4 class="block-title"><?php echo Yii::t('app', 'media'); ?></h4>
             <?php
             $this->widget('application.widgets.photoreport.PhotoreportWidget', array(
                 'item_count' => 1,
