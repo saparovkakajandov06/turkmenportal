@@ -84,10 +84,16 @@ class AnnouncementController extends Controller
 
 //        if (isset($_GET['Announcement']))
 //                $model->setAttributes($_GET['Announcement']);
-
+        if (isset($_GET['status'])){
+            $alertMsg = yii::t('app', 'obyava_alert_msg');
+        } else {
+            $alertMsg = '';
+        }
+        unset($_GET['status']);
         $this->render('/profile/announcement', array(
             'dataProvider' => $dataProvider,
-        ));
+            'alertMsg' => $alertMsg,
+            ));
     }
 
 

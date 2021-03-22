@@ -33,7 +33,9 @@ class Information extends ActiveRecord
                 'sort_by_order'=>array(
                     'order'=>'t.sort_order',
                 ),
-                
+                'sort_id'=>array(
+                    'order'=>'t.id',
+                ),
                 'is_bottom'=>array(
                     'condition'=>"bottom=1",
                 ),

@@ -51,6 +51,7 @@ return array(
         'ext.eoauth.lib.*',
         'ext.lightopenid.*',
         'ext.eauth.*',
+        'ext.WordFilter.*',
         'ext.eauth.services.*',
         'ext.spaces-api.SpacesConnect',
     ),
@@ -191,6 +192,9 @@ return array(
                 '<controller:\w+>/a/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/category/<category_id:\d+>' => '<controller>/index',
                 '<controller:\w+>/<path:[\w-\/]+>' => '<controller>/index',
+
+                '<controller:weather>/<id:\d+>/<alias:[\w-]+>' => '<controller>/index',
+
             ),
         ),
 
@@ -363,9 +367,12 @@ return array(
                     'levels' => 'error, warning',
                     'enabled' => true,
                     'categories' => 'system.*',
-                    'emails' => array('batya224@mail.ru'),
+                    'emails' => array('ecmngnt@gmail.com'),
                 ),
             ),
+        ),
+        'WeatherService' => array(
+          'class' => 'WeatherService'
         ),
 
 
@@ -386,6 +393,9 @@ return array(
 //    //                            ),
 //                ),
 //            ),
+        'WordFilter' => array(
+            'class' => 'ext.WordFilter.WordFilter'
+        )
     ),
 
 
@@ -395,7 +405,8 @@ return array(
         // this is used in contact page
         'title' => 'Turkmenportal.com',
         'adminEmail' => 'no-reply@turkmenportal.com',
-        'adminAlertEmail' => array('ars_encoder@mail.ru', 'tm-rubin@mail.ru', 'manager@turkmenportal.com', 'resuldovletmuradov@yandex.ru', 'gulnara281114@gmail.com'),
+        'adminAlertEmail' => array('ars_encoder@mail.ru', 'tm-rubin@mail.ru', 'manager@turkmenportal.com', 'resuldovletmuradov@yandex.ru', 'gulnara281114@gmail.com', 'leylachalova99@yandex.ru'),
+        'moderatorAlertEmail' => array('moderator@turkmenportal.com'),
         'reCaptcha' => array(
 //            'publicKey' => '6LcoSR4UAAAAACX5xpZha96sMqMEzwJBa7gOIku_',
             'publicKey' => '6Ldpl1EUAAAAAM-1y3CGee0GWnQKpDnAUOhr5_-S',
@@ -429,5 +440,11 @@ return array(
         'uploadfolder' => "/images/uploads",
         'videouploadfolder' => "/images/videouploads",
 //		'uploadfolder'=>"http://turkmenportal.com/images/uploads",
+        'weather' => array(
+            'apiUrl' => 'https://api.openweathermap.org/data/2.5/onecall?',
+            'apiKey' => '65c4fa09382b60e6c1c302916cfcb197',
+            'lang' => 'en',
+            'units' => 'metric'
+        ),
     ),
 );

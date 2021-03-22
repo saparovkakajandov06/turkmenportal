@@ -366,7 +366,7 @@ return array(
     'search_query' => 'Результаты поиска по запросу "query"',
     'search_query_advanced' => 'Результаты поиска по запросу  <span class="term"> "query" </span>',
     'advert' => 'Объявления',
-    'footer_copy_right' => 'Все права защищены. </br> При использовании материалов с сайта ссылка на turkmenportal.com обязательна! ',
+    'footer_copy_right' => 'Все права защищены.  При использовании материалов с сайта ссылка на turkmenportal.com обязательна. ',
     'obyawa_message1' => 'Уважаемые Пользователи, чтобы добавить свое объявление выберите соответствующую рубрику, затем раздел и заполните необходимые поля.',
     'title' => 'Заголовок',
     'Add' => '+добавить',
@@ -588,6 +588,19 @@ return array(
     'In the world' => 'В мире',
     'Sport' => 'Спорт',
     'Business' => 'Бизнес',
+
+    'Download' => 'Скачать',
+    'No, Thanks' => 'Спасибо, не надо',
+    'Reading news has become more easier with the Turkmenportal application.' => 'Читать новости стало удобнее через приложение Туркменпортал.',
+    'Reading the news is much more easier.' => 'Читать новости стало удобнее.',
+    'Application Turkmenportal' => 'Приложение Туркменпортал',
+    'Download our app' => 'Скачивайте наше приложение',
+    'comment_success_alert' => 'Ваш комментарий будет опубликован после проверки модератором!',
+    'obyava_alert_msg' => 'Ваше объявление будет опубликовано после проверки администратором',
+    'media' => 'Медиа',
+
+
+
 );
 ?>
 

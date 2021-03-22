@@ -507,7 +507,7 @@
             'maxSubCatCount' => 3,
             'category_code' => 'advert',
             'categoy_index_url' => '//blog',
-            'override_main_title' => Yii::t('app', 'ОБЪЯВЛЕНИЯ'),
+            'override_main_title' => Yii::t('app', 'advert'),
             'view' => 'CategoryHeaderWidget_3',
         ));
         ?>

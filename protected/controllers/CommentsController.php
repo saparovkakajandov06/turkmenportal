@@ -70,7 +70,7 @@ class CommentsController extends Controller
         }
         if (isset ($parent_id))
             $model->parent_id = $parent_id;
-        $model->status = 1;
+        $model->status = 0;
 
 
         $this->performAjaxValidation($model);
@@ -107,7 +107,7 @@ class CommentsController extends Controller
             if ($committed == true) {
                 $related = CActiveRecord::model($model->related_to)->findByPk($model->related_relation_id);
                 if (isset($related)) {
-                    $to = Yii::app()->params['adminAlertEmail'];
+                    $to = Yii::app()->params['moderatorAlertEmail'];
                     $subject = Yii::app()->controller->truncate($model->getTitle(), 10, 50) . ' ( Comment doredildi )';
                     $this->sendTemplateEmail($to, $subject, 'comments/view', array('model' => $model, 'related' => $related));
                 }
