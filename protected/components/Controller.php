@@ -280,7 +280,7 @@ class Controller extends RController
     }
 
 
-    public function renderDateToWord($date)
+    public function renderDateToWord($date, $year = true)
     {
         $date_str = '';
         $months = array(
@@ -292,9 +292,12 @@ class Controller extends RController
         if (!is_int($date)) {
             $date = strtotime($date);
         }
-
-        $str = date('d', $date) . " " . $months[Yii::app()->language][ltrim(date('m', $date), "0")] . " " . date('Y', $date);
+        $str = date('d', $date) . " " . $months[Yii::app()->language][ltrim(date('m', $date), "0")];
 //            echo $months[Yii::app()->language][date ('m',$date)];
+        if ($year)
+            $str = $str . " " . date('Y', $date);
+
+
         return $str;
     }
 
@@ -343,7 +346,7 @@ class Controller extends RController
     }
 
 
-    protected function sendAlertEmail($model, $view, $destination = "")
+    protected function sendAlertEmail($model, $view, $destination = "", $emails = 'adminAlertEmail')
     {
         $documents = $model->documents;
         $attachments = array();
@@ -352,13 +355,15 @@ class Controller extends RController
             if (isset($path))
                 $attachments[$path] = $doc->name;
         }
-        $to = Yii::app()->params['adminAlertEmail'];
+
+        $to = Yii::app()->params[$emails];
         if (strlen($destination) == 0) {
             $destination = Yii::t('app', 'item_add_form');
         }
         $subject = Yii::app()->controller->truncate($model->getTitle(), 10, 50) . ' (' . $destination . ')';
         return Yii::app()->controller->sendTemplateEmail($to, $subject, $view, array('model' => $model), $attachments);
     }
+
 
 
     public function getCurl($url)
@@ -475,6 +480,59 @@ class Controller extends RController
         if (isset ($categoryModel)) {
             return $categoryModel;
         }
+    }
+
+    function isIosDevice(){
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $iosDevice = array('iphone', 'ipod', 'ipad');
+        $isIos = false;
+
+        foreach ($iosDevice as $val) {
+            if(stripos($userAgent, $val) !== false){
+                $isIos = true;
+                break;
+            }
+        }
+
+        return $isIos;
+    }
+
+    public function renderDateWeekDay($date, $weekday = 'N')
+    {
+        $weeks = array(
+            "tm" => array("", 'Duşenbe', 'Sişenbe', 'Çarşenbe', 'Perşenbe', 'Anna', 'Şenbe', 'Ýekşenbe'),
+            "ru" => array("", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"),
+            "en" => array("", 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
+        );
+
+        if (!is_int($date)) {
+            $date = strtotime($date);
+        }
+
+        $str = "";
+        if (isset($weekday))
+            $str = $str . " " . $weeks[Yii::app()->language][ltrim(date($weekday, $date), "0")];
+
+        return $str;
+    }
+
+    public function renderDateWeekDay3l($date, $weekday = 'N')
+    {
+        $weeks = array(
+            "tm" => array("", 'Dş', 'Sş', 'Çş', 'Pş', 'An', 'Şn', 'Ýş'),
+            "ru" => array("", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"),
+            "en" => array("", 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'),
+        );
+
+        if (!is_int($date)) {
+            $date = strtotime($date);
+        }
+
+        $str = "";
+        if (isset($weekday))
+            $str = $str . " " . $weeks[Yii::app()->language][ltrim(date($weekday, $date), "0")];
+
+        return $str;
     }
 
 }
