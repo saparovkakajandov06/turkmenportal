@@ -4313,6 +4313,9 @@ body.mobilescreen .dashboard_news_block {
 .show_more_header a:hover{
     color: #a71f1f;
 }
+.i_n_list_img{
+    width: 90px;
+}
 
 @media (max-width: 768px) {
     .show_more_header{
@@ -4340,6 +4343,10 @@ body.mobilescreen .dashboard_news_block {
     body.mobilescreen .media-object.responsive.news-index .thumb img {
         width: 100%;
     }
+    .i_n_list_img{
+        width: auto;
+    }
+
 }
 .article_stats_2{
     color: #adadad;
