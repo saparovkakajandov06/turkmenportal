@@ -11,7 +11,7 @@ $this->widget('application.widgets.category.CategoryHeaderWidget', array(
 <?php
 //    var_dump($this->itemView);die;
 ?>
-<div class="news_by_category" >
+<div class="news_by_category n_b_c_1" >
 
     <?php
     $this->widget('bootstrap.widgets.BootListView', array(
