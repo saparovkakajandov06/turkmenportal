@@ -4328,6 +4328,28 @@ body.mobilescreen .dashboard_news_block {
     .show_more_header{
         padding-top: 8px;
     }
+    .mobile_index_list .entry-title a,  .n_b_c_1 .entry-title a, .compositions .entry-title a{
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .mobile_index_list .entry-date,  .n_b_c_1 .entry-date, .compositions .entry-date{
+        padding: 5px 0;
+        /*display: block;*/
+        /*text-align: left;*/
+    }
+    .media-object.news-index{
+        height: auto;
+        width: 100%;
+        float: unset;
+        max-height: 250px;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid transparent;
+        display: block;
+    }
+    body.mobilescreen .media-object.responsive.news-index .thumb img {
+        width: 100%;
+    }
 }
 .article_stats_2{
     color: #adadad;
