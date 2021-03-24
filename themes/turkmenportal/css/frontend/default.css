@@ -4917,6 +4917,9 @@ body.mobilescreen .dashboard_news_block {
 
 }
 @media (max-width: 768px) {
+    body.mobilescreen .headerColor {
+        font-size: 25px;
+    }
     .footer-area .second li{
         margin-top: 20px; ;
     }
