@@ -6,7 +6,7 @@
             $path = $data->getThumbPath(175, 92, 'w', true);
             if (isset($path) && strlen(trim($path)) > 1) { ?>
                 <span class="media-object responsive news-index">
-                        <?php echo CHtml::link(CHtml::image($path, $title, array ('style' => 'margin-right:8px;', 'alt' => $title)), $data->getUrl(), array ('class' => "thumb")); ?>
+                        <?php echo CHtml::link(CHtml::image($path, $title, array ('style' => 'margin-right:8px;width:initial;', 'alt' => $title)), $data->getUrl(), array ('class' => "thumb")); ?>
                     </span>
             <?php } ?>
         </div>
