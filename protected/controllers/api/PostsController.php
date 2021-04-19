@@ -76,6 +76,11 @@ class PostsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
+        if (isset($model)){
+            $document = $model->getDocument();
+            $image_source = $document->{title.'_'.$hl};
+        }
+
         $image = $model->getThumbPath(720, 576, 'w');
         if (strlen($image) > 5){
             $image = 'https://turkmenportal.com'.$image;
@@ -99,6 +104,7 @@ class PostsController extends Controller
                 'image_url' => $image,
                 'img_width' => $image_width,
                 'img_height' => $image_height,
+                'img_source' => $image_source,
 //            'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(100, 100, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
