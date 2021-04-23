@@ -8,10 +8,11 @@ class BlogWrapper extends Blog
 
     public function apiSearchForCategory($per_page = 10, $page = 0)
     {
-        if (!isset($per_page))
-            $per_page = 10;
-        if (!isset($page))
-            $page = 0;
+        if (isset($_GET['page']))
+            $page = (int)$_GET['page'];
+        if (isset($_GET['per_page']))
+            $per_page = (int)$_GET['per_page'];
+
         $criteria = new CDbCriteria;
 
         if (isset($this->parent_category_id)) {

@@ -124,14 +124,13 @@ class MediasController extends Controller
         $modelBlog = new BlogWrapper('search');
         $modelCategory = Category::model()->findByPk($cat_id);
 
-
         if (isset($modelCategory) && isset($modelCategory->parent_id) && $modelCategory->parent_id > 0){
             $modelBlog->category_id = $modelCategory->id;
         }
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelBlog->parent_category_id = $modelCategory->id;
         $modelBlog->video = true;
-        $dataProvider = $modelBlog->searchForCategory(null);
+        $dataProvider = $modelBlog->apiSearchForCategory(null);
         $models = $dataProvider->getData();
 
         foreach ($models as $key => $model){
