@@ -104,6 +104,7 @@ class MediasController extends Controller
 
     public function actionTop()
     {
+        $_GET['api'] = true;
         if (isset($_GET['cat_id'])){
             if ($_GET['cat_id'] == 0){
                 $cat_id = 338;
