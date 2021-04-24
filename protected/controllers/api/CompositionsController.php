@@ -90,6 +90,17 @@ class CompositionsController extends Controller
             $image_width = $image_info[0];
             $image_height = $image_info[1];
         }
+        $lang = [];
+        if (yii::app()->language != 'ru' && strlen($model->title_ru) > 0 && strlen($model->content_ru) > 0){
+            $lang[] = 'ru';
+        }
+        if (yii::app()->language != 'tm' && strlen($model->title_tm) > 0 && strlen($model->content_tm) > 0){
+            $lang[] = 'tm';
+        }
+        if (yii::app()->language != 'en' && strlen($model->title_en) > 0 && strlen($model->content_en) > 0){
+            $lang[] = 'en';
+        }
+
 
         if (isset($model)) {
             $content = $model->getContent();
@@ -113,6 +124,7 @@ class CompositionsController extends Controller
                 'cat_id' => (int)$model->category->id,
                 'view_count' => (int)$model->views,
                 'url' => $model->getUrl(),
+                'lang' => $lang
             );
         }
         if (!isset($data)){

@@ -76,7 +76,19 @@ class PostsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
-        if (isset($model)){
+        $lang = [];
+        if (yii::app()->language != 'ru' && strlen($model->title_ru) > 0 && strlen($model->content_ru) > 0){
+            $lang[] = 'ru';
+        }
+        if (yii::app()->language != 'tm' && strlen($model->title_tm) > 0 && strlen($model->content_tm) > 0){
+            $lang[] = 'tm';
+        }
+        if (yii::app()->language != 'en' && strlen($model->title_en) > 0 && strlen($model->content_en) > 0) {
+            $lang[] = 'en';
+        }
+
+
+            if (isset($model)){
             $document = $model->getDocument();
             $image_source = $document->{title.'_'.$hl};
         }
@@ -114,6 +126,7 @@ class PostsController extends Controller
                 'phone' => $model->phone,
                 'web_site' => $model->web,
                 'url' => $model->getUrl(),
+                'lang' => $lang
             );
         }
         if (!isset($data)){
