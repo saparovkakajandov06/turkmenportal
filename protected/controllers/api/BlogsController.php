@@ -71,6 +71,18 @@ class BlogsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
+        $lang = [];
+        if (yii::app()->language != 'ru' && strlen($model->title_ru) > 0 && strlen($model->text_ru) > 0){
+            $lang[] = 'ru';
+        }
+        if (yii::app()->language != 'tm' && strlen($model->title_tm) > 0 && strlen($model->text_tm) > 0){
+            $lang[] = 'tm';
+        }
+        if (yii::app()->language != 'en' && strlen($model->title_en) > 0 && strlen($model->text_en) > 0) {
+            $lang[] = 'en';
+        }
+
+
         if (isset($model)){
             $document = $model->getDocument();
             $image_source = $document->{title.'_'.$hl};
@@ -108,6 +120,7 @@ class BlogsController extends Controller
                 'cat_id' => (int)$model->category->id,
                 'view_count' => (int)$model->visited_count,
                 'url' => $model->createAbsoluteUrl(),
+                'lang' => $lang
             );
         }
         if (!isset($data)){
