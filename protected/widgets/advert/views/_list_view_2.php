@@ -8,7 +8,7 @@
             $path = $data->getThumbPath(110, 80, 'w', true, true, true);
             if (isset($path) && strlen(trim($path)) > 1) { ?>
                 <span class="media-object responsive">
-                        <?php echo CHtml::link(CHtml::image($path, $data->title, array('style' => 'margin-right:15px;', 'alt' => $title)), $data->getUrl(), array('class' => "thumb")); ?>
+                        <?php echo CHtml::link(CHtml::image($path, $data->title, array('style' => 'margin-right:15px;', 'alt' => $title)), $data->getUrl(), array('class' => "thumb lazy", 'width' => '110', 'height' => '80')); ?>
                     </span>
             <?php } ?>
         </div>

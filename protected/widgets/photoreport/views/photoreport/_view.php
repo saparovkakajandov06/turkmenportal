@@ -11,7 +11,7 @@ $cssClass = 'col-xs-12 colheight-sm-1';
 
     <figure class="entry-thumbnail">
         <?php
-        echo CHtml::link(CHtml::image($data->getThumbPath($thumbWidth, $thumbHeight, 'auto', true), $data->getTitle()), $data->getUrl(), array('class' => "overlay overlay-primary"));
+        echo CHtml::link(CHtml::image($data->getThumbPath($thumbWidth, $thumbHeight, 'auto', true), $data->getTitle()), $data->getUrl(), array('class' => "overlay overlay-primary lazy", 'width' => $thumbWidth, 'height' => $thumbHeight));
         ?>
     </figure>
 
