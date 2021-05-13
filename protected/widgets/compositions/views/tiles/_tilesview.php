@@ -18,7 +18,7 @@
         ?>
         <?php if ($this->show_image && !Yii::app()->controller->isMobile()) { ?>
             <span class="media-object responsive">
-            <?php echo CHtml::link(CHtml::image($data->getThumbPath(180, 265, 'w', true), $title, array('alt' => $title)), $data->url, array('class' => "thumb")); ?>
+            <?php echo CHtml::link(CHtml::image($data->getThumbPath(180, 265, 'w', true), $title, array('alt' => $title)), $data->url, array('class' => "thumb lazy", 'width' => '180', 'height' => '265')); ?>
         </span>
         <?php } ?>
 
