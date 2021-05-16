@@ -70,7 +70,7 @@
         ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/base.css?v=3.26')
         ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/components.min.css?v=0.27')
 
-        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/default.css?v=3.45')
+        ->registerCssFile(Yii::app()->theme->baseUrl . '/css/frontend/default.css?v=3.46')
 
 //                ->registerCssFile(Yii::app()->theme->baseUrl . '/css/prettyPhoto/prettyPhoto.css')
 //                ->registerCoreScript(Yii::app()->theme->baseUrl . '/js/jquery_1.8.3.js')

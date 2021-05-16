@@ -11,7 +11,12 @@ $title = $data->getTitle();
             </span>
 
             <div>
+                <span class="entry-date">
+                        <time
+                                datetime="<?php echo Yii::app()->controller->dateToW3C($data->date_added); ?>"> <?php echo Yii::app()->controller->renderDate($data->date_added); ?></time>
+                    </span>
                 <h1 class="blog_header">
+
                     <?php
                     echo CHtml::link(Yii::app()->controller->truncate($title, 15, 200), $data->url, array('title' => $title, 'rel' => 'bookmark'));
                     ?>
