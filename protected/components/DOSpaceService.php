@@ -16,31 +16,31 @@ class DOSpaceService
 
     public function uploadToSpace($localPath, $spacePath, $access = 'private')
     {
-//        echo "uploadToSpace: localPath: " . $localPath . ' spacePath: ' . $spacePath;
-//        try {
-//            if (file_exists($localPath)) {
-//                $this->space->uploadFile($localPath, $access, $spacePath);
-//                return true;
+        echo "uploadToSpace: localPath: " . $localPath . ' spacePath: ' . $spacePath;
+        try {
+            if (file_exists($localPath)) {
+                $this->space->uploadFile($localPath, $access, $spacePath);
+                return true;
+            }
+//            else {
+//                echo "file does not exist on localPath: " . $localPath;
 //            }
-////            else {
-////                echo "file does not exist on localPath: " . $localPath;
-////            }
-//        } catch (Exception $e) {
-//            echo $e->getMessage();
-//            return false;
-//        }
-//
-//        return false;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
+        return false;
     }
 
 
     public function downloadFromSpace($download_file, $save_as)
     {
-//        if ($this->space->doesObjectExist($download_file) && !file_exists($save_as)) {
-//            $this->space->downloadFile($download_file, $save_as);
-//            return true;
-//        }
-//        return false;
+        if ($this->space->doesObjectExist($download_file) && !file_exists($save_as)) {
+            $this->space->downloadFile($download_file, $save_as);
+            return true;
+        }
+        return false;
     }
 
     public function deleteFromSpace($spacePath)
