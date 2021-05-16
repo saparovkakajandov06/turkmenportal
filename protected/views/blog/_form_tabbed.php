@@ -42,28 +42,28 @@
     </div>
 
 
-    <div class="control-group">
-        <label for="regions"><?php echo Yii::t('app', 'Regions'); ?></label>
-        <div class="controls">
-            <div class="row nm_row nm_regions">
-                <?php
-                echo CHtml::checkBoxList(
-                    'Blog[regions]',
-                    array_keys(CHtml::listData($model->regions, 'id', 'id')),
-                    Regions::model()->getRegionsListByTree(),
-                    array('template' => "{beginLabel} {input} {labelTitle} {endLabel} ",
-                        'attributeitem' => 'id',
-                        'labelOptions' => array('style' => 'display:inline')
-                    )
-                );
-                ?>
-            </div>
-            <a class="select_all"
-               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', true);"><?php echo Yii::t('app', "Select All"); ?></a>/
-            <a class="select_none"
-               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', false);"><?php echo Yii::t('app', "Select None"); ?></a>
-        </div>
-    </div>
+<!--    <div class="control-group">-->
+<!--        <label for="regions">--><?php //echo Yii::t('app', 'Regions'); ?><!--</label>-->
+<!--        <div class="controls">-->
+<!--            <div class="row nm_row nm_regions">-->
+<!--                --><?php
+//                echo CHtml::checkBoxList(
+//                    'Blog[regions]',
+//                    array_keys(CHtml::listData($model->regions, 'id', 'id')),
+//                    Regions::model()->getRegionsListByTree(),
+//                    array('template' => "{beginLabel} {input} {labelTitle} {endLabel} ",
+//                        'attributeitem' => 'id',
+//                        'labelOptions' => array('style' => 'display:inline')
+//                    )
+//                );
+//                ?>
+<!--            </div>-->
+<!--            <a class="select_all"-->
+<!--               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', true);">--><?php //echo Yii::t('app', "Select All"); ?><!--</a>/-->
+<!--            <a class="select_none"-->
+<!--               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', false);">--><?php //echo Yii::t('app', "Select None"); ?><!--</a>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <div class="control-group">
@@ -124,7 +124,7 @@
             </div>
         </div>
     </div>
-
+    <?php if (Yii::app()->user->getIsSuperuser()) { ?>
     <div class="control-group">
         <?php echo $form->labelEx($model, 'visited_count', array('class' => 'control-label')); ?>
         <div class="controls">
@@ -134,5 +134,18 @@
             </div>
         </div>
     </div>
+    <?php } ?>
+
+    <?php if (Yii::app()->user->getIsSuperuser()) { ?>
+        <div class="control-group">
+            <?php echo $form->labelEx($model, 'date_added', array('class' => 'control-label')); ?>
+            <div class="controls">
+                <?php echo $form->dateTimeLocalField($model, 'date_added'); ?>
+                <div class="help-inline">
+                    <?php echo $form->error($model, 'date_added'); ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
 </div> <!-- form -->
