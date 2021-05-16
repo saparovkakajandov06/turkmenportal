@@ -20,15 +20,17 @@
 <?php
 if ($this->view === '_view'):
     ?>
-    <div class="more-wrapper" style="margin-bottom: 20px; ">
-        <?php
-        $this->widget('application.widgets.category.CategoryMoreWidget', array(
+    <div class="col-md-12">
+        <div class="more-wrapper visible-xs" style="margin-bottom: 20px; ">
+            <?php
+            $this->widget('application.widgets.category.CategoryMoreWidget', array(
 //            'maxSubCatCount' => 5,
-            'category_code' => 'work',
-            'categoy_index_url' => '//blog',
-            'view' => 'CategoryMoreWidget',
-        ));
-        ?>
+                'category_code' => 'work',
+                'categoy_index_url' => '//blog',
+                'view' => 'CategoryMoreWidget',
+            ));
+            ?>
+        </div>
     </div>
 
 <?php

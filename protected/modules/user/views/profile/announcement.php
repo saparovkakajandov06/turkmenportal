@@ -96,3 +96,62 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     ),
 ));
 ?>
+
+
+<?php
+
+    Yii::app()->clientscript
+    ->registerCssFile(Yii::app()->theme->baseUrl . '/css/sweetalert2/sweetalert2.min.css')
+    ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/sweetalert2/sweetalert2.min.js', CClientScript::POS_END)
+    ->registerScript(1,"
+       var alertMsg = '$alertMsg';
+        
+       $(document).ready(function(){
+          if (alertMsg.length > 10){
+            
+            swal({
+                 title: \"\",
+                text: alertMsg,
+                type: 'success',
+                showCloseButton: false,
+                showConfirmButton: false,
+                timer: 5000
+                //confirmButtonText: 'OK'
+            });
+            setTimeout(function(){ 
+                var url = removeParam('status');
+                location.href = url;
+             
+             }, 5000);
+          }                                                                      
+       });
+     
+   
+      function removeParam(parameter)
+        {
+          var url=document.location.href;
+          var urlparts= url.split('?');
+        
+         if (urlparts.length>=2)
+         {
+          var urlBase=urlparts.shift(); 
+          var queryString=urlparts.join(\"?\"); 
+        
+          var prefix = encodeURIComponent(parameter)+'=';
+          var pars = queryString.split(/[&;]/g);
+          for (var i= pars.length; i-->0;)               
+              if (pars[i].lastIndexOf(prefix, 0)!==-1)   
+                  pars.splice(i, 1);
+          url = urlBase+'?'+pars.join('&');
+          window.history.pushState('',document.title,url); // added this line to push the new url directly to url bar .
+        
+        }
+        return url;
+        }
+    
+  
+    ",CClientScript::POS_END);
+
+
+
+?>

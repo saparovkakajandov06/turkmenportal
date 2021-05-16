@@ -64,7 +64,9 @@ class ItemController extends Controller
                 $dynamicModel->parent_category_id = $categoryModel->parent_id;
                 $dynamicModel->title_ru = $dynamicModel->title_tm = $model->title;
                 $dynamicModel->description_ru = $dynamicModel->description_tm = $model->description;
-
+                if (!Yii::app()->WordFilter->sterling($dynamicModel->title_ru) || !Yii::app()->WordFilter->sterling($dynamicModel->description_ru)){
+                    $this->redirect(array('index'));
+                }
                 if (!$this->validateTabular(array($model, $dynamicModel))) {
                     $dynamic_content = $this->renderPartial('//catalog/_item_form', array('model' => $dynamicModel), true, false);
                 } else {
@@ -73,7 +75,7 @@ class ItemController extends Controller
                     $dynamicModel->create_username = $model->username;
                     $dynamicModel->phone = $model->phone;
                     $dynamicModel->mail = $model->email;
-                    $dynamicModel->status = Catalog::STATUS_ENABLED;
+                    $dynamicModel->status = Catalog::STATUS_DISABLED;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
 
@@ -95,8 +97,8 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'catalog/view');
-                        $this->redirect(array('user/announcement'));
+                        $this->sendAlertEmail($dynamicModel, 'catalog/view', "", 'moderatorAlertEmail');
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -121,11 +123,13 @@ class ItemController extends Controller
                     $dynamicModel->create_username = $model->username;
                     $dynamicModel->phone = $model->phone;
                     $dynamicModel->mail = $model->email;
-                    $dynamicModel->status = Auto::STATUS_ENABLED;
+                    $dynamicModel->status = Auto::STATUS_DISABLED;
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->other_options = serialize($dynamicModel->other_options);
-
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     try {
                         $committed = false;
                         $transaction = Yii::app()->db->beginTransaction();
@@ -144,8 +148,8 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'auto/view');
-                        $this->redirect(array('user/announcement'));
+                        $this->sendAlertEmail($dynamicModel, 'auto/view', "", 'moderatorAlertEmail');
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -157,7 +161,7 @@ class ItemController extends Controller
                 }
                 if (!isset($dynamicModel)) {
                     $dynamicModel = new Estates();
-                    $dynamicModel->status = Estates::STATUS_ENABLED;
+                    $dynamicModel->status = Estates::STATUS_DISABLED;
                 }
 
 
@@ -177,8 +181,10 @@ class ItemController extends Controller
                     $dynamicModel->create_username = $model->username;
                     $dynamicModel->owner = $model->owner;
                     $dynamicModel->date_end = $model->getDateEnd();
-                    $dynamicModel->status = Estates::STATUS_ENABLED;
-
+                    $dynamicModel->status = Estates::STATUS_DISABLED;
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     try {
                         $committed = false;
                         $transaction = Yii::app()->db->beginTransaction();
@@ -197,8 +203,8 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'estates/view');
-                        $this->redirect(array('user/announcement'));
+                        $this->sendAlertEmail($dynamicModel, 'estates/view', "", 'moderatorAlertEmail');
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -212,7 +218,7 @@ class ItemController extends Controller
                     $dynamicModel = new Advert();
 
                 $categoryModel = Category::model()->findByPk($model->category_id);
-                $dynamicModel->status = Advert::STATUS_ENABLED;
+                $dynamicModel->status = Advert::STATUS_DISABLED;
                 $dynamicModel->attributes = $_POST['Advert'];
                 $dynamicModel->parent_category_id = $categoryModel->parent_id;
 
@@ -228,8 +234,10 @@ class ItemController extends Controller
                     $dynamicModel->mail = $model->email;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
-                    $dynamicModel->status = Advert::STATUS_ENABLED;
-
+                    $dynamicModel->status = Advert::STATUS_DISABLED;
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     if (isset($dynamicModel->catalog_category_id)) {
                         $dynamicModel->category_id = $dynamicModel->catalog_category_id;
                     }
@@ -252,8 +260,8 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'advert/view');
-                        $this->redirect(array('user/announcement'));
+                        $this->sendAlertEmail($dynamicModel, 'advert/view', "", 'moderatorAlertEmail');
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }
@@ -265,12 +273,12 @@ class ItemController extends Controller
                 }
                 if (!isset($dynamicModel)) {
                     $dynamicModel = new Work();
-                    $dynamicModel->status = Work::STATUS_ENABLED;
+                    $dynamicModel->status = Work::STATUS_DISABLED;
                 }
 
 
                 $dynamicModel->attributes = $_POST['Work'];
-                $dynamicModel->status = Advert::STATUS_ENABLED;
+                $dynamicModel->status = Advert::STATUS_DISABLED;
                 $dynamicModel->category_id = $model->category_id;
 
                 if (!$this->validateTabular(array($model, $dynamicModel))) {
@@ -288,7 +296,10 @@ class ItemController extends Controller
                     $dynamicModel->mail = $model->email;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
-                    $dynamicModel->status = Work::STATUS_ENABLED;
+                    $dynamicModel->status = Work::STATUS_DISABLED;
+                    if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
+                        $this->redirect(array('index'));
+                    }
                     try {
                         $committed = false;
                         $transaction = Yii::app()->db->beginTransaction();
@@ -307,8 +318,8 @@ class ItemController extends Controller
                     }
 
                     if ($committed == true) {
-                        $this->sendAlertEmail($dynamicModel, 'work/view');
-                        $this->redirect(array('user/announcement'));
+                        $this->sendAlertEmail($dynamicModel, 'work/view', "", 'moderatorAlertEmail');
+                        $this->redirect(array('user/announcement', 'status' => 'true'));
                     }
                 }
             }

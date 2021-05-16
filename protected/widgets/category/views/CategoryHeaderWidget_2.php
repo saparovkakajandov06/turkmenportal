@@ -11,6 +11,7 @@ if (isset($this->override_main_title) && strlen(trim($this->override_main_title)
     <h1>
         <?=CHtml::link($title, $categoryModel->url, array ('class' => "headerColor")); ?>
     </h1>
+    <a href="<?=$categoryModel->url?>" class="more"> <?=yii::t('app', 'more')?></a>
 </div>
 
 <?php $this->endWidget(); ?>

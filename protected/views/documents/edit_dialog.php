@@ -59,35 +59,35 @@
         ); ?>
 
         <?php $this->endWidget('bootstrap.widgets.TbTabs'); ?>
-        <div class="control-group">
-            <?php echo $form->labelEx($model, 'alt', array('class' => 'control-label')); ?>
-            <div class="controls">
-                <?php echo $form->textField($model, 'alt'); ?>
-                <div class="help-inline">
-                    <?php echo $form->error($model, 'alt'); ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <?php echo $form->labelEx($model, 'caption', array('class' => 'control-label')); ?>
-            <div class="controls">
-                <?php echo $form->textArea($model, 'caption'); ?>
-                <div class="help-inline">
-                    <?php echo $form->error($model, 'caption'); ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <?php echo $form->labelEx($model, 'author', array('class' => 'control-label')); ?>
-            <div class="controls">
-                <?php echo $form->textField($model, 'author'); ?>
-                <div class="help-inline">
-                    <?php echo $form->error($model, 'author'); ?>
-                </div>
-            </div>
-        </div>
+<!--        <div class="control-group">-->
+<!--            --><?php //echo $form->labelEx($model, 'alt', array('class' => 'control-label')); ?>
+<!--            <div class="controls">-->
+<!--                --><?php //echo $form->textField($model, 'alt'); ?>
+<!--                <div class="help-inline">-->
+<!--                    --><?php //echo $form->error($model, 'alt'); ?>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="control-group">-->
+<!--            --><?php //echo $form->labelEx($model, 'caption', array('class' => 'control-label')); ?>
+<!--            <div class="controls">-->
+<!--                --><?php //echo $form->textArea($model, 'caption'); ?>
+<!--                <div class="help-inline">-->
+<!--                    --><?php //echo $form->error($model, 'caption'); ?>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="control-group">-->
+<!--            --><?php //echo $form->labelEx($model, 'author', array('class' => 'control-label')); ?>
+<!--            <div class="controls">-->
+<!--                --><?php //echo $form->textField($model, 'author'); ?>
+<!--                <div class="help-inline">-->
+<!--                    --><?php //echo $form->error($model, 'author'); ?>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="control-group">
             <?php echo $form->labelEx($model, 'is_main', array('class' => 'control-label')); ?>

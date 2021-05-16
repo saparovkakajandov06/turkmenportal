@@ -175,7 +175,7 @@ abstract class ActiveRecord extends CActiveRecord
             $thumb = $document->resize($width, $height, $type, $is_cropped, $with_watermark);
         } elseif ($with_no_image == true) {
             $document = new Documents();
-            $document->path = 'no_image.jpg';
+            $document->path = 'no_image.png';
             $document->name = 'no_photo';
             $thumb = $document->resize($width, $height, $type, $is_cropped, $with_watermark);
         }

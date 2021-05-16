@@ -32,6 +32,10 @@
  *
  */
 class Photoreport extends Blog {
+
+    public $default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc');
+    public $video = false;
+
     private $_url;
     private $_urlupdate;
 
@@ -72,6 +76,12 @@ class Photoreport extends Blog {
 
 
     public function searchForCategory($limit = 5, $models = false) {
+
+        if (isset($_GET['page']))
+            $page = (int)$_GET['page'];
+        if (isset($_GET['per_page']))
+            $per_page = (int)$_GET['per_page'];
+
         $criteria = new CDbCriteria;
 
         if (isset($this->parent_category_id)) {
@@ -81,13 +91,18 @@ class Photoreport extends Blog {
         if ($this->category_id)
             $criteria->compare('t.category_id', $this->category_id);
 
+        if ($this->video == true){
+            $criteria->join = 'LEFT JOIN tbl_blog_to_documents rel ON `t`.`id` = `rel`.`blog_id`'
+                .'LEFT JOIN tbl_documents doc ON `rel`.`documents_id` = `doc`.`id`';
+            $criteria->addCondition('length(doc.video_path) > 0 ');
+        }
 
         if (isset($this->except) && count($this->except) > 0) {
             $criteria->addNotInCondition('t.id', $this->except);
         }
 
 //        $criteria->scopes=array('enabled');
-        $criteria->scopes = array('enabled', 'sort_newest');
+        $criteria->scopes = $this->default_scope;
 
 
         if (!empty($this->pub_date)) {
@@ -103,14 +118,22 @@ class Photoreport extends Blog {
 
         $criteria->select = array('t.id', 't.title_' . Yii::app()->language, 't.text_' . Yii::app()->language, 't.alias_' . Yii::app()->language, 't.description_' . Yii::app()->language, 'visited_count', 'date_added', 'category_id', 'like_count', 'status', 'is_photoreport');
 
+        if ($per_page === 0 && $_GET['api']){
+            $per_page = 10;
+        } else {
+            $per_page = $per_page ? $per_page : Yii::app()->params['pageSize'];
+        }
+        if (!$_GET['api']) $page--;
+
         if ($models == false) {
             $dp = new CActiveDataProvider($this->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency('Blog'), 2),
 //           $dp= new CActiveDataProvider($this,
                 array(
                     'criteria' => $criteria,
                     'pagination' => ($limit > 0) ? false : array(
-                        'pageSize' => Yii::app()->params['pageSize'],
+                        'pageSize' => $per_page,
                         'pageVar' => 'page',
+                        'currentPage' => $page,
                     )
                 ));
 

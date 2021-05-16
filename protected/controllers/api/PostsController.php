@@ -9,6 +9,7 @@ class PostsController extends Controller
 
     public function actionIndex()
     {
+        $_GET['api'] = true;
         if (isset($_GET['cat_id'])){
             if ($_GET['cat_id'] == 0){
                 $cat_id = 283;
@@ -17,10 +18,7 @@ class PostsController extends Controller
         } else{
             $cat_id = 283;
         }
-        if (isset($_GET['page']))
-            $page = (int)$_GET['page'];
-        if (isset($_GET['per_page']))
-            $per_page = (int)$_GET['per_page'];
+
         if (isset($_GET['hl'])){
             if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
                 $hl = $_GET['hl'];
@@ -28,7 +26,7 @@ class PostsController extends Controller
             $hl = 'ru';
         }
         yii::app()->language = $hl;
-        $modelCatalog = new CatalogWrapper('search');
+        $modelCatalog = new Catalog();
         $modelCategory = Category::model()->findByPk($cat_id);
         $modelCatalog->unsetAttributes();
 
@@ -37,7 +35,7 @@ class PostsController extends Controller
         elseif (isset ($modelCategory) && ($modelCategory->parent_id == null || $modelCategory->parent_id == 0))
             $modelCatalog->parent_category_id = $modelCategory->id;
 
-        $dataProvider = $modelCatalog->apiSearchForCategory($per_page, $page);
+        $dataProvider = $modelCatalog->searchForCategory(null);
         $models = $dataProvider->getData();
 
 
@@ -46,7 +44,7 @@ class PostsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getContent(),
-                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w'),
                 'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
@@ -78,14 +76,36 @@ class PostsController extends Controller
         yii::app()->language = $hl;
         $model = $this->loadModel($id);
 
+        $lang = [];
+        if (yii::app()->language != 'ru' && strlen($model->title_ru) > 0 && strlen($model->content_ru) > 0){
+            $lang[] = 'ru';
+        }
+        if (yii::app()->language != 'tm' && strlen($model->title_tm) > 0 && strlen($model->content_tm) > 0){
+            $lang[] = 'tm';
+        }
+        if (yii::app()->language != 'en' && strlen($model->title_en) > 0 && strlen($model->content_en) > 0) {
+            $lang[] = 'en';
+        }
 
-        $image = 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w');
-        $image_info = getimagesize($image);
-        $image_width = $image_info[0];
-        $image_height = $image_info[1];
+
+            if (isset($model)){
+            $document = $model->getDocument();
+            $image_source = $document->{title.'_'.$hl};
+        }
+
+        $image = $model->getThumbPath(720, 576, 'w');
+        if (strlen($image) > 5){
+            $image = 'https://turkmenportal.com'.$image;
+            $image_info = getimagesize($image);
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
+        }
 
         if (isset($model)){
             $content = $model->getContent();
+            $pattern = '/&nbsp;/';
+            $replacements = ' ';
+            $content = preg_replace($pattern,$replacements, $content);
             $pattern = '/src="/';
             $replacements = 'src="https://turkmenportal.com';
             $content = preg_replace($pattern,$replacements, $content);
@@ -96,6 +116,7 @@ class PostsController extends Controller
                 'image_url' => $image,
                 'img_width' => $image_width,
                 'img_height' => $image_height,
+                'img_source' => $image_source,
 //            'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(100, 100, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
@@ -105,6 +126,7 @@ class PostsController extends Controller
                 'phone' => $model->phone,
                 'web_site' => $model->web,
                 'url' => $model->getUrl(),
+                'lang' => $lang
             );
         }
         if (!isset($data)){
@@ -123,11 +145,12 @@ class PostsController extends Controller
             $hl = 'ru';
         }
         yii::app()->language = $hl;
-        $modelCatalog = new CatalogWrapper();
+        $modelCatalog = new Catalog();
         $modelCatalog->unsetAttributes();
         $modelCatalog->default_scope = array('enabled','sort_trend_asc');
 //        $blogModel->reset_related_sort = true;
-        $popularDataProvider = $modelCatalog->apiSearchForCategory(6);
+        $_GET['per_page'] = 6;
+        $popularDataProvider = $modelCatalog->searchForCategory(null);
         $models = $popularDataProvider->getData();
 
         foreach ($models as $key => $model){
@@ -135,7 +158,7 @@ class PostsController extends Controller
                 'id' => (int)$model->id,
                 'title' => $model->getTitle(),
 //                'content' => $model->getText(),
-//                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(512, 288, 'w'),
+//                'image_url' => 'https://turkmenportal.com'.$model->getThumbPath(720, 576, 'w'),
                 'thumb_url' => 'https://turkmenportal.com'.$model->getThumbPath(256, 144, 'w'),
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
