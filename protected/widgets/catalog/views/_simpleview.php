@@ -6,7 +6,7 @@
 
             if (isset($this->show_photo) && $this->show_photo == true && !isset($data->documents)) { ?>
                 <span class=" pull-left media-object">
-                <?php echo CHtml::link(CHtml::image($data->getThumbPath(40, 40, "h"), $title), $data->url, array('class' => "thumb lazy", 'alt' => $title, 'width'  => '40', 'height' => '40')); ?>
+                <?php echo CHtml::link(CHtml::image($data->getThumbPath(40, 40, "h"), $title), $data->url, array('class' => "thumb", 'alt' => $title,)); ?>
             </span>
             <?php } ?>
 
