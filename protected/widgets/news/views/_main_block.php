@@ -7,7 +7,7 @@ $title = $data->getTitle();
     <div class="col-md-5 col-xs-12">
         <div class="main_news_block">
             <span class="media-object responsive">
-                    <?php echo CHtml::link(CHtml::image($data->getThumbPath(510, 710, 'w', true), $title, array('class' => 'i_n_list_img lazy', 'width' => '510', 'height' => '710', 'style' => 'width:100%', 'alt' => $title)), $data->url, array('class' => "thumb")); ?>
+                    <?php echo CHtml::link(CHtml::image($data->getThumbPath(510, 710, 'w', true), $title, array('class' => 'i_n_list_img', 'style' => 'width:100%', 'alt' => $title)), $data->url, array('class' => "thumb")); ?>
             </span>
 
             <div>

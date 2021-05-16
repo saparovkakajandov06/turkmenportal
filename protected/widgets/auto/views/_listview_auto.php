@@ -4,7 +4,7 @@
         <?php 
         if(isset($this->show_photo) && $this->show_photo==true){ ?>
             <div class="pull-left">
-                <?php echo CHtml::link(Chtml::image($data->getThumbPath(90,65,'w',true),''), $data->getUrl(), array( 'class'=>"thumb lazy", 'width' => '90', 'height' => '65')); ?>
+                <?php echo CHtml::link(Chtml::image($data->getThumbPath(90,65,'w',true),''), $data->getUrl(), array( 'class'=>"thumb")); ?>
             </div>
         <?php }?>
 
