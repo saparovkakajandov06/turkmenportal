@@ -16,7 +16,7 @@ class DOSpaceService
 
     public function uploadToSpace($localPath, $spacePath, $access = 'private')
     {
-        echo "uploadToSpace: localPath: " . $localPath . ' spacePath: ' . $spacePath;
+//        echo "uploadToSpace: localPath: " . $localPath . ' spacePath: ' . $spacePath;
         try {
             if (file_exists($localPath)) {
                 $this->space->uploadFile($localPath, $access, $spacePath);

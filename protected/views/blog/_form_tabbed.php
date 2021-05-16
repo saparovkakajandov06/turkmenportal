@@ -137,15 +137,15 @@
     <?php } ?>
 
     <?php if (Yii::app()->user->getIsSuperuser()) { ?>
-        <div class="control-group">
-            <?php echo $form->labelEx($model, 'date_added', array('class' => 'control-label')); ?>
-            <div class="controls">
-                <?php echo $form->dateTimeLocalField($model, 'date_added'); ?>
-                <div class="help-inline">
-                    <?php echo $form->error($model, 'date_added'); ?>
-                </div>
-            </div>
-        </div>
+<!--        <div class="control-group">-->
+<!--            --><?php //echo $form->labelEx($model, 'date_added', array('class' => 'control-label')); ?>
+<!--            <div class="controls">-->
+<!--                --><?php //echo $form->dateTimeLocalField($model, 'date_added'); ?>
+<!--                <div class="help-inline">-->
+<!--                    --><?php //echo $form->error($model, 'date_added'); ?>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     <?php } ?>
 
 </div> <!-- form -->
