@@ -95,6 +95,7 @@ return array(
     'edited_username' => 'Uytgeden',
     'date_added' => 'Doredildi',
     'date_modified' => 'Uytgedildi',
+    'Thumbnail' => 'Kiçi surat',
 
     //auto
     'id' => 'ID',
@@ -130,7 +131,7 @@ return array(
     'id' => 'ID',
     'language_id' => 'Language',
     'autos_id' => 'Autos',
-    'description' => 'Ginisleyin',
+    'description' => 'Ginişleýin',
 
     //catalog
     'Catalog' => 'Kataloglar',
@@ -313,6 +314,7 @@ return array(
     'search_from_site' => 'Websaýt boýunça gözleg',
     'from_all_categories' => 'Ähli bölümlerden',
     'Search' => 'Gözleg',
+    'No results found' => 'Gözleg boýunça jogap ýok',
     'Add obyawa' => 'Bildiriş goş',
     'Login' => 'Içeri gir',
     'client_form_confirmation_message' => 'Siziň bildirişiňiz goşuldy görmek isleýäňizmi?',
@@ -418,6 +420,7 @@ return array(
     'TYPE_IMAGE_SLIDER' => 'Surat slideri',
     'about you' => 'Özüňiz hakynda',
     'phonenumber_validation' => 'Telefon belgiňiz nädogry ýazylan',
+    'email_validation' => 'E-poçta dogry formatda bolmaly',
 
     'select automake' => 'Markany saýlaň',
     'select automodel' => 'Modeli saýlaň',

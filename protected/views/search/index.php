@@ -33,6 +33,7 @@ $this->pageTitle=Yii::t('app','search_query',array('query'=>CHtml::encode($query
     'dataProvider'=>$dataProvider,
     'ajaxUrl'=>Yii::app()->createUrl('//search/index',array('query'=>$query)),
     'itemView'=>'_item',
+    'emptyText' => yii::t('app', 'No results found'),
     'viewData'=> array('query'=>$query),
     'summaryText' => false,
     'pagerCssClass' => "pagination",

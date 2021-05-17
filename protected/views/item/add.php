@@ -66,7 +66,7 @@ $this->menu = array(
                 <?php echo $form->labelEx($model, 'email', array('class' => 'control-label')); ?>
                 <div class="controls">
                     <?php echo $form->textField($model, 'email'); ?>
-                    <div class="help-inline"><?php echo $form->error($model, 'email'); ?>
+                    <div class="help-inline" id="helpEmail"><?php echo $form->error($model, 'email'); ?>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@ $this->menu = array(
                 <div class="input-group col-sm-12">
             <span class="input-group-btn">
                 <?php
-                echo CHtml::submitButton(Yii::t('app', 'Save'), array('class' => 'btn btn-success'));
+                echo CHtml::submitButton(Yii::t('app', 'Save'), array('class' => 'btn btn-success', 'id' => 'validate'));
                 echo '&nbsp;';
                 echo CHtml::Button(Yii::t('app', 'Cancel'), array(
                         'submit' => 'javascript:history.go(-1)',
@@ -231,7 +231,31 @@ $this->menu = array(
 
 
 <?php
-Yii::app()->clientScript->registerScript('dynamicSelect', ' 
+Yii::app()->clientScript->registerScript('dynamicSelect', '
+
+// mask for phone number 
+document.getElementById(\'ItemForm_phone\').addEventListener(\'input\', function (e) {
+  var x = e.target.value.replace(/\D/g, \'\').match(/(\d{0,5})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
+  e.target.value = !x[2] ? x[1] : \'+\' + x[1] + \' \' + x[2] + (x[3] ? \'-\' + x[3] : \'\') + (x[4] ? \'-\' + x[4] : \'\');
+});
+
+    function validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+    
+    function validate() {
+      const $result = $("#helpEmail");
+      const email = $("#ItemForm_email").val();
+      $result.text("");
+    
+      if (!validateEmail(email)) {
+        $result.text("'.yii::t('app', 'email_validation').'");
+        $result.css("color", "red");
+      }
+      return false;
+    }
+        $("#validate").on("click", validate);
 
         $(function() {
             checkRadioInputs();
