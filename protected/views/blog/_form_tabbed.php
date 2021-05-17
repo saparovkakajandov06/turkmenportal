@@ -143,7 +143,7 @@
                 <?php $this->widget('CJuiDateTimePicker',
                     array(
                         'model'=>$model,
-                        'name'=>'Estates[date_added]',
+                        'name'=>'Blog[date_added]',
                         //'language'=> substr(Yii::app()->language,0,strpos(Yii::app()->language,'_')),
                         'language'=> '',
                         'value'=>$model->date_added,
