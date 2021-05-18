@@ -1773,6 +1773,7 @@ p.search_content {
 }
 
 .searchForm input[type="submit"] {
+    position: relative;
     background: #bdbbbb none repeat scroll 0 0;
     border: medium none;
     color: #2b2b2b;

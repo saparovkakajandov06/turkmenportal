@@ -227,6 +227,7 @@ class Comments extends ActiveRecord
 
     public function searchForUsers($limit = 50)
     {
+        $this->default_scope = array('sort_newest');
         $dataProvider = $this->search();
         $criteria = $dataProvider->criteria;
 
