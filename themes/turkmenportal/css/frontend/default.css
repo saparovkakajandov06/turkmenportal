@@ -5118,5 +5118,11 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
 }
+.entry-header h4.entry-title a{
+    font-weight: 500;
+}
+h1.blog_header{
+    font:bolder 25px/1.2 "Rubik", Helvetica, sans-serif;
+}
 
 /*change font*/
