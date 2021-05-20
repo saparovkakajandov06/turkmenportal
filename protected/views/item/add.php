@@ -255,7 +255,7 @@ document.getElementById(\'ItemForm_phone\').addEventListener(\'input\', function
       }
       return false;
     }
-        $("#validate").on("click", validate);
+    
 
         $(function() {
             checkRadioInputs();
