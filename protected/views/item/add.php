@@ -233,28 +233,28 @@ $this->menu = array(
 <?php
 Yii::app()->clientScript->registerScript('dynamicSelect', '
 
-// mask for phone number 
-document.getElementById(\'ItemForm_phone\').addEventListener(\'input\', function (e) {
-  var x = e.target.value.replace(/\D/g, \'\').match(/(\d{0,5})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
-  e.target.value = !x[2] ? x[1] : \'+\' + x[1] + \' \' + x[2] + (x[3] ? \'-\' + x[3] : \'\') + (x[4] ? \'-\' + x[4] : \'\');
-});
-
-    function validateEmail(email) {
-      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
-    }
-    
-    function validate() {
-      const $result = $("#helpEmail");
-      const email = $("#ItemForm_email").val();
-      $result.text("");
-    
-      if (!validateEmail(email)) {
-        $result.text("'.yii::t('app', 'email_validation').'");
-        $result.css("color", "red");
-      }
-      return false;
-    }
+//// mask for phone number 
+//document.getElementById(\'ItemForm_phone\').addEventListener(\'input\', function (e) {
+//  var x = e.target.value.replace(/\D/g, \'\').match(/(\d{0,5})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
+//  e.target.value = !x[2] ? x[1] :  + x[1] + \' \' + x[2] + (x[3] ? \'-\' + x[3] : \'\') + (x[4] ? \'-\' + x[4] : \'\');
+//});
+//
+//    function validateEmail(email) {
+//      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//      return re.test(email);
+//    }
+//    
+//    function validate() {
+//      const $result = $("#helpEmail");
+//      const email = $("#ItemForm_email").val();
+//      $result.text("");
+//    
+//      if (!validateEmail(email)) {
+//        $result.text("'.yii::t('app', 'email_validation').'");
+//        $result.css("color", "red");
+//      }
+//      return false;
+//    }
     
 
         $(function() {
