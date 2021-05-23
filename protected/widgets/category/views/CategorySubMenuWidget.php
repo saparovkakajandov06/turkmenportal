@@ -18,7 +18,6 @@ $minimized_class = 'minimized';
                             <?php
                             $cat_name = $subcatModel->name;
                             $cat_name = Yii::app()->controller->truncate($cat_name, 3, 50);
-                            echo $subcatModel->id;
                             if (isset($count)) {
                                 $cat_name = $cat_name . " (" . $count . ")";
                             }
