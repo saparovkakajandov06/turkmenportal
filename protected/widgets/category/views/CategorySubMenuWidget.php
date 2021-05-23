@@ -10,7 +10,7 @@ $minimized_class = 'minimized';
             <?php foreach ($subCategoryModels as $subcatModel) {
                 if (isset($this->relatedActiveRecord)) {
                     $count = $this->relatedActiveRecord->countByAttributes(array('category_id' => $subcatModel->id, 'status' => 1));
-                    if ((int)$count > 0) { ?>
+                    if ((int)$count > 0 && strlen($subcatModel->name) > 0) { ?>
                         <li class="<?php echo $this->itemCssClass; ?> ">
                             <span class="media-object responsive">
                                 <?php if ($this->show_photo) echo CHtml::link(CHtml::image($subcatModel->getThumbPath(45, 45, 'h'), ""), $subcatModel->url, array('class' => "thumb")); ?>
@@ -18,6 +18,7 @@ $minimized_class = 'minimized';
                             <?php
                             $cat_name = $subcatModel->name;
                             $cat_name = Yii::app()->controller->truncate($cat_name, 3, 50);
+                            echo $subcatModel->id;
                             if (isset($count)) {
                                 $cat_name = $cat_name . " (" . $count . ")";
                             }
