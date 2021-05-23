@@ -6,66 +6,66 @@
 }
 
 @font-face {
-    font-family: "Rubik";
+    font-family: "Montserrat";
     font-style: normal;
     font-weight: normal;
     src: url("../../fonts/OpenSansCondensed/OpenSans-CondBold.ttf?") format("ttf"), url("../../fonts/OpenSansCondensed/OpenSans-CondBold.ttf");
 }
 
 @font-face {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 200;
-    src: url("../../fonts/Montserrat/Montserrat-ExtraLight.ttf?") format("ttf"), url("../../fonts/Montserrat/Montserrat-ExtraLight.ttf");
-}
-
-@font-face {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: normal;
-    src: url("../../fonts/Montserrat/Montserrat-Medium.ttf?") format("ttf"), url("../../fonts/Montserrat/Montserrat-Medium.ttf");
-}
-
-@font-face {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 600;
-    src: url("../../fonts/Montserrat/Montserrat-SemiBold.ttf?") format("ttf"), url("../../fonts/Montserrat/Montserrat-SemiBold.ttf");
-}
-
-@font-face {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 700;
-    src: url("../../fonts/Montserrat/Montserrat-Bold.ttf?") format("ttf"), url("../../fonts/Montserrat/Montserrat-Bold.ttf");
-}
-
-@font-face {
     font-family: "Rubik";
     font-style: normal;
     font-weight: 200;
-    src: url("../../fonts/Rubik/static/Rubik-Light.ttf?") format("ttf"), url("../../fonts/Rubik/static/Rubik-Light.ttf");
+    src: url("../../fonts/Rubik/Rubik-ExtraLight.ttf?") format("ttf"), url("../../fonts/Rubik/Rubik-ExtraLight.ttf");
 }
 
 @font-face {
     font-family: "Rubik";
     font-style: normal;
     font-weight: normal;
-    src: url("../../fonts/Rubik/static/Rubik-Medium.ttf?") format("ttf"), url("../../fonts/Rubik/static/Rubik-Medium.ttf");
+    src: url("../../fonts/Rubik/Rubik-Medium.ttf?") format("ttf"), url("../../fonts/Rubik/Rubik-Medium.ttf");
 }
 
 @font-face {
     font-family: "Rubik";
     font-style: normal;
     font-weight: 600;
-    src: url("../../fonts/Rubik/static/Rubik-SemiBold.ttf?") format("ttf"), url("../../fonts/Rubik/static/Rubik-SemiBold.ttf");
+    src: url("../../fonts/Rubik/Rubik-SemiBold.ttf?") format("ttf"), url("../../fonts/Rubik/Rubik-SemiBold.ttf");
 }
 
 @font-face {
     font-family: "Rubik";
     font-style: normal;
     font-weight: 700;
-    src: url("../../fonts/Rubik/static/Rubik-Bold.ttf?") format("ttf"), url("../../fonts/Rubik/static/Rubik-Bold.ttf");
+    src: url("../../fonts/Rubik/Rubik-Bold.ttf?") format("ttf"), url("../../fonts/Rubik/Rubik-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 200;
+    src: url("../../fonts/Montserrat/static/Montserrat-Light.ttf?") format("ttf"), url("../../fonts/Montserrat/static/Montserrat-Light.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../../fonts/Montserrat/static/Montserrat-Medium.ttf?") format("ttf"), url("../../fonts/Montserrat/static/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../../fonts/Montserrat/static/Montserrat-SemiBold.ttf?") format("ttf"), url("../../fonts/Montserrat/static/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../../fonts/Montserrat/static/Montserrat-Bold.ttf?") format("ttf"), url("../../fonts/Montserrat/static/Montserrat-Bold.ttf");
 }
 
 .ellipsis {
@@ -482,7 +482,7 @@ ul.nav.navbar-nav > li a:hover {
     border: medium none;
     border-radius: 4px;
     color: #fff;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 13px;
     line-height: 23px;
     outline: medium none;
@@ -496,7 +496,7 @@ ul.nav.navbar-nav > li a:hover {
     background-color: transparent;
     border: medium none;
     color: #676767;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 13px;
     text-transform: uppercase;
 }
@@ -727,7 +727,7 @@ ul.social-links li {
 }
 
 .block-flat .header h3 {
-    font-family: "Montserrat", Helvetica, sans-serif;
+    font-family: "Rubik", Helvetica, sans-serif;
     font-weight: 200;
     margin-left: 14px;
 }
@@ -830,7 +830,7 @@ input[type="text"], input[type="password"], select, textarea {
 .lang_select_text {
     color: #595959;
     display: inline-block;
-    font-family: "Montserrat", "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Rubik", "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 12px;
     position: relative;
 }
@@ -842,7 +842,7 @@ input[type="text"], input[type="password"], select, textarea {
 
 .headerColor {
     color: #505050;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 30px;
     font-weight: normal;
     line-height: 1.45;
@@ -860,7 +860,7 @@ input[type="text"], input[type="password"], select, textarea {
 h1.categoryHeader {
     color: #c22a2a;
     display: inline-block;
-    font: bold 30px/1.25em "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font: bold 30px/1.25em "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     letter-spacing: normal;
     margin: 0;
     padding-bottom: 10px;
@@ -872,7 +872,7 @@ h1.categoryHeader {
 
 .headerColor.mini {
     display: block;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 14px;
     font-weight: bolder;
     line-height: 1.5;
@@ -881,7 +881,7 @@ h1.categoryHeader {
 
 .subHeaderColor {
     color: #5a5a5a;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 14px;
     font-weight: bold;
     position: relative;
@@ -892,7 +892,7 @@ h1.categoryHeader {
     color: #525151;
     cursor: pointer;
     display: inline-block;
-    font-family: "Montserrat", Helvetica;
+    font-family: "Rubik", Helvetica;
     font-size: 14px;
     line-height: 1.57;
     margin: 4px 12px 8px;
@@ -965,7 +965,7 @@ ul.category_list {
     line-height: 1.7;
     white-space: nowrap;
     font-size: 14px;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
 }
 
 .show_all_big {
@@ -973,7 +973,7 @@ ul.category_list {
     border: 1px solid #ffffff;
     color: #1f55ff;
     display: block;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 16px;
     height: 30px;
     line-height: 1.6;
@@ -1009,7 +1009,7 @@ ul.category_list {
     border-radius: 0;
     color: #a71f1f;
     display: inline-block;
-    /* font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana; */
+    /* font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana; */
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 2px;
@@ -1076,7 +1076,7 @@ ul.category_list {
     background: rgba(0, 0, 0, 0) url("../../img/icon-brc_gray.png") no-repeat scroll 100% 50%;
     color: #969696;
     display: inline;
-    font-family: "Montserrat";
+    font-family: "Rubik";
     font-size: 12px;
     letter-spacing: normal;
     margin-right: 10px;
@@ -1092,7 +1092,7 @@ ul.category_list {
 
 .breadcrumb > li a {
     color: #787878;
-    font-family: "Montserrat", "Open Sans", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Rubik", "Open Sans", Helvetica, sans-serif, Arial, Verdana;
     font-size: 12px;
     font-style: italic;
     font-weight: normal;
@@ -1183,7 +1183,7 @@ ul.category_list {
 .comments__head {
     border-bottom: 1px solid #cccccc;
     color: #af0000;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 19px;
     line-height: 1.5;
     margin-bottom: 10px;
@@ -1263,7 +1263,7 @@ span.comment_date {
 }
 
 .comment_box p {
-    font-family: "Montserrat", Arial;
+    font-family: "Rubik", Arial;
     font-size: 13px;
     line-height: 1.35em;
     padding-right: 50px;
@@ -1504,7 +1504,7 @@ span.header_description {
 
 .sub_categories ul li a {
     color: #747474;
-    font-family: "Rubik", Arial, Helvetica;
+    font-family: "Montserrat", Arial, Helvetica;
     font-size: 11px;
     text-transform: uppercase;
 }
@@ -1516,12 +1516,12 @@ span.header_description {
 .sub_categories.horizontal ul li a {
     /* border-bottom: 1px solid #e2e2e2; */
     color: #428bca;
-    font-family: "Montserrat", Helvetica;
+    font-family: "Rubik", Helvetica;
     font-size: 13px;
     font-weight: bolder;
     text-decoration: none;
     text-transform: inherit;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     font-stretch: condensed;
 }
 
@@ -2010,14 +2010,14 @@ h1.blog_header {
 
 .header_links {
     color: #7b7b7b;
-    font-family: "Montserrat", "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Rubik", "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 12px;
     line-height: 1.5;
 }
 
 .header_links a {
     color: #8e8e8e;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 11px;
     margin: 0 10px;
 }
@@ -2049,7 +2049,7 @@ div.opros h3 {
     box-shadow: 0 0 3px 0 #dedede;
     color: #404040;
     display: inline-block;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 13px;
     line-height: 23px;
     margin-bottom: 2px;
@@ -2065,7 +2065,7 @@ div.opros h3 {
     border: medium none;
     color: #830101;
     display: inline-block;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 13px;
     line-height: 23px;
     margin-bottom: 2px;
@@ -2079,7 +2079,7 @@ div.opros h3 {
     border-radius: 0;
     color: #fff;
     display: inline-block;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 13px;
     line-height: 23px;
     margin-bottom: 2px;
@@ -2290,7 +2290,7 @@ dl {
 }
 
 .search-form.auto .wide.form label {
-    font-family: "Rubik", Helvetica, Verdana, Arial, sans-serif;
+    font-family: "Montserrat", Helvetica, Verdana, Arial, sans-serif;
     font-size: 13px;
     min-width: 98px;
     width: 79px;
@@ -2334,7 +2334,7 @@ dl {
 .item_photoreport .entry-header h4.entry-title a {
     color: #fff;
     display: block;
-    font-family: "Montserrat", sans-serif, Arial, Verdana;
+    font-family: "Rubik", sans-serif, Arial, Verdana;
     font-size: 15px;
     /* font-weight: bolder; */
     line-height: 1.35;
@@ -2385,7 +2385,7 @@ dl {
     top: 7px;
     color: #fff;
     display: block;
-    font-family: "Montserrat", Arial, Tahoma, sans-serif;
+    font-family: "Rubik", Arial, Tahoma, sans-serif;
     font-size: 11px;
     font-weight: bold;
     height: 35px;
@@ -2406,7 +2406,7 @@ dl {
     top: 7px;
     color: #fff;
     display: block;
-    font-family: "Montserrat", Arial, Tahoma, sans-serif;
+    font-family: "Rubik", Arial, Tahoma, sans-serif;
     font-size: 11px;
     font-weight: bold;
     height: 35px;
@@ -2422,20 +2422,20 @@ dl {
 
 .login_header {
     color: #940000;
-    font-family: "Rubik";
+    font-family: "Montserrat";
     margin-bottom: 14px;
     margin-top: 0;
     text-transform: uppercase;
 }
 
 #login-form .errorMessage {
-    font-family: "Rubik";
+    font-family: "Montserrat";
     font-size: 12px;
     padding: 0 2px;
 }
 
 #login-form .remember_me {
-    font-family: "Rubik";
+    font-family: "Montserrat";
     line-height: 21px;
 }
 
@@ -2473,7 +2473,7 @@ input#UserLogin_rememberMe {
 a.close_panel:hover, a.close_panel {
     color: #a3a3a3;
     display: none;
-    font-family: "Montserrat";
+    font-family: "Rubik";
     font-size: 15px;
     font-weight: normal;
     position: absolute;
@@ -2483,14 +2483,14 @@ a.close_panel:hover, a.close_panel {
 
 .mini_profile_username {
     color: #ca0000;
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 15px;
     padding-left: 12px;
     text-transform: uppercase;
 }
 
 .after_register_msg {
-    font-family: "Rubik";
+    font-family: "Montserrat";
 }
 
 #PollsAnswers_id label {
@@ -2610,7 +2610,7 @@ a.assign-link {
 }
 
 .error_404 {
-    font-family: "Rubik";
+    font-family: "Montserrat";
     font-size: 61px;
     font-weight: bold;
     text-transform: uppercase;
@@ -3112,7 +3112,7 @@ body.mobilescreen #dynamicFormWrapper .form {
     border: medium none;
     color: #7c7c7c;
     display: inline-block;
-    font-family: "Montserrat", Arial, "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Rubik", Arial, "Montserrat", Helvetica, sans-serif, Arial, Verdana;
     font-size: 12px;
     font-weight: bolder;
 }
@@ -3146,7 +3146,7 @@ body.mobilescreen #dynamicFormWrapper .form {
     margin-bottom: 15px;
     font-size: 23px;
     line-height: 1.2;
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .main_news_block .entry-date{
@@ -3866,7 +3866,7 @@ select.error, input.error {
 }
 
 .advert_header {
-    font-family: "Montserrat";
+    font-family: "Rubik";
     margin-top: 5px;
 }
 
@@ -4014,7 +4014,7 @@ span.language a img {
 }
 
 .more-wrapper {
-    /*font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;*/
+    /*font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;*/
     /*text-transform: capitalize;*/
     padding: 6px;
 }
@@ -4324,7 +4324,7 @@ body.mobilescreen .dashboard_news_block {
 
 .header_news_by_category .more{
     font-size: 14px;
-    font-family: "Montserrat", Helvetica;
+    font-family: "Rubik", Helvetica;
 }
 
 .header_news_by_category a:hover{
@@ -4351,7 +4351,7 @@ body.mobilescreen .dashboard_news_block {
     margin-right: 0;
     margin-left: auto;
     font-size: 14px;
-    font-family: "Montserrat", Helvetica;
+    font-family: "Rubik", Helvetica;
 }
 
 .source_img{
@@ -4370,7 +4370,7 @@ body.mobilescreen .dashboard_news_block {
 .show_more_header a{
     color: #505050;
     font-size: 14px;
-    font-family: "Montserrat", Helvetica;
+    font-family: "Rubik", Helvetica;
 }
 .show_more_header a:hover{
     color: #a71f1f;
@@ -4386,7 +4386,7 @@ body.mobilescreen .dashboard_news_block {
     .mobile_index_list .entry-title a,  .n_b_c_1 .entry-title a, .compositions .entry-title a{
         font-size: 19px;
         font-weight: 600;
-        font-family: "Rubik", sans-serif;
+        font-family: "Montserrat", sans-serif;
     }
     .mobile_index_list .entry-date,  .n_b_c_1 .entry-date, .compositions .entry-date{
         padding: 5px 0;
@@ -4959,14 +4959,14 @@ body.mobilescreen .dashboard_news_block {
 .footer-area ul li a{
     color: #d6d6d6;
     font-size: 14px;
-    font-family:  "Montserrat", sans-serif;
+    font-family:  "Rubik", sans-serif;
     font-weight: normal;
 }
 .footer-area ul li + li{
     border-left: 1px solid grey;
 }
 .footer-area h3{
-    font-family:  "Montserrat", sans-serif;
+    font-family:  "Rubik", sans-serif;
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 16px;
@@ -5002,7 +5002,7 @@ body.mobilescreen .dashboard_news_block {
         margin-bottom: 10px;
     }
     .footer-area h3{
-        font-family:  "Montserrat", sans-serif;
+        font-family:  "Rubik", sans-serif;
         margin-bottom: 20px;
         font-weight: 600;
         font-size: 16px;
@@ -5084,16 +5084,16 @@ body.mobilescreen .dashboard_news_block {
 
 /*change font*/
 .nav.navbar-nav > li > a{
-    font-family: "Rubik", Helvetica, sans-serif, Arial, Verdana;
+    font-family: "Montserrat", Helvetica, sans-serif, Arial, Verdana;
 }
 body {
-    font-family: "Montserrat", Helvetica, sans-serif;
+    font-family: "Rubik", Helvetica, sans-serif;
 }
 .style-media-list .entry-title{
-    font-family: "Montserrat", sans-serif;
+    font-family: "Rubik", sans-serif;
 }
 .style-media-list .entry-title .right-news{
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 .style-media-list .entry-title a.link{
     font-weight: 500;
@@ -5102,15 +5102,15 @@ body {
     padding: 0 10px;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 500;
     margin-bottom: 10px;
 }
 .lenta {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Rubik", sans-serif;
 }
 .nav.navbar-nav li .subnav-wrapper{
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 
 }
 @media (min-width: 1610px){
@@ -5122,7 +5122,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
 h1.blog_header{
-    font:bolder 25px/1.2 "Rubik", Helvetica, sans-serif;
+    font:bolder 25px/1.2 "Montserrat", Helvetica, sans-serif;
 }
 
 /*change font*/
