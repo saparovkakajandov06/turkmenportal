@@ -50,7 +50,7 @@
             $workers = Workers::model()->getListWorkers();
 
             ?>
-            <?php echo $form->dropDownList($model, 'worker_id', $workers, array('id' => "worker_id")); ?>
+            <?php echo $form->dropDownList($model, 'worker_id', $workers, array('id' => "worker_id", 'empty'=>'--Select a worker--')); ?>
             <div class="help-inline">
                 <?php echo $form->error($model, 'worker_id'); ?>
             </div>
@@ -65,7 +65,7 @@
             $clients = Clients::model()->getListClients();
 
             ?>
-            <?php echo $form->dropDownList($model, 'client_id', $clients, array('id' => "client_id")); ?>
+            <?php echo $form->dropDownList($model, 'client_id', $clients, array('id' => "client_id", 'empty'=>'--Select a client--')); ?>
             <div class="help-inline">
                 <?php echo $form->error($model, 'client_id'); ?>
             </div>
