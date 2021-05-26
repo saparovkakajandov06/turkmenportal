@@ -21,8 +21,6 @@ class BlogController extends Controller
             $this->renderPartial('//comments/listview', array('related_relation' => 'blogs', 'related_relation_id' => $id));
         } else {
             $model = $this->loadModel($id);
-            echo "<pre>";
-            var_dump($model);die;
             $lang_title = 'title_' . Yii::app()->language;
             $boll = true;
             if (Yii::app()->user->id){
