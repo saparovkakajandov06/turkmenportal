@@ -228,7 +228,7 @@ class BlogController extends Controller
         }
 
 
-        $this->render('admin', array(
+        $this->render($view, array(
             'model' => $model,
         ));
     }
