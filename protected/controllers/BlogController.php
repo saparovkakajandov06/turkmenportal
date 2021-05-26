@@ -21,6 +21,8 @@ class BlogController extends Controller
             $this->renderPartial('//comments/listview', array('related_relation' => 'blogs', 'related_relation_id' => $id));
         } else {
             $model = $this->loadModel($id);
+            echo "<pre>";
+            var_dump($model);die;
             $lang_title = 'title_' . Yii::app()->language;
             $boll = true;
             if (Yii::app()->user->id){
@@ -103,6 +105,7 @@ class BlogController extends Controller
             $model->setAttributes($_POST['Blog']);
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
+            $model->loggingRecord->setInfo($_POST['Blog']);
             try {
                 $committed = false;
                 $transaction = Yii::app()->db->beginTransaction();
@@ -153,6 +156,7 @@ class BlogController extends Controller
             $transaction = Yii::app()->db->beginTransaction();
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
+            $model->loggingRecord->setInfo($_POST['Blog']);
             $model->documents = Documents::model()->saveDocuments('blogs', $model->state_name, true);
             try {
                 if ($model->saveWithRelated(array('regions', 'documents' => array('append' => false)))) {
@@ -216,7 +220,15 @@ class BlogController extends Controller
 
         if (isset($_GET['Blog'])) {
             $model->setAttributes($_GET['Blog']);
+            $model->worker_id =$_GET['Blog']['worker_id'];
+            $model->client_id =$_GET['Blog']['client_id'];
         }
+
+        $view = 'admin';
+        if (Yii::app()->user->getIsSuperuser()){
+            $view = 'superadmin';
+        }
+
 
         $this->render('admin', array(
             'model' => $model,

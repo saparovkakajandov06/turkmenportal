@@ -280,6 +280,12 @@ $module_id = '';
                                         href="<?php echo Yii::app()->createUrl("//workers/admin"); ?>">Workers</a>
                             </li> <?php } ?>
                         <?php if (Yii::app()->user->checkAccess('Admin')) { ?>
+                            <li><a <?php if ($module_id == 'rights') {
+                                    echo 'class="active"';
+                                } ?>
+                                        href="<?php echo Yii::app()->createUrl("//clients/admin"); ?>">Clients</a>
+                            </li> <?php } ?>
+                        <?php if (Yii::app()->user->checkAccess('Admin')) { ?>
                             <li><a <?php if ($module_id == 'backup') {
                                 echo 'class="active"';
                             } ?> href="<?php echo Yii::app()->createUrl("//backup"); ?>">Backup</a></li><?php } ?>

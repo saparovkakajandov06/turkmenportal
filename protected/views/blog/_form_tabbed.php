@@ -42,6 +42,36 @@
     </div>
 
 
+    <div class="control-group">
+        <?php echo $form->labelEx($model, 'worker_id', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php
+            $workers = array();
+            $workers = Workers::model()->getListWorkers();
+
+            ?>
+            <?php echo $form->dropDownList($model, 'worker_id', $workers, array('id' => "worker_id", 'empty'=>'--Select a worker--')); ?>
+            <div class="help-inline">
+                <?php echo $form->error($model, 'worker_id'); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <?php echo $form->labelEx($model, 'client_id', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php
+            $clients = array();
+            $clients = Clients::model()->getListClients();
+
+            ?>
+            <?php echo $form->dropDownList($model, 'client_id', $clients, array('id' => "client_id", 'empty'=>'--Select a client--')); ?>
+            <div class="help-inline">
+                <?php echo $form->error($model, 'client_id'); ?>
+            </div>
+        </div>
+    </div>
+
 <!--    <div class="control-group">-->
 <!--        <label for="regions">--><?php //echo Yii::t('app', 'Regions'); ?><!--</label>-->
 <!--        <div class="controls">-->
