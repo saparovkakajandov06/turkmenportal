@@ -85,22 +85,7 @@ if (!isset($this->menu) || $this->menu === array())
         'date_modified',
         'create_username',
         'edited_username',
-        array(
-            'name' => 'worker_id',
-            'value' => function($model){
-                $worker = Workers::model()->findByPk($model->worker_id);
-                return $worker->nickname;
-            },
-            'htmlOptions' => array('style' => 'text-align:center;width:20px;')
-        ),
-        array(
-            'name' => 'client_id',
-            'value' => function($model){
-                $client = Clients::model()->findByPk($model->client_id);
-                return $client->client_name;
-            },
-            'htmlOptions' => array('style' => 'text-align:center;width:20px;')
-        ),
+
         array(
             'class' => 'bootstrap.widgets.BootButtonColumn',
             'htmlOptions' => array('style' => 'min-width: 100px; text-align:right;', 'class' => 'button_grid button-column'),
