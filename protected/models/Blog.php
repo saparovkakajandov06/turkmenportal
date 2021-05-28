@@ -364,6 +364,7 @@ class Blog extends ActiveRecord
             'documents_count' => array(self::STAT, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'comment_count' => array(self::STAT, 'Comments', 'tbl_blog_to_comments(blog_id,comment_id)'),
             'worker' => array(self::HAS_ONE, 'WorkersLog', 'model_id', 'on' => "worker.model LIKE '".get_class($this)."'" ),
+            'client' => array(self::HAS_ONE, 'ClientLog', 'model_id', 'on' => "client.model LIKE '".get_class($this)."'" ),
         );
     }
 
