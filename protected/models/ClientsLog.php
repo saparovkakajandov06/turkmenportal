@@ -56,9 +56,9 @@ class ClientsLog extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'client_id' => 'Clien',
+			'client_id' => 'Client',
 			'model' => 'Model',
-			'model_id' => 'Model',
+			'model_id' => 'Model Id',
 			'date_created' => 'Date Created',
 		);
 	}
