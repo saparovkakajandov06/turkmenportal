@@ -17,7 +17,7 @@ class LoggingRecord extends CActiveRecordBehavior
         $criteria = new CDbCriteria;
         $criteria->compare('model', get_class($this->owner), true);
         $criteria->compare('model_id', $this->owner->id);
-        if (isset($this->client_id)) {
+        if (isset($this->client_id) && $this->client_id !== '') {
             $client_log = ClientsLog::model()->find($criteria);
             if (!isset($client_log)) {
                 $client_log = new ClientsLog();
@@ -29,9 +29,11 @@ class LoggingRecord extends CActiveRecordBehavior
             $client_log->date_created = date('Y-m-d H:i:s');
 //                    var_dump($client_log->save());die;
             $client_log->save();
+        } else {
+            ClientsLog::model()->deleteAll($criteria);
         }
 
-        if (isset($this->worker_id)) {
+        if (isset($this->worker_id) && $this->worker_id !== '') {
             $worker_log = WorkersLog::model()->find($criteria);
             if (!isset($worker_log)) {
                 $worker_log = new WorkersLog();
@@ -42,6 +44,8 @@ class LoggingRecord extends CActiveRecordBehavior
             $worker_log->model_id = $this->owner->id;
             $worker_log->date_created = date('Y-m-d H:i:s');
             $worker_log->save();
+        } else {
+            WorkersLog::model()->deleteAll($criteria);
         }
 
         parent::beforeSave($event);
