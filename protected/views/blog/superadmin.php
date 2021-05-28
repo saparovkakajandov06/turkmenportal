@@ -89,7 +89,7 @@ if (!isset($this->menu) || $this->menu === array())
             'name' => 'worker_id',
             'value' => function($model){
                 $worker = Workers::model()->findByPk($model->worker_id);
-                return $worker->nickname ? $worker->nickname : '';
+                return $worker->nickname ? $worker->nickname : ' ';
             },
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
@@ -97,7 +97,7 @@ if (!isset($this->menu) || $this->menu === array())
             'name' => 'client_id',
             'value' => function($model){
                 $client = Clients::model()->findByPk($model->client_id);
-                return $client->client_name ? $client->client_name : '';
+                return $client->client_name ? $client->client_name : ' ';
             },
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
