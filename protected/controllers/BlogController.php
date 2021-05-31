@@ -223,7 +223,7 @@ class BlogController extends Controller
         }
 
         $view = 'admin';
-        if (Yii::app()->user->id == 8188){
+        if (Yii::app()->user->getIsSuperuser()){
             $view = 'superadmin';
         }
 
