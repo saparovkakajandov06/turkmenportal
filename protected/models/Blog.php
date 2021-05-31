@@ -459,10 +459,10 @@ class Blog extends ActiveRecord
 
         $criteria->compare('t.title_ru', $this->title, true, 'OR');
         $criteria->compare('t.title_tm', $this->title, true, 'OR');
-        $criteria->join = "LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model LIKE '".get_class($this)."'";
-        $criteria->compare('w.worker_id', $this->worker_id);
-        $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model LIKE '".get_class($this)."'";
+        $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model LIKE '".get_class($this)."' "
+        ."LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model LIKE '".get_class($this)."'";
         $criteria->compare('c.client_id', $this->client_id);
+        $criteria->compare('w.worker_id', $this->worker_id);
 
         if (!isset($_GET['Blog_sort']))
             $criteria->order = "t.id desc";

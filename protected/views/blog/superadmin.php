@@ -96,8 +96,10 @@ if (!isset($this->menu) || $this->menu === array())
                 }
                 return $result;
             },
+            'filter' => Workers::model()->getListWorkers(),
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
+
         array(
             'name' => 'client_id',
             'value' => function($model){
@@ -112,6 +114,7 @@ if (!isset($this->menu) || $this->menu === array())
                 }
                 return $result  ;
             },
+            'filter'=>  Clients::model()->getListClients(),
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
         array(
