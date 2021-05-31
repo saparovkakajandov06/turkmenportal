@@ -101,16 +101,16 @@ if (!isset($this->menu) || $this->menu === array())
         array(
             'name' => 'client_id',
             'value' => function($model){
-                $criteria=new CDbCriteria;
-
-                $criteria->compare('id',$model->client_id);
-                $client = Clients::model()->find($criteria);
+                if (isset($model->client_id)){
+                    $client = Clients::model()->find('id ='.$model->client_id);
+                }
+                $result = " ";
                 if(isset($client)){
                     $result = $client->client_name;
                 } else {
                     $result = " ";
                 }
-                return $result;
+                return $result  ;
             },
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
