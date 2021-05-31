@@ -101,7 +101,10 @@ if (!isset($this->menu) || $this->menu === array())
         array(
             'name' => 'client_id',
             'value' => function($model){
-                $client = Clients::model()->findByPk($model->client_id);
+                $criteria=new CDbCriteria;
+
+                $criteria->compare('id',$model->client_id);
+                $client = Clients::model()->find($criteria);
                 if(isset($client)){
                     $result = $client->client_name;
                 } else {
