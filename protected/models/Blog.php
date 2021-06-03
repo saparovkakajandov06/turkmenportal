@@ -264,7 +264,7 @@ class Blog extends ActiveRecord
             ),
 
             'sort_by_date_desc' => array(
-                'order' => 't.date_created desc',
+                'order' => 't.date_added desc',
             ),
 
             'most_popular' => array(
