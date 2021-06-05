@@ -114,7 +114,7 @@ class Workers extends CActiveRecord
         $criteria = new CDbCriteria();
         $criteria->addCondition('status = 1');
 
-        $data = Workers::model()->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency('Clients'), 1)->findAll($criteria);
+        $data = Workers::model()->findAll($criteria);
         $data = CHtml::listData($data, 'id', 'nickname');
         return $data;
     }

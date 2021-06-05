@@ -53,6 +53,34 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <?php echo $form->labelEx($model, 'agent'); ?>
+                                <div class="controls">
+                                    <?php echo $form->textField($model, 'agent', array('size' => 60, 'maxlength' => 100)); ?>
+                                    <div class="help-inline">
+                                        <?php echo $form->error($model, 'agent'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="control-group">
+                                <?php echo $form->labelEx($model, 'agent_info'); ?>
+                                <div class="controls">
+                                    <?php echo $form->textField($model, 'agent_info', array('size' => 60, 'maxlength' => 255)); ?>
+                                    <div class="help-inline">
+                                        <?php echo $form->error($model, 'agent_info'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-md-12">

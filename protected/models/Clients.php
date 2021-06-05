@@ -5,8 +5,10 @@
  *
  * The followings are the available columns in table 'tbl_clients':
  * @property integer $id
- * @property string $cline_name
+ * @property string $client_name
  * @property string $description
+ * @property string $agent
+ * @property string $agent_info
  * @property integer $status
  * @property string $date_created
  */
@@ -30,11 +32,12 @@ class Clients extends CActiveRecord
 		return array(
 			array('client_name, status', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
-			array('client_name, description', 'length', 'max'=>255),
+			array('client_name, description, agent_info', 'length', 'max'=>255),
+			array('agent', 'length', 'max'=>100),
 			array('date_created', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, client_name, description, status, date_created', 'safe', 'on'=>'search'),
+			array('id, client_name, description, agent, agent_info, status, date_created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +61,8 @@ class Clients extends CActiveRecord
 			'id' => 'ID',
 			'client_name' => 'Client Name',
 			'description' => 'Description',
+			'agent' => 'Agent',
+			'agent_info' => 'Agent Info',
 			'status' => 'Status',
 			'date_created' => 'Date Created',
 		);
@@ -84,6 +89,8 @@ class Clients extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('client_name',$this->client_name,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('agent',$this->agent,true);
+		$criteria->compare('agent_info',$this->agent_info,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('date_created',$this->date_created,true);
 
@@ -107,8 +114,9 @@ class Clients extends CActiveRecord
         $criteria = new CDbCriteria();
         $criteria->addCondition('status = 1');
 
-        $data = Clients::model()->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency('Clients'), 1)->findAll($criteria);
+        $data = Clients::model()->findAll($criteria);
         $data = CHtml::listData($data, 'id', 'client_name');
         return $data;
     }
+
 }
