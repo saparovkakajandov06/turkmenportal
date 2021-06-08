@@ -113,7 +113,6 @@ class Clients extends CActiveRecord
     public function getListClients() {
         $criteria = new CDbCriteria();
         $criteria->addCondition('status = 1');
-        $criteria->addCondition('status = 1');
         $criteria->order = 'client_name asc';
         $data = Clients::model()->findAll($criteria);
         $data = CHtml::listData($data, 'id', 'client_name');
