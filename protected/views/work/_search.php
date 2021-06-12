@@ -1,4 +1,4 @@
-<h4 class="block-title">Филтр</h4>
+<h4 class="block-title"><?=yii::t('app', '$LNG_FILTER')?></h4>
 
 <div class="wide form auto_filter ">
 
