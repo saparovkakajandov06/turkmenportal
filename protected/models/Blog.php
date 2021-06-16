@@ -42,7 +42,7 @@ class Blog extends ActiveRecord
     public $pub_date_formatted;
     public $except;
     public $categoryid_except;
-    public $default_scope = array('enabled', 'sort_by_date_desc', 'sort_by_order_desc');
+    public $default_scope = array('enabled', 'sort_by_date_desc', 'sort_newest', 'sort_by_order_desc');
     public $reset_related_sort = false;
     public $parent_category_code_list = array('news', 'photoreport');
     public $video = false;
