@@ -24,7 +24,7 @@ $title = $data->getTitle();
 
                 <div class="description_text main_item">
                     <?php
-                    echo $data->getDescription();
+                    echo Yii::app()->controller->truncate($data->getDescription(), 200, 500);
                     ?>
                 </div>
             </div>
