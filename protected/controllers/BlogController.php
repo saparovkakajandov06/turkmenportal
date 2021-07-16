@@ -25,7 +25,7 @@ class BlogController extends Controller
             $boll = true;
             if (Yii::app()->user->id){
                 $boll =false;
-            } elseif ($model->status == 1) {
+            } elseif ($model->status == 1 || $model->status == 5) {
                 $boll = false;
             }
             if ($model === null || !isset($model->{$lang_title}) || strlen(trim($model->{$lang_title})) < 5 || $boll)
