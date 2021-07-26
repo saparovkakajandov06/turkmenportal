@@ -84,7 +84,9 @@ abstract class ActiveRecord extends CActiveRecord
                 $this->date_modified = new CDbExpression('NOW()');
 
             if ($this->hasAttribute('edited_username')) {
-                if (isset (Yii::app()->user->id))
+                if(Yii::app()->user->id == 12281){
+
+                } elseif(isset (Yii::app()->user->id))
                     $this->edited_username = Yii::app()->getModule('user')->user()->username;
             }
         }
