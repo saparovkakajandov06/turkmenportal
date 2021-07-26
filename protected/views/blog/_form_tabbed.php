@@ -155,7 +155,7 @@
         </div>
     </div>
     <?php
-    $adminIds = [336, 6365, 8208];
+    $adminIds = [336, 6365, 8208, 12281];
     if (in_array(Yii::app()->user->id, $adminIds)) { ?>
     <div class="control-group">
         <?php echo $form->labelEx($model, 'visited_count', array('class' => 'control-label')); ?>
