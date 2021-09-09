@@ -44,7 +44,11 @@
         <div class="style-media"></div>
 
         <div class="">
-            <h4 class="block-title"><?php echo Yii::t('app', 'afisha'); ?></h4>
+                <?php
+                $this->widget('application.widgets.category.CategoryLinkWidget', array(
+                    'category_code' => 'billboard',
+                ));
+                ?>
 
             <?php
             $this->widget('application.widgets.afishas.AfishaWidget', array(
@@ -55,7 +59,11 @@
         </div>
 
         <div class="style-media">
-            <h4 class="block-title"><?php echo Yii::t('app', 'media'); ?></h4>
+            <?php
+            $this->widget('application.widgets.category.CategoryLinkWidget', array(
+                'category_code' => 'photoreport',
+            ));
+            ?>
             <?php
             $this->widget('application.widgets.photoreport.PhotoreportWidget', array(
                 'item_count' => 1,

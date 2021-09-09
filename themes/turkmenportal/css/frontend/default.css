@@ -823,6 +823,16 @@ input[type="text"], input[type="password"], select, textarea {
     font-stretch: condensed;
 }
 
+.headerColor2 {
+    color: #505050;
+    font-family: "Commissioner", Helvetica, sans-serif, Arial, Verdana;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.45;
+    text-transform: uppercase;
+    font-stretch: condensed;
+}
+
 .box_header_index.header .headerColor {
     font-size: 17px;
     margin: 0px 0px 15px 0px;
@@ -2667,6 +2677,10 @@ body.mobilescreen .header_fixed {
 
 body.mobilescreen .headerColor {
     font-size: 20px;
+}
+
+body.mobilescreen .headerColor2 {
+    font-size: 16px;
 }
 
 body.mobilescreen .nav.navbar-nav li.full-subnav-wrapper > a {
