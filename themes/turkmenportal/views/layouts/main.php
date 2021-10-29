@@ -79,7 +79,7 @@
 //                ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/jquery_1.8.3.js', CClientScript::POS_END)
         ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/bootstrap/bootstrap.min.js', CClientScript::POS_END)
 //        ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/fancybox/jquery.fancybox.min.js', CClientScript::POS_END)
-        ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/main.js?v=1.17', CClientScript::POS_END)
+        ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/main.js?v=1.18', CClientScript::POS_END)
         ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/social.min.js?v=0.11', CClientScript::POS_END)
 //        ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/orphus/' . $orphus, CClientScript::POS_HEAD)
 //        ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/jssor/jssor.slider.js', CClientScript::POS_END)
