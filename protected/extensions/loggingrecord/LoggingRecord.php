@@ -9,45 +9,47 @@
 class LoggingRecord extends CActiveRecordBehavior
 {
 
+    private $logging = false;
     public $client_id, $worker_id;
 
     public function afterSave($event)
     {
+        if ($this->logging){
 
-        $criteria = new CDbCriteria;
-        $criteria->compare('model', get_class($this->owner), true);
-        $criteria->compare('model_id', $this->owner->id);
-        if (isset($this->client_id) && $this->client_id !== '') {
-            $client_log = ClientsLog::model()->find($criteria);
-            if (!isset($client_log)) {
-                $client_log = new ClientsLog();
-            }
+            $criteria = new CDbCriteria;
+            $criteria->compare('model', get_class($this->owner), true);
+            $criteria->compare('model_id', $this->owner->id);
+            if (isset($this->client_id) && $this->client_id !== '') {
+                $client_log = ClientsLog::model()->find($criteria);
+                if (!isset($client_log)) {
+                    $client_log = new ClientsLog();
+                }
 
-            $client_log->client_id = $this->client_id;
-            $client_log->model = get_class($this->owner);
-            $client_log->model_id = $this->owner->id;
-            $client_log->date_created = date('Y-m-d H:i:s');
+                $client_log->client_id = $this->client_id;
+                $client_log->model = get_class($this->owner);
+                $client_log->model_id = $this->owner->id;
+                $client_log->date_created = date('Y-m-d H:i:s');
 //                    var_dump($client_log->save());die;
-            $client_log->save();
-        } else {
-            ClientsLog::model()->deleteAll($criteria);
-        }
-
-        if (isset($this->worker_id) && $this->worker_id !== '') {
-            $worker_log = WorkersLog::model()->find($criteria);
-            if (!isset($worker_log)) {
-                $worker_log = new WorkersLog();
+                $client_log->save();
+            } else {
+                ClientsLog::model()->deleteAll($criteria);
             }
 
-            $worker_log->worker_id = $this->worker_id;
-            $worker_log->model = get_class($this->owner);
-            $worker_log->model_id = $this->owner->id;
-            $worker_log->date_created = date('Y-m-d H:i:s');
-            $worker_log->save();
-        } else {
-            WorkersLog::model()->deleteAll($criteria);
-        }
+            if (isset($this->worker_id) && $this->worker_id !== '') {
+                $worker_log = WorkersLog::model()->find($criteria);
+                if (!isset($worker_log)) {
+                    $worker_log = new WorkersLog();
+                }
 
+                $worker_log->worker_id = $this->worker_id;
+                $worker_log->model = get_class($this->owner);
+                $worker_log->model_id = $this->owner->id;
+                $worker_log->date_created = date('Y-m-d H:i:s');
+                $worker_log->save();
+            } else {
+                WorkersLog::model()->deleteAll($criteria);
+            }
+        }
         parent::afterSave($event);
     }
 
@@ -74,6 +76,7 @@ class LoggingRecord extends CActiveRecordBehavior
 
     public function setInfo($data)
     {
+        $this->logging = true;
         $this->client_id = $data['client_id'];
         $this->worker_id = $data['worker_id'];
     }
