@@ -1,6 +1,8 @@
 <!--noindex-->
 <?php $this->beginWidget('DNofollowWidget'); ?>
-
+<?php
+    $vacancy = Category::model()->findParentCategoryByCode('vacancy');
+?>
 <?php
     if (yii::app()->controller->isMobile() && empty(Yii::app()->request->cookies['downloadApp']->value)){
         $cookie = Yii::app()->request->cookies['downloadApp'];
@@ -127,7 +129,11 @@ if  (yii::app()->controller->isMobile()){
                         $i = 0;
                         foreach ($informations as $info) {
                             $i ++;
-                            if ($i == 6) break;
+                            if ($i == 5) break;
+                            if ($i == 3){
+                                echo '<li>' . CHtml::link($vacancy->getName(), $vacancy->getUrl()) . '</li>';
+//                                continue;
+                            }
                             echo '<li>' . CHtml::link($info->getMixedDescriptionModel()->title, Yii::app()->createUrl('//information/view', array('id' => $info->id))) . '</li>';
                         }
                         ?>
@@ -137,7 +143,7 @@ if  (yii::app()->controller->isMobile()){
                         $i = 0;
                         foreach ($informations as $info) {
                             $i ++;
-                            if ($i > 5){
+                            if ($i > 4){
                                 echo '<li>' . CHtml::link($info->getMixedDescriptionModel()->title, Yii::app()->createUrl('//information/view', array('id' => $info->id))) . '</li>';
                             }
                         }

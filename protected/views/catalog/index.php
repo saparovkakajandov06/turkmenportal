@@ -22,7 +22,7 @@
 
 <?php
 $sub_categories = $modelCategory->children;
-if (isset($sub_categories) && count($sub_categories) > 0) {
+if (isset($sub_categories) && count($sub_categories) > 0 && $modelCategory->code != 'vacancy') {
     ?>
     <div class="row">
         <div class="col-sm-12">
