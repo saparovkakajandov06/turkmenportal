@@ -80,6 +80,7 @@ if (isset($model) && isset($model->id)) {
 
                 $this->widget('bootstrap.widgets.BootGridView', array(
                     'dataProvider' => $bannerGridModel->search(),
+                    'filter' => $bannerGridModel,
                     'template' => '{items}',
                     'id' => 'banner-grid',
                     'type' => 'striped bordered condensed',
