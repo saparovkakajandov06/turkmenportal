@@ -42,6 +42,7 @@ if (isset($model) && isset($model->id)) {
                     'date_expire',
                     array (
                         'name' => 'status',
+                        'filter' => array_merge($bannerGridModel->getStatusOptions()),
                         'value' => '$data->getStatusText()',
                         'type' => 'raw',
                     ),
