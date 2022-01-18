@@ -7,7 +7,11 @@
     </tr>
     <tr class="weekdays-row">
         <?php
-        $weekDays = Yii::app()->locale->getWeekDayNames('abbreviated');
+        if (yii::app()->language == 'en'){
+            $weekDays = Yii::app()->locale->getWeekDayNames('short');
+        } else {
+            $weekDays = Yii::app()->locale->getWeekDayNames('abbreviated');
+        }
         //                array_push($weekDays, array_shift($weekDays));
         foreach ($weekDays as $key => $weekDay): ?>
             <?php $class = ($key == 6 || $key == 0) ? "weekday" : "workday"; ?>

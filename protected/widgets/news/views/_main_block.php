@@ -7,11 +7,16 @@ $title = $data->getTitle();
     <div class="col-md-5 col-xs-12">
         <div class="main_news_block">
             <span class="media-object responsive">
-                    <?php echo CHtml::link(CHtml::image($data->getThumbPath(510, 710, 'w', true), $title, array('class' => 'i_n_list_img lazy', 'width' => '510', 'height' => '710', 'style' => 'width:100%', 'alt' => $title)), $data->url, array('class' => "thumb")); ?>
+                    <?php echo CHtml::link(CHtml::image($data->getThumbPath(510, 710, 'w', true), $title, array('class' => 'i_n_list_img', 'style' => 'width:100%', 'alt' => $title)), $data->url, array('class' => "thumb")); ?>
             </span>
 
             <div>
+                <span class="entry-date">
+                        <time
+                                datetime="<?php echo Yii::app()->controller->dateToW3C($data->date_added); ?>"> <?php echo Yii::app()->controller->renderDate($data->date_added); ?></time>
+                    </span>
                 <h1 class="blog_header">
+
                     <?php
                     echo CHtml::link(Yii::app()->controller->truncate($title, 15, 200), $data->url, array('title' => $title, 'rel' => 'bookmark'));
                     ?>
@@ -19,7 +24,7 @@ $title = $data->getTitle();
 
                 <div class="description_text main_item">
                     <?php
-                    echo $data->getDescription();
+                    echo Yii::app()->controller->truncate($data->getDescription(), 200, 500);
                     ?>
                 </div>
             </div>

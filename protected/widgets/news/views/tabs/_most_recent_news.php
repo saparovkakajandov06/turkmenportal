@@ -7,7 +7,7 @@ foreach ($blogModels as $key => $data) { ?>
                 $path = $data->getThumbPath(510, 710, 'w', true);
                 if (isset($path) && strlen(trim($path)) > 1) { ?>
                     <span class="media-object responsive news-index">
-                        <?php echo CHtml::link(CHtml::image($path, $title, array('class' => 'i_n_list_img lazy', 'width' => '510', 'height' => '710', 'style' => 'margin-right:15px;', 'alt' => $title)), $data->getUrl(), array('class' => "thumb")); ?>
+                        <?php echo CHtml::link(CHtml::image($path, $title, array('class' => 'i_n_list_img', 'style' => 'margin-right:15px;', 'alt' => $title)), $data->getUrl(), array('class' => "thumb")); ?>
                     </span>
                 <?php } ?>
             <div>

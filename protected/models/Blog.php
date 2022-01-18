@@ -32,6 +32,7 @@
  */
 class Blog extends ActiveRecord
 {
+    public $client_id, $worker_id;
     public $category_id, $category_code, $parent_category_code;
     public $title, $description, $text;
     public $category_name;
@@ -41,7 +42,7 @@ class Blog extends ActiveRecord
     public $pub_date_formatted;
     public $except;
     public $categoryid_except;
-    public $default_scope = array('enabled', 'sort_newest', 'sort_by_order_desc');
+    public $default_scope = array('enabled', 'sort_newest', 'sort_by_date_desc', 'sort_by_order_desc');
     public $reset_related_sort = false;
     public $parent_category_code_list = array('news', 'photoreport');
     public $video = false;
@@ -204,6 +205,11 @@ class Blog extends ActiveRecord
                     'description_ru', 'description_tm', 'description_en',
                     'text_ru', 'text_tm', 'text_en'
                 )
+            ),
+            'loggingRecord' => array(
+                'class' => 'ext.loggingrecord.LoggingRecord',
+                'client_id' => $this->client_id,
+                'worker_id' => $this->worker_id
             )
         ));
     }
@@ -255,6 +261,10 @@ class Blog extends ActiveRecord
 
             'sort_by_order_desc' => array(
                 'order' => 't.sort_order desc',
+            ),
+
+            'sort_by_date_desc' => array(
+                'order' => 't.date_added desc',
             ),
 
             'most_popular' => array(
@@ -357,6 +367,8 @@ class Blog extends ActiveRecord
             'documents' => array(self::MANY_MANY, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'documents_count' => array(self::STAT, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'comment_count' => array(self::STAT, 'Comments', 'tbl_blog_to_comments(blog_id,comment_id)'),
+            'worker' => array(self::HAS_ONE, 'WorkersLog', 'model_id', 'on' => "worker.model LIKE '".get_class($this)."'" ),
+            'client' => array(self::HAS_ONE, 'ClientLog', 'model_id', 'on' => "client.model LIKE '".get_class($this)."'" ),
         );
     }
 
@@ -390,6 +402,8 @@ class Blog extends ActiveRecord
             'parent_category_id' => Yii::t('app', 'parent_category_id'),
             'is_rss' => Yii::t('app', 'is_rss'),
             'is_interview' => Yii::t('app', 'is_interview'),
+            'client_id' => 'Client',
+            'worker_id' => 'Worker',
         );
     }
 
@@ -449,6 +463,10 @@ class Blog extends ActiveRecord
 
         $criteria->compare('t.title_ru', $this->title, true, 'OR');
         $criteria->compare('t.title_tm', $this->title, true, 'OR');
+        $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model LIKE '".get_class($this)."' "
+        ."LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model LIKE '".get_class($this)."'";
+        $criteria->compare('c.client_id', $this->client_id);
+        $criteria->compare('w.worker_id', $this->worker_id);
 
         if (!isset($_GET['Blog_sort']))
             $criteria->order = "t.id desc";

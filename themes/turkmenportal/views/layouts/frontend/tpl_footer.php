@@ -1,6 +1,8 @@
 <!--noindex-->
 <?php $this->beginWidget('DNofollowWidget'); ?>
-
+<?php
+    $vacancy = Category::model()->findParentCategoryByCode('vacancy');
+?>
 <?php
     if (yii::app()->controller->isMobile() && empty(Yii::app()->request->cookies['downloadApp']->value)){
         $cookie = Yii::app()->request->cookies['downloadApp'];
@@ -127,7 +129,11 @@ if  (yii::app()->controller->isMobile()){
                         $i = 0;
                         foreach ($informations as $info) {
                             $i ++;
-                            if ($i == 6) break;
+                            if ($i == 5) break;
+                            if ($i == 3){
+                                echo '<li>' . CHtml::link($vacancy->getName(), $vacancy->getUrl()) . '</li>';
+//                                continue;
+                            }
                             echo '<li>' . CHtml::link($info->getMixedDescriptionModel()->title, Yii::app()->createUrl('//information/view', array('id' => $info->id))) . '</li>';
                         }
                         ?>
@@ -137,7 +143,7 @@ if  (yii::app()->controller->isMobile()){
                         $i = 0;
                         foreach ($informations as $info) {
                             $i ++;
-                            if ($i > 5){
+                            if ($i > 4){
                                 echo '<li>' . CHtml::link($info->getMixedDescriptionModel()->title, Yii::app()->createUrl('//information/view', array('id' => $info->id))) . '</li>';
                             }
                         }
@@ -157,9 +163,9 @@ if  (yii::app()->controller->isMobile()){
                     <div class="footer_text_cr">
                         <span >
                             <?php echo Yii::t('app', 'footer_copy_right'); ?><br>
-                            <?php echo 'Свидетельство о регистрации средства массовой информации <a href="http://www.rkn.gov.ru/mass-communications/reestr/media/?id=617836" style="text-decoration:underline; color:#428bca" rel="nofollow" target="_blank"> ЭЛ № ФС 77 - 68969 от 07.03.2017 г.</a> ';
+                            <?php echo 'Свидетельство о регистрации средства массовой информации <a href="http://www.rkn.gov.ru/mass-communications/reestr/media/?id=617836" style="text-decoration:underline; color:#428bca" rel="nofollow" target="_blank"> ЭЛ № ФС 77 - 68969 от 07.03.2017 г.</a> Роскомнадзор';
                             //                                    'выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор).'
-                            ?>
+                            ?> &nbsp;| 18+
                         </span>
                     </div>
                     <?php

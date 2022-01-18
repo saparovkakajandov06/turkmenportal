@@ -73,7 +73,7 @@ $themeUrl = Yii::app()->theme->baseUrl;
                 ?>
                 <?php echo ' | ' . CHtml::link(Yii::t('app', 'valyutas'), "http://www.cbt.tm/kurs/kurs_today.html", array('target' => "_blank", 'rel' => 'nofollow')); ?>
                 <?php echo ' | ' . CHtml::link(Yii::t('app', 'bankomat_lists'), "http://www.cbt.tm/tm/payment/bankomat_as.html?Ashgabat", array('target' => "_blank", 'rel' => 'nofollow')); ?>
-                <?php echo ' | ' . CHtml::link(Yii::t('app', 'ashg_airport_schedule'), Yii::app()->createUrl('//catalog/view', array('id' => 12565)), ['class' => 'none-link']); ?>
+                <?php echo ' | ' . CHtml::link('18+', '#', ['class' => 'none-link']); ?>
             </div>
             <div class="col-xs-6 visible-xs">
                 <?php
@@ -99,7 +99,7 @@ $themeUrl = Yii::app()->theme->baseUrl;
             <div class="col-md-4" style="padding:0px; padding-left: 0px;">
                 <div class="logoPanel hidden-xs">
                     <a href="<?php echo Yii::app()->createAbsoluteUrl('/site/index'); ?>"><img class="img-responsive"
-                                src="<?php echo $themeUrl; ?>/img/logo_tp.png?v=1"></a>
+                                src="<?php echo $themeUrl; ?>/img/logo_tp-christmas_1.png?v=1"></a>
                 </div>
 
             </div>

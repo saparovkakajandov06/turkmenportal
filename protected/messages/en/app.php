@@ -513,6 +513,7 @@ return array (
     'lenta_news' => 'News Feed',
     'about you' => 'About me',
     'phonenumber_validation' => 'The phone number must be in the correct format',
+    'email_validation' => 'Email must be in the correct format',
 
     'select automake' => 'Select a brand',
     'select automodel' => 'Select Model',

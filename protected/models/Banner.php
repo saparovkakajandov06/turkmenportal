@@ -19,7 +19,7 @@
  */
 class Banner extends ActiveRecord
 {
-
+    public $image;
     public $exceptions = array();
     public $dimensions = '';
     public $bannerType = '';
@@ -153,18 +153,32 @@ class Banner extends ActiveRecord
     public function search()
     {
         // @todo Please modify the following code to remove attributes that should not be searched.
+        if (isset($_GET['Banner']['status'])){
+            $status = $_GET['Banner']['status'];
+
+            if (strlen($status) > 0 && $status < 3){
+                $status = (int)$status;
+            } else {
+                $status = null;
+            }
+            $this->status = $status;
+        } else {
+            $this->status = 1;
+        }
 
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
         $criteria->compare('format_type', $this->format_type);
-        $criteria->compare('description', $this->description, true);
+        $criteria->compare('description', $_GET['Banner']['description'], true);
         $criteria->compare('adsense_code', $this->adsense_code, true);
         $criteria->compare('width', $this->width);
         $criteria->compare('height', $this->height);
         $criteria->compare('type', $this->type);
         $criteria->compare('related_user_id', $this->related_user_id);
-        $criteria->compare('url', $this->url);
+        $criteria->compare('url', $_GET['Banner']['url']);
+        $criteria->compare('image', '');
+        $criteria->compare('status',$this->status);
 
         if (count($this->exceptions) > 0)
             $criteria->addNotInCondition('id', $this->exceptions);

@@ -97,6 +97,7 @@ return array(
     'edited_username' => 'Редактировал',
     'date_added' => 'Создано',
     'date_modified' => 'Изменено',
+    'Thumbnail' => 'Миниатюра',
 
     //auto
     'id' => 'ID',
@@ -376,7 +377,8 @@ return array(
     'search_from_site' => 'Поиск по сайту',
     'from_all_categories' => 'Во всех рубриках',
     'Search' => 'Поиск',
-    'Add obyawa' => 'Добавить объявления',
+    'No results found' => 'Нет результатов',
+    'Add obyawa' => 'Добавить объявление',
     'Login' => 'Войти',
     'client_form_confirmation_message' => 'Ваше обьявление добавлено, перейти к нему?',
     'today' => 'Сегодня',
@@ -533,6 +535,7 @@ return array(
     'lenta_news' => 'Лента новостей',
     'about you' => 'О себе',
     'phonenumber_validation' => 'Номер телефона должен быть в правильном формате',
+    'email_validation' => 'Email должен быть в правильном формате',
 
     'select automake' => 'Выберите марку',
     'select automodel' => 'Выберите модель',

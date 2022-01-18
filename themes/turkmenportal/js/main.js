@@ -579,7 +579,15 @@ $(document).ready(function(){
           //$(".pull-right i",$(this).parents("ul:eq(1)")).removeClass("icon-fa-chevron-down").addClass("icon-fa-chevron-left");
         } 
     });
-            
+
+    $('.article_text').find('a').attr('target', '_blank');
+    $('.article_text').find('p').each(function (){
+        var text = $(this).html();
+        if (text.length = 1 && text == ' '){
+            $(this).attr('style', 'padding:12px 0');
+        }
+    });
+
 });
 
 

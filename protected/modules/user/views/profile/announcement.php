@@ -46,28 +46,28 @@ $this->widget('bootstrap.widgets.BootGridView', array(
     ),
     'columns' => array(
         array(
-            'name' => 'thumb',
+            'name' => yii::t('app', 'Thumbnail'),
             'value' => '$data["thumb"]',
             'type' => 'image',
         ),
         array(
-            'name' => 'title',
+            'name' => yii::t('app', 'title'),
             'value' => 'CHtml::encode($data["material_title"])',
             'type' => 'raw',
         ),
         array(
-            'name' => 'description',
+            'name' => yii::t('app', 'description'),
             'value' => 'CHtml::encode($data[material_description])',
             'type' => 'raw',
         ),
         array(
-            'name' => 'category',
+            'name' => yii::t('app', 'category_id'),
             'headerHtmlOptions' => array('style' => 'width: 170px; text-align:center;'),
             'value' => 'CHtml::encode($data["category_name"])',
             'type' => 'raw',
         ),
         array(
-            'name' => 'date_added',
+            'name' => yii::t('app', 'date_added'),
             'value' => '$data["date_added"]',
             'type' => 'datetime',
             'htmlOptions' => array('style' => 'width: 120px; text-align:right;'),

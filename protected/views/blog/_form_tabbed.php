@@ -43,27 +43,57 @@
 
 
     <div class="control-group">
-        <label for="regions"><?php echo Yii::t('app', 'Regions'); ?></label>
+        <?php echo $form->labelEx($model, 'worker_id', array('class' => 'control-label')); ?>
         <div class="controls">
-            <div class="row nm_row nm_regions">
-                <?php
-                echo CHtml::checkBoxList(
-                    'Blog[regions]',
-                    array_keys(CHtml::listData($model->regions, 'id', 'id')),
-                    Regions::model()->getRegionsListByTree(),
-                    array('template' => "{beginLabel} {input} {labelTitle} {endLabel} ",
-                        'attributeitem' => 'id',
-                        'labelOptions' => array('style' => 'display:inline')
-                    )
-                );
-                ?>
+            <?php
+            $workers = array();
+            $workers = Workers::model()->getListWorkers();
+
+            ?>
+            <?php echo $form->dropDownList($model, 'worker_id', $workers, array('id' => "worker_id", 'empty'=>'--Select a worker--')); ?>
+            <div class="help-inline">
+                <?php echo $form->error($model, 'worker_id'); ?>
             </div>
-            <a class="select_all"
-               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', true);"><?php echo Yii::t('app', "Select All"); ?></a>/
-            <a class="select_none"
-               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', false);"><?php echo Yii::t('app', "Select None"); ?></a>
         </div>
     </div>
+
+    <div class="control-group">
+        <?php echo $form->labelEx($model, 'client_id', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php
+            $clients = array();
+            $clients = Clients::model()->getListClients();
+
+            ?>
+            <?php echo $form->dropDownList($model, 'client_id', $clients, array('id' => "client_id", 'empty'=>'--Select a client--')); ?>
+            <div class="help-inline">
+                <?php echo $form->error($model, 'client_id'); ?>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="control-group">-->
+<!--        <label for="regions">--><?php //echo Yii::t('app', 'Regions'); ?><!--</label>-->
+<!--        <div class="controls">-->
+<!--            <div class="row nm_row nm_regions">-->
+<!--                --><?php
+//                echo CHtml::checkBoxList(
+//                    'Blog[regions]',
+//                    array_keys(CHtml::listData($model->regions, 'id', 'id')),
+//                    Regions::model()->getRegionsListByTree(),
+//                    array('template' => "{beginLabel} {input} {labelTitle} {endLabel} ",
+//                        'attributeitem' => 'id',
+//                        'labelOptions' => array('style' => 'display:inline')
+//                    )
+//                );
+//                ?>
+<!--            </div>-->
+<!--            <a class="select_all"-->
+<!--               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', true);">--><?php //echo Yii::t('app', "Select All"); ?><!--</a>/-->
+<!--            <a class="select_none"-->
+<!--               onclick="$(this).parent().find('.nm_regions :checkbox').attr('checked', false);">--><?php //echo Yii::t('app', "Select None"); ?><!--</a>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <div class="control-group">
@@ -124,7 +154,9 @@
             </div>
         </div>
     </div>
-
+    <?php
+    $adminIds = [336, 6365, 8208, 12281];
+    if (in_array(Yii::app()->user->id, $adminIds)) { ?>
     <div class="control-group">
         <?php echo $form->labelEx($model, 'visited_count', array('class' => 'control-label')); ?>
         <div class="controls">
@@ -134,5 +166,35 @@
             </div>
         </div>
     </div>
+    <?php } ?>
+
+    <?php if (Yii::app()->user->checkAccess('news_moderator') || Yii::app()->user->getIsSuperuser()) { ?>
+        <div class="control-group">
+            <?php echo $form->labelEx($model,'date_added',array('class'=>'control-label')) ; ?>
+            <div class="controls">
+                <?php $this->widget('CJuiDateTimePicker',
+                    array(
+                        'model'=>$model,
+                        'name'=>'Blog[date_added]',
+                        //'language'=> substr(Yii::app()->language,0,strpos(Yii::app()->language,'_')),
+                        'language'=> '',
+                        'value'=>$model->date_added,
+                        'mode' => 'datetime',
+                        'options'=>array(
+                            'showAnim'=>'fold', // 'show' (the default), 'slideDown', 'fadeIn', 'fold'
+                            'showButtonPanel'=>true,
+                            'changeYear'=>true,
+                            'changeMonth'=>true,
+                            'dateFormat'=>'yy-mm-dd',
+                        ),
+                    )
+                );
+                ; ?>
+                <div class="help-inline">
+                    <?php echo $form->error($model,'date_added'); ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
 </div> <!-- form -->

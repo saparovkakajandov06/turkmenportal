@@ -248,7 +248,7 @@ class Controller extends RController
     {
         $mydate = new DateTime($mydate);
         $mydate->setTimezone(new DateTimeZone("Asia/Ashgabat"));
-        $day_name = $mydate->format("d/m/Y");
+        $day_name = $mydate->format("d.m.Y");
         $time = $mydate->format("H:i");
         $mydate_ts = $mydate->getTimestamp();
 
