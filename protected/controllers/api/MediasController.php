@@ -198,6 +198,7 @@ class MediasController extends Controller
         }
 
 
+        $view_count = $model->incCounter('visited_count');
 
         if (isset($model)){
             $mainDoc = $model->getDocument();
@@ -255,7 +256,7 @@ class MediasController extends Controller
                     'date' => $model->date_added,
                     'cat_name' => $model->category->name,
                     'cat_id' => (int)$model->category->id,
-                    'view_count' => (int)$model->visited_count,
+                    'view_count' => (int)$view_count,
                     'url' => $model->createAbsoluteUrl(),
                     'lang' => $lang
                 );
@@ -272,7 +273,13 @@ class MediasController extends Controller
 
     public function loadModel($id)
     {
-        $model = Blog::model()->findByPk($id);
+        $model = Yii::app()->cache->get($id . '_' . Blog::tableName());
+
+        if (!$model){
+            $model = Blog::model()->findByPk($id);
+            Yii::app()->cache->set($id . '_' . Blog::tableName(), $model, Yii::app()->params['cache_duration']);
+        }
+
         return $model;
     }
 

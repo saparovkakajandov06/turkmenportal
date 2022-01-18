@@ -20,11 +20,11 @@ class BlogController extends Controller
         if (isset ($_GET['ajax']) && $_GET['ajax'] == 'comments_listview') {
             $this->renderPartial('//comments/listview', array('related_relation' => 'blogs', 'related_relation_id' => $id));
         } else {
-            $model = $this->loadModel($id);
+            $model = $this->loadModelFromCache($id);
             $lang_title = 'title_' . Yii::app()->language;
             $boll = true;
-            if (Yii::app()->user->id){
-                $boll =false;
+            if (Yii::app()->user->id) {
+                $boll = false;
             } elseif ($model->status == 1) {
                 $boll = false;
             }
@@ -45,10 +45,11 @@ class BlogController extends Controller
             $now->modify('-3 day');
             $date_added = new DateTime($model->date_added);
             if ($date_added > $now) {
-                $model->saveCounters(array('visited_count' => rand(1, 3)));
+                $count = $model->incCounter('visited_count', rand(1, 3));
             } else {
-                $model->saveCounters(array('visited_count' => 1));
+                $count = $model->incCounter('visited_count');
             }
+            $model->visited_count = $count;
 
             $this->render('view', array(
                 'model' => $model,
@@ -60,8 +61,8 @@ class BlogController extends Controller
     public function actionLike($id)
     {
         if (Yii::app()->request->isAjaxRequest) {
-            $model = $this->loadModel($id);
-            if ($model->saveCounters(array('like_count' => 1))) {
+            $model = $this->loadModelFromCache($id);
+            if ($model->incCounter('likes')) {
                 echo CJSON::encode(array(
                     'status' => 'success',
                     'message' => Yii::t('app', 'comment_like_success'),
@@ -78,8 +79,8 @@ class BlogController extends Controller
     public function actionDislike($id)
     {
         if (Yii::app()->request->isAjaxRequest) {
-            $model = $this->loadModel($id);
-            if ($model->saveCounters(array('dislike_count' => 1))) {
+            $model = $this->loadModelFromCache($id);
+            if ($model->incCounter('dislikes')) {
                 echo CJSON::encode(array(
                     'status' => 'success',
                     'message' => Yii::t('app', 'dislike_success'),
@@ -140,6 +141,7 @@ class BlogController extends Controller
     public function actionUpdate($id)
     {
         $photos = new XUploadForm;
+        Yii::app()->cache->delete($id . '_' . Blog::tableName());
         $model = $this->loadModel($id);
 
 
@@ -247,6 +249,21 @@ class BlogController extends Controller
     public function loadModel($id)
     {
         $model = Blog::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+        return $model;
+    }
+
+    public function loadModelFromCache($id)
+    {
+
+        $model = Yii::app()->cache->get($id . '_' . Blog::tableName());
+
+        if (!$model){
+            $model = Blog::model()->findByPk($id);
+            Yii::app()->cache->set($id . '_' . Blog::tableName(), $model, Yii::app()->params['cache_duration']);
+        }
+
         if ($model === null)
             throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
         return $model;

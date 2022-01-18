@@ -36,8 +36,8 @@ class BannersController extends Controller
                         'id' => $bannerModel->id,
                         'type' => $bannerType,
                         'description' => $bannerModel->description,
-                        'img' => 'https://turkmenportal.com'.$imgUrl,
-                        'fullUrl' => 'https://turkmenportal.com'.$fullUrl,
+                        'img' => 'https://turkmenportal.com' . $imgUrl,
+                        'fullUrl' => 'https://turkmenportal.com' . $fullUrl,
                     );
                 } else {
                     $imgUrl = Documents::model()->getUploadedPath($bannerModel->getDocument()->path);
@@ -45,7 +45,7 @@ class BannersController extends Controller
                         'id' => $bannerModel->id,
                         'type' => $bannerType,
                         'description' => $bannerModel->description,
-                        'img' => 'https://turkmenportal.com'.$imgUrl,
+                        'img' => 'https://turkmenportal.com' . $imgUrl,
                     );
                 }
 
@@ -53,24 +53,31 @@ class BannersController extends Controller
         }
 
 
-        if (!isset($banner)){
+        if (!isset($banner)) {
             $banner = [];
         }
         header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($banner);die;
+        echo Json::encode($banner);
+        die;
     }
 
 
+    public function getBanner($type)
+    {
 
-    public function getBanner($type){
-        $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
+        $bannerTypeModel = Yii::app()->cache->get($type . '_' . BannerType::tableName());
+
+        if (!$bannerTypeModel) {
+            $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
+            Yii::app()->cache->set($type . '_' . BannerType::tableName(), $bannerTypeModel, Yii::app()->params['cache_duration']);
+        }
 
         $calculate_show = true;
-            if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
-                $calculate_show = true;
-            } else {
-                $calculate_show = false;
-            }
+        if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
+            $calculate_show = true;
+        } else {
+            $calculate_show = false;
+        }
 
 
         if ($calculate_show) {
@@ -78,8 +85,8 @@ class BannersController extends Controller
                 $bannerModel = null;
                 $banners = $bannerTypeModel->getEnabledBanners();
                 if (count($banners) > 0) {
-                        $this->width = $bannerTypeModel->width;
-                        $this->height = $bannerTypeModel->height;
+                    $this->width = $bannerTypeModel->width;
+                    $this->height = $bannerTypeModel->height;
 
                     //detect exact banner to show
                     switch ($bannerTypeModel->type) {
@@ -104,8 +111,8 @@ class BannersController extends Controller
 
                             $bannerModel = $banners[array_rand($banners)];
 
-                            if  (isset($_GET['id'])){
-                                while ($bannerModel->id == $_GET['id']){
+                            if (isset($_GET['id'])) {
+                                while ($bannerModel->id == $_GET['id']) {
                                     $bannerModel = $banners[array_rand($banners)];
                                 }
                             }
@@ -113,9 +120,10 @@ class BannersController extends Controller
                     }
                 }
 
-
-                $bannerActivityService = new BannerActivityService();
-                $bannerActivityService->registerActivity($bannerModel, BannerActivity::ACTIVITY_TYPE_VIEW);
+                if (isset($bannerModel)){
+                    $view_count = $bannerModel->incCounter('view_count', BannerActivity::ACTIVITY_TYPE_VIEW);
+                    $bannerModel->view_count = $view_count;
+                }
 
                 return array('bannerTypeModel' => $bannerTypeModel, 'banners' => $banners, 'bannerModel' => $bannerModel);
             }
