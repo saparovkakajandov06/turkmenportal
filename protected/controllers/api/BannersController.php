@@ -112,9 +112,7 @@ class BannersController extends Controller
                             $bannerModel = $banners[array_rand($banners)];
 
                             if (isset($_GET['id'])) {
-                                while ($bannerModel->id == $_GET['id']) {
-                                    $bannerModel = $banners[array_rand($banners)];
-                                }
+                                $bannerModel = $banners[array_rand($banners)];
                             }
                             break;
                     }
