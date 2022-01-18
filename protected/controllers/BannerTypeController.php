@@ -19,7 +19,7 @@ class BannerTypeController extends Controller {
         
     public function actionView($id) {
         $this->render('view', array(
-                'model' => $this->loadModel($id),
+                'model' => $this->loadModelFromCache($id),
         ));
     }
         
@@ -48,6 +48,7 @@ class BannerTypeController extends Controller {
     }
 
     public function actionUpdate($id) {
+        Yii::app()->cache->delete($id . '_' . BannerType::tableName());
         $model = $this->loadModel($id);
         $bannerGridModel=new Banner();
         $bannerGridModel->unsetAttributes();
@@ -149,6 +150,21 @@ class BannerTypeController extends Controller {
             if($model===null)
                     throw new CHttpException(404,Yii::t('app', 'The requested page does not exist.'));
             return $model;
+    }
+
+    public function loadModelFromCache($id)
+    {
+
+        $model = Yii::app()->cache->get($id . '_' . BannerType::tableName());
+
+        if (!$model){
+            $model = BannerType::model()->findByPk($id);
+            Yii::app()->cache->set($id . '_' . BannerType::tableName(), $model, Yii::app()->params['cache_duration']);
+        }
+
+        if ($model === null)
+            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+        return $model;
     }
 
 }

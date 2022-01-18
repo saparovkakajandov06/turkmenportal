@@ -60,6 +60,9 @@ class BlogsController extends Controller
 
     public function actionView()
     {
+        $data = Yii::app()->cache->get('counter_list');
+        echo "<pre>";
+        var_dump($data);;die;
         if (isset($_GET['id']))
             $id = (int)$_GET['id'];
         if (isset($_GET['hl'])){
@@ -97,6 +100,7 @@ class BlogsController extends Controller
             $image_width = $image_info[0];
             $image_height = $image_info[1];
         }
+        $view_count = $model->incCounter('visited_count');
 
         if (isset($model)){
             $content = $model->getText();
@@ -118,7 +122,7 @@ class BlogsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-                'view_count' => (int)$model->visited_count,
+                'view_count' => (int)$view_count,
                 'url' => $model->createAbsoluteUrl(),
                 'lang' => $lang
             );
@@ -170,7 +174,13 @@ class BlogsController extends Controller
 
     public function loadModel($id)
     {
-        $model = Blog::model()->findByPk($id);
+        $model = Yii::app()->cache->get($id . '_' . Blog::tableName());
+
+        if (!$model){
+            $model = Blog::model()->findByPk($id);
+            Yii::app()->cache->set($id . '_' . Blog::tableName(), $model, Yii::app()->params['cache_duration']);
+        }
+
         return $model;
     }
 
