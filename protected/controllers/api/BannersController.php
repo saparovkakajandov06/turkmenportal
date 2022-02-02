@@ -19,10 +19,9 @@ class BannersController extends Controller
     public $height;
 
 
-
     public function actionIndex()
     {
-        if (isset($_GET['bannerType'])){
+        if (isset($_GET['bannerType'])) {
             $bannerType = $this->bannerMap[$_GET['bannerType']];
             $banner = $this->getBanner($bannerType);
             $bannerModel = $banner['bannerModel'];
@@ -64,13 +63,7 @@ class BannersController extends Controller
 
     public function getBanner($type)
     {
-
-        $bannerTypeModel = Yii::app()->cache->get($type . '_' . BannerType::tableName());
-
-        if (!$bannerTypeModel) {
-            $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
-            Yii::app()->cache->set($type . '_' . BannerType::tableName(), $bannerTypeModel, Yii::app()->params['cache_duration']);
-        }
+        $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
 
         $calculate_show = true;
         if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
@@ -110,18 +103,13 @@ class BannersController extends Controller
                         case BannerType::TYPE_IMAGE_RANDOM:
 
                             $bannerModel = $banners[array_rand($banners)];
-
-                            if (isset($_GET['id'])) {
-                                $bannerModel = $banners[array_rand($banners)];
-                            }
                             break;
                     }
                 }
 
-                if (isset($bannerModel)){
-                    $view_count = $bannerModel->incCounter('view_count', BannerActivity::ACTIVITY_TYPE_VIEW);
-                    $bannerModel->view_count = $view_count;
-                }
+
+                $bannerActivityService = new BannerActivityService();
+                $bannerActivityService->registerActivity($bannerModel, BannerActivity::ACTIVITY_TYPE_VIEW);
 
                 return array('bannerTypeModel' => $bannerTypeModel, 'banners' => $banners, 'bannerModel' => $bannerModel);
             }

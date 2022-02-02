@@ -100,7 +100,6 @@ class PostsController extends Controller
             $image_width = $image_info[0];
             $image_height = $image_info[1];
         }
-        $view_count = $model->incCounter('views');
 
         if (isset($model)){
             $content = $model->getContent();
@@ -122,7 +121,7 @@ class PostsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-                'view_count' => (int)$view_count    ,
+                'view_count' => (int)$model->views,
                 'address' => $model->address,
                 'phone' => $model->phone,
                 'web_site' => $model->web,
@@ -175,17 +174,10 @@ class PostsController extends Controller
         echo Json::encode($data);die;
     }
 
-
     public function loadModel($id)
     {
-        $model = Yii::app()->cache->get($id . '_' . Catalog::tableName());
-
-        if (!$model){
-            $model = Catalog::model()->findByPk($id);
-            Yii::app()->cache->set($id . '_' . Catalog::tableName(), $model, Yii::app()->params['cache_duration']);
-        }
+        $model = Catalog::model()->findByPk($id);
 
         return $model;
     }
-
 }

@@ -20,7 +20,7 @@ class CatalogController extends Controller
         if (isset ($_GET['ajax']) && $_GET['ajax'] == 'comments_listview') {
             $this->renderPartial('//comments/listview', array('related_relation' => 'catalogs', 'related_relation_id' => $id));
         } else {
-            $model = $this->loadModelFromCache($id);
+            $model = $this->loadModel($id);
             if ($model === null || $model->status!=1)
                 throw new CHttpException(404, 'Not found');
             $url = $model->getUrl();
@@ -28,8 +28,7 @@ class CatalogController extends Controller
             if (strpos(Yii::app()->request->url, 'index.php') !== false)
                 $this->redirect($url, true, 301);
 
-            $count = $model->incCounter('views', 1);
-            $model->views = $count;
+            $model->saveCounters(array('views' => 1));
             $this->render('view', array(
                 'model' => $model,
             ));
@@ -83,7 +82,6 @@ class CatalogController extends Controller
     public function actionUpdate($id)
     {
         $photos = new XUploadForm;
-        Yii::app()->cache->delete($id . '_' . Catalog::tableName());
         $model = $this->loadModel($id);
 
         $model->reloadTempList();
@@ -255,22 +253,6 @@ class CatalogController extends Controller
             'modelCategory' => $modelCategory,
             'modelCatalog' => $modelCatalog,
         ));
-    }
-
-
-    public function loadModelFromCache($id)
-    {
-
-        $model = Yii::app()->cache->get($id . '_' . Catalog::tableName());
-
-        if (!$model){
-            $model = Catalog::model()->findByPk($id);
-            Yii::app()->cache->set($id . '_' . Catalog::tableName(), $model, Yii::app()->params['cache_duration']);
-        }
-
-        if ($model === null)
-            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
-        return $model;
     }
 
 }

@@ -101,7 +101,6 @@ class CompositionsController extends Controller
             $lang[] = 'en';
         }
 
-        $view_count = $model->incCounter('views');
 
         if (isset($model)) {
             $content = $model->getContent();
@@ -123,7 +122,7 @@ class CompositionsController extends Controller
                 'date' => $model->date_added,
                 'cat_name' => $model->category->name,
                 'cat_id' => (int)$model->category->id,
-                'view_count' => (int)$view_count,
+                'view_count' => (int)$model->views,
                 'url' => $model->getUrl(),
                 'lang' => $lang
             );
@@ -175,12 +174,7 @@ class CompositionsController extends Controller
 
     public function loadModel($id)
     {
-        $model = Yii::app()->cache->get($id . '_' . Compositions::tableName());
-
-        if (!$model){
-            $model = Compositions::model()->findByPk($id);
-            Yii::app()->cache->set($id . '_' . Compositions::tableName(), $model, Yii::app()->params['cache_duration']);
-        }
+        $model = Compositions::model()->findByPk($id);
 
         return $model;
     }

@@ -387,36 +387,4 @@ abstract class ActiveRecord extends CActiveRecord
         }
         return false;
     }
-
-    public function saveCounters($counters)
-    {
-        Yii::trace(get_class($this) . '.saveCounters()', 'system.db.ar.CActiveRecord');
-        $builder = $this->getCommandBuilder();
-        $table = $this->getTableSchema();
-        $criteria = $builder->createPkCriteria($table, $this->getOldPrimaryKey());
-        $command = $builder->createUpdateCounterCommand($this->getTableSchema(), $counters, $criteria);
-        if ($command->execute()) {
-            foreach ($counters as $name => $value)
-                $this->$name = $this->$name + $value;
-            return true;
-        } else
-            return false;
-    }
-
-    public function incCounter($field_name, $count = 1)
-    {
-        $data = Yii::app()->cache->get('counter_list');
-        if (!isset($data[$this->id])) {
-            $data[$this->id]['count'] = $this->$field_name;
-            $data[$this->id]['field_name'] = $field_name;
-            $data[$this->id]['table_name'] = $this->tableName();
-        }
-
-        $data[$this->id]['count'] += $count;
-
-        Yii::app()->cache->delete('counter_list');
-        Yii::app()->cache->set('counter_list', $data);
-        return $data[$this->id]['count'];
-    }
-
 }
