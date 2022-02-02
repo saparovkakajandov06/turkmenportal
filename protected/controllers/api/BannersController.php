@@ -19,10 +19,9 @@ class BannersController extends Controller
     public $height;
 
 
-
     public function actionIndex()
     {
-        if (isset($_GET['bannerType'])){
+        if (isset($_GET['bannerType'])) {
             $bannerType = $this->bannerMap[$_GET['bannerType']];
             $banner = $this->getBanner($bannerType);
             $bannerModel = $banner['bannerModel'];
@@ -36,8 +35,8 @@ class BannersController extends Controller
                         'id' => $bannerModel->id,
                         'type' => $bannerType,
                         'description' => $bannerModel->description,
-                        'img' => 'https://turkmenportal.com'.$imgUrl,
-                        'fullUrl' => 'https://turkmenportal.com'.$fullUrl,
+                        'img' => 'https://turkmenportal.com' . $imgUrl,
+                        'fullUrl' => 'https://turkmenportal.com' . $fullUrl,
                     );
                 } else {
                     $imgUrl = Documents::model()->getUploadedPath($bannerModel->getDocument()->path);
@@ -45,7 +44,7 @@ class BannersController extends Controller
                         'id' => $bannerModel->id,
                         'type' => $bannerType,
                         'description' => $bannerModel->description,
-                        'img' => 'https://turkmenportal.com'.$imgUrl,
+                        'img' => 'https://turkmenportal.com' . $imgUrl,
                     );
                 }
 
@@ -53,24 +52,25 @@ class BannersController extends Controller
         }
 
 
-        if (!isset($banner)){
+        if (!isset($banner)) {
             $banner = [];
         }
         header('Content-Type: application/json; charset=UTF-8');
-        echo Json::encode($banner);die;
+        echo Json::encode($banner);
+        die;
     }
 
 
-
-    public function getBanner($type){
+    public function getBanner($type)
+    {
         $bannerTypeModel = BannerType::model()->findByAttributes(array('type_name' => $type, 'status' => 1));
 
         $calculate_show = true;
-            if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
-                $calculate_show = true;
-            } else {
-                $calculate_show = false;
-            }
+        if (($bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_ALL || $bannerTypeModel->is_mobile_enabled == BannerType::BANNER_TYPE_MOBILE_ONLY)) {
+            $calculate_show = true;
+        } else {
+            $calculate_show = false;
+        }
 
 
         if ($calculate_show) {
@@ -78,8 +78,8 @@ class BannersController extends Controller
                 $bannerModel = null;
                 $banners = $bannerTypeModel->getEnabledBanners();
                 if (count($banners) > 0) {
-                        $this->width = $bannerTypeModel->width;
-                        $this->height = $bannerTypeModel->height;
+                    $this->width = $bannerTypeModel->width;
+                    $this->height = $bannerTypeModel->height;
 
                     //detect exact banner to show
                     switch ($bannerTypeModel->type) {
@@ -103,12 +103,6 @@ class BannersController extends Controller
                         case BannerType::TYPE_IMAGE_RANDOM:
 
                             $bannerModel = $banners[array_rand($banners)];
-
-                            if  (isset($_GET['id'])){
-                                while ($bannerModel->id == $_GET['id']){
-                                    $bannerModel = $banners[array_rand($banners)];
-                                }
-                            }
                             break;
                     }
                 }
