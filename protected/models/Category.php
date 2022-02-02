@@ -154,10 +154,6 @@ class Category extends ActiveRecord {
                 'condition' => 't.is_announcement=1',
             ),
 
-            'mobile' => array(
-                'condition' => 'not t.id in (293,288,286)',
-            ),
-
 //                'with_description'=>array(
 //                    'condition'=>"language.code='".Yii::app()->language."'",
 //                    'with'=>array("descriptions","descriptions.language"),
@@ -339,7 +335,7 @@ class Category extends ActiveRecord {
         $criteria->addCondition('t.name_' . Yii::app()->language . ' is not null');
         $criteria->scopes = array('enabled', 'sort_by_alpha');
 
-            $data = Category::model()->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency('Category'), 1)->findAll($criteria);
+        $data = Category::model()->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency('Category'), 1)->findAll($criteria);
         $data = CHtml::listData($data, 'id', 'name_' . Yii::app()->language);
         return $data;
     }
@@ -354,7 +350,6 @@ class Category extends ActiveRecord {
             $criteria->scopes = array('enabled', 'sort_by_alpha');
 
             $data = Category::model()->findAll($criteria);
-            var_dump();die;
             $data = CHtml::listData($data, 'id', 'name_' . Yii::app()->language);
         }
 
@@ -614,10 +609,5 @@ class Category extends ActiveRecord {
 //        }
 //        
 
-    public function getChilds($parent_id)
-    {
-        $criteria = new CDbCriteria;
-        $criteria->compare('parent_id', $parent_id);
-        return Category::model()->findAll($criteria);
-    }
+
 }
