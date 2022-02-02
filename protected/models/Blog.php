@@ -367,8 +367,8 @@ class Blog extends ActiveRecord
             'documents' => array(self::MANY_MANY, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'documents_count' => array(self::STAT, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'comment_count' => array(self::STAT, 'Comments', 'tbl_blog_to_comments(blog_id,comment_id)'),
-            'worker' => array(self::HAS_ONE, 'WorkersLog', 'model_id', 'on' => "worker.model LIKE '".get_class($this)."'" ),
-            'client' => array(self::HAS_ONE, 'ClientLog', 'model_id', 'on' => "client.model LIKE '".get_class($this)."'" ),
+            'worker' => array(self::HAS_ONE, 'WorkersLog', 'model_id', 'on' => "worker.model='".get_class($this)."'" ),
+            'client' => array(self::HAS_ONE, 'ClientLog', 'model_id', 'on' => "client.model='".get_class($this)."'" ),
         );
     }
 
@@ -463,8 +463,8 @@ class Blog extends ActiveRecord
 
         $criteria->compare('t.title_ru', $this->title, true, 'OR');
         $criteria->compare('t.title_tm', $this->title, true, 'OR');
-        $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model LIKE '".get_class($this)."' "
-        ."LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model LIKE '".get_class($this)."'";
+        $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model='".get_class($this)."' "
+        ."LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model='".get_class($this)."'";
         $criteria->compare('c.client_id', $this->client_id);
         $criteria->compare('w.worker_id', $this->worker_id);
 
