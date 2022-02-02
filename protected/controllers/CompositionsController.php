@@ -62,7 +62,7 @@ class CompositionsController extends Controller
         if (isset ($_GET['ajax']) && $_GET['ajax'] == 'comments_listview') {
             $this->renderPartial('//comments/listview', array('related_relation' => 'compositions', 'related_relation_id' => $id));
         } else {
-            $model = $this->loadModelFromCache($id);
+            $model = $this->loadModel($id);
             $lang_title = 'title_' . Yii::app()->language;
             $boll = true;
             if (Yii::app()->user->id){
@@ -81,8 +81,7 @@ class CompositionsController extends Controller
             if (Yii::app()->getBaseUrl(true) . Yii::app()->request->getOriginalUrl() != $url)
                 $this->redirect($url, true, 301);
 
-            $count = $model->incCounter('views', 1);
-            $model->views = $count;
+            $model->saveCounters(array('views' => 1));
             $this->render('view', array(
                 'model' => $model,
             ));
@@ -136,7 +135,6 @@ class CompositionsController extends Controller
     public function actionUpdate($id)
     {
         $photos = new XUploadForm;
-        Yii::app()->cache->delete($id . '_' . Compositions::tableName());
         $model = $this->loadModel($id);
 
         $params = array('create_username' => $model->create_username);
@@ -240,21 +238,6 @@ class CompositionsController extends Controller
     public function loadModel($id)
     {
         $model = Compositions::model()->findByPk($id);
-        if ($model === null)
-            throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
-        return $model;
-    }
-
-    public function loadModelFromCache($id)
-    {
-
-        $model = Yii::app()->cache->get($id . '_' . Compositions::tableName());
-
-        if (!$model){
-            $model = Compositions::model()->findByPk($id);
-            Yii::app()->cache->set($id . '_' . Compositions::tableName(), $model, Yii::app()->params['cache_duration']);
-        }
-
         if ($model === null)
             throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
         return $model;

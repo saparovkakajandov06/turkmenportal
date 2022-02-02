@@ -98,10 +98,9 @@ class BannersWidget extends CWidget
                         }
                     }
 
-                    if (isset($bannerModel)){
-                        $view_count = $bannerModel->incCounter('view_count', BannerActivity::ACTIVITY_TYPE_VIEW);
-                        $bannerModel->view_count = $view_count;
-                    }
+
+                    $bannerActivityService = new BannerActivityService();
+                    $bannerActivityService->registerActivity($bannerModel, BannerActivity::ACTIVITY_TYPE_VIEW);
 
                     $this->render('BannersWidget', array('bannerTypeModel' => $bannerTypeModel, 'banners' => $banners, 'bannerModel' => $bannerModel));
                 }

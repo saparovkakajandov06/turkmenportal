@@ -270,7 +270,6 @@ return array(
 
         'cache' => array(
             'class' => 'system.caching.CFileCache',
-            'keyPrefix' => 'test',
         ),
 
         'settings' => array(
