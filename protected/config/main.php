@@ -405,7 +405,7 @@ return array(
         // this is used in contact page
         'title' => 'Turkmenportal.com',
         'adminEmail' => 'no-reply@turkmenportal.com',
-        'adminAlertEmail' => array('ars_encoder@mail.ru', 'tm-rubin@mail.ru', 'manager@turkmenportal.com', 'resuldovletmuradov@yandex.ru', 'gulnara281114@gmail.com', 'leylachalova99@yandex.ru'),
+        'adminAlertEmail' => array('ars_encoder@mail.ru', 'tm-rubin@mail.ru', 'manager@turkmenportal.com', 'resuldovletmuradov@yandex.ru', 'gulnara281114@gmail.com', 'leylachalova99@yandex.ru', 'annamuradow@turkmenportal.com'),
         'moderatorAlertEmail' => array('moderator@turkmenportal.com'),
         'reCaptcha' => array(
 //            'publicKey' => '6LcoSR4UAAAAACX5xpZha96sMqMEzwJBa7gOIku_',
