@@ -16,7 +16,8 @@ class TempCommand extends CConsoleCommand
         foreach ($workerLog as $item){
             $blog = BlogTemp::model()->findByPk($item->model_id);
             if (isset($blog)){
-                $blog->worker_id = $workerList[$item->worker_id];
+                var_dump($workerList[$item->worker_id]);die;
+                $blog->worker_id = $item->worker_id;
                 $blog->save();
             }
         }
@@ -31,7 +32,7 @@ class TempCommand extends CConsoleCommand
         foreach ($clientLog as $item) {
             $blog = BlogTemp::model()->findByPk($item->model_id);
             if (isset($blog)){
-                $blog->client_id = $clientList[$item->client_id];
+                $blog->client_id = $item->client_id;
                 $blog->save();
             }
         }
