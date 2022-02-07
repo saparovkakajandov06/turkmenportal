@@ -7,7 +7,12 @@ return array (
     'name' => 'My Console Application',
     'import' => array (
         'application.vendor.*',
-//        'application.components.*',
+        'application.components.*',
+        'application.models.*',
+        'application.extensions.taggable.*',
+        'application.modules.user.UserModule',
+        'application.modules.user.models.*',
+        'application.modules.user.components.*',
     ),
     // application components
     'components' => array (

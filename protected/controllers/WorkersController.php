@@ -33,6 +33,7 @@ class WorkersController extends Controller
 	 */
 	public function actionCreate()
 	{
+        $id = 'workers';
 		$model=new Workers;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -42,8 +43,11 @@ class WorkersController extends Controller
 		{
 			$model->attributes=$_POST['Workers'];
 			$model->date_created = date('Y-m-d H:i:s');
-			if($model->save())
+			if($model->save()){
+                Yii::app()->cache->delete($id);
                 $this->redirect(array('admin'));
+            }
+
 		}
 
 		$this->render('create',array(
@@ -58,6 +62,8 @@ class WorkersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        $id = 'workers';
+        Yii::app()->cache->delete($id);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -66,8 +72,10 @@ class WorkersController extends Controller
 		if(isset($_POST['Workers']))
 		{
 			$model->attributes=$_POST['Workers'];
-			if($model->save())
+			if($model->save()){
+                Yii::app()->cache->delete($id);
                 $this->redirect(array('admin'));
+            }
 		}
 
 		$this->render('update',array(

@@ -38,7 +38,7 @@ class ClientsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Clients;
-
+        $id = 'clients';
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -46,8 +46,10 @@ class ClientsController extends Controller
 		{
 			$model->attributes=$_POST['Clients'];
             $model->date_created = date('Y-m-d H:i:s');
-            if($model->save())
+            if($model->save()){
+                Yii::app()->cache->delete($id);
                 $this->redirect(array('admin'));
+            }
 		}
 
 		$this->render('create',array(
@@ -62,7 +64,8 @@ class ClientsController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+        $id = 'clients';
+        $model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -70,8 +73,10 @@ class ClientsController extends Controller
 		if(isset($_POST['Clients']))
 		{
 			$model->attributes=$_POST['Clients'];
-			if($model->save())
+			if($model->save()){
+                Yii::app()->cache->delete($id);
                 $this->redirect(array('admin'));
+            }
         }
 
 		$this->render('update',array(

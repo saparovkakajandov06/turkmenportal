@@ -145,7 +145,6 @@ class BlogController extends Controller
 
         if (isset($_POST['Blog'])) {
             $model->setAttributes($_POST['Blog']);
-
             if (isset($_POST['Blog']['regions']))
                 $model->regions = $_POST['Blog']['regions'];
 
@@ -153,7 +152,6 @@ class BlogController extends Controller
             $transaction = Yii::app()->db->beginTransaction();
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
-            $model->loggingRecord->setInfo($_POST['Blog']);
             $model->documents = Documents::model()->saveDocuments('blogs', $model->state_name, true);
             try {
                 if ($model->saveWithRelated(array('regions', 'documents' => array('append' => false)))) {
