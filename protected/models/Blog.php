@@ -32,7 +32,6 @@
  */
 class Blog extends ActiveRecord
 {
-    public $client_id, $worker_id;
     public $category_id, $category_code, $parent_category_code;
     public $title, $description, $text;
     public $category_name;
@@ -206,11 +205,6 @@ class Blog extends ActiveRecord
                     'text_ru', 'text_tm', 'text_en'
                 )
             ),
-            'loggingRecord' => array(
-                'class' => 'ext.loggingrecord.LoggingRecord',
-                'client_id' => $this->client_id,
-                'worker_id' => $this->worker_id
-            )
         ));
     }
 
@@ -367,8 +361,6 @@ class Blog extends ActiveRecord
             'documents' => array(self::MANY_MANY, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'documents_count' => array(self::STAT, 'Documents', 'tbl_blog_to_documents(blog_id,documents_id)'),
             'comment_count' => array(self::STAT, 'Comments', 'tbl_blog_to_comments(blog_id,comment_id)'),
-            'worker' => array(self::HAS_ONE, 'WorkersLog', 'model_id', 'on' => "worker.model='".get_class($this)."'" ),
-            'client' => array(self::HAS_ONE, 'ClientLog', 'model_id', 'on' => "client.model='".get_class($this)."'" ),
         );
     }
 
