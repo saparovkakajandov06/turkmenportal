@@ -16,7 +16,6 @@ class TempCommand extends CConsoleCommand
         foreach ($workerLog as $item){
             $blog = BlogTemp::model()->findByPk($item->model_id);
             if (isset($blog)){
-                var_dump($workerList[$item->worker_id]);die;
                 $blog->worker_id = $item->worker_id;
                 $blog->save();
             }
