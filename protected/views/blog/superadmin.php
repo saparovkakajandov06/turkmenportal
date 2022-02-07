@@ -88,33 +88,33 @@ if (!isset($this->menu) || $this->menu === array())
         array(
             'name' => 'worker_id',
             'value' => function($model){
-                $worker = Workers::model()->findByPk($model->worker_id);
-                if(isset($worker)){
-                    $result = $worker->nickname;
+                $workersList = Workers::getListWorkers();
+                $worker = $workersList[$model->worker_id];
+                if(isset($worker) && strlen($worker) > 0){
+                    $result = $worker;
                 } else {
                     $result = " ";
                 }
                 return $result;
             },
-            'filter' => Workers::model()->getListWorkers(),
+            'filter' => Workers::getListWorkers(),
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
 
         array(
             'name' => 'client_id',
             'value' => function($model){
-                if (isset($model->client_id)){
-                    $client = Clients::model()->find('id ='.$model->client_id);
-                }
+                $clientList = Clients::getListClients();
+                $client = $clientList[$model->client_id];
                 $result = " ";
-                if(isset($client)){
-                    $result = $client->client_name;
+                if(isset($client) && strlen($client) > 0){
+                    $result = $client;
                 } else {
                     $result = " ";
                 }
                 return $result  ;
             },
-            'filter'=>  Clients::model()->getListClients(),
+            'filter'=>  Clients::getListClients(),
             'htmlOptions' => array('style' => 'text-align:center;width:20px;')
         ),
         array(
