@@ -16,15 +16,14 @@
             </div>
         </div>
       </div>
-    
-    
-        
+
+
       <div class="control-group">
-        <?php echo $form->labelEx($model,'description',array('class'=>'control-label')) ; ?>
+        <?php echo $form->labelEx($model,'content',array('class'=>'control-label')) ; ?>
         <div class="controls">
-            <?php echo $form->textArea($model,'description_'.$language->code); ?>
+            <?php echo $form->textArea($model,'content_'.$language->code); ?>
             <div class="help-inline">
-                  <?php echo $form->error($model,'description_'.$language->code); ?>
+                  <?php echo $form->error($model,'content_'.$language->code); ?>
             </div>
         </div>
       </div>
@@ -33,7 +32,7 @@
     
     
       <div class="control-group">
-        <?php echo $form->labelEx($model,'content',array('class'=>'control-label')) ; ?>
+        <?php echo $form->labelEx($model,'description',array('class'=>'control-label')) ; ?>
         <div class="controls">
             <?php
                 //Example with model
@@ -48,7 +47,7 @@
                 ));
             ?>  
           <div class="help-inline">
-                <?php echo $form->error($model,'content_'.$language->code); ?>
+                <?php echo $form->error($model,'description_'.$language->code); ?>
           </div>
         </div>
       </div>
