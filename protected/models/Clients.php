@@ -110,12 +110,18 @@ class Clients extends CActiveRecord
 		return parent::model($className);
 	}
 
-    public function getListClients() {
-        $criteria = new CDbCriteria();
-        $criteria->addCondition('status = 1');
-        $criteria->order = 'client_name asc';
-        $data = Clients::model()->findAll($criteria);
-        $data = CHtml::listData($data, 'id', 'client_name');
+    public static function getListClients() {
+        $id = 'clients';
+        $val = Yii::app()->cache->get('clients');
+        if (!$val):
+            $criteria = new CDbCriteria();
+            $criteria->addCondition('status = 1');
+            $criteria->order = 'client_name asc';
+            $data = Clients::model()->findAll($criteria);
+            $data = CHtml::listData($data, 'id', 'client_name');
+        else:
+            $data = Yii::app()->cache->get($id);
+        endif;
         return $data;
     }
 

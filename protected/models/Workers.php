@@ -110,12 +110,22 @@ class Workers extends CActiveRecord
 	}
 
 
-    public function getListWorkers() {
-        $criteria = new CDbCriteria();
-        $criteria->addCondition('status = 1');
-        $criteria->order = 'nickname asc';
-        $data = Workers::model()->findAll($criteria);
-        $data = CHtml::listData($data, 'id', 'nickname');
+    public static function  getListWorkers() {
+	    $id = 'workers';
+        $val = Yii::app()->cache->get('workers');
+
+        if (!$val):
+            $criteria = new CDbCriteria();
+            $criteria->addCondition('status = 1');
+            $criteria->order = 'nickname asc';
+            $data = Workers::model()->findAll($criteria);
+            $data = CHtml::listData($data, 'id', 'nickname');
+            Yii::app()->cache->set($id, $data, 0);
+        else:
+            $data = Yii::app()->cache->get($id);
+        endif;
+
+
         return $data;
     }
 }
