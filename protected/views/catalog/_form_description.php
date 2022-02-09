@@ -18,6 +18,27 @@
       </div>
 
 
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'description',array('class'=>'control-label')) ; ?>
+        <div class="controls">
+            <?php
+            //Example with model
+            $this->widget('ext.editMe.widgets.ExtEditMe', array(
+                'model'=>$model,
+                'attribute'=>'description_'.$language->code,
+                'filebrowserBrowseUrl'=>  Yii::app()->baseUrl.'/kcfinder/browse.php?type=files',
+                'filebrowserImageBrowseUrl'=>  Yii::app()->baseUrl.'/kcfinder/browse.php?type=images',
+                'filebrowserImageBrowseLinkUrl'=>Yii::app()->baseUrl.'/kcfinder/browse.php?type=images',
+                'filebrowserImageUploadUrl'=>Yii::app()->baseUrl.'/kcfinder/upload.php?type=images',
+                'filebrowserUploadUrl'=>Yii::app()->baseUrl.'/kcfinder/upload.php?type=files',
+            ));
+            ?>
+            <div class="help-inline">
+                <?php echo $form->error($model,'description_'.$language->code); ?>
+            </div>
+        </div>
+    </div>
+
       <div class="control-group">
         <?php echo $form->labelEx($model,'content',array('class'=>'control-label')) ; ?>
         <div class="controls">
@@ -27,29 +48,6 @@
             </div>
         </div>
       </div>
-        
 
-    
-    
-      <div class="control-group">
-        <?php echo $form->labelEx($model,'description',array('class'=>'control-label')) ; ?>
-        <div class="controls">
-            <?php
-                //Example with model
-                $this->widget('ext.editMe.widgets.ExtEditMe', array(
-                    'model'=>$model,
-                    'attribute'=>'content_'.$language->code,
-                    'filebrowserBrowseUrl'=>  Yii::app()->baseUrl.'/kcfinder/browse.php?type=files',
-                    'filebrowserImageBrowseUrl'=>  Yii::app()->baseUrl.'/kcfinder/browse.php?type=images',
-                    'filebrowserImageBrowseLinkUrl'=>Yii::app()->baseUrl.'/kcfinder/browse.php?type=images',
-                    'filebrowserImageUploadUrl'=>Yii::app()->baseUrl.'/kcfinder/upload.php?type=images',
-                    'filebrowserUploadUrl'=>Yii::app()->baseUrl.'/kcfinder/upload.php?type=files',
-                ));
-            ?>  
-          <div class="help-inline">
-                <?php echo $form->error($model,'description_'.$language->code); ?>
-          </div>
-        </div>
-      </div>
       
 </div> <!-- form -->
