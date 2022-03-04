@@ -11,7 +11,11 @@ if (!isset($this->menu) || $this->menu === array())
         array('label' => Yii::t('app', 'Manage'), 'url' => array('admin')),
     );
 ?>
-
+<?php if (Yii::app()->user->hasFlash('error')):?>
+<div class="alert alert-danger" role="danger">
+    <?php echo Yii::app()->user->getFlash('error'); ?>
+</div>
+<?php endif;?>
 
 <?php
 $this->form_name = Yii::t('app', 'Update') . " Blog";

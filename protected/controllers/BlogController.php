@@ -100,6 +100,14 @@ class BlogController extends Controller
         $model = new Blog;
 
         if (isset($_POST['Blog'])) {
+            if ($_POST['Blog']['date_added'] > date('Y-m-d H:i')){
+                Yii::app()->user->setFlash('error', "Date cannot be in the future");
+
+                return $this->render('update', array(
+                    'model' => $model,
+                    'photos' => $photos,
+                ));
+            }
             $model->setAttributes($_POST['Blog']);
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
@@ -144,6 +152,15 @@ class BlogController extends Controller
 
 
         if (isset($_POST['Blog'])) {
+            if ($_POST['Blog']['date_added'] > date('Y-m-d H:i')){
+                Yii::app()->user->setFlash('error', "Date cannot be in the future");
+
+                return $this->render('update', array(
+                    'model' => $model,
+                    'photos' => $photos,
+                ));
+            }
+
             $model->setAttributes($_POST['Blog']);
             if (isset($_POST['Blog']['regions']))
                 $model->regions = $_POST['Blog']['regions'];
