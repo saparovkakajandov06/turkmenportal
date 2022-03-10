@@ -193,9 +193,23 @@ class Documents extends ActiveRecordWOD
         $videouploadfolder = trim(Yii::app()->params['videouploadfolder'], '/');
         $returnModels = array();
 
+        $console = false;
+
+        try {
+            $test = Yii::app()->user;
+        }
+        catch (CException $e)  {
+            $console = true;
+        }
+
+
         //If we have pending images
-        if (Yii::app()->user->hasState($statename)) {
-            $documents = Yii::app()->user->getState($statename);
+        if (Yii::app()->user->hasState($statename) || $console) {
+            if (!$console){
+                $documents = Yii::app()->user->getState($statename);
+            } else {
+                $documents = array();
+            }
 
             //Resolve the final path for our images
             $path = $uploadfolder . "/{$foldergroup}/";
@@ -298,8 +312,11 @@ class Documents extends ActiveRecordWOD
                     Yii::log($temp_doc["path"] . " is not a file", CLogger::LEVEL_WARNING);
                 }
             }
-            if ($save == true)
-                Yii::app()->user->setState($statename, null);
+            if ($save == true){
+                if (!$console){
+                    Yii::app()->user->setState($statename, null);
+                }
+            }
         }
 
         return $returnModels;

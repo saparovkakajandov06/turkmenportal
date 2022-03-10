@@ -5,6 +5,7 @@
 return array (
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'My Console Application',
+    'language' => 'ru',
     'import' => array (
         'application.vendor.*',
         'application.components.*',
@@ -21,4 +22,8 @@ return array (
 //    'commandMap' => array (
 //        'cron' => 'ext.PHPDocCrontab.PHPDocCrontab'
 //    ),
+    'params' => [
+        'defaultLanguage' => 'ru',
+    ]
+
 );
