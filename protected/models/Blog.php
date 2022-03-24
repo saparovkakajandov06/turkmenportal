@@ -59,6 +59,13 @@ class Blog extends ActiveRecord
 
     public function getUrl($absolute = false)
     {
+        if ($this->_url === null && $this->parent_category_id == 338){
+            $this->_url = Yii::app()->createAbsoluteUrl('photoreport/view', array(
+                'id' => $this->id,
+                'alias' => $this->{alias . '_' . Yii::app()->getLanguage()},
+            ));
+        } else
+
         if ($this->_url === null)
 //                $this->_url = Yii::app()->createAbsoluteUrl('blog/view', array('id'=>$this->id));
             $this->_url = Yii::app()->createAbsoluteUrl('blog/view', array(
