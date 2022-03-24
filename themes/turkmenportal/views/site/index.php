@@ -87,8 +87,8 @@
 <div class="row mobile_block block">
     <div class="col-md-4">
         <?php
-        $limitNewsList  = 6;
-        if (Yii::app()->mobileDetect->isMobile()){
+        $limitNewsList = 6;
+        if (Yii::app()->mobileDetect->isMobile()) {
             $limitNewsList = 4;
         }
         $this->widget('application.widgets.news.NewsListWidget', array(
@@ -157,7 +157,6 @@
         ?>
     </div>
 </div>
-
 
 
 <div class="row mobile_block block">
@@ -236,17 +235,17 @@
         ?>
     </div>
     <?php
-//     if(!Yii::app()->mobileDetect->isMobile()):
+    //     if(!Yii::app()->mobileDetect->isMobile()):
     ?>
     <div class="col-md-6">
         <?php
-//        $this->widget('application.widgets.banners.BannersWidget', array(
-//            'type' => 'indexAdsense2',
-//        ));
+        //        $this->widget('application.widgets.banners.BannersWidget', array(
+        //            'type' => 'indexAdsense2',
+        //        ));
         ?>
     </div>
     <?php
-//        endif;
+    //        endif;
     ?>
 </div>
 
@@ -256,8 +255,7 @@
         <?php
         $this->widget('CategoryHeaderWidget', array(
             'maxSubCatCount' => 5,
-            'category_code' => 'auto',
-            'categoy_index_url' => '//auto/category',
+            'category_code' => 'tenders',
         ));
         ?>
     </div>
@@ -266,19 +264,40 @@
         <div class="row">
             <div class="col-md-6">
                 <?php
-                $this->widget('application.widgets.auto.AutoListviewWidget', array(
+                $this->widget('application.widgets.catalog.CatalogListviewWidget2', array(
                     'count' => 6,
-                    'show_photo' => true,
-                    'item_class' => 'col-md-12',
+                    'page' => 1,
+                    'parent_category_code' => 'tenders',
+                    'show_sub_header' => false,
+                    'item_class' => 'col-sm-12 col-md-12',
+                    'show_photo' => false,
+                    'show_all' => false,
+                    'itemView' => '_simpleview',
+                    'sortableAttributes' => array(),
+                    'view' => 'CatalogListviewWidget_2_2',
                 ));
+
+                //                $this->widget('application.widgets.auto.AutoListviewWidget', array(
+                //                    'count' => 6,
+                //                    'show_photo' => true,
+                //                    'item_class' => 'col-md-12',
+                //                ));
                 ?>
             </div>
             <?php if (!$this->isMobile()) { ?>
                 <div class="col-md-6">
                     <?php
-                    $this->widget('application.widgets.auto.AutoFilterForm', array(
-                        'show_photo' => true,
-//                    'item_class' => 'col-md-12',
+                    $this->widget('application.widgets.catalog.CatalogListviewWidget2', array(
+                        'count' => 6,
+                        'page' => 2,
+                        'parent_category_code' => 'tenders',
+                        'show_sub_header' => false,
+                        'item_class' => 'col-sm-12 col-md-12',
+                        'show_photo' => false,
+                        'show_all' => false,
+                        'itemView' => '_simpleview',
+                        'sortableAttributes' => array(),
+                        'view' => 'CatalogListviewWidget_2_2',
                     ));
                     ?>
                 </div>
@@ -341,14 +360,15 @@
 
         <div class="row">
             <?php
-            if (!Yii::app()->mobileDetect->isMobile()){?>
+            if (!Yii::app()->mobileDetect->isMobile()) {
+                ?>
                 <div class="col-md-4 mixed-block">
                     <?php $this->widget('application.widgets.category.CategoryListWidget', array(
                         'count' => 5,
                         'parent_category_code' => 'advert',
                         'item_class' => 'col-md-6 col-xs-6',
                         'relatedActiveRecord' => 'Advert',
-                    ));?>
+                    )); ?>
                 </div>
                 <?php
             } else {
@@ -362,7 +382,7 @@
             }
             ?>
             <?php
-            if(!Yii::app()->mobileDetect->isMobile()):
+            if (!Yii::app()->mobileDetect->isMobile()):
                 ?>
                 <div class="col-md-2 mixed-block">
                     <?php
@@ -378,7 +398,8 @@
             endif;
             ?>
             <?php
-            if (!Yii::app()->mobileDetect->isMobile()){?>
+            if (!Yii::app()->mobileDetect->isMobile()) {
+                ?>
                 <div class="col-md-4 mixed-block">
                     <?php
                     $this->widget('application.widgets.category.CategoryListWidget', array(
@@ -390,7 +411,7 @@
                     ?>
                 </div>
                 <?php
-            } else {?>
+            } else { ?>
                 <div class="col-md-12 bg-base col-lg-12 col-xl-12">
                     <div class="row category_header ">
                         <div class="box_header_index">
@@ -444,7 +465,7 @@
             }
             ?>
             <?php
-            if(Yii::app()->mobileDetect->isMobile()):
+            if (Yii::app()->mobileDetect->isMobile()):
                 ?>
                 <div class="col-md-2 mixed-block">
                     <?php
@@ -483,25 +504,10 @@
 ?>
 
 
-
 <div class="row mobile_block block">
 
-    <div class="col-md-4">
-        <?php
-        $this->widget('application.widgets.catalog.CatalogListviewWidget', array(
-            'count' => 6,
-            'parent_category_code' => 'tenders',
-            'show_sub_header' => true,
-            'item_class' => 'col-sm-12 col-md-12',
-            'show_photo' => false,
-            'show_all' => true,
-            'itemView' => '_simpleview',
-            'sortableAttributes' => array(),
-            'view' => 'CatalogListviewWidget_2',
-        ));
-        ?>
-    </div>
-    <div class="col-md-8 hidden-xs">
+
+    <div class="col-md-12 hidden-xs">
         <?php
         $this->widget('application.widgets.category.CategoryHeaderWidget', array(
             'maxSubCatCount' => 3,
@@ -512,7 +518,7 @@
         ));
         ?>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <?php
 
                 $this->widget('application.widgets.advert.AdvertListWidget', array(
@@ -524,19 +530,23 @@
                 ));
                 ?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <?php
                 $this->widget('application.widgets.work.WorkListviewWidget', array(
-                     'item_class' => ' ',
-                    'count' => 3,
+                    'item_class' => ' ',
+                    'count' => 6,
                     'view' => '_view',
                 ));
+                ?>
+            </div>
+            <div class="col-md-4">
+                <?php
                 $this->widget('application.widgets.catalog.CatalogListWidget', array(
                     'item_class' => 'col-xs-12',
                     'parent_category_code' => 'service',
                     'itemView' => '_list_view_2',
 //                    'headerCssClass' => 'header_news_by_category',
-                    'count' => 3,
+                    'count' => 6,
                 ));
                 ?>
             </div>
