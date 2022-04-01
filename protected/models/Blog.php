@@ -341,7 +341,7 @@ class Blog extends ActiveRecord
             array('status', 'required'),
             array('like_count, visited_count, sort_order, status, is_main, is_clients, worker_id, client_id', 'numerical', 'integerOnly' => true),
             array('edited_username', 'length', 'max' => 255),
-            array('title_tm,title_ru,title_en', 'length', 'max' => 170),
+            array('title_tm,title_ru,title_en', 'length', 'max' => 255),
             array('date_added, date_modified', 'safe'),
             array('alias_tm', 'ext.LocoTranslitFilter', 'translitAttribute' => 'title_tm', 'setOnEmpty' => false),
             array('alias_ru', 'ext.LocoTranslitFilter', 'translitAttribute' => 'title_ru', 'setOnEmpty' => false),
