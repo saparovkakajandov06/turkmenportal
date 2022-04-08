@@ -169,32 +169,32 @@
     <?php } ?>
 
     <?php if (Yii::app()->user->checkAccess('news_moderator') || Yii::app()->user->getIsSuperuser()) { ?>
-        <div class="control-group">
-            <?php echo $form->labelEx($model,'date_added',array('class'=>'control-label')) ; ?>
-            <div class="controls">
-                <?php $this->widget('CJuiDateTimePicker',
-                    array(
-                        'model'=>$model,
-                        'name'=>'Blog[date_added]',
-                        //'language'=> substr(Yii::app()->language,0,strpos(Yii::app()->language,'_')),
-                        'language'=> '',
-                        'value'=>$model->date_added,
-                        'mode' => 'datetime',
-                        'options'=>array(
-                            'showAnim'=>'fold', // 'show' (the default), 'slideDown', 'fadeIn', 'fold'
-                            'showButtonPanel'=>true,
-                            'changeYear'=>true,
-                            'changeMonth'=>true,
-                            'dateFormat'=>'yy-mm-dd',
-                        ),
-                    )
-                );
-                ; ?>
-                <div class="help-inline">
-                    <?php echo $form->error($model,'date_added'); ?>
-                </div>
-            </div>
-        </div>
+<!--        <div class="control-group">-->
+<!--            --><?php //echo $form->labelEx($model,'date_added',array('class'=>'control-label')) ; ?>
+<!--            <div class="controls">-->
+<!--                --><?php //$this->widget('CJuiDateTimePicker',
+//                    array(
+//                        'model'=>$model,
+//                        'name'=>'Blog[date_added]',
+//                        //'language'=> substr(Yii::app()->language,0,strpos(Yii::app()->language,'_')),
+//                        'language'=> '',
+//                        'value'=>$model->date_added,
+//                        'mode' => 'datetime',
+//                        'options'=>array(
+//                            'showAnim'=>'fold', // 'show' (the default), 'slideDown', 'fadeIn', 'fold'
+//                            'showButtonPanel'=>true,
+//                            'changeYear'=>true,
+//                            'changeMonth'=>true,
+//                            'dateFormat'=>'yy-mm-dd',
+//                        ),
+//                    )
+//                );
+//                ; ?>
+<!--                <div class="help-inline">-->
+<!--                    --><?php //echo $form->error($model,'date_added'); ?>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     <?php } ?>
 
 </div> <!-- form -->

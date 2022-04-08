@@ -543,7 +543,7 @@
                 <?php
                 $this->widget('application.widgets.catalog.CatalogListWidget', array(
                     'item_class' => 'col-xs-12',
-                    'parent_category_code' => 'service',
+                    'category_code' => 'service',
                     'itemView' => '_list_view_2',
 //                    'headerCssClass' => 'header_news_by_category',
                     'count' => 6,
