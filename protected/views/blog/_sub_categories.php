@@ -2,7 +2,7 @@
     <div class=" col-sm-12 ">
         <?php if ($this->route != 'blog/index') $this->beginWidget('DNofollowWidget'); ?>
         <?php
-        $sub_categories = Category::model()->enabled()->findAllByAttributes(array('parent_id' => $modelCategory->id));
+        $sub_categories = Category::model()->enabled()->sort_by_sort_order()->findAllByAttributes(array('parent_id' => $modelCategory->id));
         if (count($sub_categories) == 0) {
             $parentCategory = $modelCategory->parent;
             if (isset($parentCategory)) {
