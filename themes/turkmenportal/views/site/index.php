@@ -488,7 +488,7 @@
                 'parent_category_code' => 'advert',
                 'itemView' => '_list_view_2',
                 'headerCssClass' => 'header_news_by_category',
-                'count' => 5,
+                'count' => 6,
             ));
             ?>
         </div>
