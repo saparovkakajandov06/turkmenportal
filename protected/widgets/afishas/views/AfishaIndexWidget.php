@@ -11,7 +11,8 @@ $itemAfishCarouselCssClass = uniqid('carousel_afisha');
 
                     <?php if (isset($key) && $key == 1) {
                         $bannerType = BannerType::model()->findByAttributes(array('type_name' => 'mobileBannerE', 'status' => 1));
-                        if (isset($bannerType)) { ?>
+                        $temp =$bannerType->getEnabledBanners();
+                        if (isset($bannerType) && count($temp) > 0) { ?>
                             <div class="afisha_view">
                                 <div class="responsive">
                                     <?php

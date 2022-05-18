@@ -4,7 +4,8 @@
     $with_banner = false;
     if (isset($index) && $index == 5) {
         $bannerType = BannerType::model()->findByAttributes(array('type_name' => 'composition_index_ad', 'status' => 1));
-        if (isset($bannerType)) {
+        $temp =$bannerType->getEnabledBanners();
+        if (isset($bannerType) && count($temp) > 0) {
             $with_banner = true;
             $this->widget('application.widgets.banners.BannersWidget', array(
                 'type' => 'composition_index_ad',

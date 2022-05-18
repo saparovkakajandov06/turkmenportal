@@ -32,7 +32,7 @@ foreach ($items as $key => $data):
 
                 </div>
             </article>
-            <div class="">
+            <div class="tender_divider">
                 <div class="col-md-12">
                     <hr>
                 </div>
