@@ -480,6 +480,18 @@
             ));
             ?>
         </div>
+        <div class="col-md-12 hidden-xs">
+            <?php
+
+            $this->widget('application.widgets.advert.AdvertListWidget', array(
+                'item_class' => ' ',
+                'parent_category_code' => 'advert',
+                'itemView' => '_list_view_2',
+                'headerCssClass' => 'header_news_by_category',
+                'count' => 5,
+            ));
+            ?>
+        </div>
     </div>
 </div>
 
