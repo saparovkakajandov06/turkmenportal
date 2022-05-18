@@ -357,12 +357,13 @@ class Category extends ActiveRecord {
     }
 
 
-    public function getSubcategoryList() {
+    public function 
+getSubcategoryList() {
 
         $criteria = new CDbCriteria();
         $criteria->compare('parent_id', $this->id);
         $criteria->addCondition('t.name_' . Yii::app()->language . ' is not null');
-        $criteria->scopes = array('enabled');
+        $criteria->scopes = array('enabled','sort_by_sort_order');
 
         $criteria->select = array('id', 'parent_id', 'url_prefix', 'name_' . Yii::app()->language, 'alias_' . Yii::app()->language);
 

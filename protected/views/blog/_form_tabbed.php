@@ -168,7 +168,7 @@
     </div>
     <?php } ?>
 
-    <?php if (Yii::app()->user->checkAccess('news_moderator') || Yii::app()->user->getIsSuperuser()) { ?>
+    <?php if (Yii::app()->user->checkAccess('date_editor') || Yii::app()->user->getIsSuperuser()) { ?>
         <div class="control-group">
             <?php echo $form->labelEx($model,'date_added',array('class'=>'control-label')) ; ?>
             <div class="controls">

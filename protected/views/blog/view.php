@@ -133,7 +133,7 @@ $this->enable_mobile_banner_vtop2 = true;
                             <?php
                             if (isset($model)) {
                                 $this->widget('application.extensions.yii-yashare.YaShare', array(
-                                    'services' => 'vkontakte,twitter,facebook,gplus,odnoklassniki,moimir',
+                                    'services' => 'vkontakte,twitter,gplus,odnoklassniki,moimir',
                                     'title' => 'Поделиться в социальной сети:',
                                 ));
                             }

@@ -154,8 +154,8 @@ if  (yii::app()->controller->isMobile()){
                 <div class="col-md-12 text-center app_download_img_wrapper">
                     <h3 style="color: #fff;"><?=Yii::t('app', 'Download our app')?></h3>
                     <div class="">
-                        <a href="https://play.google.com/store/apps/details?id=com.takykcheshme.turkmenportal&hl=ru&gl=US" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/icons/google.png" alt="" height="40"></a>
-                        <a href="https://apps.apple.com/us/app/turkmenportal/id1544019509" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/icons/apple.png" alt="" height="40"></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.takykcheshme.turkmenportal&hl=ru&gl=US" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/icons/google.png?v=1" alt="" height="40"></a>
+                        <a href="https://apps.apple.com/us/app/turkmenportal/id1544019509" target="_blank"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/img/icons/apple.png?v=1" alt="" height="40"></a>
                     </div>
                 </div>
                 <hr>
