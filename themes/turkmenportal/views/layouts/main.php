@@ -125,6 +125,13 @@
           ", CClientScript::POS_READY);
     }
 
+    if (Yii::app()->language == 'en') {
+        Yii::app()->clientScript->registerScript('scripts_ready', "
+                        date_time_en('date_time');
+                        aziadaCountDown('ru');
+          ", CClientScript::POS_READY);
+    }
+
     if (Yii::app()->language == 'tm') {
         Yii::app()->clientScript->registerScript('scripts_ready', "
                         date_time_tm('date_time');
