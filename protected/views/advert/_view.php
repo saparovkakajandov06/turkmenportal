@@ -49,12 +49,12 @@
                     <?php } ?>
                 </div>
 
-                <div class="client-details-item">
-                    <?php if (isset($data->date_added) && strlen(trim($data->date_added)) > 2) { ?>
-                        <i class="fa fa-calendar"></i>
-                        <?php echo Yii::app()->controller->renderDateToWord($data->date_added); ?><br>
-                    <?php } ?>
-                </div>
+<!--                <div class="client-details-item">-->
+<!--                    --><?php //if (isset($data->date_added) && strlen(trim($data->date_added)) > 2) { ?>
+<!--                        <i class="fa fa-calendar"></i>-->
+<!--                        --><?php //echo Yii::app()->controller->renderDateToWord($data->date_added); ?><!--<br>-->
+<!--                    --><?php //} ?>
+<!--                </div>-->
 
 
                 <div class="client-details-item">
