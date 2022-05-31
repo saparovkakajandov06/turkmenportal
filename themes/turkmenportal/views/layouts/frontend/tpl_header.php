@@ -59,6 +59,7 @@ $themeUrl = Yii::app()->theme->baseUrl;
                 $this->widget('application.widgets.banners.BannersWidget', array(
                     'type' => 'bannerA',
                     'outer_css_id' => 'banner-header',
+                    'inner_css_style' => 'width: 100%; height: auto;',
                 ));
                 ?>
             </div>
