@@ -565,6 +565,8 @@ return array(
     'comment_success_alert' => 'Siziň teswiriňiz moderator tarapyndan barlanynandan soň görkeziler!',
     'obyava_alert_msg' => 'Siziň bilidirişiňiz administrator tarapyndan barlananyndan soň görkeziler',
     'media' => 'Media',
+
+    'last_update' => 'Soňky täzelenme',
 );
 ?>
 
