@@ -39,8 +39,9 @@ $this->enable_mobile_banner_vtop2 = true;
         <h1 class="blog_header"> <?php echo $title; ?></h1>
 
         <div class="article_stats">
-            <time class="article_header_date" itemprop="dateCreated"
-                  datetime="<?php echo $this->dateToW3C($model->date_added); ?>"><?php echo $this->renderDateTime($model->date_added); ?></time>
+<!--            <time class="article_header_date" itemprop="dateCreated"-->
+<!--                  datetime="--><?php //echo $this->dateToW3C($model->date_added); ?><!--">--><?php //echo $this->renderDateTime($model->date_added); ?>
+<!--            </time>-->
             <div class="post-item__comments"><i
                     class="fa fa-comment"></i><span> <?php echo $model->getCommentCount(); ?> </span></div>
             <div class="post-item__views"><i class="fa fa-eye"></i><span><?php echo $model->views; ?></span>
@@ -118,6 +119,21 @@ $this->enable_mobile_banner_vtop2 = true;
                                 <?php echo $model->getAttributeLabel('web') . ": "; ?>
                             </div>
                             <div class="place-info_labeled"><b><?php echo $model->web; ?></b></div>
+                        </div>
+                    <?php } ?>
+
+                    <?php if (isset($model->web) && strlen(trim($model->date_modified)) > 2) { ?>
+                        <div class="place-info row">
+                            <div class="place-info_label">
+<!--                                --><?php //echo $model->getAttributeLabel('date_modified') . ": "; ?>
+                                <?php echo Yii::t('app', 'last_update') . ':'; ?>
+                            </div>
+
+                            <div class="place-info_labeled">
+                                <time class="article_header_date" itemprop="dateCreated" datetime="<?php echo $this->dateToW3C($model->date_modified); ?>">
+                                    <b><?php echo $this->renderDateTime($model->date_modified); ?></b>
+                                </time>
+                            </div>
                         </div>
                     <?php } ?>
 

@@ -575,5 +575,9 @@ return array (
     'obyava_alert_msg' => 'Your ad will be published after verification by the administrator',
     'media' => 'Media',
 
+    'last_update' => 'Last update',
+
+
+
 );
 ?>
