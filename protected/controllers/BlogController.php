@@ -100,17 +100,31 @@ class BlogController extends Controller
         $model = new Blog;
 
         if (isset($_POST['Blog'])) {
+
             if ($_POST['Blog']['date_added'] > date('Y-m-d H:i')){
                 Yii::app()->user->setFlash('error', "Date cannot be in the future");
 
-                return $this->render('update', array(
+                return $this->render('create', array(
                     'model' => $model,
                     'photos' => $photos,
                 ));
             }
+
+            $state = Yii::app()->user->getState('state_blog');;
+
+            if (!isset($state)){
+                Yii::app()->user->setFlash('error', "Images cannot be empty!");
+
+                $this->redirect(Yii::app()->request->UrlReferrer, array(
+                    'model'     => $model,
+                    'photos'    => $photos,
+                ));
+            }
+
             $model->setAttributes($_POST['Blog']);
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
+
             try {
                 $committed = false;
                 $transaction = Yii::app()->db->beginTransaction();
@@ -129,6 +143,7 @@ class BlogController extends Controller
                 $this->sendAlertEmail($model, 'blog/view', 'Blog doredildi');
                 EUserFlash::setSuccessMessage('Doredildi');
                 if (isset($_POST['save_create'])) {
+                    Yii::app()->user->setFlash('success', "Blog created successeful!");
                     $this->redirect(array('//blog/create'));
                 } else {
                     $this->redirect(array('admin'));
@@ -150,10 +165,19 @@ class BlogController extends Controller
         $photos = new XUploadForm;
         $model = $this->loadModel($id);
 
-
         if (isset($_POST['Blog'])) {
             if ($_POST['Blog']['date_added'] > date('Y-m-d H:i')){
                 Yii::app()->user->setFlash('error', "Date cannot be in the future");
+
+                return $this->render('update', array(
+                    'model' => $model,
+                    'photos' => $photos,
+                ));
+            }
+
+            $state = Yii::app()->user->getState('state_blog');
+            if (! isset($state)){
+                Yii::app()->user->setFlash('error', "Image cannot be empty");
 
                 return $this->render('update', array(
                     'model' => $model,
@@ -185,6 +209,7 @@ class BlogController extends Controller
             if ($committed == true) {
                 $this->sendAlertEmail($model, 'blog/view', 'Blog uytgedildi');
                 EUserFlash::setSuccessMessage('Blog doredildi');
+                Yii::app()->user->setFlash('success', "Blog updated successeful!");
                 $this->redirect(array('admin'));
             }
         } else {
