@@ -203,27 +203,29 @@ Yii::app()->clientScript
     //    ->registerScriptFile(Yii::app()->theme->baseUrl . '/js/jssor/jssor.photoswipe.settings.js', CClientScript::POS_END)
     ->registerScript('fancybox_wrapper', '
             $(\'.article_text img\').each(function () {
-                $(this).wrap($(\'<a/>\', {
+
+                $(this).wrap($(\'<a/>\', {  
                     href: $(this).attr(\'src\'),
                     class: "fancybox",
                     rel: "blog",
-                    "data-fancybox":"blog"
+                    "data-fancybox":"test",
+                    "data-caption": "<h1 style=\'width: 100%; text-align: center;\'>" + $(this).attr("alt") + "<h1>",
                 }));
             });
-          
+            
             var $visible = $(\'.fancybox\');
             $("body").on("click",".fancybox",function(e){
                 e.preventDefault();
                 $.fancybox.open( $visible, {
                     infobar : true,
                     arrows  : true,
-                    loop : true,
+                    loop : false,
                     image : {
                         preload : "auto",
                     },
                     thumbs : {
                         autoStart : true
-                    }
+                    },
                 }, $visible.index( this ) );
 
                 return false;
