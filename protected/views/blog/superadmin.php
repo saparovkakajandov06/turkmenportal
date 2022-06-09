@@ -10,6 +10,11 @@ if (!isset($this->menu) || $this->menu === array())
     );
 ?>
 
+    <?php if(Yii::app()->user->hasFlash('success')):?>
+        <div class="alert alert-success">
+            <?php echo Yii::app()->user->getFlash('success'); ?>
+        </div>
+    <?php endif; ?>
 
     <h1> <?php echo Yii::t('app', 'Manage'); ?><?php echo Yii::t('app', 'Blogs'); ?> </h1>
 
