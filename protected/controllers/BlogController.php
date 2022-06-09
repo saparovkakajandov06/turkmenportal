@@ -176,7 +176,8 @@ class BlogController extends Controller
             }
 
             $state = Yii::app()->user->getState('state_blog');
-            if (! isset($state)){
+//            var_dump(empty($state)); die;
+            if (empty($state)){
                 Yii::app()->user->setFlash('error', "Image cannot be empty");
 
                 return $this->render('update', array(
