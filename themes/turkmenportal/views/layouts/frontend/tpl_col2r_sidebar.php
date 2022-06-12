@@ -65,7 +65,7 @@
             ));
             ?>
             <?php
-            $this->widget('application.widgets.photoreport.PhotoreportWidget', array(
+            $this->widget('application.widgets.compositions.CompositionOwlWidget', array(
                 'item_count' => 1,
                 'settings' => array(
                     array(
