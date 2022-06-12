@@ -61,7 +61,7 @@
         <div class="style-media">
             <?php
             $this->widget('application.widgets.category.CategoryLinkWidget', array(
-                'category_code' => 'photoreport',
+                'category_code' => 'news',
             ));
             ?>
             <?php
@@ -81,7 +81,7 @@
                         "thumbWidth" => 385,
                         "thumbHeight" => 435,
                         'cssClass' => "col-xs-12 colheight-sm-1 vertical-photoreport"
-                    ), array(
+                        ), array(
                         "thumbWidth" => 385,
                         "thumbHeight" => 435,
                         'cssClass' => "col-xs-12 colheight-sm-1 vertical-photoreport"
