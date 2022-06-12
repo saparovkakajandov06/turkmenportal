@@ -61,7 +61,7 @@
         <div class="style-media">
             <?php
             $this->widget('application.widgets.category.CategoryLinkWidget', array(
-                'category_code' => 'news',
+                'category_code' => 'compositions',
             ));
             ?>
             <?php
