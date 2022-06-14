@@ -95,6 +95,34 @@ class MainController extends Controller
         return Catalog::model()->count($criteria);
     }
 
+    public function actionAds()
+    {
+        $model = Information::model()->findByPk(2);
+
+        if (isset($_GET['id']))
+            $id = (int)$_GET['id'];
+        if (isset($_GET['hl'])){
+            if ($_GET['hl'] == 'tm' || $_GET['hl'] == 'ru' || $_GET['hl'] == 'en')
+                $hl = $_GET['hl'];
+        } else {
+            $hl = 'ru';
+        }
+
+        yii::app()->language = $hl;
+
+        $content = $model->getMixedDescriptionModel()->description;
+
+        $pattern = '/&nbsp;/';
+        $replacements = ' ';
+        $content = preg_replace($pattern,$replacements, $content);
+        $pattern = '/src="/';
+        $replacements = 'src="https://turkmenportal.com';
+        $content = preg_replace($pattern,$replacements, $content);
 
 
+        header('Content-Type: application/json; charset=UTF-8');
+        echo Json::encode([
+            'content' => $this->removePtagsOutImg($content),
+        ]);die;
+    }
 }
