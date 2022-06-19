@@ -71,8 +71,6 @@ class SiteController extends Controller
                     $file = $path . $_GET["file"];
                     if (is_file($file)) {
                         unlink($file);
-                        $doSpaceService = new DOSpaceService();
-                        $doSpaceService->deleteFromSpace($file);
                     }
                     $thumbFile = $thumbPath . $_GET["file"];
                     if (is_file($thumbFile)) {
@@ -518,27 +516,4 @@ class SiteController extends Controller
         $this->render('test');
     }
 
-//
-//    public function actionSpace()
-//    {
-//        $key = "K4RMSJ3XHGU3W6CFTEBY";
-//        $secret = "hwMKwnDqYRivuAZpBPpKCJtgO0saAp/+I35F4oGkK48";
-//        $space_name = "turkmenportal";
-//        $region = "nyc3";
-//
-//        $space = new SpacesConnect($key, $secret, $space_name, $region);
-////        $path_to_file = "folder/image.png";
-////        $space->uploadFile($path_to_file);
-//
-//        $download_file = "images/uploads/blogs/3ee7159b9ee4776b4df0b04ab897dc22.jpg";
-////        $save_as = "folder/downloaded-image.png";
-////        $space->downloadFile($download_file, $save_as);
-//        if ($space->doesObjectExist($download_file) && !file_exists($download_file)) {
-//            echo "</br> SPACE EXISTS";
-//            $result = $space->downloadFile($download_file, $download_file);
-//        }
-//        echo "<pre>";
-//        print_r($result);
-//        echo "</pre>";
-//    }
 }

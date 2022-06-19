@@ -171,9 +171,6 @@ class Documents extends ActiveRecordWOD
                     chmod($video_save_folder, 0777);
                 }
 
-                $doSpaceService = new DOSpaceService();
-                if (!$doSpaceService->downloadFromSpace($videouploadfolder . $this->video_path, $videouploadfolder . $this->video_path))
-                    return;
             }
             return $videouploadfolder . $this->video_path;
         }
@@ -183,7 +180,6 @@ class Documents extends ActiveRecordWOD
 
     public function saveDocuments($foldergroup = null, $statename = null, $save = false, $group = 'images', $uploadToSpace = true)
     {
-        $doSpaceService = new DOSpaceService();
         if (!isset ($foldergroup))
             $foldergroup = 'others';
         if (!isset ($statename))
@@ -246,9 +242,6 @@ class Documents extends ActiveRecordWOD
                 try {
                     if (is_file($temp_doc["path"])) {
                         if (rename($temp_doc["path"], $path . $temp_doc["filename"])) {
-                            if ($uploadToSpace == true) {
-                                $doSpaceService->uploadToSpace($path . $temp_doc["filename"], $path . $temp_doc["filename"]);
-                            }
                             chmod($path . $temp_doc["filename"], 0777);
                             $doc->path = "/" . $foldergroup . "/" . $temp_doc["filename"];
                         }
@@ -263,10 +256,6 @@ class Documents extends ActiveRecordWOD
 
                         if (rename($temp_doc["video_path"], $video_save_path . basename($temp_doc["video_path"]))) {
                             chmod($video_save_path . basename($temp_doc["video_path"]), 0777);
-                            if ($uploadToSpace == true) {
-                                $doSpaceService->uploadToSpace($video_save_path . basename($temp_doc["video_path"]), $video_save_path . basename($temp_doc["video_path"]));
-                            }
-
                             $doc->video_path = "/" . $foldergroup . "/" . basename($temp_doc["video_path"]);
                         }
                     }
@@ -350,10 +339,6 @@ class Documents extends ActiveRecordWOD
         }
 
 
-        $doSpaceService = new DOSpaceService();
-        $doSpaceService->deleteFromSpace($uploadfolder . $this->path);
-        $doSpaceService->deleteFromSpace($videouploadfolder . $this->video_path);
-
 
         $hls = VideoHls::model()->findByAttributes(array('document_id' => $this->id));
         if (isset($hls)) {
@@ -364,7 +349,6 @@ class Documents extends ActiveRecordWOD
             }
             $hls->delete();
 
-            $doSpaceService->deleteMatchingObjects($hls_folder);
         }
 
         if (isset($related_table_name) && strlen(trim($related_table_name)) > 0) {
@@ -403,9 +387,6 @@ class Documents extends ActiveRecordWOD
                 else
                     return;
             }
-            $doSpaceService = new DOSpaceService();
-            if (!$doSpaceService->downloadFromDirectory($playlistDirPath, $playlistDirPath))
-                return;
         }
 
 //        $videouploadfolder = trim(Yii::app()->params['videouploadfolder'], '/');
@@ -495,9 +476,6 @@ class Documents extends ActiveRecordWOD
                     else
                         return;
                 }
-                $doSpaceService = new DOSpaceService();
-                if (!$doSpaceService->downloadFromSpace($spaceFilename, $spaceFilename))
-                    return;
             }
 
             if (isset($this->cropped_path) && strlen(trim($this->cropped_path)) > 0 && $is_cropped == true) {
@@ -680,9 +658,7 @@ class Documents extends ActiveRecordWOD
                 else
                     return;
             }
-            $doSpaceService = new DOSpaceService();
-            if (!$doSpaceService->downloadFromSpace($spaceFilename, $spaceFilename))
-                return;
+
         }
         return Yii::app()->baseUrl . '/' . $uploadfolder . "/" . $filePath;
     }

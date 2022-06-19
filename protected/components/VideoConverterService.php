@@ -106,8 +106,7 @@ class VideoConverterService
 
             $curl = curl_init();
             curl_setopt_array($curl, array(
-//                CURLOPT_URL => "https://nesipetsin.info/payment/backend/api/video/convert",
-                CURLOPT_URL => "http://217.174.227.211/backend/convertor/convertor",
+                CURLOPT_URL => "http://127.0.0.1:88/backend/convertor/convertor",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,

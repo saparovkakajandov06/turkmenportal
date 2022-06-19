@@ -2,9 +2,13 @@
 
 class DOSpaceService
 {
-    public $key = "K4RMSJ3XHGU3W6CFTEBY";
-    public $secret = "hwMKwnDqYRivuAZpBPpKCJtgO0saAp/+I35F4oGkK48";
-    public $space_name = "turkmenportal";
+//    public $key = "K4RMSJ3XHGU3W6CFTEBY";
+//    public $secret = "hwMKwnDqYRivuAZpBPpKCJtgO0saAp/+I35F4oGkK48";
+//    public $space_name = "turkmenportal";
+//    public $region = "nyc3";
+    public $key = '';
+    public $secret = '';
+    public $space_name = '';
     public $region = "nyc3";
     public $space;
 
