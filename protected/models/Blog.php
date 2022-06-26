@@ -59,19 +59,19 @@ class Blog extends ActiveRecord
 
     public function getUrl($absolute = false)
     {
-        if ($this->_url === null && $this->parent_category_id == 338){
+        if ($this->_url === null && $this->parent_category_id == 338) {
             $this->_url = Yii::app()->createAbsoluteUrl('photoreport/view', array(
                 'id' => $this->id,
                 'alias' => $this->{alias . '_' . Yii::app()->getLanguage()},
             ));
         } else
 
-        if ($this->_url === null)
+            if ($this->_url === null)
 //                $this->_url = Yii::app()->createAbsoluteUrl('blog/view', array('id'=>$this->id));
-            $this->_url = Yii::app()->createAbsoluteUrl('blog/view', array(
-                'id' => $this->id,
-                'alias' => $this->{alias . '_' . Yii::app()->getLanguage()},
-            ));
+                $this->_url = Yii::app()->createAbsoluteUrl('blog/view', array(
+                    'id' => $this->id,
+                    'alias' => $this->{alias . '_' . Yii::app()->getLanguage()},
+                ));
 
 
 //        if($absolute==false)
@@ -459,13 +459,22 @@ class Blog extends ActiveRecord
     {
         $dataProvider = $this->search();
         $criteria = $dataProvider->criteria;
-
+//        echo "<pre>";
+//        var_dump($this);die;
         $criteria->compare('t.title_ru', $this->title, true, 'OR');
         $criteria->compare('t.title_tm', $this->title, true, 'OR');
-        $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model='".get_class($this)."' "
-        ."LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model='".get_class($this)."'";
-        $criteria->compare('c.client_id', $this->client_id);
-        $criteria->compare('w.worker_id', $this->worker_id);
+
+        if (isset($this->client_id) && $this->client_id != 0) {
+            $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model='" . get_class($this) . "' ";
+            $criteria->compare('c.client_id', $this->client_id);
+
+        }
+
+        if (isset($this->worker_id) && $this->worker_id != 0) {
+            $criteria->join = "LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model='" . get_class($this) . "'";
+            $criteria->compare('w.worker_id', $this->worker_id);
+        }
+
 
         if (!isset($_GET['Blog_sort']))
             $criteria->order = "t.id desc";
@@ -528,7 +537,7 @@ class Blog extends ActiveRecord
             }
         }
 
-        if ($per_page === 0 && $_GET['api']){
+        if ($per_page === 0 && $_GET['api']) {
             $per_page = 10;
         } else {
             $per_page = $per_page ? $per_page : Yii::app()->params['pageSize'];
@@ -640,9 +649,9 @@ class Blog extends ActiveRecord
         if (isset($this->categoryid_except) && count($this->categoryid_except) > 0) {
             $criteria->addNotInCondition('t.category_id', $this->categoryid_except);
         }
-        if ($this->video == true){
+        if ($this->video == true) {
             $criteria->join = 'LEFT JOIN tbl_blog_to_documents rel ON `t`.`id` = `rel`.`blog_id`'
-                .'LEFT JOIN tbl_documents doc ON `rel`.`documents_id` = `doc`.`id`';
+                . 'LEFT JOIN tbl_documents doc ON `rel`.`documents_id` = `doc`.`id`';
             $criteria->addCondition('length(doc.video_path) > 0 ');
         }
 
@@ -670,10 +679,10 @@ class Blog extends ActiveRecord
         $dp = new CActiveDataProvider($this->cache(Yii::app()->params['cache_duration'], new CTagCacheDependency(get_class($this)), 2),
             array(
                 'criteria' => $criteria,
-                'pagination' =>  array(
+                'pagination' => array(
                     'pageSize' => $per_page,
                     'pageVar' => 'page',
-                    'currentPage'=> $page,
+                    'currentPage' => $page,
                 ),
             ));
         return $dp;

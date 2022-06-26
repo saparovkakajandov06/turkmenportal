@@ -258,8 +258,6 @@ class BlogController extends Controller
 
         if (isset($_GET['Blog'])) {
             $model->setAttributes($_GET['Blog']);
-            $model->worker_id =$_GET['Blog']['worker_id'];
-            $model->client_id =$_GET['Blog']['client_id'];
         }
 
         $view = 'admin';
