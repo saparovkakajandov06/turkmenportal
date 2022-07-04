@@ -568,7 +568,10 @@ return array(
 
     'last_update' => 'Soňky täzelenme',
     'Home' => 'Baş sahypa',
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9963afb7860a23ed786fde2ac11011d28f3d7607
 );
 ?>
 
