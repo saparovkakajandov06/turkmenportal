@@ -567,6 +567,8 @@ return array(
     'media' => 'Media',
 
     'last_update' => 'Soňky täzelenme',
+    'Home' => 'Baş sahypa',
+
 );
 ?>
 
