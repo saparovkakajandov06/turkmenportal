@@ -10,6 +10,8 @@
                     </li>
                     <?php
                         $top_categories = Category::model()->enabled()->is_top()->findAll();
+                        $a = array_shift($top_categories);
+                        array_push($top_categories, $a);
                         $categories = Category::model()->enabled()->not_topmenu()->findAll();
                         $contoller = Yii::app()->controller->id;
                     ?>
