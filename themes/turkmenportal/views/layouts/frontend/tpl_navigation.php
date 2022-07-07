@@ -9,7 +9,7 @@
                         </a>
                     </li>
                     <?php
-                        $top_categories = Category::model()->enabled()->topmenu()->findAll();
+                        $top_categories = Category::model()->enabled()->is_top()->findAll();
                         $categories = Category::model()->enabled()->not_topmenu()->findAll();
                         $contoller = Yii::app()->controller->id;
                     ?>
