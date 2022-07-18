@@ -1,5 +1,8 @@
 <?php
 
+require_once( __DIR__ . '/../predis/autoload.php');
+Predis\Autoloader::register();
+
 class WorkController extends Controller {
     public $layout = '//layouts/column2_admin';
 
@@ -96,7 +99,15 @@ class WorkController extends Controller {
             if (strpos(Yii::app()->request->url, 'index.php') !== false)
                 $this->redirect($url, true, 301);
 
-            $model->saveCounters(array('views' => 1));
+            //Redis
+            $client = new Predis\Client();
+
+            if (!$client->exists('view_count_work_' . $id))
+                $client->set('view_count_work_' . $id, 0);
+
+            $client->incr('view_count_work_' . $id);
+//            $model->saveCounters(array('views' => 1));
+
             $this->render('view', array(
                 'model' => $model,
             ));

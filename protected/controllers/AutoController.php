@@ -1,5 +1,8 @@
 <?php
 
+require_once( __DIR__ . '/../predis/autoload.php');
+Predis\Autoloader::register();
+
 class AutoController extends Controller {
 
     public $layout = '//layouts/column2_admin';
@@ -111,7 +114,13 @@ class AutoController extends Controller {
 
             $this->pageTitle = $this->pageTitle . ' | ' . Yii::app()->params['title'];
 
-            $model->saveCounters(array('views' => 1));
+            $client = new Predis\Client();
+//
+            if (!$client->exists('view_count_auto_' . $id))
+                $client->set('view_count_auto_' . $id, 0);
+
+            $client->incr('view_count_auto_' . $id);
+//            $model->saveCounters(array('views' => 1));
 
             $this->render('view', array(
                 'model' => $model,

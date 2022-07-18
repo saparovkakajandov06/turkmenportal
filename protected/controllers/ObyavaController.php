@@ -1,4 +1,8 @@
 <?php
+
+require_once( __DIR__ . '/../predis/autoload.php');
+Predis\Autoloader::register();
+
 class ObyavaController extends Controller {
 
     public $layout='//layouts/column2_admin';
@@ -27,8 +31,16 @@ class ObyavaController extends Controller {
             Yii::app()->clientScript->registerLinkTag('canonical', null, $url);
             if(strpos(Yii::app()->request->url, 'index.php')!==false)
                 $this->redirect($url, true, 301);
-            
-            $model->saveCounters(array('views'=>1));
+
+            //Redis
+            $client = new Predis\Client();
+
+            if (!$client->exists('view_count_catalog_' . $id))
+                $client->set('view_count_catalog_' . $id, 0);
+
+            $client->incr('view_count_catalog_' . $id);
+//            $model->saveCounters(array('views'=>1));
+
             $this->render('view', array(
                     'model' =>$model,
             ));

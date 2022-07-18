@@ -1,5 +1,8 @@
 <?php
 
+require_once( __DIR__ . '/../predis/autoload.php');
+Predis\Autoloader::register();
+
 class PhotoreportController extends Controller
 {
 
@@ -69,7 +72,15 @@ class PhotoreportController extends Controller
             if (strpos(Yii::app()->request->url, 'index.php') !== false)
                 $this->redirect($url, true, 301);
 
-            $model->saveCounters(array('visited_count' => 1));
+            //Redis
+            $client = new Predis\Client();
+
+            if (!$client->exists('view_count_blog_' . $id))
+                $client->set('view_count_blog_' . $id, 0);
+
+            $client->incr('view_count_blog_' . $id);
+//            $model->saveCounters(array('visited_count' => 1));
+
             $this->render('view', array(
                 'model' => $model,
             ));

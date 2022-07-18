@@ -1,14 +1,14 @@
 <?php
+
+require_once( __DIR__ . '/../predis/autoload.php');
+Predis\Autoloader::register();
+
 class AdvertController extends Controller {
 
     public $layout='//layouts/column2_admin';
 
-
-
-    public function filters() { return array( 'rights', ); } 
+    public function filters() { return array( 'rights', ); }
     //public function allowedActions() { return 'createQuick,create';}
-
-
 
     public function actionIndex($path=null, $category_id=null){
         $this->layout='//layouts/column2';
@@ -36,23 +36,12 @@ class AdvertController extends Controller {
             $modelAdvert->parent_category_id=$modelCategory->parent_id;
         }
 
-
         $this->setMetaFromCategory($modelCategory);
         $this->render('index', array(
             'modelCategory' => $modelCategory,
             'modelAdvert' => $modelAdvert,
         ));
     }
-
-
-
-
-
-
-
-
-
-
 
     public function actionView($id) {
         $this->layout='//layouts/column2';
@@ -66,8 +55,15 @@ class AdvertController extends Controller {
             Yii::app()->clientScript->registerLinkTag('canonical', null, $url);
             if(strpos(Yii::app()->request->url, 'index.php')!==false)
                 $this->redirect($url, true, 301);
-            
-            $model->saveCounters(array('views'=>1));
+
+            $client = new Predis\Client();
+//
+            if (!$client->exists('view_count_advert_' . $id))
+                $client->set('view_count_advert_' . $id, 0);
+
+            $client->incr('view_count_advert_' . $id);
+//            $model->saveCounters(array('views'=>1));
+
             $this->render('view', array(
                     'model' =>$model,
             ));
@@ -114,13 +110,6 @@ class AdvertController extends Controller {
         ));
     }
 
-    
-    
-  
-        
-    
-    
-    
     public function actionUpdate($id) {
         $photos = new XUploadForm;
         $model = $this->loadModel($id);
@@ -156,10 +145,6 @@ class AdvertController extends Controller {
             ));
     }
                 
-        
-    
-    
-        
     public function actionFileupload($id) {
             $files = new XUploadForm;
             $model = $this->loadModel($id);
@@ -196,7 +181,6 @@ class AdvertController extends Controller {
                 $this->redirect (Yii::app()->user->returnUrl);
     }
     
-
     public function actionDelete($id) {
         if(Yii::app()->request->isPostRequest) {    
             try {
@@ -227,9 +211,7 @@ class AdvertController extends Controller {
                 'model' => $model,
         ));
     }
-    
-    
-    
+
     public function actionToggle($id, $attribute, $model) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request

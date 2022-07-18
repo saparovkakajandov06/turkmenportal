@@ -1,5 +1,8 @@
 <?php
 
+require_once( __DIR__ . '/../predis/autoload.php');
+Predis\Autoloader::register();
+
 class CompositionsController extends Controller
 {
 
@@ -81,7 +84,15 @@ class CompositionsController extends Controller
             if (Yii::app()->getBaseUrl(true) . Yii::app()->request->getOriginalUrl() != $url)
                 $this->redirect($url, true, 301);
 
-            $model->saveCounters(array('views' => 1));
+            //Redis
+            $client = new Predis\Client();
+
+            if (!$client->exists('view_count_compositions_' . $id))
+                $client->set('view_count_compositions_' . $id, 0);
+
+            $client->incr('view_count_compositions_' . $id);
+//            $model->saveCounters(array('views' => 1));
+
             $this->render('view', array(
                 'model' => $model,
             ));
