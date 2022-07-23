@@ -74,7 +74,7 @@ $themeUrl = Yii::app()->theme->baseUrl;
                 ?>
                 <?php echo ' | ' . CHtml::link(Yii::t('app', 'valyutas'), "http://www.cbt.tm/kurs/kurs_today.html", array('target' => "_blank", 'rel' => 'nofollow')); ?>
                 <?php echo ' | ' . CHtml::link(Yii::t('app', 'bankomat_lists'), "http://www.cbt.tm/tm/payment/bankomat_as.html?Ashgabat", array('target' => "_blank", 'rel' => 'nofollow')); ?>
-<!--                --><?php //echo ' | ' . CHtml::link('18+', '#', ['class' => 'none-link']); ?>
+                <?php echo ' | ' . CHtml::link('18+', '#', ['class' => 'none-link']); ?>
             </div>
             <div class="col-xs-6 visible-xs">
                 <?php
