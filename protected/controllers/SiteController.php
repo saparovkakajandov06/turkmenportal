@@ -10,7 +10,7 @@ class SiteController extends Controller
         return array('rights - test');
     }
 
-//    
+//
 //        public function filters()
 //        {
 //            return array(
@@ -33,7 +33,7 @@ class SiteController extends Controller
 //                        'actions'=>array('login','logout','error','changelanguage'),
 //                        'users' => array('*'),
 //                ),
-//                
+//
 //                array('deny',  // deny all users
 //                        'users'=>array('*'),
 //                ),
