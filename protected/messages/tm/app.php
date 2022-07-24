@@ -257,27 +257,27 @@ return array(
 
     //estates
     'id' => 'ID',
-    'region_id' => 'Welayat',
+    'region_id' => 'Welaýat',
     'category_id' => 'Kategoriya',
     'phone' => 'Telefon',
     'mail' => 'Pocta',
     'web' => 'Web adres',
-    'type' => 'Gornus',
+    'type' => 'Görnüş',
     'room' => 'Otag sany',
     'room_short' => 'otag',
-    'year' => 'Yyl',
+    'year' => 'Ýyl',
     'meter' => 'Meýdany (m²)',
     'meter_short' => 'm²',
     'price' => 'Bahasy',
     'rating' => 'Derejesi',
-    'period' => 'Mohleti',
-    'views' => 'Goruldi',
+    'period' => 'Möhleti',
+    'views' => 'Görüldi',
     'likes' => 'Halandy',
     'status' => 'Status',
-    'edited_username' => 'Uytgeden',
-    'create_username' => 'Doretdi',
-    'date_added' => 'Doredildi',
-    'date_modified' => 'Uytgedildi',
+    'edited_username' => 'Üytgeden',
+    'create_username' => 'Döretdi',
+    'date_added' => 'Döredildi',
+    'date_modified' => 'Üytgedildi',
 
 
     //regions
@@ -348,7 +348,7 @@ return array(
     'regions' => 'Ähli welaýatlar/şäherler',
     'with_datas_for_tp' => 'Türkmenportal.com da registrasiýa edilen maglumatyňyz bilen',
     'dont_you_have_account' => 'Eger öň Türkmenportal.com da hasabyňyz bolmasa?',
-    'or_login_with_social_services' => 'Ya-da beýleki size ýakyn saýtlaryň üsti bilen giriň',
+    'or_login_with_social_services' => 'Ýa-da beýleki size ýakyn saýtlaryň üsti bilen giriň!',
     'if_you_have_account' => 'Eger öň Türkmenportal.com da hasabyňyz bar bolsa?',
     'catalog_category_id' => 'Kategoriýa saýlaň',
     'Choose file' => 'Faýl saýlaň',
@@ -567,6 +567,7 @@ return array(
     'media' => 'Media',
 
     'last_update' => 'Soňky täzelenme',
+    'Home' => 'Baş sahypa',
 );
 ?>
 
