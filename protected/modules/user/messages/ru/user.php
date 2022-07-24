@@ -9,6 +9,7 @@ return array(
 	'username or email' => 'Логин или email',
 	'password' => 'Пароль',
 	'Remember me next time' => 'Запомнить меня',
+	'Remember me' => 'Запомнить меня',
 	'Username is incorrect.' => 'Пользователь с таким именем не зарегистрирован.',
 	'Email is incorrect.' => 'Пользователь с таким электроным адресом не зарегистрирован.',
 	"This user's name already exists." => 'Пользователь с таким именем уже существует.',

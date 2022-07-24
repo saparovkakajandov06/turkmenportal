@@ -9,6 +9,7 @@ return array(
 	'username or email' => 'Agza adyňyz ýa-da elektron poçta',
 	'password' => 'Açarsöz',
 	'Remember me next time' => 'Meni ýatda sakla',
+	'Remember me' => 'Meni ýatda sakla',
 	'Username is incorrect.' => 'Agza adyňyz ýalňyş',
 	'Email is incorrect.' => 'Elektron poçtaňyz ýalňyş',
 	"This user's name already exists." => 'Beýle atly agzamyz eýýäm bar',

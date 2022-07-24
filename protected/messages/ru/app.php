@@ -418,7 +418,7 @@ return array(
     'regions' => 'Все регионы/города',
     'with_datas_for_tp' => 'Данные, которыми зарегистрировались в Türkmenportal.com ',
     'dont_you_have_account' => 'У Вас нет учётной записи?',
-    'or_login_with_social_services' => 'Или используйте для входа аккаунт одного из указанных ниже сайтов',
+    'or_login_with_social_services' => 'Или используйте для входа аккаунт одного из указанных ниже сайтов!',
     'if_you_have_account' => 'Если у Вас есть учётная запись',
     'catalog_category_id' => 'Выберите категорию',
     'Choose file' => 'Выберите файл',
@@ -603,6 +603,7 @@ return array(
     'media' => 'Медиа',
 
     'last_update' => 'Последнее обновление',
+    'Home' => 'Главная',
 
 
 );

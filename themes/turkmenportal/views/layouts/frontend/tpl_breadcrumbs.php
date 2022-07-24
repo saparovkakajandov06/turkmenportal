@@ -4,7 +4,7 @@
 <div class="col-md-12">
     <?php
         if ( Yii::app()->controller->route !== 'site/index' )
-                $this->breadcrumbs = array_merge(array (Yii::t('zii','Home')=>Yii::app()->homeUrl), $this->breadcrumbs);
+                $this->breadcrumbs = array_merge(array (Yii::t('app','Home')=>Yii::app()->homeUrl), $this->breadcrumbs);
 
             $this->widget('zii.widgets.CBreadcrumbs', array(
                 'links'=>$this->breadcrumbs,
