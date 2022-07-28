@@ -91,35 +91,28 @@ class WeatherService
 
     public function getWeather()
     {
-//        $this->getAssetsUrl();
-//        Yii::app()->getClientScript()->registerCssFile($this->_assetsUrl . '/css/' . $this->cssFile);
-//        Yii::app()->getClientScript()->registerScriptFile($this->_assetsUrl . '/js/' . $this->jsFile);
-        if (!is_dir(Yii::getPathOfAlias('application.runtime.OpenWeather'))) {
-            mkdir(Yii::getPathOfAlias('application.runtime.OpenWeather'));
-        }
-        setlocale(LC_MESSAGES, Yii::app()->language . '_' . strtoupper(Yii::app()->language));
-        bindtextdomain("openweather", Yii::getPathOfAlias('application.widgets.OpenWeather.i18n'));
-        textdomain("openweather");
-        $date = new DateTime();
-        if (!is_file(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json') || (time() - filemtime(Yii::getPathOfAlias('application.runtime.OpenWeather') .'/'. $this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json')) > 3600) {
-
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $this->apiURL . 'lat='.$this->lat .'&lon='. $this->lon.'&units='.$this->units. '&appid=' . $this->apiKey. '&lang=' . $this->lang);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-//           locally
-//            curl_setopt($curl, CURLOPT_PROXY, '104.236.82.228');
-//            curl_setopt($curl, CURLOPT_PROXYPORT, '4455');
-
-
-            $data = curl_exec($curl);
-            if (curl_getinfo($curl, CURLINFO_HTTP_CODE) === 401) {
-                throw new CException(Yii::t('Access to OpenWeather denied. You need a valid API Key for works'));
-            }
-            file_put_contents(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json', $data);
-        } else {
+//        if (!is_dir(Yii::getPathOfAlias('application.runtime.OpenWeather'))) {
+//            mkdir(Yii::getPathOfAlias('application.runtime.OpenWeather'));
+//        }
+//        setlocale(LC_MESSAGES, Yii::app()->language . '_' . strtoupper(Yii::app()->language));
+//        bindtextdomain("openweather", Yii::getPathOfAlias('application.widgets.OpenWeather.i18n'));
+//        textdomain("openweather");
+//        $date = new DateTime();
+//        if (!is_file(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json') || (time() - filemtime(Yii::getPathOfAlias('application.runtime.OpenWeather') .'/'. $this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json')) > 3600) {
+//
+//            $curl = curl_init();
+//            curl_setopt($curl, CURLOPT_URL, $this->apiURL . 'lat='.$this->lat .'&lon='. $this->lon.'&units='.$this->units. '&appid=' . $this->apiKey. '&lang=' . $this->lang);
+//            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//
+//            $data = curl_exec($curl);
+//            if (curl_getinfo($curl, CURLINFO_HTTP_CODE) === 401) {
+//                throw new CException(Yii::t('Access to OpenWeather denied. You need a valid API Key for works'));
+//            }
+//            file_put_contents(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json', $data);
+//        } else {
+//        var_dump(Yii::getPathOfAlias('application.runtime.OpenWeather')); die;
             $data = file_get_contents(Yii::getPathOfAlias('application.runtime.OpenWeather') . '/'.$this->apiQ.$this->dt.$this->lat.$this->lon.'openweather.json');
-        }
+//        }
         return $data;
     }
 
