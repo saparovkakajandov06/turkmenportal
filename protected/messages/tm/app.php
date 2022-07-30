@@ -331,7 +331,7 @@ return array(
     'My banners' => 'Bannerlerim',
     'My Profile' => 'Şahsy sahypam',
     'Logout' => 'Çykyş',
-    'site_name' => 'Türkmenistanyň, internet portaly',
+    'site_name' => 'Türkmenistanyň internet portaly',
     'All categories' => 'Ähli bölümler',
     'Read also' => 'Şeýlede okaň',
     'Popular news' => 'Iň köp okalanlar',
