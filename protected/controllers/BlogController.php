@@ -132,7 +132,6 @@ class BlogController extends Controller
                     'photos'    => $photos,
                 ));
             }
-
             $model->setAttributes($_POST['Blog']);
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
@@ -151,7 +150,20 @@ class BlogController extends Controller
                 $model->addError('id', $e->getMessage());
             }
 
+            if ($committed){
+                $image = $model->getThumbPath(720, 576, 'w');
+                $image_info = getimagesize($image);
+                $model->documents[0]->width = $image_info[0];
+                $model->documents[0]->height = $image_info[1];
+
+//                $model->documents[0]->width = 1;
+//                $model->documents[0]->height = 2;
+                $model->documents[0]->save();
+//                var_dump("YSMAYYL",$model->documents[0]->id); die;
+            }
+
             if ($committed == true) {
+
                 $this->sendAlertEmail($model, 'blog/view', 'Blog doredildi');
                 EUserFlash::setSuccessMessage('Doredildi');
                 if (isset($_POST['save_create'])) {
