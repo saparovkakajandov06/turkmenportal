@@ -152,17 +152,13 @@ class BlogController extends Controller
 
             if ($committed){
                 $image = $model->getThumbPath(720, 576, 'w');
+                $image = '/var/www/turkmenportal.com/public_html'.$image;
+//                $image = 'C:/OpenServer/domains/turkmenportal'.$image;
+
                 $image_info = getimagesize($image);
                 $model->documents[0]->width = $image_info[0];
                 $model->documents[0]->height = $image_info[1];
-
-//                $model->documents[0]->width = 1;
-//                $model->documents[0]->height = 2;
                 $model->documents[0]->save();
-//                var_dump("YSMAYYL",$model->documents[0]->id); die;
-            }
-
-            if ($committed == true) {
 
                 $this->sendAlertEmail($model, 'blog/view', 'Blog doredildi');
                 EUserFlash::setSuccessMessage('Doredildi');
@@ -232,6 +228,16 @@ class BlogController extends Controller
                 $model->addError('id', $e->getMessage());
             }
             if ($committed == true) {
+
+                $image = $model->getThumbPath(720, 576, 'w');
+                $image = '/var/www/turkmenportal.com/public_html'.$image;
+//                $image = 'C:/OpenServer/domains/turkmenportal'.$image;
+
+                $image_info = getimagesize($image);
+                $model->documents[0]->width = $image_info[0];
+                $model->documents[0]->height = $image_info[1];
+                $model->documents[0]->save();
+
                 $this->sendAlertEmail($model, 'blog/view', 'Blog uytgedildi');
                 EUserFlash::setSuccessMessage('Blog doredildi');
                 Yii::app()->user->setFlash('success', "Blog updated successeful!");
