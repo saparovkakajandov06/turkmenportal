@@ -92,7 +92,8 @@ class BlogsController extends Controller
         $image = $model->getThumbPath(720, 576, 'w');
 
         if (strlen($image) > 5){
-            $image = 'https://turkmenportal.com'.$image;
+//            $image = 'https://turkmenportal.com'.$image;
+            $image = '/var/www/turkmenportal.com/public_html'.$image;
             $image_info = getimagesize($image);
             $image_width = $image_info[0];
             $image_height = $image_info[1];
