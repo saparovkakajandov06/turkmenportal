@@ -126,6 +126,16 @@ class CompositionsController extends Controller
             }
 
             if ($committed == true) {
+
+                $image = $model->getThumbPath(720, 576, 'w');
+                $image = '/var/www/turkmenportal.com/public_html'.$image;
+//                $image = 'C:/OpenServer/domains/turkmenportal'.$image;
+
+                $image_info = getimagesize($image);
+                $model->documents[0]->width = $image_info[0];
+                $model->documents[0]->height = $image_info[1];
+                $model->documents[0]->save();
+
                 $this->sendAlertEmail($model, 'compositions/view', 'Composition doredildi');
                 EUserFlash::setSuccessMessage('Statya doredildi');
                 if (isset($_POST['save_create'])) {
@@ -173,6 +183,16 @@ class CompositionsController extends Controller
                 $model->addError('id', $e->getMessage());
             }
             if ($committed == true) {
+
+                $image = $model->getThumbPath(720, 576, 'w');
+                $image = '/var/www/turkmenportal.com/public_html'.$image;
+//                $image = 'C:/OpenServer/domains/turkmenportal'.$image;
+
+                $image_info = getimagesize($image);
+                $model->documents[0]->width = $image_info[0];
+                $model->documents[0]->height = $image_info[1];
+                $model->documents[0]->save();
+
                 $this->sendAlertEmail($model, 'compositions/view', 'Composition uytgedilidi');
                 EUserFlash::setSuccessMessage('Statya doredildi');
                 $this->redirect(array('admin'));
