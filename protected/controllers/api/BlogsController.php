@@ -94,7 +94,7 @@ class BlogsController extends Controller
         if (strlen($image) > 5){
             $image_info = getimagesize("/var/www/turkmenportal.com/public_html$image");
 //            $image = 'https://turkmenportal.com'.$image;
-            $image = 'https://95.85.126.182'.$image;
+            $image = 'http://95.85.126.182'.$image;
             $image_width = $image_info[0];
             $image_height = $image_info[1];
         }
