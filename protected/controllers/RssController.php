@@ -64,8 +64,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
-                    $path = Yii::app()->getBaseUrl(true) . $path;
-                        $type = image_type_to_mime_type(exif_imagetype($path));
+                        $type = image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path));
+                        $path = Yii::app()->getBaseUrl(true) . $path;
                         $imgsize = filesize($uploadfolder . "/" . trim($document->path, '/'));
                         list($width, $height) = getimagesize($uploadfolder . "/" . trim($document->path, '/'));
 
@@ -158,8 +158,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -230,8 +230,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $type = image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $type = image_type_to_mime_type(exif_imagetype($path));
                         $imgsize = filesize($uploadfolder . "/" . trim($document->path, '/'));
                         list($width, $height) = getimagesize($uploadfolder . "/" . trim($document->path, '/'));
 
@@ -312,8 +312,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -380,8 +380,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -447,8 +447,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $type = image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $type = image_type_to_mime_type(exif_imagetype($path));
                         $imgsize = filesize($uploadfolder . "/" . trim($document->path, '/'));
                         list($width, $height) = getimagesize($uploadfolder . "/" . trim($document->path, '/'));
 
@@ -527,8 +527,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -584,8 +584,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -763,8 +763,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -834,8 +834,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $type = image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $type = image_type_to_mime_type(exif_imagetype($path));
                         $imgsize = filesize($uploadfolder . "/" . trim($document->path, '/'));
                         list($width, $height) = getimagesize($uploadfolder . "/" . trim($document->path, '/'));
 
@@ -894,8 +894,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
@@ -972,8 +972,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
