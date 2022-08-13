@@ -93,7 +93,8 @@ class Banner extends ActiveRecord
             array('description', 'length', 'max' => 255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, format_type, description, adsense_code, width, height, type,url,related_user_id,date_expire,status', 'safe'),
+            [['format_type'], 'default', 'value'=> 0],
+            array('id, description, adsense_code, width, height, type,url,related_user_id,date_expire,status', 'safe'),
             array('id, format_type, description, adsense_code, width, height, type,url,related_user_id,date_expire,status', 'safe', 'on' => 'search'),
         );
     }
