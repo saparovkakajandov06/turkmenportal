@@ -894,8 +894,8 @@ class RssController extends Controller
                 $path = $document->getRealPath();
                 if (isset($path) && strlen(trim($path)) > 5) {
                     try {
+                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype('/var/www/turkmenportal.com/public_html' . $path)));
                         $path = Yii::app()->getBaseUrl(true) . $path;
-                        $item->setEncloser($path, null, image_type_to_mime_type(exif_imagetype($path)));
                     } catch (Exception $e) {
                         $item->setEncloser($path, null, 'image/jpeg');
                     }
