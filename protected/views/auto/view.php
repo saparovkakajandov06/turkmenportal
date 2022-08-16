@@ -38,7 +38,15 @@ $this->enable_mobile_banner_vtop2 = true;
                   content="<?php echo $this->dateToW3C($model->date_added); ?>"><?php echo $this->renderDateTime($model->date_added); ?></time>
             <div class="post-item__comments"><i
                         class="fa fa-comment"></i><span> <?php echo $model->getCommentCount(); ?> </span></div>
+
+            <?php
+                if (isset($model) && $model->views > 0) {
+            ?>
             <div class="post-item__views"><i class="fa fa-eye"></i><span><?php echo $model->views; ?></span></div>
+            <?php
+                }
+            ?>
+
             <!--                <div class="post-item__comments"><i class="fa fa-thumbs-up"></i><span>-->
             <?php //echo isset($model->likes) ? $model->likes : 0; ?><!--</span></div>-->
             <!--                <div class="post-item__comments"><i class="fa fa-thumbs-down"></i><span>-->
