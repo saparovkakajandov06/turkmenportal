@@ -44,8 +44,15 @@ $this->enable_mobile_banner_vtop2 = true;
 <!--            </time>-->
             <div class="post-item__comments"><i
                     class="fa fa-comment"></i><span> <?php echo $model->getCommentCount(); ?> </span></div>
+<!--            24004-->
+            <?php
+                if (isset($model) && $model->views > 0) {
+            ?>
             <div class="post-item__views"><i class="fa fa-eye"></i><span><?php echo $model->views; ?></span>
             </div>
+            <?php
+                }
+            ?>
         </div>
 
 

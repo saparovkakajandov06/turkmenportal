@@ -60,8 +60,15 @@ $this->enable_mobile_banner_vtop2 = true;
                      datetime="<?php echo $this->dateToW3C($model->date_added); ?>"><?php echo $this->renderDateTime($model->date_added); ?></div>
                 <div class="post-item__comments"><i
                         class="fa fa-comment"></i><span> <?php echo $model->getCommentCount(); ?> </span></div>
-                <div class="post-item__views"><i class="fa fa-eye"></i><span><?php echo $model->visited_count; ?></span>
-                </div>
+                <?php
+                    if  (isset($model) && $model->visited_count > 0) {
+                ?>
+                    <div class="post-item__views"><i class="fa fa-eye"></i><span><?php echo $model->visited_count; ?></span>
+                    </div>
+                <?php
+                    }
+                ?>
+
             </div>
 
 
