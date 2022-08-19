@@ -1,8 +1,7 @@
 <?php
 
-//use applications.components.Json;
-
-//use yii\helpers\Json;
+require_once( __DIR__ . '/../../predis/autoload.php');
+Predis\Autoloader::register();
 
 class MediasController extends Controller
 {
@@ -260,11 +259,20 @@ class MediasController extends Controller
                     'lang' => $lang
                 );
                 $result['model'] =array_merge($data,$extra);
+
+                $client = new Predis\Client();
+
+                if (!$client->exists('view_count_blog_' . $id))
+                    $client->set('view_count_blog_' . $id, 0);
+
+                $client->incr('view_count_blog_' . $id);
             }
         }
+
         if (!isset($result)){
             $result =(object)$result;
         }
+
         $result = (object)$result;
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($result);die;

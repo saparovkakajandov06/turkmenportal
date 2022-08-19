@@ -1,8 +1,7 @@
 <?php
 
-//use applications.components.Json;
-
-//use yii\helpers\Json;
+require_once( __DIR__ . '/../../predis/autoload.php');
+Predis\Autoloader::register();
 
 class CompositionsController extends Controller
 {
@@ -127,10 +126,19 @@ class CompositionsController extends Controller
                 'url' => $model->getUrl(),
                 'lang' => $lang
             );
+
+            $client = new Predis\Client();
+
+            if (!$client->exists('view_count_compositions_' . $id))
+                $client->set('view_count_compositions_' . $id, 0);
+
+            $client->incr('view_count_compositions_' . $id);
         }
+
         if (!isset($data)){
             $data =(object)$data;
         }
+
         header('Content-Type: application/json; charset=UTF-8');
         echo Json::encode($data);die;
     }
