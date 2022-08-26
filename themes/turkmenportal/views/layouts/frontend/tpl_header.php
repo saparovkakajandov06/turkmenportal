@@ -1,4 +1,7 @@
 <?php
+
+$base_url = Yii::app()->theme->baseUrl;
+//s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 Yii::app()->clientScript->registerScript('yandex_script', '
             (function (d, w, c) {
                 (w[c] = w[c] || []).push(function() {
@@ -16,7 +19,8 @@ Yii::app()->clientScript->registerScript('yandex_script', '
                     f = function () { n.parentNode.insertBefore(s, n); };
                 s.type = "text/javascript";
                 s.async = true;
-                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+                s.src = ' . "$base_url" . '/js/assets/watch.js;
+                
 
                 if (w.opera == "[object Opera]") {
                     d.addEventListener("DOMContentLoaded", f, false);
