@@ -296,6 +296,7 @@ class ItemController extends Controller
                     $dynamicModel->mail = $model->email;
                     $dynamicModel->date_end = $model->getDateEnd();
                     $dynamicModel->owner = $model->owner;
+                    $dynamicModel->old_id = 0;
                     $dynamicModel->status = Work::STATUS_DISABLED;
                     if (!Yii::app()->WordFilter->sterling($dynamicModel->title) || !Yii::app()->WordFilter->sterling($dynamicModel->description)){
                         $this->redirect(array('index'));
