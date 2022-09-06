@@ -55,7 +55,7 @@
     <meta property="og:url" content="<?php echo $this->page_url; ?>"/>
     <meta property="og:image" itemprop="image" content="<?php echo $this->page_image; ?>"/>
     <link rel="image_src" href="<?php echo $this->page_image; ?>">
-    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
+<!--    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>-->
 
     <?php
     $orphus = 'orphus_ru.js';
