@@ -57,7 +57,7 @@
     <link rel="image_src" href="<?php echo $this->page_image; ?>">
 
     <!-- Yandex.RTB -->
-    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
+<!--    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>-->
 
     <?php
     $orphus = 'orphus_ru.js';
