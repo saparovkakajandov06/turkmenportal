@@ -19,7 +19,8 @@ Yii::app()->clientScript->registerScript('yandex_script', '
                     f = function () { n.parentNode.insertBefore(s, n); };
                 s.type = "text/javascript";
                 s.async = true;
-                s.src = "themes/turkmenportal/js/assets/watch.js";
+                s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
                 
 
                 if (w.opera == "[object Opera]") {
