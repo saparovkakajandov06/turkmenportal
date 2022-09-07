@@ -57,10 +57,7 @@
     <link rel="image_src" href="<?php echo $this->page_image; ?>">
 
     <!-- Yandex.RTB -->
-    <script>window.yaContextCb=window.yaContextCb||[]</script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
-
-<!--    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>-->
+    <script src="https://yastatic.net/pcode/adfox/loader.js" crossorigin="anonymous"></script>
 
     <?php
     $orphus = 'orphus_ru.js';
@@ -180,15 +177,6 @@ if (Yii::app()->mobileDetect->isMobile())
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-<!-- Yandex.RTB R-A-447029-1 -->
-<div id="yandex_rtb_R-A-447029-1"></div>
-<script>window.yaContextCb.push(()=>{
-        Ya.Context.AdvManager.render({
-            renderTo: 'yandex_rtb_R-A-447029-1',
-            blockId: 'R-A-447029-1'
-        })
-    })</script>
 
 <div id="bootstrap_dialog_wrapper"></div>
 <div id="backtotop">
