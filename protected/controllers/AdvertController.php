@@ -56,13 +56,13 @@ class AdvertController extends Controller {
             if(strpos(Yii::app()->request->url, 'index.php')!==false)
                 $this->redirect($url, true, 301);
 
-            $client = new Predis\Client();
+//            $client = new Predis\Client();
 //
-            if (!$client->exists('view_count_advert_' . $id))
-                $client->set('view_count_advert_' . $id, 0);
+//            if (!$client->exists('view_count_advert_' . $id))
+//                $client->set('view_count_advert_' . $id, 0);
 
-            $client->incr('view_count_advert_' . $id);
-//            $model->saveCounters(array('views'=>1));
+//            $client->incr('view_count_advert_' . $id);
+            $model->saveCounters(array('views'=>1));
 
             $this->render('view', array(
                     'model' =>$model,

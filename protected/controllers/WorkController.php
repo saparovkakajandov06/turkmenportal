@@ -100,13 +100,13 @@ class WorkController extends Controller {
                 $this->redirect($url, true, 301);
 
             //Redis
-            $client = new Predis\Client();
+//            $client = new Predis\Client();
 
-            if (!$client->exists('view_count_work_' . $id))
-                $client->set('view_count_work_' . $id, 0);
+//            if (!$client->exists('view_count_work_' . $id))
+//                $client->set('view_count_work_' . $id, 0);
 
-            $client->incr('view_count_work_' . $id);
-//            $model->saveCounters(array('views' => 1));
+//            $client->incr('view_count_work_' . $id);
+            $model->saveCounters(array('views' => 1));
 
             $this->render('view', array(
                 'model' => $model,

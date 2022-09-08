@@ -48,18 +48,18 @@ class BlogController extends Controller
             $now->modify('-3 day');
             $date_added = new DateTime($model->date_added);
 
-            $client = new Predis\Client();
+//            $client = new Predis\Client();
 //
-            if (!$client->exists('view_count_blog_' . $id))
-                $client->set('view_count_blog_' . $id, 0);
+//            if (!$client->exists('view_count_blog_' . $id))
+//                $client->set('view_count_blog_' . $id, 0);
 
             if ($date_added > $now) {
 
-                $client->incrby('view_count_blog_' . $id, rand(1, 3));
-//                $model->saveCounters(array('visited_count' => rand(1, 3)));
+//                $client->incrby('view_count_blog_' . $id, rand(1, 3));
+                $model->saveCounters(array('visited_count' => rand(1, 3)));
             } else {
-                $client->incr('view_count_blog_' . $id);
-//                $model->saveCounters(array('visited_count' => 1));
+//                $client->incr('view_count_blog_' . $id);
+                $model->saveCounters(array('visited_count' => 1));
             }
 
             $this->render('view', array(
