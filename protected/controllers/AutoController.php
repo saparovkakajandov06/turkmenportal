@@ -114,13 +114,13 @@ class AutoController extends Controller {
 
             $this->pageTitle = $this->pageTitle . ' | ' . Yii::app()->params['title'];
 
-            $client = new Predis\Client();
+//            $client = new Predis\Client();
 //
-            if (!$client->exists('view_count_auto_' . $id))
-                $client->set('view_count_auto_' . $id, 0);
+//            if (!$client->exists('view_count_auto_' . $id))
+//                $client->set('view_count_auto_' . $id, 0);
 
-            $client->incr('view_count_auto_' . $id);
-//            $model->saveCounters(array('views' => 1));
+//            $client->incr('view_count_auto_' . $id);
+            $model->saveCounters(array('views' => 1));
 
             $this->render('view', array(
                 'model' => $model,
