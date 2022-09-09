@@ -41,26 +41,26 @@ class BlogController extends Controller
             if (strpos(Yii::app()->request->url, 'index.php') !== false)
                 $this->redirect($url, true, 301);
 
-//            if ( Yii::app()->getBaseUrl(true).Yii::app()->request->getOriginalUrl() != $url)
-//                $this->redirect($url, true, 301);
-
             $now = new DateTime();
             $now->modify('-3 day');
             $date_added = new DateTime($model->date_added);
 
-//            $client = new Predis\Client();
-//
-//            if (!$client->exists('view_count_blog_' . $id))
-//                $client->set('view_count_blog_' . $id, 0);
+            //Redis
+            $client = new Predis\Client();
+
+            if (!$client->exists('view_count_blog_' . $id))
+                $client->set('view_count_blog_' . $id, 0);
 
             if ($date_added > $now) {
 
-//                $client->incrby('view_count_blog_' . $id, rand(1, 3));
-                $model->saveCounters(array('visited_count' => rand(1, 3)));
+                $client->incrby('view_count_blog_' . $id, rand(1, 3));
+//                $model->saveCounters(array('visited_count' => rand(1, 3)));
             } else {
-//                $client->incr('view_count_blog_' . $id);
-                $model->saveCounters(array('visited_count' => 1));
+                $client->incr('view_count_blog_' . $id);
+//                $model->saveCounters(array('visited_count' => 1));
             }
+
+            $model->visited_count += $client->get('view_count_blog_' . $id);
 
             $this->render('view', array(
                 'model' => $model,
