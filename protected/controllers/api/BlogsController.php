@@ -127,12 +127,15 @@ class BlogsController extends Controller
                 'lang' => $lang
             );
 
+            //Redis
             $client = new Predis\Client();
 
             if (!$client->exists('view_count_blog_' . $id))
                 $client->set('view_count_blog_' . $id, 0);
 
             $client->incr('view_count_blog_' . $id);
+
+            $data['model']->view_count += $client->get('view_count_blog_' . $id);
         }
 
         if (!isset($data)){
