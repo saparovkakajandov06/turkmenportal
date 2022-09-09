@@ -260,12 +260,15 @@ class MediasController extends Controller
                 );
                 $result['model'] =array_merge($data,$extra);
 
+                //Redis
                 $client = new Predis\Client();
 
                 if (!$client->exists('view_count_blog_' . $id))
                     $client->set('view_count_blog_' . $id, 0);
 
                 $client->incr('view_count_blog_' . $id);
+
+                $result['model']['view_count'] += $client->get('view_count_blog_' . $id);
             }
         }
 
