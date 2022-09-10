@@ -53,14 +53,14 @@ class BlogController extends Controller
 
             if ($date_added > $now) {
 
-                $client->incrby('view_count_blog_' . $id, rand(1, 3));
-//                $model->saveCounters(array('visited_count' => rand(1, 3)));
+//                $client->incrby('view_count_blog_' . $id, rand(1, 3));
+                $model->saveCounters(array('visited_count' => rand(1, 3)));
             } else {
-                $client->incr('view_count_blog_' . $id);
-//                $model->saveCounters(array('visited_count' => 1));
+//                $client->incr('view_count_blog_' . $id);
+                $model->saveCounters(array('visited_count' => 1));
             }
 
-            $model->visited_count += $client->get('view_count_blog_' . $id);
+//            $model->visited_count += $client->get('view_count_blog_' . $id);
 
             $this->render('view', array(
                 'model' => $model,
