@@ -120,10 +120,10 @@ class AutoController extends Controller {
             if (!$client->exists('view_count_auto_' . $id))
                 $client->set('view_count_auto_' . $id, 0);
 
-            $client->incr('view_count_auto_' . $id);
-//            $model->saveCounters(array('views' => 1));
+//            $client->incr('view_count_auto_' . $id);
+            $model->saveCounters(array('views' => 1));
 
-            $model->views += $client->get('view_count_auto_' . $id);
+//            $model->views += $client->get('view_count_auto_' . $id);
 
             $this->render('view', array(
                 'model' => $model,
