@@ -103,6 +103,7 @@ class BlogsController extends Controller
         }
 
         if (isset($model)){
+            $model->saveCounters(array('visited_count' => 1));
             $content = $model->getText();
             $pattern = '/&nbsp;/';
             $replacements = ' ';
@@ -133,9 +134,9 @@ class BlogsController extends Controller
             if (!$client->exists('view_count_blog_' . $id))
                 $client->set('view_count_blog_' . $id, 0);
 
-            $client->incr('view_count_blog_' . $id);
+//            $client->incr('view_count_blog_' . $id);
 
-            $data['model']->view_count += $client->get('view_count_blog_' . $id);
+//            $data['model']->view_count += $client->get('view_count_blog_' . $id);
         }
 
         if (!isset($data)){

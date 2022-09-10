@@ -102,6 +102,7 @@ class PostsController extends Controller
         }
 
         if (isset($model)){
+            $model->saveCounters(array('views' => 1));
             $content = $model->getContent();
             $pattern = '/&nbsp;/';
             $replacements = ' ';
@@ -135,9 +136,9 @@ class PostsController extends Controller
             if (!$client->exists('view_count_catalog_' . $id))
                 $client->set('view_count_catalog_' . $id, 0);
 
-            $client->incr('view_count_catalog_' . $id);
+//            $client->incr('view_count_catalog_' . $id);
 
-            $data['model']->view_count += $client->get('view_count_catalog_' . $id);
+//            $data['model']->view_count += $client->get('view_count_catalog_' . $id);
         }
 
         if (!isset($data)){

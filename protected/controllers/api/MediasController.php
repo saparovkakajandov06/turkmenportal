@@ -243,6 +243,7 @@ class MediasController extends Controller
                 ];
             }
             if (isset($model)){
+                $model->saveCounters(array('visited_count' => 1));
                 $content = $model->getText();
                 $pattern = '/src="/';
                 $replacements = 'src="https://turkmenportal.com';
@@ -266,9 +267,9 @@ class MediasController extends Controller
                 if (!$client->exists('view_count_blog_' . $id))
                     $client->set('view_count_blog_' . $id, 0);
 
-                $client->incr('view_count_blog_' . $id);
+//                $client->incr('view_count_blog_' . $id);
 
-                $result['model']['view_count'] += $client->get('view_count_blog_' . $id);
+//                $result['model']['view_count'] += $client->get('view_count_blog_' . $id);
             }
         }
 
