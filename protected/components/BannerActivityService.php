@@ -18,20 +18,20 @@ class BannerActivityService
             //Redis
             $client = new Predis\Client();
 
-            if (!$client->exists('view_count_banner_' . $bannerModel->id))
-                $client->set('view_count_banner_' . $bannerModel->id, 0);
+//            if (!$client->exists('view_count_banner_' . $bannerModel->id))
+//                $client->set('view_count_banner_' . $bannerModel->id, 0);
 
             if (isset($activity_type)) {
                 switch ($activity_type) {
                     case BannerActivity::ACTIVITY_TYPE_VIEW:
 
-                        $client->incr('view_count_banner_' . $bannerModel->id);
-//                        $bannerModel->saveCounters(array('view_count' => 1));
+//                        $client->incr('view_count_banner_' . $bannerModel->id);
+                        $bannerModel->saveCounters(array('view_count' => 1));
                         break;
                     case BannerActivity::ACTIVITY_TYPE_CLICK:
 
-                        $client->incr('click_count_banner_' . $bannerModel->id);
-//                        $bannerModel->saveCounters(array('click_count' => 1));
+//                        $client->incr('click_count_banner_' . $bannerModel->id);
+                        $bannerModel->saveCounters(array('click_count' => 1));
                         break;
                 }
             }
