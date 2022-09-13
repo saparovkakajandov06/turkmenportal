@@ -189,7 +189,7 @@ if (Yii::app()->mobileDetect->isMobile())
 <?php YiiBase::endProfile('mainId2'); ?>
 
 <noscript>
-    <div><img src="//mc.yandex.kz/watch/24581507" style="position:absolute; left:-9999px;" alt=""/></div>
+    <div><img src="//mc.yandex.by/watch/24581507" style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/postscribe/2.0.8/postscribe.min.js"></script>-->
