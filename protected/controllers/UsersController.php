@@ -15,6 +15,7 @@ class UsersController extends Controller
             Yii::app()->end();
         }
 
+
             if (Yii::app()->user->id){
                 $this->redirect(Yii::app()->getModule('user')->profileUrl);
             } else {
