@@ -122,16 +122,6 @@ class BlogController extends Controller
                 ));
             }
 
-            $state = Yii::app()->user->getState('state_blog');;
-
-            if (!isset($state)){
-                Yii::app()->user->setFlash('error', "Images cannot be empty!");
-
-                $this->redirect(Yii::app()->request->UrlReferrer, array(
-                    'model'     => $model,
-                    'photos'    => $photos,
-                ));
-            }
             $model->setAttributes($_POST['Blog']);
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
@@ -151,14 +141,6 @@ class BlogController extends Controller
             }
 
             if ($committed){
-                $image = $model->getThumbPath(720, 576, 'w');
-                $image = '/var/www/turkmenportal.com/public_html'.$image;
-//                $image = 'C:/OpenServer/domains/turkmenportal'.$image;
-
-                $image_info = getimagesize($image);
-                $model->documents[0]->width = $image_info[0];
-                $model->documents[0]->height = $image_info[1];
-                $model->documents[0]->save();
 
                 $this->sendAlertEmail($model, 'blog/view', 'Blog doredildi');
                 EUserFlash::setSuccessMessage('Doredildi');
@@ -195,18 +177,8 @@ class BlogController extends Controller
                 ));
             }
 
-            $state = Yii::app()->user->getState('state_blog');
-//            var_dump(empty($state)); die;
-            if (empty($state)){
-                Yii::app()->user->setFlash('error', "Image cannot be empty");
-
-                return $this->render('update', array(
-                    'model' => $model,
-                    'photos' => $photos,
-                ));
-            }
-
             $model->setAttributes($_POST['Blog']);
+
             if (isset($_POST['Blog']['regions']))
                 $model->regions = $_POST['Blog']['regions'];
 
@@ -215,6 +187,7 @@ class BlogController extends Controller
             $model->tagstm->setTags($_POST['tagstm']);
             $model->tagsru->setTags($_POST['tagsru']);
             $model->documents = Documents::model()->saveDocuments('blogs', $model->state_name, true);
+
             try {
                 if ($model->saveWithRelated(array('regions', 'documents' => array('append' => false)))) {
                     $transaction->commit();
@@ -228,15 +201,6 @@ class BlogController extends Controller
                 $model->addError('id', $e->getMessage());
             }
             if ($committed == true) {
-
-                $image = $model->getThumbPath(720, 576, 'w');
-                $image = '/var/www/turkmenportal.com/public_html'.$image;
-//                $image = 'C:/OpenServer/domains/turkmenportal'.$image;
-
-                $image_info = getimagesize($image);
-                $model->documents[0]->width = $image_info[0];
-                $model->documents[0]->height = $image_info[1];
-                $model->documents[0]->save();
 
                 $this->sendAlertEmail($model, 'blog/view', 'Blog uytgedildi');
                 EUserFlash::setSuccessMessage('Blog doredildi');
