@@ -20,7 +20,7 @@ $cssClass = 'col-xs-12 colheight-sm-1';
         if ($data->hasRelatedVideo()) { ?>
             <span class="c-video-play"></span>
         <?php } else { ?>
-            <span class="c-photo__text__inner__gallcount">
+<!--            <span class="c-photo__text__inner__gallcount">-->
 <!--            <span class="c-photo__text__inner__gallcount__text">-->
                 <?php //echo $data->documents_count; ?><!--</span>-->
     </span>
