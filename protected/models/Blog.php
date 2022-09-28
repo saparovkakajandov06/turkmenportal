@@ -463,16 +463,19 @@ class Blog extends ActiveRecord
 //        var_dump($this);die;
         $criteria->compare('t.title_ru', $this->title, true, 'OR');
         $criteria->compare('t.title_tm', $this->title, true, 'OR');
+   
 
         if (isset($this->client_id) && $this->client_id != 0) {
-            $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model='" . get_class($this) . "' ";
-            $criteria->compare('c.client_id', $this->client_id);
+            $criteria->compare('client_id', $this->client_id, true);
+            // $criteria->join = "LEFT JOIN tbl_clients_log c ON t.id = c.model_id and c.model='" . get_class($this) . "' ";
+            // $criteria->compare('c.client_id', $this->client_id);
 
         }
 
         if (isset($this->worker_id) && $this->worker_id != 0) {
-            $criteria->join = "LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model='" . get_class($this) . "'";
-            $criteria->compare('w.worker_id', $this->worker_id);
+            $criteria->compare('worker_id', $this->worker_id, true);
+            // $criteria->join = "LEFT JOIN tbl_workers_log w ON t.id = w.model_id and w.model='" . get_class($this) . "'";
+            // $criteria->compare('w.worker_id', $this->worker_id);
         }
 
 
