@@ -61,8 +61,12 @@ class BannerController extends Controller
     {
         $model = $this->loadModel($id);
         $files = new XUploadForm;
+        $bannerFix = false;
 
         if (isset($_POST['Banner'])) {
+
+            $bannerFix = !($model->status == $_POST['Banner']['status']);
+
             $model->setAttributes($_POST['Banner']);
 //            echo "<pre>";
 //            print_r($model->attributes);
@@ -71,6 +75,17 @@ class BannerController extends Controller
 //            try {
             $model->documents = Documents::model()->saveDocuments('banners', 'state_banner', true);
             if ($model->saveWithRelated(array('documents' => array('append' => true)))) {
+                if ($bannerFix) {
+
+                    $bannerStatistics = new BannerStatistics;
+                    $bannerStatistics->banner_id = $model->id;
+                    $bannerStatistics->click_count = $model->click_count;
+                    $bannerStatistics->view_count = $model->view_count;
+                    $bannerStatistics->status = $model->status;
+                    $bannerStatistics->date_created = $bannerStatistics->date_updated = date('Y-m-d H:i:s');
+                    $bannerStatistics->save();
+                }
+
                 if (isset($_GET['returnUrl'])) {
                     $this->redirect($_GET['returnUrl']);
                 } else {
@@ -94,7 +109,8 @@ class BannerController extends Controller
 
     public function actionDelete($id)
     {
-//        if(Yii::app()->request->isPostRequest) {    
+
+//        if(Yii::app()->request->isPostRequest) {
         try {
             $bannerModel = $this->loadModel($id);
             $documents = $bannerModel->documents;
@@ -103,7 +119,18 @@ class BannerController extends Controller
                     $doc->fullDelete('tbl_banner_to_documents');
                 }
             }
+
             $bannerModel->delete();
+
+            $bannerStatistics = new BannerStatistics;
+
+            $exists = $bannerStatistics->exists("banner_id = :id", [":id" => $id]);
+
+            if ($exists){
+                $bannerStatistics->deleteAll("banner_id = :id", [":id" => $id]);
+            }
+
+
         } catch (Exception $e) {
             throw new CHttpException(500, $e->getMessage());
         }
