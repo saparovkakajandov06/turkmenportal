@@ -31,6 +31,7 @@ class BannerController extends Controller
 
     public function actionCreate()
     {
+
         $files = new XUploadForm;
         $model = new Banner;
         if (isset($_POST['Banner'])) {
@@ -38,6 +39,19 @@ class BannerController extends Controller
             try {
                 $model->documents = Documents::model()->saveDocuments('banners', 'state_banner', true);
                 if ($model->saveWithRelated(array('documents'))) {
+
+
+
+                    $bannerStat = new BannerStatistics;
+
+                    $bannerStat->banner_id = $model->id;
+                    $bannerStat->view_count = $model->view_count;
+                    $bannerStat->click_count = $model->click_count;
+                    $bannerStat->status = $model->status;
+                    $bannerStat->date_created = $bannerStat->date_updated = date('Y-m-d H:i:s');
+                    $bannerStat->save();
+
+
                     if (isset($_GET['returnUrl'])) {
                         $this->redirect($_GET['returnUrl']);
                     } else {
@@ -52,7 +66,7 @@ class BannerController extends Controller
         } elseif (isset($_GET['Banner'])) {
             $model->attributes = $_GET['Banner'];
         }
-
+        die;
         $this->render('create', array('model' => $model, 'files' => $files));
     }
 
