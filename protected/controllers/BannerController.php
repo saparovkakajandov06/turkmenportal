@@ -66,7 +66,6 @@ class BannerController extends Controller
         } elseif (isset($_GET['Banner'])) {
             $model->attributes = $_GET['Banner'];
         }
-        die;
         $this->render('create', array('model' => $model, 'files' => $files));
     }
 
