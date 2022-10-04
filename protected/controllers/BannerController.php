@@ -120,6 +120,25 @@ class BannerController extends Controller
     }
 
 
+    public function actionStatistics($id){
+
+        $model = Banner::model()->with('banner_type')->findByPk($id);
+
+        $criteria = new CDbCriteria;
+        $criteria->select='*';  // выбираем только поле 'title'
+        $criteria->condition='banner_id=:postID';
+        $criteria->params=array(':postID'=>$id);
+        $banners = BannerStatistics::model()->findAll($criteria);
+
+
+
+        $this->render('statistics', array(
+            'description'     => $model->description,
+            'type'      => $model->banner_type->type_name,
+            'banners'   => $banners
+        ));
+    }
+
     public function actionDelete($id)
     {
 

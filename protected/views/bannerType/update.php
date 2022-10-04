@@ -48,9 +48,13 @@ if (isset($model) && isset($model->id)) {
                     ),
                     array(
                         'class' => 'bootstrap.widgets.BootButtonColumn',
-                        'template' => "{update} {delete}",
+                        'template' => "{statistics} {update} {delete}",
                         'htmlOptions' => array('style' => 'width: 85px; text-align:right;'),
                         'buttons' => array(
+                            'statistics' => array(
+                                'label' => '<i class="fa fa-table"></i>',
+                                'url' => 'Yii::app()->createUrl("//banner/statistics",array("id"=>$data->primaryKey))',
+                            ),
                             'update' => array(
                                 'label' => '<i class="fa fa-pencil"></i>',
                                 'url' => 'Yii::app()->createUrl("//bannerType/update",array("id"=>$data->type,"banner_id"=>$data->primaryKey))',
