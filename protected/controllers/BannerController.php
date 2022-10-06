@@ -130,11 +130,12 @@ class BannerController extends Controller
         $criteria->params=array(':postID'=>$id);
         $banners = BannerStatistics::model()->findAll($criteria);
 
-
+        $type['id']     = $model->banner_type->id;
+        $type['name']   = $model->banner_type->type_name;
 
         $this->render('statistics', array(
             'description'     => $model->description,
-            'type'      => $model->banner_type->type_name,
+            'type'      => $type,
             'banners'   => $banners
         ));
     }
