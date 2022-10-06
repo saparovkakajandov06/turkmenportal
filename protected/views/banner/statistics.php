@@ -1,6 +1,10 @@
 <div class="container">
 
-    <h1 style="margin-bottom: 20px;">Banner type: <?php echo $type ?></h1>
+    <a href="<?php echo (Yii::app()->createUrl("//bannerType/update",array("id"=>$type['id']))) ?>">
+        <i style="color: #a71f1fa1;" onmouseover="this.style.color='#a71f1f'" onmouseout="this.style.color='#a71f1fa1'" class="fa fa-arrow-circle-left fa-2x"></i>
+    </a>
+
+    <h1 style="margin-bottom: 20px;">Banner type: <?php echo $type['name'] ?></h1>
 
     <h3 style="margin-bottom: 20px; margin-top: 50px;" class="text-center"><?php echo "$description" ?></h3>
 
